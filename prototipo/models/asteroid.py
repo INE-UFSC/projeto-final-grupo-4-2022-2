@@ -1,6 +1,6 @@
 
 import pygame.math
-from model.entity import Entity
+from models.entity import Entity
 
 class Asteroid(Entity):
 
