@@ -1,4 +1,4 @@
 
-import game
+from game import Game
 
-game.Game().run()
+Game().run()
