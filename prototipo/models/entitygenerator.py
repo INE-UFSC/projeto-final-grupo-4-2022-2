@@ -36,19 +36,15 @@ TODO:
 """
 class AsteroidsGenerator(EntitiesGenerator):
 
-    sizes = {"plutao": 10,
-             "marte": 20,
-             "jupiter": 30}
+    SIZE_SMALL = 10
+    SIZE_MEDIUM = 20
+    SIZE_BIG = 30
 
     def __init__(self, number_of_entities, player_position, player_size, asteroid_size, screen_size):
         super().__init__(number_of_entities, screen_size)
+        self.__size = asteroid_size
         self.__player_position = player_position
         self.__player_size = player_size
-        try:
-            self.__size = AsteroidsGenerator.sizes[asteroid_size.lower().strip()]
-        except KeyError as e:
-            print(e)
-            sys.exit(1)
 
     def get_size(self):
         return self.__size

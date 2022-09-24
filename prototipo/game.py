@@ -14,7 +14,7 @@ class Game:
         self.dummies = AsteroidsGenerator(10,
                                          Vector2(0,0),
                                          10,
-                                         "plutao",
+                                         AsteroidsGenerator.SIZE_BIG,
                                          Vector2(self.get_screen().get_size())).generate()
 
     def reset(self):

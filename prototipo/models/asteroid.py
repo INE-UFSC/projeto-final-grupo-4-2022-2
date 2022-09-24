@@ -4,7 +4,7 @@ from models.entity import Entity
 
 class Asteroid(Entity):
 
-    def __init__(self, position=pygame.math.Vector2(0,0), velocity=pygame.math.Vector2(0,0), sprite=None, radius=50):
+    def __init__(self, position, velocity, radius, sprite=None):
         super().__init__(position, velocity, sprite, radius)
 
     def update(self, dt, screen_size):
