@@ -7,7 +7,7 @@ class Entity(ABC):
 
     def __init__(self, position, velocity, sprite, radius):
         self._position = position
-        self._velocity = velocity
+        self._velocity= velocity
         self._sprite = sprite
         self._radius = radius
     

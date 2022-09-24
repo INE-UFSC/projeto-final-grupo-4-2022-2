@@ -28,12 +28,6 @@ class EntitiesGenerator:
     def generate(self): ...
 
 
-"""
-TODO: 
-    - Melhorar o init do asteroid_size (constantes ao inves de dic)
-    - make_velocity baseado no size
-    - make_position para não spawnar em cima do player
-"""
 class AsteroidsGenerator(EntitiesGenerator):
 
     SIZE_SMALL = 10
