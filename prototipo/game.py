@@ -1,5 +1,6 @@
 
 from models.entitygenerator import AsteroidsGenerator
+from pygame.math import Vector2
 import pygame
 
 class Game:
@@ -11,10 +12,10 @@ class Game:
         self.__screen = pygame.display.set_mode((500, 500))
         self.__clock = pygame.time.Clock()
         self.dummies = AsteroidsGenerator(10,
-                                         pygame.math.Vector2(0,0),
+                                         Vector2(0,0),
                                          10,
                                          "plutao",
-                                         pygame.math.Vector2(self.get_screen().get_size())).generate()
+                                         Vector2(self.get_screen().get_size())).generate()
 
     def reset(self):
         pass
@@ -49,7 +50,7 @@ class Game:
         dt = 1.0/float(fps)
         coefficient = 30
         for dummy in self.dummies:
-            dummy.update(dt*coefficient)
+            dummy.update(dt*coefficient, Vector2(self.get_screen().get_size()))
 
     def handle_rendering(self):
         self.get_screen().fill((255, 255, 255))
