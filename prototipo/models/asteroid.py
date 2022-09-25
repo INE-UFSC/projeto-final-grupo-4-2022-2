@@ -7,6 +7,9 @@ class Asteroid(Entity):
     def __init__(self, position, velocity, radius, sprite=None):
         super().__init__(position, velocity, sprite, radius)
 
+    def on_colision(self):
+        pass
+
     def update(self, dt, screen_size):
         super().update(dt, screen_size)
 

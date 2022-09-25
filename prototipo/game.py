@@ -1,6 +1,7 @@
 
 from models.entitygenerator import AsteroidsGenerator
 from handler.inputhandler import InputHandler
+from handler.collisionhandler import CollisionHandler
 from models.player import Player
 from pygame.math import Vector2
 import pygame
@@ -13,16 +14,14 @@ class Game:
         self.__running = True
         self.__screen = pygame.display.set_mode((500, 500))
         self.__clock = pygame.time.Clock()
-
-        player = Player(Vector2(250, 250), Vector2(10, 10), None, 10)
+        player = Player(Vector2(250, 250), 5, 10.0)
         self.dummies = AsteroidsGenerator(10,
-                                         Vector2(0,0),
-                                         10,
-                                         AsteroidsGenerator.SIZE_BIG,
+                                         AsteroidsGenerator.SIZE_SMALL,
                                          Vector2(self.get_screen().get_size())).generate()
         self.dummies.append(player)
 
-        self.__inputHandler = InputHandler(player)
+        self.__input_handler = InputHandler(player)
+        self.__collision_handler = CollisionHandler(self.dummies)
 
     def reset(self):
         pass
@@ -54,13 +53,14 @@ class Game:
                 self.close()
                 
     def handle_input(self):
-        self.__inputHandler.handle_input()
+        self.__input_handler.handle_input()
         
     def handle_update(self, fps):
         dt = 1.0/float(fps)
         coefficient = 30
         for dummy in self.dummies:
             dummy.update(dt*coefficient, Vector2(self.get_screen().get_size()))
+        self.__collision_handler.handle_collision()
 
     def handle_rendering(self):
         self.get_screen().fill((0, 0, 0))

@@ -10,7 +10,7 @@ class Entity(ABC):
         self._velocity= velocity
         self._sprite = sprite
         self._radius = radius
-    
+
     def get_position(self):
         return self._position
 
@@ -47,6 +47,9 @@ class Entity(ABC):
             self.set_position(Vector2(current_position.x, 0))
         elif current_position.y < 0:
             self.set_position(Vector2(current_position.x, screen_size.y))
+
+    @abstractmethod
+    def on_colision(self): ...
 
     @abstractmethod
     def get_type(self): ...
