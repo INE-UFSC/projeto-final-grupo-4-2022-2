@@ -13,14 +13,16 @@ class Game:
         self.__running = True
         self.__screen = pygame.display.set_mode((500, 500))
         self.__clock = pygame.time.Clock()
-        self.__player = Player(Vector2(250, 250), Vector2(10, 10), None, 10, 10, Vector2(0,0))
-        self.__inputHandler = InputHandler(self.__player)
+
+        player = Player(Vector2(250, 250), Vector2(10, 10), None, 10)
         self.dummies = AsteroidsGenerator(10,
                                          Vector2(0,0),
                                          10,
                                          AsteroidsGenerator.SIZE_BIG,
                                          Vector2(self.get_screen().get_size())).generate()
-        self.dummies.append(self.__player)
+        self.dummies.append(player)
+
+        self.__inputHandler = InputHandler(player)
 
     def reset(self):
         pass
@@ -61,12 +63,9 @@ class Game:
             dummy.update(dt*coefficient, Vector2(self.get_screen().get_size()))
 
     def handle_rendering(self):
-        self.get_screen().fill((255, 255, 255))
+        self.get_screen().fill((0, 0, 0))
         for dummy in self.dummies:
             pygame.draw.circle(self.get_screen(), (0, 0, 255), dummy.get_position(), dummy.get_radius())
-        
-        pygame.draw.circle(self.get_screen(), (255, 0, 0), self.__player.get_position(), 10)
-        
         pygame.display.flip()
 
     def run(self):

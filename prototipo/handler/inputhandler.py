@@ -7,15 +7,18 @@ class InputHandler:
         self.__player = player
     
     def handle_input(self):
-        if pygame.key.get_pressed()[pygame.K_UP]:
-            print("XL")
-            print(f"mag {self.__player.get_velocity().magnitude()}")
+        key = pygame.key.get_pressed()
+        if key[pygame.K_UP]:
             self.__player.accelerate()
-        
         else:
-            print("DXL")
-            print(f"mag {self.__player.get_velocity().magnitude()}")
             self.__player.slowdown()
+
+        if key[pygame.K_RIGHT]:
+            self.__player.rotate_clockwise()
+        if key[pygame.K_LEFT]:
+            self.__player.rotate_anticlockwise()
+
+        
             
 
     
