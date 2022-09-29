@@ -12,43 +12,43 @@ from pygame.math import Vector2
 
 class Player(AbstractEntity):
 
-    def __init__(self, body, lifes):
+    def __init__(self, body: Body, lifes: int):
         super().__init__(body)
         self.__direction = Vector2(1,1).normalize()
         self.__lifes = lifes
         self.__cooldown = 1
 
-    def get_direction(self):
+    def get_direction(self) -> Vector2:
         return self.__direction
 
-    def set_direction(self, new_direction):
+    def set_direction(self, new_direction: Vector2) -> None:
         self.__direction = new_direction
 
-    def get_lifes(self):
+    def get_lifes(self) -> int:
         return self.__lifes
 
-    def set_lifes(self, new_lifes):
+    def set_lifes(self, new_lifes: int) -> int:
         self.__lifes = new_lifes
 
-    def get_cooldown(self):
+    def get_cooldown(self) -> int:
         return self.__cooldown
 
-    def set_cooldown(self, new_cooldown):
+    def set_cooldown(self, new_cooldown: int) -> None:
         self.__cooldown = new_cooldown
 
-    def rotate_clockwise(self, angle):
+    def rotate_clockwise(self, angle: float) -> None:
         self.get_direction().rotate_ip(angle)
 
-    def rotate_anticlockwise(self, angle):
+    def rotate_anticlockwise(self, angle: float) -> None:
         self.get_direction().rotate_ip(-angle)
     
-    def on_collision(self, entity):
+    def on_collision(self, entity: AbstractEntity) -> None:
         if entity.get_type() == self.get_type():
             return
         entity.destroy()
         self.destroy()
 
-    def handle_input(self, dt):
+    def handle_input(self, dt: float) -> None:
         body = self.get_body()
         if pygame.key.get_pressed()[pygame.K_UP]:
             body.accelerate(1000*self.get_direction()*dt)
@@ -67,7 +67,7 @@ class Player(AbstractEntity):
                                                                      150*self.get_direction(), 2), 7))
                 self.set_cooldown(1)
 
-    def move(self, dt):
+    def move(self, dt: float) -> None:
         body = self.get_body()
         velocity = body.get_velocity()
         if velocity.magnitude() >= 100:
@@ -86,7 +86,7 @@ class Player(AbstractEntity):
 
         body.set_position(body.get_position() + body.get_velocity()*dt)
 
-    def update(self, dt):
+    def update(self, dt: float) -> None:
         self.__cooldown -= dt
         if self.__cooldown < 0:
             self.__cooldown = 0
@@ -94,8 +94,8 @@ class Player(AbstractEntity):
         self.move(dt)
         print(f"Vidas: {self.get_lifes()}")
 
-    def get_type(self):
+    def get_type(self) -> str:
         return "player"
 
-    def destroy(self):
+    def destroy(self) -> None:
         self.__lifes -= 1

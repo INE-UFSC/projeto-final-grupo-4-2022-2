@@ -6,7 +6,7 @@ class Weapon(ABC):
         pass
 
     @abstractmethod
-    def shoot(self):
+    def shoot(self) -> None:
         pass
     
     

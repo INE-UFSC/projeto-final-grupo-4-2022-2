@@ -1,26 +1,26 @@
-from utility.state.state import State
+from utility.states.state import State
 import pygame
 
 class StateInMenu(State):
 
-    def __init__(self, owner):
+    def __init__(self, owner: Game):
         super().__init__(owner)
 
     
-    def entry(self):
+    def entry(self) -> None:
         pass
 
-    def exit(self):
+    def exit(self) -> None:
         pass
 
-    def handle_event(self):
+    def handle_event(self) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.get_owner().close()
 
-    def handle_update(self, dt):
+    def handle_update(self, dt: float) -> None:
         pass
 
-    def handle_rendering(self):
+    def handle_rendering(self) -> None:
         pass
 

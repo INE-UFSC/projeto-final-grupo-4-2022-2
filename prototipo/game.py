@@ -1,6 +1,7 @@
+from utility.states.state import State 
 import utility.constants as CONST
 
-from utility.state.stateingame import StateInGame
+from utility.states.stateingame import StateInGame
 from model.entities.player import Player
 from model.body import Body
 from model.entities.asteroid import Asteroid
@@ -10,6 +11,8 @@ from controller.collisioncontroller import CollisionController
 
 import pygame
 from pygame.math import Vector2
+from pygame import Surface
+from pygame.time import Clock
 
 class Game:
 
@@ -25,7 +28,7 @@ class Game:
         player_body = Body(Vector2(10, 10), Vector2(0.1, 0.1), 10)
         player = Player(player_body, 5)
 
-        asteroid_body = Body(Vector2(100, 100), Vector2(15, 315), Asteroid.BIG)
+        asteroid_body = Body(Vector2(100, 100), Vector2(10, 10), Asteroid.BIG)
         asteroids = [Asteroid(asteroid_body, Asteroid.BIG) for _ in range(10)]
 
         EntitiesController.instance().add_entity(player)
@@ -33,58 +36,58 @@ class Game:
 
         self.__collision_controller = CollisionController(EntitiesController.instance().get_entities())
 
-    def is_running(self):
+    def is_running(self) -> bool:
         return self.__running
 
-    def close(self):
+    def close(self) -> None:
         self.__running = False
 
     def get_current_state(self):
         return self.__current_state
 
-    def set_current_state(self, new_state):
+    def set_current_state(self, new_state) -> None:
         self.__current_state = new_state
         
-    def change_state(self, new_state):
+    def change_state(self, new_state) -> None:
         self.get_current_state().exit()
         self.set_current_state(new_state)
         self.get_current_state().entry()
 
-    def get_screen(self):
+    def get_screen(self) -> Surface:
         return self.__screen
 
-    def set_screen(self, new_screen):
+    def set_screen(self, new_screen: Surface) -> None:
         self.__screen = new_screen
 
-    def get_clock(self):
+    def get_clock(self) -> Clock:
         return self.__clock
 
-    def set_clock(self, new_clock):
+    def set_clock(self, new_clock: Clock) -> None:
         self.__clock = new_clock
 
-    def handle_event(self):
+    def handle_event(self) -> None:
         self.__current_state.handle_event()
 
-    def handle_update(self, dt):
+    def handle_update(self, dt: float) -> None:
         self.__current_state.handle_update(dt)
         self.__collision_controller.handle_collision()
 
-    def clean_window(self):
+    def clean_window(self) -> None:
         self.get_screen().fill((0, 0, 0))
 
-    def update_screen(self):
+    def update_screen(self) -> None:
         pygame.display.flip()
 
-    def handle_rendering(self):
+    def handle_rendering(self) -> None:
         self.clean_window()
         self.__current_state.handle_rendering()
         self.update_screen()
 
-    def run(self):
+    def run(self) -> None:
         self.get_current_state().entry()
         while self.is_running():
             dt = self.get_clock().tick(60)
-            dt = 1.0/dt
+            dt = 1.0/dt # se dt é o periodo do tick, 1/dt é a frequência do tick, talvez usar outro nome?
             self.handle_event()
             self.handle_update(dt)
             self.handle_rendering()

@@ -4,7 +4,7 @@ import pygame
 
 class RubberBullet(Bullet):
 
-    def move(self, dt) -> None:
+    def move(self, dt: float) -> None:
         body = self.get_body()
 
         position = body.get_position()

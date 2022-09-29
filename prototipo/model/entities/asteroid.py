@@ -12,23 +12,23 @@ class Asteroid(AbstractEntity):
     MEDIUM = 20
     SMALL = 10
 
-    def __init__(self, body, size) -> None:
+    def __init__(self, body: Body, size: int) -> None:
         super().__init__(body)
         self.__size = size
 
-    def get_size(self):
+    def get_size(self) -> int:
         return self.__size
 
-    def set_size(self, new_size):
+    def set_size(self, new_size: int):
         self.__size = new_size
     
-    def on_collision(self, entity):
+    def on_collision(self, entity: AbstractEntity) -> None:
         if entity.get_type() == self.get_type():
             return
         entity.destroy()
         self.destroy()
 
-    def move(self, dt):
+    def move(self, dt: float) -> None:
         body = self.get_body()
 
         position = body.get_position()
@@ -44,13 +44,13 @@ class Asteroid(AbstractEntity):
 
         body.set_position(body.get_position() + body.get_velocity()*dt)
 
-    def update(self, dt):
+    def update(self, dt: float) -> None:
         self.move(dt)
 
-    def get_type(self):
+    def get_type(self) -> str:
         return "asteroid"
 
-    def destroy(self):
+    def destroy(self) -> None:
         body = self.get_body()
         position = body.get_position()
         velocity = body.get_velocity()

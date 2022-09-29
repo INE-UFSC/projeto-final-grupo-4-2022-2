@@ -1,4 +1,4 @@
-
+from model.entities.abstractentity import AbstractEntity
 
 class EntitiesController:
 
@@ -13,14 +13,17 @@ class EntitiesController:
             cls._instance = cls()
         return cls._instance
 
-    def get_entities(self):
+    def get_entities(self) -> list[AbstractEntity]:
         return self.__entities
 
-    def add_entity(self, new_entity):
+    def add_entity(self, new_entity: AbstractEntity) -> None:
         self.__entities.append(new_entity)
 
-    def add_entities(self, new_entities):
+    def add_entities(self, new_entities: AbstractEntity) -> None:
         self.__entities.extend(new_entities)
 
-    def del_entity(self, entity):
-        self.__entities.remove(entity)
+    def del_entity(self, entity) -> None:
+        try:
+            self.__entities.remove(entity)
+        except ValueError as ve:
+            print(ve)

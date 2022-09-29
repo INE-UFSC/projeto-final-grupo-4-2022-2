@@ -5,7 +5,7 @@ class CollisionController:
     def __init__(self, entities):
         self.__entities = entities
 
-    def handle_collision(self):
+    def handle_collision(self) -> None:
         for target in self.__entities:
             t_id = target.get_id()
             t_body = target.get_body()

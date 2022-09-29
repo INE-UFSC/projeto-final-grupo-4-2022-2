@@ -1,25 +1,26 @@
 
 from model.entities.abstractentity import AbstractEntity
 from controller.entitiescontroller import EntitiesController
+from model.body import Body
 import utility.constants as CONST
 
 class Bullet(AbstractEntity):
 
-    def __init__(self, body, lifetime) -> None:
+    def __init__(self, body: Body, lifetime: int) -> None:
         super().__init__(body)
         self.__lifetime = lifetime
 
-    def get_lifetime(self):
+    def get_lifetime(self) -> int:
         return self.__lifetime
 
-    def set_lifetime(self, new_lifetime):
+    def set_lifetime(self, new_lifetime: int) -> int:
         self.__lifetime = new_lifetime
 
-    def on_collision(self, entity):
+    def on_collision(self, entity: AbstractEntity) -> None:
         entity.destroy()
         self.destroy()
 
-    def move(self, dt):
+    def move(self, dt: float) -> None:
         body = self.get_body()
 
         position = body.get_position()
@@ -35,14 +36,14 @@ class Bullet(AbstractEntity):
 
         body.set_position(body.get_position() + body.get_velocity()*dt)
 
-    def update(self, dt):
+    def update(self, dt: float) -> None:
         self.__lifetime -= dt
         if self.get_lifetime() < 0:
             EntitiesController.instance().del_entity(self)
         self.move(dt)
 
-    def get_type(self):
+    def get_type(self) -> str:
         return "bullet"
 
-    def destroy(self):
+    def destroy(self) -> None:
         EntitiesController.instance().del_entity(self)
