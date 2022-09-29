@@ -1,4 +1,4 @@
 
-from model.game import Game
+from game import Game
 
 Game("Asteroid").run()
