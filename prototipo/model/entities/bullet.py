@@ -1,7 +1,7 @@
 
 from model.entities.abstractentity import AbstractEntity
 from controller.entitiescontroller import EntitiesController
-
+import utility.constants as CONST
 
 class Bullet(AbstractEntity):
 
@@ -19,27 +19,27 @@ class Bullet(AbstractEntity):
         entity.destroy()
         self.destroy()
 
-    def move(self, dt, screen_size):
+    def move(self, dt):
         body = self.get_body()
 
         position = body.get_position()
         if position.x < 0:
-            position.x = screen_size.x
-        elif screen_size.x < position.x:
+            position.x = CONST.SCREEN_SIZE.x
+        elif CONST.SCREEN_SIZE.x < position.x:
             position.x = 0
 
         if position.y < 0:
-            position.y = screen_size.y
-        elif screen_size.y < position.y:
+            position.y = CONST.SCREEN_SIZE.y
+        elif CONST.SCREEN_SIZE.y < position.y:
             position.y = 0
 
         body.set_position(body.get_position() + body.get_velocity()*dt)
 
-    def update(self, dt, screen_size):
+    def update(self, dt):
         self.__lifetime -= dt
         if self.get_lifetime() < 0:
             EntitiesController.instance().del_entity(self)
-        self.move(dt, screen_size)
+        self.move(dt)
 
     def get_type(self):
         return "bullet"

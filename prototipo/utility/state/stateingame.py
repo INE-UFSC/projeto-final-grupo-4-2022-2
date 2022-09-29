@@ -1,8 +1,8 @@
 
 from controller.entitiescontroller import EntitiesController
 from utility.state.state import State
+import utility.constants as CONST
 import pygame
-from pygame.math import Vector2
 
 class StateInGame(State):
 
@@ -22,7 +22,7 @@ class StateInGame(State):
 
     def handle_update(self, dt):
         for entity in EntitiesController.instance().get_entities():
-            entity.update(dt, Vector2(self.get_owner().get_screen().get_size()))
+            entity.update(dt)
         print(f"Numero de entidades: {len(EntitiesController.instance().get_entities())}")
 
     def handle_rendering(self):

@@ -1,7 +1,8 @@
+import utility.constants as CONST
 
 from utility.state.stateingame import StateInGame
 from model.entities.player import Player
-from model.entities.body import Body
+from model.body import Body
 from model.entities.asteroid import Asteroid
 
 from controller.entitiescontroller import EntitiesController
@@ -18,12 +19,15 @@ class Game:
 
         self.__running = True
         self.__current_state = StateInGame(self)
-        self.__screen = pygame.display.set_mode((500, 500))
+        self.__screen = pygame.display.set_mode(tuple(CONST.SCREEN_SIZE))
         self.__clock = pygame.time.Clock()
 
-        body = Body(Vector2(10, 10), Vector2(0.1, 0.1), 10)
-        player = Player(body, 5)
-        asteroids = [Asteroid(Body(Vector2(100, 100), Vector2(30, 30), 30), "big") for _ in range(10)]
+        player_body = Body(Vector2(10, 10), Vector2(0.1, 0.1), 10)
+        player = Player(player_body, 5)
+
+        asteroid_body = Body(Vector2(100, 100), Vector2(15, 315), Asteroid.BIG)
+        asteroids = [Asteroid(asteroid_body, Asteroid.BIG) for _ in range(10)]
+
         EntitiesController.instance().add_entity(player)
         EntitiesController.instance().add_entities(asteroids)
 

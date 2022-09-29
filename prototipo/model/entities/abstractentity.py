@@ -1,4 +1,3 @@
-
 from abc import ABC, abstractmethod
 
 
@@ -17,6 +16,9 @@ class AbstractEntity(ABC):
     def get_body(self):
         return self.__body
 
+    def get_screen_size(self):
+        return self.__screen_size
+
     def set_body(self, new_body):
         self.__body = new_body
 
@@ -27,7 +29,7 @@ class AbstractEntity(ABC):
     def on_collision(self, entity): ...
 
     @abstractmethod
-    def update(self, dt, screen_size): ...
+    def update(self, dt): ...
 
     @abstractmethod
     def destroy(self): ...

@@ -1,0 +1,22 @@
+
+ENTITIES:
+    entities controller tentou remover entidade que não estava na lista
+    para tentar replicar tente crashar num asteroid medio ou maior enquanto atira 
+    pra tentar spawnwar e destruir os asteroides ao mesmo tempo
+    
+        Traceback (most recent call last):
+    File "c:\Users\suely\OneDrive\Área de Trabalho\poo projeto final\projeto-final-grupo-4-2022-2\prototipo\main.py", line 4, in <module>
+        Game("Asteroid").run()
+    File "c:\Users\suely\OneDrive\Área de Trabalho\poo projeto final\projeto-final-grupo-4-2022-2\prototipo\game.py", line 89, in run
+        self.handle_update(dt)
+    File "c:\Users\suely\OneDrive\Área de Trabalho\poo projeto final\projeto-final-grupo-4-2022-2\prototipo\game.py", line 70, in handle_update       
+        self.__collision_controller.handle_collision()
+    File "c:\Users\suely\OneDrive\Área de Trabalho\poo projeto final\projeto-final-grupo-4-2022-2\prototipo\controller\collisioncontroller.py", line 25, in handle_collision
+        target.on_collision(e)
+    File "c:\Users\suely\OneDrive\Área de Trabalho\poo projeto final\projeto-final-grupo-4-2022-2\prototipo\model\entities\bullet.py", line 20, in on_collision
+        self.destroy()
+    File "c:\Users\suely\OneDrive\Área de Trabalho\poo projeto final\projeto-final-grupo-4-2022-2\prototipo\model\entities\bullet.py", line 48, in destroy
+        EntitiesController.instance().del_entity(self)
+    File "c:\Users\suely\OneDrive\Área de Trabalho\poo projeto final\projeto-final-grupo-4-2022-2\prototipo\controller\entitiescontroller.py", line 26, in del_entity
+        self.__entities.remove(entity)
+    ValueError: list.remove(x): x not in list
