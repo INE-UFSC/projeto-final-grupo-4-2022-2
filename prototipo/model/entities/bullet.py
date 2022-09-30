@@ -17,7 +17,7 @@ class Bullet(AbstractEntity):
         self.__lifetime = new_lifetime
 
     def on_collision(self, entity: AbstractEntity) -> None:
-        entity.destroy()
+        #entity.destroy()
         self.destroy()
 
     def move(self, dt: float) -> None:

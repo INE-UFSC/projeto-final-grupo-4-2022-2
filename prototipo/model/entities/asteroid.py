@@ -25,7 +25,7 @@ class Asteroid(AbstractEntity):
     def on_collision(self, entity: AbstractEntity) -> None:
         if entity.get_type() == self.get_type():
             return
-        entity.destroy()
+        #entity.destroy()
         self.destroy()
 
     def move(self, dt: float) -> None:
@@ -54,6 +54,7 @@ class Asteroid(AbstractEntity):
         body = self.get_body()
         position = body.get_position()
         velocity = body.get_velocity()
+
         if self.get_size() == Asteroid.BIG:
             velocity.scale_to_length(40)
             EntitiesController.instance().add_entity(Asteroid(Body(Vector2(position),
@@ -61,7 +62,8 @@ class Asteroid(AbstractEntity):
                                                                    Asteroid.MEDIUM), Asteroid.MEDIUM))
             EntitiesController.instance().add_entity(Asteroid(Body(Vector2(position),
                                                                    velocity.rotate(-30),
-                                                                   Asteroid.MEDIUM), Asteroid.MEDIUM))     
+                                                                   Asteroid.MEDIUM), Asteroid.MEDIUM))   
+                                                                     
         elif self.get_size() == Asteroid.MEDIUM:
             velocity.scale_to_length(50)
             EntitiesController.instance().add_entity(Asteroid(Body(Vector2(position),

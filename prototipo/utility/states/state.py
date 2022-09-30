@@ -1,16 +1,17 @@
 
 from abc import ABC, abstractmethod
 
+class Game: ...
 
 class State(ABC):
 
-    def __init__(self, owner):
+    def __init__(self, owner: Game):
         self.__owner = owner
 
     def get_owner(self):
         return self.__owner
 
-    def set_owner(self, new_owner) -> None:
+    def set_owner(self, new_owner: Game) -> None:
         self.__owner = new_owner
 
     @abstractmethod

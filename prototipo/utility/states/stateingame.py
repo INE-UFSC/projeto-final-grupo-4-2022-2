@@ -23,7 +23,7 @@ class StateInGame(State):
     def handle_update(self, dt: float) -> None:
         for entity in EntitiesController.instance().get_entities():
             entity.update(dt)
-        print(f"Numero de entidades: {len(EntitiesController.instance().get_entities())}")
+        #print(f"Numero de entidades: {len(EntitiesController.instance().get_entities())}")
 
     def handle_rendering(self) -> None:
         for entity in EntitiesController.instance().get_entities():

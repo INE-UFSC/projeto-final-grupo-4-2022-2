@@ -1,3 +1,4 @@
+from model.entities.piercingbullet import PiercingBullet
 import utility.constants as CONST
 
 from model.entities.abstractentity import AbstractEntity
@@ -45,7 +46,7 @@ class Player(AbstractEntity):
     def on_collision(self, entity: AbstractEntity) -> None:
         if entity.get_type() == self.get_type():
             return
-        entity.destroy()
+        #entity.destroy()
         self.destroy()
 
     def handle_input(self, dt: float) -> None:
@@ -63,7 +64,7 @@ class Player(AbstractEntity):
 
         if pygame.key.get_pressed()[pygame.K_SPACE]:
             if self.get_cooldown() <= 0:
-                EntitiesController.instance().add_entity(RubberBullet(Body(self.get_body().get_position() + 1.01*self.get_body().get_radius()*self.get_direction(),
+                EntitiesController.instance().add_entity(PiercingBullet(Body(self.get_body().get_position() + 1.01*self.get_body().get_radius()*self.get_direction(),
                                                                      150*self.get_direction(), 2), 7))
                 self.set_cooldown(1)
 
@@ -92,7 +93,7 @@ class Player(AbstractEntity):
             self.__cooldown = 0
         self.handle_input(dt)
         self.move(dt)
-        print(f"Vidas: {self.get_lifes()}")
+        #print(f"Vidas: {self.get_lifes()}")
 
     def get_type(self) -> str:
         return "player"

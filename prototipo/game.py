@@ -28,8 +28,13 @@ class Game:
         player_body = Body(Vector2(10, 10), Vector2(0.1, 0.1), 10)
         player = Player(player_body, 5)
 
-        asteroid_body = Body(Vector2(100, 100), Vector2(10, 10), Asteroid.BIG)
-        asteroids = [Asteroid(asteroid_body, Asteroid.BIG) for _ in range(10)]
+        tmp_asteroid_list = list()
+        for _ in range(10):
+            new_body = Body(Vector2(100, 100), Vector2(10, 10), Asteroid.BIG)
+            new_asteroid = Asteroid(new_body, Asteroid.BIG)
+            tmp_asteroid_list.append(new_asteroid)
+            
+        asteroids = list(tmp_asteroid_list)
 
         EntitiesController.instance().add_entity(player)
         EntitiesController.instance().add_entities(asteroids)
