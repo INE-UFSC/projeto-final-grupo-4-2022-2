@@ -1,5 +1,11 @@
 # TODO
 
+## Observações importantes
+
+#### Refatorar a logica de colisão (controlador de entidades remover a cada frame as entidades que estão destruidas?)
+#### Ir por partes, refatorar as entidades antes de arrumar a colisão
+
+
 ## Checklist
 
 #### [x] - Colocar screen_size dentro das entidades, facilita a lógica de movimentação (Screen size virou uma constante importada)
@@ -12,7 +18,3 @@
 #### [ ] - Fazer scores de todos os jogadores, requisito
 #### [ ] - Fazer sprites, deixar o jogo bonitão
 #### [ ] - Arrumar singleton, pois ele está permitindo mais de uma instância (instancia como atributo da classe?)
-
-## Notas
-
-#### (2) Vários parâmetros e métodos tipados, exceto em casos que causava import circular
