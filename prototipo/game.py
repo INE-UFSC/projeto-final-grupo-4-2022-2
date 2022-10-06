@@ -50,10 +50,10 @@ class Game:
     def get_current_state(self):
         return self.__current_state
 
-    def set_current_state(self, new_state) -> None:
+    def set_current_state(self, new_state : State) -> None:
         self.__current_state = new_state
         
-    def change_state(self, new_state) -> None:
+    def change_state(self, new_state: State) -> None:
         self.get_current_state().exit()
         self.set_current_state(new_state)
         self.get_current_state().entry()
@@ -91,8 +91,8 @@ class Game:
     def run(self) -> None:
         self.get_current_state().entry()
         while self.is_running():
-            dt = self.get_clock().tick(60)
-            dt = 1.0/dt # se dt é o periodo do tick, 1/dt é a frequência do tick, talvez usar outro nome?
+            dt = 1.0/self.get_clock().tick(60)
+            dt = 1.0/dt
             self.handle_event()
             self.handle_update(dt)
             self.handle_rendering()
