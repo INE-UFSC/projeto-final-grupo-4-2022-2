@@ -5,9 +5,10 @@ class AbstractEntity(ABC):
 
     next_id = 0
 
-    def __init__(self, body: Body):
+    def __init__(self, body: Body, tag: str):
         self.__id = AbstractEntity.next_id
         self.__body = body
+        self.__tag = tag
         AbstractEntity.next_id += 1
 
     def get_id(self) -> int:
@@ -19,9 +20,8 @@ class AbstractEntity(ABC):
     def set_body(self, new_body: Body) -> None:
         self.__body = new_body
 
-    @abstractmethod
-    # Colocar os types em constantes.py?
-    def get_type(self) -> str: ...
+    def get_tag(self) -> str:
+        return self.__tag
 
     @abstractmethod
     def on_collision(self, entity) -> None: ...

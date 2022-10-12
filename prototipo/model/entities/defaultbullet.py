@@ -1,8 +1,8 @@
 from model.entities.bullet import Bullet
 from model.entities.abstractentity import AbstractEntity
 
-class PiercingBullet(Bullet):
-    
+class DefaultBullet(Bullet):
+
     def on_collision(self, entity: AbstractEntity) -> None:
         pass
 
@@ -11,4 +11,3 @@ class PiercingBullet(Bullet):
 
     def update(self, dt: float) -> None:
         pass
-    

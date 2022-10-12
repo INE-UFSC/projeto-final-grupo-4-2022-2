@@ -1,8 +1,12 @@
 from model.entities.bullet import Bullet
+from model.entities.abstractentity import AbstractEntity
 import utility.constants as CONST
 import pygame
 
 class RubberBullet(Bullet):
+
+    def on_collision(self, entity: AbstractEntity) -> None:
+        pass
 
     def move(self, dt: float) -> None:
         body = self.get_body()
@@ -25,3 +29,6 @@ class RubberBullet(Bullet):
             self.get_body().set_velocity(velocity_switch_x)
 
         body.set_position(body.get_position() + body.get_velocity()*dt)
+
+    def update(self, dt: float) -> None:
+        pass

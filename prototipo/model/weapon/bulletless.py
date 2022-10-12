@@ -1,6 +1,7 @@
+
 from weapon import Weapon
 
-class Shotgun(Weapon):
+class BulletlessWeapon(Weapon):
 
     def __init__(self) -> None:
         super().__init__()

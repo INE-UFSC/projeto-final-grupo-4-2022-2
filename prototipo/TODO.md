@@ -2,7 +2,7 @@
 
 ## Observações importantes
 
-### Refatorar entidades ( ... )
+#### Refatorar entidades ( ... )
 #### Refatorar a logica de colisão (controlador de entidades remover a cada frame as entidades que estão destruidas?)
 
 

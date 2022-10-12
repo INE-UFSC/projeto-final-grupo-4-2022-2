@@ -25,7 +25,7 @@ class Game:
         self.__screen = pygame.display.set_mode(tuple(CONST.SCREEN_SIZE))
         self.__clock = pygame.time.Clock()
 
-        player_body = Body(Vector2(10, 10), Vector2(0.1, 0.1), 10)
+        player_body = Body(Vector2(10, 10), Vector2(0, 0), 10)
         player = Player(player_body, 5)
 
         tmp_asteroid_list = list()

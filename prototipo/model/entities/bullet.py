@@ -7,7 +7,7 @@ import utility.constants as CONST
 class Bullet(AbstractEntity):
 
     def __init__(self, body: Body, lifetime: int) -> None:
-        super().__init__(body)
+        super().__init__(body, "bullet")
         self.__lifetime = lifetime
 
     def get_lifetime(self) -> int:
@@ -16,8 +16,10 @@ class Bullet(AbstractEntity):
     def set_lifetime(self, new_lifetime: int) -> int:
         self.__lifetime = new_lifetime
 
+    def destroy(self) -> None:
+        EntitiesController.instance().del_entity(self)
+"""
     def on_collision(self, entity: AbstractEntity) -> None:
-        #entity.destroy()
         self.destroy()
 
     def move(self, dt: float) -> None:
@@ -41,9 +43,4 @@ class Bullet(AbstractEntity):
         if self.get_lifetime() < 0:
             EntitiesController.instance().del_entity(self)
         self.move(dt)
-
-    def get_type(self) -> str:
-        return "bullet"
-
-    def destroy(self) -> None:
-        EntitiesController.instance().del_entity(self)
+"""

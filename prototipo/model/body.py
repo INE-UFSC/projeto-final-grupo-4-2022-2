@@ -25,8 +25,6 @@ class Body:
     def set_radius(self, new_radius: Vector2) -> None:
         self.__radius = new_radius
 
-    # Vector2 + float?
-    # Não entendi esses dois métodos
     def move(self, value):
         self.set_position(self.get_position() + value)
 
