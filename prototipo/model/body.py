@@ -30,3 +30,5 @@ class Body:
 
     def accelerate(self, value):
         self.set_velocity(self.get_velocity() + value)
+
+    

@@ -12,16 +12,9 @@ class Asteroid(AbstractEntity):
     MEDIUM = 20
     SMALL = 10
 
-    def __init__(self, body: Body, size: int) -> None:
+    def __init__(self, body: Body) -> None:
         super().__init__(body, "asteroid")
-        self.__size = size
 
-    def get_size(self) -> int:
-        return self.__size
-
-    def set_size(self, new_size: int):
-        self.__size = new_size
-    
     def on_collision(self, entity: AbstractEntity) -> None:
         pass
 
@@ -39,7 +32,7 @@ class Asteroid(AbstractEntity):
         elif CONST.SCREEN_SIZE.y < position.y:
             position.y = 0
 
-        body.set_position(body.get_position() + body.get_velocity()*dt)
+        body.set_position(body.get_position() + body.get_velocity()*dt*1000)
 
     def update(self, dt: float) -> None:
         self.move(dt/1000)
@@ -49,22 +42,24 @@ class Asteroid(AbstractEntity):
         position = body.get_position()
         velocity = body.get_velocity()
 
-        if self.get_size() == Asteroid.BIG:
+        if body.get_radius() == Asteroid.BIG:
             velocity.scale_to_length(40)
             EntitiesController.instance().add_entity(Asteroid(Body(Vector2(position),
-                                                                   velocity.rotate(30),
+                                                                   velocity.rotate(
+                                                                       30),
                                                                    Asteroid.MEDIUM), Asteroid.MEDIUM))
             EntitiesController.instance().add_entity(Asteroid(Body(Vector2(position),
                                                                    velocity.rotate(-30),
-                                                                   Asteroid.MEDIUM), Asteroid.MEDIUM))   
-                                                                     
-        elif self.get_size() == Asteroid.MEDIUM:
+                                                                   Asteroid.MEDIUM), Asteroid.MEDIUM))
+
+        elif body.get_radius() == Asteroid.MEDIUM:
             velocity.scale_to_length(50)
             EntitiesController.instance().add_entity(Asteroid(Body(Vector2(position),
-                                                                   velocity.rotate(30),
+                                                                   velocity.rotate(
+                                                                       30),
                                                                    Asteroid.SMALL), Asteroid.SMALL))
             EntitiesController.instance().add_entity(Asteroid(Body(Vector2(position),
                                                                    velocity.rotate(-30),
-                                                                   Asteroid.SMALL), Asteroid.SMALL))     
+                                                                   Asteroid.SMALL), Asteroid.SMALL))
 
         EntitiesController.instance().del_entity(self)

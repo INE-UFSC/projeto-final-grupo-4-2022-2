@@ -1,0 +1,2 @@
+class PlayerFactory:
+    pass

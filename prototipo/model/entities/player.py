@@ -14,7 +14,7 @@ class Player(AbstractEntity):
     def __init__(self, body: Body, lifes: int):
         super().__init__(body, "player")
         self.__lifes = lifes
-        self.__direction = Vector2(1,1).normalize()
+        self.__direction = Vector2(1, 1).normalize()
 
     def get_lifes(self) -> int:
         return self.__lifes
@@ -33,31 +33,31 @@ class Player(AbstractEntity):
 
     def rotate_anticlockwise(self, angle: float) -> None:
         self.get_direction().rotate_ip(-angle)
-    
+
     def on_collision(self, entity: AbstractEntity) -> None:
         pass
 
     def handle_input(self, dt: float) -> None:
         body = self.get_body()
         if pygame.key.get_pressed()[pygame.K_UP]:
-            body.accelerate(self.get_direction()*dt/100000)
+            body.accelerate(self.get_direction() * dt*1000)
         else:
-            body.accelerate(-0.7*body.get_velocity())
+            body.accelerate(-0.7*body.get_velocity()*dt)
 
         if pygame.key.get_pressed()[pygame.K_RIGHT]:
-            self.rotate_clockwise(dt)
+            self.rotate_clockwise(5)
 
         if pygame.key.get_pressed()[pygame.K_LEFT]:
-            self.rotate_anticlockwise(dt)
+            self.rotate_anticlockwise(5)
 
         if pygame.key.get_pressed()[pygame.K_SPACE]:
-            pass # weapon.shoot será chamado aqui
+            pass  # weapon.shoot será chamado aqui
 
     def move(self, dt: float) -> None:
         body = self.get_body()
         velocity = body.get_velocity()
-        if velocity.magnitude() >= 10:
-            velocity.scale_to_length(10)
+        if velocity.magnitude() >= 100:
+            velocity.scale_to_length(100)
 
         position = body.get_position()
         if position.x < 0:
@@ -78,7 +78,6 @@ class Player(AbstractEntity):
         self.move(dt)
         print(f"posicao: {self.get_body().get_position()}")
         print(f"velocidade: {self.get_body().get_velocity()}")
-        
 
     def destroy(self) -> None:
         self.__lifes -= 1

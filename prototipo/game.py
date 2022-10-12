@@ -1,4 +1,4 @@
-from utility.states.state import State 
+from utility.states.state import State
 import utility.constants as CONST
 
 from utility.states.stateingame import StateInGame
@@ -9,10 +9,13 @@ from model.entities.asteroid import Asteroid
 from controller.entitiescontroller import EntitiesController
 from controller.collisioncontroller import CollisionController
 
+from model.factory.asteroidfactory import AsteroidFactory
+
 import pygame
 from pygame.math import Vector2
 from pygame import Surface
 from pygame.time import Clock
+
 
 class Game:
 
@@ -28,18 +31,13 @@ class Game:
         player_body = Body(Vector2(10, 10), Vector2(0, 0), 10)
         player = Player(player_body, 5)
 
-        tmp_asteroid_list = list()
-        for _ in range(10):
-            new_body = Body(Vector2(100, 100), Vector2(10, 10), Asteroid.BIG)
-            new_asteroid = Asteroid(new_body, Asteroid.BIG)
-            tmp_asteroid_list.append(new_asteroid)
-            
-        asteroids = list(tmp_asteroid_list)
+        asteroids = AsteroidFactory().create(10, )
 
         EntitiesController.instance().add_entity(player)
         EntitiesController.instance().add_entities(asteroids)
 
-        self.__collision_controller = CollisionController(EntitiesController.instance().get_entities())
+        self.__collision_controller = CollisionController(
+            EntitiesController.instance().get_entities())
 
     def is_running(self) -> bool:
         return self.__running
@@ -50,9 +48,9 @@ class Game:
     def get_current_state(self):
         return self.__current_state
 
-    def set_current_state(self, new_state : State) -> None:
+    def set_current_state(self, new_state: State) -> None:
         self.__current_state = new_state
-        
+
     def change_state(self, new_state: State) -> None:
         self.get_current_state().exit()
         self.set_current_state(new_state)
@@ -92,7 +90,7 @@ class Game:
         self.get_current_state().entry()
         while self.is_running():
             dt = 1.0/self.get_clock().tick(60)
-            dt = 1.0/dt
+            #dt = 1.0/dt
             self.handle_event()
             self.handle_update(dt)
             self.handle_rendering()
