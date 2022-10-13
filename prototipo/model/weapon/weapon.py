@@ -38,13 +38,13 @@ class Weapon(ABC):
     def get_bullet_factory(self) -> BulletFactory:
         return self.__bullet_factory
 
-    def set_bullet_factory(self, new_bullet_factory):
+    def set_bullet_factory(self, new_bullet_factory: BulletFactory):
         self.__bullet_factory = new_bullet_factory
 
     def get_time_since_last_shot(self) -> float:
         return self.__time_since_last_shot
 
-    def set_time_since_last_shot(self, new_value):
+    def set_time_since_last_shot(self, new_value: float):
         self.__time_since_last_shot = new_value
 
     @abstractmethod

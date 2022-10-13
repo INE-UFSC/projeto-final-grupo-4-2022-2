@@ -18,3 +18,4 @@ class Bullet(AbstractEntity):
 
     def destroy(self) -> None:
         EntitiesController.instance().del_entity(self)
+    

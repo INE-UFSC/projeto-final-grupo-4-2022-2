@@ -13,17 +13,17 @@ class Weapon: ...
 
 class Player(AbstractEntity):
 
-    def __init__(self, body: Body, lifes: int, weapon: Weapon):
+    def __init__(self, body: Body, lives: int, weapon: Weapon):
         super().__init__(body, "player")
-        self.__lifes = lifes
+        self.__lives = lives
         self.__direction = Vector2(1, 1).normalize()
         self.__weapon = weapon
 
-    def get_lifes(self) -> int:
-        return self.__lifes
+    def get_lives(self) -> int:
+        return self.__lives
 
-    def set_lifes(self, lifes: int):
-        self.__lifes = lifes
+    def set_lives(self, lives: int):
+        self.__lives = lives
 
     def get_direction(self) -> Vector2:
         return self.__direction
@@ -88,4 +88,4 @@ class Player(AbstractEntity):
         self.get_weapon().set_direction(self.get_direction())
 
     def destroy(self) -> None:
-        self.__lifes -= 1
+        self.__lives -= 1

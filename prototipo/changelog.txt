@@ -1,6 +1,12 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#1 = OUT 13 () Gian:
+    - PiercingBulletFactory e PersistentBulletFactory implementadas
+    - Tipagem parametros em weapon.set_bullet_factory() e weapon.set_time_since_last_shot()
+    - Corrigindo gramática em player (plural de life é lives e não lifes)
+    - Tipagem de parametro em entitiescontroller
+
 #0 = OUT 13 (12:03) Gian:
     - implementação de RubberBulletFactory
     - correção do código de rubberbullet.move() (estava usando a forma antiga, não chamava body.move())

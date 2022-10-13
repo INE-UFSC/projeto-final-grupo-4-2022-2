@@ -19,10 +19,10 @@ class EntitiesController:
     def add_entity(self, new_entity: AbstractEntity) -> None:
         self.__entities.append(new_entity)
 
-    def add_entities(self, new_entities: AbstractEntity) -> None:
-        self.__entities.extend(new_entities)
+    def add_entities(self, new_entity: AbstractEntity) -> None:
+        self.__entities.extend(new_entity)
 
-    def del_entity(self, entity) -> None:
+    def del_entity(self, entity: AbstractEntity) -> None:
         try:
             self.__entities.remove(entity)
         except ValueError as ve:

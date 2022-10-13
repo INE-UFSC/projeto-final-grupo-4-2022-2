@@ -32,7 +32,7 @@ class Game:
         self.__clock = pygame.time.Clock()
 
         player_body = Body(Vector2(10, 10), Vector2(0, 0), 10)
-        player_lives = 5 # só para ficar consistente no construtor do player
+        player_lives = 5
         player_weapon = DefaultWeapon(Vector2(1, 1), 1, 1000, RubberBulletFactory())
 
         player = Player(player_body, player_lives, player_weapon)
