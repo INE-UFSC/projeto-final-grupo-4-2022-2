@@ -1,4 +1,4 @@
-from model.entities.abstractentity import AbstractEntity
+from model.entities.abstractentity import Entity
 
 class EntitiesController:
 
@@ -6,6 +6,7 @@ class EntitiesController:
 
     def __init__(self):
         self.__entities = []
+        self.__deletion_buffer = set()
     
     @classmethod
     def instance(cls):
@@ -13,16 +14,26 @@ class EntitiesController:
             cls._instance = cls()
         return cls._instance
 
-    def get_entities(self) -> list[AbstractEntity]:
+    def get_entities(self) -> list[Entity]:
         return self.__entities
 
-    def add_entity(self, new_entity: AbstractEntity) -> None:
+    def add_entity(self, new_entity: Entity) -> None:
         self.__entities.append(new_entity)
 
-    def add_entities(self, new_entity: AbstractEntity) -> None:
+    def add_entities(self, new_entity: Entity) -> None:
         self.__entities.extend(new_entity)
 
-    def del_entity(self, entity: AbstractEntity) -> None:
+    def register_deletion(self, entity: Entity) -> None:
+        self.__deletion_buffer.add(entity)
+
+    def flush_deletion_buffer(self) -> None:
+        self.__deletion_buffer.clear()
+    
+    def handle_deletion(self) -> None:
+        for bd in self.__deletion_buffer:
+            self.del_entity(bd)
+
+    def del_entity(self, entity: Entity) -> None:
         try:
             self.__entities.remove(entity)
         except ValueError as ve:

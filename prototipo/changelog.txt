@@ -1,6 +1,24 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#2 = OUT 13 (16:10) Gian:
+    - AbstractEntity renomeado como Entity 
+    - Mudanças no collisioncontroller e entitiescontroller:
+        - collisioncontroller:
+            Agora todas as colisões são detectadas num dado frame, e o mesmo método que detecta armazena, num set, todas
+            as entidades que colidiram. Depois, é chamado o método para percorrer esse set e chamar o on_collision de cada 
+            entidade. Depois, mais um método para limpar o conjunto de colisões armazenadas.
+            A ideia é garantir que todas as colisões são detectadas antes de se começar a chamar os on_collision, e que
+            não haveriam entidades duplicadas no buffer de colisões.
+
+        - entitiescontroller:
+            Parecido com o collisioncontroller, agora tem um buffer para a remoção de entidades. Qualquer entidade pode 
+            chamar um metodo register_deletion da entitiescontroller que adciona esta entidade num set. Este set então é 
+            percorrido pelo método handle_deletion e então o set é limpo por um metodo flush_deletion_buffer
+
+        No código, a implementação pode ser observada nos métodos on_collision das entities, no handle_update() do game
+        e nos próprios arquivos collisioncontroller e entitiescontroller.
+
 #1 = OUT 13 (14:53) Gian:
     - PiercingBulletFactory e PersistentBulletFactory implementadas
     - Tipagem parametros em weapon.set_bullet_factory() e weapon.set_time_since_last_shot()

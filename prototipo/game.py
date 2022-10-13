@@ -78,8 +78,16 @@ class Game:
         self.__current_state.handle_event()
 
     def handle_update(self, dt: float) -> None:
+
         self.__current_state.handle_update(dt)
+
+        self.__collision_controller.detect_collisions()
         self.__collision_controller.handle_collision()
+        self.__collision_controller.flush_collision_register()
+
+        EntitiesController.instance().handle_deletion()
+        EntitiesController.instance().flush_deletion_buffer()
+
 
     def clean_window(self) -> None:
         self.get_screen().fill((0, 0, 0))

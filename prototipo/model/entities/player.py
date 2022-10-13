@@ -2,7 +2,7 @@
 
 import utility.constants as CONST
 
-from model.entities.abstractentity import AbstractEntity
+from model.entities.abstractentity import Entity
 from model.weapon.weapon import Weapon
 from model.body import Body
 
@@ -11,7 +11,7 @@ from pygame.math import Vector2
 
 class Weapon: ...
 
-class Player(AbstractEntity):
+class Player(Entity):
 
     def __init__(self, body: Body, lives: int, weapon: Weapon):
         super().__init__(body, "player")
@@ -43,7 +43,7 @@ class Player(AbstractEntity):
     def rotate_anticlockwise(self, angle: float) -> None:
         self.get_direction().rotate_ip(-angle)
 
-    def on_collision(self, entity: AbstractEntity) -> None:
+    def on_collision(self) -> None:
         pass
 
     def handle_input(self, dt: float) -> None:

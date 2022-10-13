@@ -1,10 +1,10 @@
 
-from model.entities.abstractentity import AbstractEntity
+from model.entities.abstractentity import Entity
 from controller.entitiescontroller import EntitiesController
 from model.body import Body
 
 
-class Bullet(AbstractEntity):
+class Bullet(Entity):
 
     def __init__(self, body: Body, lifetime: int) -> None:
         super().__init__(body, "bullet")
@@ -17,5 +17,6 @@ class Bullet(AbstractEntity):
         self.__lifetime = new_lifetime
 
     def destroy(self) -> None:
-        EntitiesController.instance().del_entity(self)
+        #EntitiesController.instance().del_entity(self)
+        EntitiesController.instance().register_deletion(self)
     

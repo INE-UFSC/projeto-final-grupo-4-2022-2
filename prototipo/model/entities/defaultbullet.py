@@ -1,7 +1,7 @@
 
 from controller.entitiescontroller import EntitiesController
 
-from model.entities.abstractentity import AbstractEntity
+from model.entities.abstractentity import Entity
 from model.entities.bullet import Bullet
 from model.body import Body
 
@@ -13,8 +13,8 @@ class DefaultBullet(Bullet):
     def __init__(self, body: Body, lifetime: int) -> None:
         super().__init__(body, lifetime)
 
-    def on_collision(self, entity: AbstractEntity) -> None:
-        pass
+    def on_collision(self) -> None:
+        EntitiesController.instance().register_deletion(self)
 
     def move(self, dt: float) -> None:
         body = self.get_body()
@@ -35,5 +35,6 @@ class DefaultBullet(Bullet):
     def update(self, dt: float) -> None:
         self.set_lifetime(self.get_lifetime() - dt)
         if self.get_lifetime() < 0:
-            EntitiesController.instance().del_entity(self)
+            #EntitiesController.instance().del_entity(self)
+            EntitiesController.instance().register_deletion(self)
         self.move(dt)

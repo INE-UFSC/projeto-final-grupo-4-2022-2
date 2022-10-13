@@ -1,4 +1,5 @@
-from model.entities.abstractentity import AbstractEntity
+from turtle import position
+from model.entities.abstractentity import Entity
 from model.body import Body
 from controller.entitiescontroller import EntitiesController
 import utility.constants as CONST
@@ -6,7 +7,7 @@ import utility.constants as CONST
 from pygame.math import Vector2
 
 
-class Asteroid(AbstractEntity):
+class Asteroid(Entity):
 
     BIG = 30
     MEDIUM = 20
@@ -15,8 +16,8 @@ class Asteroid(AbstractEntity):
     def __init__(self, body: Body) -> None:
         super().__init__(body, "asteroid")
 
-    def on_collision(self, entity: AbstractEntity) -> None:
-        pass
+    def on_collision(self) -> None:
+        self.destroy()
 
     def move(self, dt: float) -> None:
         body = self.get_body()
@@ -44,22 +45,17 @@ class Asteroid(AbstractEntity):
 
         if body.get_radius() == Asteroid.BIG:
             velocity.scale_to_length(40)
-            EntitiesController.instance().add_entity(Asteroid(Body(Vector2(position),
-                                                                   velocity.rotate(
-                                                                       30),
-                                                                   Asteroid.MEDIUM), Asteroid.MEDIUM))
-            EntitiesController.instance().add_entity(Asteroid(Body(Vector2(position),
-                                                                   velocity.rotate(-30),
-                                                                   Asteroid.MEDIUM), Asteroid.MEDIUM))
+            body_a = Body(Vector2(position), velocity.rotate(30), Asteroid.MEDIUM)
+            body_b = Body(Vector2(position), velocity.rotate(-30), Asteroid.MEDIUM)
+            EntitiesController.instance().add_entity(Asteroid(body_a))
+            EntitiesController.instance().add_entity(Asteroid(body_b))
 
         elif body.get_radius() == Asteroid.MEDIUM:
             velocity.scale_to_length(50)
-            EntitiesController.instance().add_entity(Asteroid(Body(Vector2(position),
-                                                                   velocity.rotate(
-                                                                       30),
-                                                                   Asteroid.SMALL), Asteroid.SMALL))
-            EntitiesController.instance().add_entity(Asteroid(Body(Vector2(position),
-                                                                   velocity.rotate(-30),
-                                                                   Asteroid.SMALL), Asteroid.SMALL))
+            body_a = Body(Vector2(position), velocity.rotate(30), Asteroid.SMALL)
+            body_b = Body(Vector2(position), velocity.rotate(-30), Asteroid.SMALL)
+            EntitiesController.instance().add_entity(Asteroid(body_a))
+            EntitiesController.instance().add_entity(Asteroid(body_b))
 
-        EntitiesController.instance().del_entity(self)
+        #EntitiesController.instance().del_entity(self)
+        EntitiesController.instance().register_deletion(self)
