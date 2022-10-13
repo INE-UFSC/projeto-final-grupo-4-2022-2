@@ -1,4 +1,6 @@
 
+from controller.entitiescontroller import EntitiesController
+
 from model.entities.abstractentity import AbstractEntity
 from model.entities.bullet import Bullet
 from model.body import Body
@@ -34,7 +36,10 @@ class RubberBullet(Bullet):
             velocity_switch_x = pygame.Vector2(x, new_y)
             self.get_body().set_velocity(velocity_switch_x)
 
-        body.set_position(body.get_position() + body.get_velocity()*dt)
+        body.move(body.get_velocity()*dt*10)
 
     def update(self, dt: float) -> None:
-        pass
+        self.set_lifetime(self.get_lifetime() - dt)
+        if self.get_lifetime() < 0:
+            EntitiesController.instance().del_entity(self)
+        self.move(dt)

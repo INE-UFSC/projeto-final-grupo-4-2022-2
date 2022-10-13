@@ -1,4 +1,4 @@
 
 from game import Game
 
-Game("Asteroid").run()
+Game("Pousando em Congonhas").run()

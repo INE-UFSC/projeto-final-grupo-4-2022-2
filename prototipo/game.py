@@ -1,5 +1,6 @@
 
 
+from model.factory.rubberbulletfactory import RubberBulletFactory
 from utility.states.stateingame import StateInGame
 from utility.states.state import State
 import utility.constants as CONST
@@ -31,7 +32,10 @@ class Game:
         self.__clock = pygame.time.Clock()
 
         player_body = Body(Vector2(10, 10), Vector2(0, 0), 10)
-        player = Player(player_body, 5, DefaultWeapon(Vector2(1, 1), 1, 10, DefaultBulletFactory()))
+        player_lives = 5 # só para ficar consistente no construtor do player
+        player_weapon = DefaultWeapon(Vector2(1, 1), 1, 1000, RubberBulletFactory())
+
+        player = Player(player_body, player_lives, player_weapon)
 
         asteroids = AsteroidFactory().create(10)
 

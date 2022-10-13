@@ -1,0 +1,9 @@
+#NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
+    - mudanças
+
+#0 = OUT 13 (12:03) Gian:
+    - implementação de RubberBulletFactory
+    - correção do código de rubberbullet.move() (estava usando a forma antiga, não chamava body.move())
+    - rubberbullet.update() implementado
+    - tipagem dos parametros value de body.move e body.accelerate
+    - melhoria na legibilidade dos bulletfactory.create() concretos e no construtor do player em Game.init()
