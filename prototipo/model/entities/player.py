@@ -1,20 +1,23 @@
 
+
 import utility.constants as CONST
 
 from model.entities.abstractentity import AbstractEntity
+from model.weapon.weapon import Weapon
 from model.body import Body
-
 
 import pygame
 from pygame.math import Vector2
 
+class Weapon: ...
 
 class Player(AbstractEntity):
 
-    def __init__(self, body: Body, lifes: int):
+    def __init__(self, body: Body, lifes: int, weapon: Weapon):
         super().__init__(body, "player")
         self.__lifes = lifes
         self.__direction = Vector2(1, 1).normalize()
+        self.__weapon = weapon
 
     def get_lifes(self) -> int:
         return self.__lifes
@@ -27,6 +30,12 @@ class Player(AbstractEntity):
 
     def set_direction(self, new_direction: Vector2):
         self.__direction = new_direction.normalize()
+
+    def get_weapon(self) -> Weapon:
+        return self.__weapon
+
+    def set_weapon(self, new_weapon: Weapon):
+        self.__weapon = new_weapon
 
     def rotate_clockwise(self, angle: float) -> None:
         self.get_direction().rotate_ip(angle)
@@ -51,7 +60,7 @@ class Player(AbstractEntity):
             self.rotate_anticlockwise(5)
 
         if pygame.key.get_pressed()[pygame.K_SPACE]:
-            pass  # weapon.shoot será chamado aqui
+            self.get_weapon().shoot(dt, body.get_position())
 
     def move(self, dt: float) -> None:
         body = self.get_body()
@@ -70,14 +79,13 @@ class Player(AbstractEntity):
         elif CONST.SCREEN_SIZE.y < position.y:
             position.y = 0
 
-        body.set_position(position + velocity*dt)
+        body.move(velocity*dt)
         body.set_velocity(self.get_direction()*velocity.magnitude())
 
     def update(self, dt: float) -> None:
         self.handle_input(dt)
         self.move(dt)
-        print(f"posicao: {self.get_body().get_position()}")
-        print(f"velocidade: {self.get_body().get_velocity()}")
+        self.get_weapon().set_direction(self.get_direction())
 
     def destroy(self) -> None:
         self.__lifes -= 1

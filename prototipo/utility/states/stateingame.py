@@ -26,9 +26,15 @@ class StateInGame(State):
         #print(f"Numero de entidades: {len(EntitiesController.instance().get_entities())}")
 
     def handle_rendering(self) -> None:
-        for entity in EntitiesController.instance().get_entities():
+        for entity in EntitiesController.instance().get_entities()[::-1]:
             body = entity.get_body()
 
-            pygame.draw.circle(self.get_owner().get_screen(), (0, 0, 255),
+            # Uma lógica só para visualizar quem é quem
+            color = (0, 0, 255)
+            if entity.get_tag() == "player":
+                color = (255, 0, 0)
+            elif entity.get_tag() == "bullet":
+                color = (0, 255, 0)
+            pygame.draw.circle(self.get_owner().get_screen(), color,
                             body.get_position(), body.get_radius())
 

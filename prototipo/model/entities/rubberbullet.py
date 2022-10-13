@@ -1,9 +1,15 @@
-from model.entities.bullet import Bullet
+
 from model.entities.abstractentity import AbstractEntity
+from model.entities.bullet import Bullet
+from model.body import Body
+
 import utility.constants as CONST
 import pygame
 
 class RubberBullet(Bullet):
+
+    def __init__(self, body: Body, lifetime: int) -> None:
+        super().__init__(body, lifetime)
 
     def on_collision(self, entity: AbstractEntity) -> None:
         pass

@@ -2,13 +2,13 @@
 
 ## Observações importantes
 
-#### Refatorar entidades ( ... )
 #### Refatorar a logica de colisão (controlador de entidades remover a cada frame as entidades que estão destruidas?)
-
+#### Atualizar sempre que for modificado o UML
 
 ## Checklist
 
 #### [ ] - Fabricas de entidades (bullet, asteroid, player), facilitar a criação das entidades
+####    -> Está feito a fábrica de DefaultBullet e de Asteroid
 #### [ ] - Placar do usuário e scores salvos em disco (estilo arcade? nome AAA score 999 nome BBB score 998)
 #### [ ] - Fazer estados (menu, fim de jogo, pause), deixar o jogo com cara de jogo
 #### [ ] - Fazer scores de todos os jogadores, requisito

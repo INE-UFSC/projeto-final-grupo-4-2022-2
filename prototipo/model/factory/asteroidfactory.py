@@ -8,6 +8,7 @@ from pygame.math import Vector2
 
 
 class AsteroidFactory:
+    
     def make_velocity(self):
         velocity = Vector2(randint(1, 1000), randint(1, 1000))
         if randint(0, 1):

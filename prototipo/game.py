@@ -1,15 +1,17 @@
+
+
+from utility.states.stateingame import StateInGame
 from utility.states.state import State
 import utility.constants as CONST
 
-from utility.states.stateingame import StateInGame
 from model.entities.player import Player
 from model.body import Body
-from model.entities.asteroid import Asteroid
+from model.factory.asteroidfactory import AsteroidFactory
+from model.factory.defaultbulletfactory import DefaultBulletFactory
+from model.weapon.default import DefaultWeapon
 
 from controller.entitiescontroller import EntitiesController
 from controller.collisioncontroller import CollisionController
-
-from model.factory.asteroidfactory import AsteroidFactory
 
 import pygame
 from pygame.math import Vector2
@@ -29,9 +31,9 @@ class Game:
         self.__clock = pygame.time.Clock()
 
         player_body = Body(Vector2(10, 10), Vector2(0, 0), 10)
-        player = Player(player_body, 5)
+        player = Player(player_body, 5, DefaultWeapon(Vector2(1, 1), 1, 10, DefaultBulletFactory()))
 
-        asteroids = AsteroidFactory().create(10, )
+        asteroids = AsteroidFactory().create(10)
 
         EntitiesController.instance().add_entity(player)
         EntitiesController.instance().add_entities(asteroids)
@@ -90,7 +92,6 @@ class Game:
         self.get_current_state().entry()
         while self.is_running():
             dt = 1.0/self.get_clock().tick(60)
-            #dt = 1.0/dt
             self.handle_event()
             self.handle_update(dt)
             self.handle_rendering()

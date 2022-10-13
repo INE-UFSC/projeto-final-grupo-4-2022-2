@@ -32,7 +32,7 @@ class Asteroid(AbstractEntity):
         elif CONST.SCREEN_SIZE.y < position.y:
             position.y = 0
 
-        body.set_position(body.get_position() + body.get_velocity()*dt*1000)
+        body.move(body.get_velocity()*dt*1000)
 
     def update(self, dt: float) -> None:
         self.move(dt/1000)
