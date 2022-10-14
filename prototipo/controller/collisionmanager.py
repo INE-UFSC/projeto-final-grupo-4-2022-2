@@ -21,7 +21,6 @@ class CollisionManager:
         self.__collisions.append(collision)
 
     def handle_collisions(self):
-        print(len(self.__collisions))
         for collision in self.__collisions:
             entity_1 = collision.get_first()
             entity_2 = collision.get_second()

@@ -1,6 +1,12 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#5 = OUT 14 (19:40) Augusto:
+    - Organizando alguns arquivos
+    - Criação da arma shotgun
+        - Surgimento de novos bugs de delay por causa disso
+    - Mudança de interface da factory de bala
+
 #4 = OUT 14 (10:50) Augusto:
     - Teste das modificações anteriores
     - Consertado alguns bugs

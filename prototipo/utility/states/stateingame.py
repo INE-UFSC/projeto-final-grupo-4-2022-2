@@ -4,6 +4,7 @@ from model.body import Body
 from model.factory.asteroidfactory import AsteroidFactory
 from model.factory.rubberbulletfactory import RubberBulletFactory
 from model.weapon.default import DefaultWeapon
+from model.weapon.shotgun import Shotgun
 
 from controller.entitiescontroller import EntitiesController
 from controller.collisiondetector import CollisionDetector
@@ -22,7 +23,7 @@ class StateInGame(State):
     def entry(self) -> None:
         player_body = Body(Vector2(10, 10), Vector2(0, 0), 10)
         player_lives = 5
-        player_weapon = DefaultWeapon(Vector2(1, 1), 1, 1000, RubberBulletFactory())
+        player_weapon = Shotgun(Vector2(1, 1), 1, 1000, RubberBulletFactory())
 
         player = Player(player_body, player_lives, player_weapon)
 

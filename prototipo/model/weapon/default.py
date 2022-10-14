@@ -2,7 +2,6 @@
 from controller.entitiescontroller import EntitiesController
 
 from model.weapon.weapon import Weapon
-from model.entities.player import Player
 from model.factory.bulletfactory import BulletFactory
 
 from pygame.math import Vector2
@@ -21,9 +20,7 @@ class DefaultWeapon(Weapon):
             return
 
         bullet_factory = self.get_bullet_factory()
-        bullet = bullet_factory.create()
-        bullet.get_body().set_position(player_position)
-        bullet.get_body().set_velocity(self.get_direction()*10)
+        bullet = bullet_factory.create(player_position, self.get_direction()*10)
         EntitiesController.instance().add_entity(bullet)
 
         self.set_time_since_last_shot(0)

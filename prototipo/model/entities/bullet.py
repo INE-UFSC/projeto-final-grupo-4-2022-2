@@ -17,6 +17,5 @@ class Bullet(Entity):
         self.__lifetime = new_lifetime
 
     def destroy(self) -> None:
-        #EntitiesController.instance().del_entity(self)
         EntitiesController.instance().register_deletion(self)
     

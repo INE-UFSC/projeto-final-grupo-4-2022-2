@@ -9,7 +9,7 @@ from pygame.math import Vector2
 
 class PersistentBulletFactory(BulletFactory):
 
-    def create(self) -> Entity:
-        body = Body(Vector2(-10, -10), Vector2(0, 0), 5)
+    def create(self, position: Vector2, velocity: Vector2) -> Entity:
+        body = Body(position, velocity, 5)
         bullet = PersistentBullet(body, 10)
         return bullet

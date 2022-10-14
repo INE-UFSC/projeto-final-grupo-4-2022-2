@@ -49,7 +49,7 @@ class Player(Entity):
     def handle_input(self, dt: float) -> None:
         body = self.get_body()
         if pygame.key.get_pressed()[pygame.K_UP]:
-            body.accelerate(self.get_direction() * dt*1000)
+            body.accelerate(self.get_direction() * dt*100)
         else:
             body.accelerate(-0.7*body.get_velocity()*dt)
 
@@ -65,8 +65,8 @@ class Player(Entity):
     def move(self, dt: float) -> None:
         body = self.get_body()
         velocity = body.get_velocity()
-        if velocity.magnitude() >= 100:
-            velocity.scale_to_length(100)
+        if velocity.magnitude() >= 70:
+            velocity.scale_to_length(70)
 
         position = body.get_position()
         if position.x < 0:
