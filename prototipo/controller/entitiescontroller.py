@@ -4,17 +4,17 @@ class EntitiesController:
 
     _instance = None
 
-    def __init__(self):
-        self.__entities = []
-        self.__deletion_buffer = set()
-    
     @classmethod
     def instance(cls):
         if cls._instance is None:
             cls._instance = cls()
         return cls._instance
 
-    def get_entities(self) -> list[Entity]:
+    def __init__(self):
+        self.__entities = []
+        self.__deletion_buffer = set()
+
+    def get_entities(self) -> list:
         return self.__entities
 
     def add_entity(self, new_entity: Entity) -> None:

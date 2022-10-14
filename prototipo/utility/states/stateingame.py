@@ -1,7 +1,11 @@
 
 from controller.entitiescontroller import EntitiesController
+from controller.collisiondetector import CollisionDetector
+from controller.collisionmanager import CollisionManager
+
 from utility.states.state import State
 import utility.constants as CONST
+
 import pygame
 
 class StateInGame(State):
@@ -21,9 +25,12 @@ class StateInGame(State):
                 self.get_owner().close()
 
     def handle_update(self, dt: float) -> None:
-        for entity in EntitiesController.instance().get_entities():
+        entities = EntitiesController.instance().get_entities()
+        for entity in entities:
             entity.update(dt)
-        #print(f"Numero de entidades: {len(EntitiesController.instance().get_entities())}")
+        
+        CollisionDetector.instance().detect_collisions(entities)
+        CollisionManager.instance().handle_collisions()
 
     def handle_rendering(self) -> None:
         for entity in EntitiesController.instance().get_entities()[::-1]:

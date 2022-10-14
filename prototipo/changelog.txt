@@ -1,6 +1,12 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#3 = OUT 14 (9:50) Augusto:
+    - Modificando como tratar as colisões do jogo
+        - Criacao da classe CollisionManager e modificacao do nome de CollisionController para CollisionDetection
+        - Os controllers estão agora como singletons
+    - Não foi testado, pois a versão do python do computador do laboratorio é antiga
+
 #2 = OUT 13 (16:10) Gian:
     - AbstractEntity renomeado como Entity 
     - Mudanças no collisioncontroller e entitiescontroller:

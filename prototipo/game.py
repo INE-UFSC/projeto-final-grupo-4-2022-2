@@ -12,7 +12,6 @@ from model.factory.defaultbulletfactory import DefaultBulletFactory
 from model.weapon.default import DefaultWeapon
 
 from controller.entitiescontroller import EntitiesController
-from controller.collisioncontroller import CollisionController
 
 import pygame
 from pygame.math import Vector2
@@ -41,9 +40,6 @@ class Game:
 
         EntitiesController.instance().add_entity(player)
         EntitiesController.instance().add_entities(asteroids)
-
-        self.__collision_controller = CollisionController(
-            EntitiesController.instance().get_entities())
 
     def is_running(self) -> bool:
         return self.__running
@@ -78,16 +74,7 @@ class Game:
         self.__current_state.handle_event()
 
     def handle_update(self, dt: float) -> None:
-
         self.__current_state.handle_update(dt)
-
-        self.__collision_controller.detect_collisions()
-        self.__collision_controller.handle_collision()
-        self.__collision_controller.flush_collision_register()
-
-        EntitiesController.instance().handle_deletion()
-        EntitiesController.instance().flush_deletion_buffer()
-
 
     def clean_window(self) -> None:
         self.get_screen().fill((0, 0, 0))

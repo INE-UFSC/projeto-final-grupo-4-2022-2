@@ -21,7 +21,7 @@ class AsteroidFactory:
     def make_position(self):
         return Vector2(randint(0, SCREEN_SIZE.x), randint(0, SCREEN_SIZE.y))
 
-    def create(self, number_of_asteroids: int) -> list[Asteroid]:
+    def create(self, number_of_asteroids: int) -> list():
         asteroids = list()
         for i in range(number_of_asteroids):
             asteroids.append(
