@@ -9,6 +9,7 @@ from model.weapon.shotgun import Shotgun
 from controller.entitiescontroller import EntitiesController
 from controller.collisiondetector import CollisionDetector
 from controller.collisionmanager import CollisionManager
+from model.entities.abstractentity import Entity
 
 from utility.states.state import State
 
@@ -27,7 +28,7 @@ class StateInGame(State):
 
         player = Player(player_body, player_lives, player_weapon)
 
-        asteroids = AsteroidFactory().create(10)
+        asteroids = AsteroidFactory().create(1)
 
         EntitiesController.instance().add_entity(player)
         EntitiesController.instance().add_entities(asteroids)
@@ -48,9 +49,9 @@ class StateInGame(State):
         CollisionDetector.instance().detect_collisions(entities)
         CollisionManager.instance().handle_collisions()
 
+        print(f"Numero de entidades: {len(EntitiesController.instance().get_entities())}")
         EntitiesController.instance().handle_deletion()
         EntitiesController.instance().flush_deletion_buffer()
-        print(f"Numero de entidades: {len(EntitiesController.instance().get_entities())}")
 
     def handle_rendering(self) -> None:
         for entity in EntitiesController.instance().get_entities()[::-1]:

@@ -1,6 +1,7 @@
 
 from model.entities.abstractentity import Entity
 
+class Collision: ...
 
 class Collision:
 
@@ -14,9 +15,9 @@ class Collision:
     def get_second(self) -> Entity:
         return self.__second
 
-    def __eq__(self, other: Entity) -> bool:
-        if ((other.get_first() == self.get_first() and other.get_second() == self.get_second()) or 
-            (other.get_second() == self.get_first() and other.get_first() == self.get_second())):
+    def __eq__(self, other: Collision) -> bool:
+        if ((other.get_first().get_id() == self.get_first().get_id() and other.get_second().get_id() == self.get_second().get_id()) or 
+            (other.get_second().get_id() == self.get_first().get_id() and other.get_first().get_id() == self.get_second().get_id())):
             return True
         return False
 

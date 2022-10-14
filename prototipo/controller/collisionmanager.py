@@ -16,7 +16,11 @@ class CollisionManager:
 
     def register_collision(self, collision: Collision):
         for c in self.__collisions:
-            if c == collision:
+            e1_c = c.get_first().get_id()
+            e2_c = c.get_second().get_id()
+            e1_co = collision.get_first().get_id()
+            e2_co = collision.get_second().get_id()
+            if ((e1_c == e1_co) and (e2_c == e2_co)) or ((e1_c == e2_co) and (e2_c == e1_co)):
                 return
         self.__collisions.append(collision)
 
@@ -28,4 +32,4 @@ class CollisionManager:
             entity_1.on_collision(entity_2)
             entity_2.on_collision(entity_1)
 
-        self.__collisions = list()
+        self.__collisions.clear()

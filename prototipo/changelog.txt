@@ -1,6 +1,10 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#6 = OUT 14 (20:20) Augusto:
+    - Está pior que antes
+        - Permanencia do bug de colisão repetida
+
 #5 = OUT 14 (19:40) Augusto:
     - Organizando alguns arquivos
     - Criação da arma shotgun

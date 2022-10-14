@@ -22,10 +22,10 @@ class Shotgun(Weapon):
             return
 
         bullet_factory = self.get_bullet_factory()
-        bullets = [bullet_factory.create(player_position, self.get_direction()*10)]
+        bullets = [bullet_factory.create(player_position + self.get_direction()*50, self.get_direction()*10)]
         for i in range(2,6):
-            bullets.append(bullet_factory.create(player_position, (self.get_direction()*10).rotate(-i*math.pi/6)))
-            bullets.append(bullet_factory.create(player_position, (self.get_direction()*10).rotate(i*math.pi/6)))
+            bullets.append(bullet_factory.create(player_position + self.get_direction()*10, (self.get_direction()*10).rotate(-i*math.pi)))
+            bullets.append(bullet_factory.create(player_position + self.get_direction()*10, (self.get_direction()*10).rotate(i*math.pi)))
         EntitiesController.instance().add_entities(bullets[:])
 
         self.set_time_since_last_shot(0)

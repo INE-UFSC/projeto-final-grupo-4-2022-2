@@ -1,3 +1,4 @@
+import math
 from turtle import position
 from model.entities.abstractentity import Entity
 from model.body import Body
@@ -45,18 +46,20 @@ class Asteroid(Entity):
         position = body.get_position()
         velocity = body.get_velocity()
 
+        radius = Asteroid.SMALL
+
         if body.get_radius() == Asteroid.BIG:
             velocity.scale_to_length(40)
-            body_a = Body(Vector2(position), velocity.rotate(30), Asteroid.MEDIUM)
-            body_b = Body(Vector2(position), velocity.rotate(-30), Asteroid.MEDIUM)
-            EntitiesController.instance().add_entity(Asteroid(body_a))
-            EntitiesController.instance().add_entity(Asteroid(body_b))
+            radius = Asteroid.MEDIUM
 
         elif body.get_radius() == Asteroid.MEDIUM:
             velocity.scale_to_length(50)
-            body_a = Body(Vector2(position), velocity.rotate(30), Asteroid.SMALL)
-            body_b = Body(Vector2(position), velocity.rotate(-30), Asteroid.SMALL)
-            EntitiesController.instance().add_entity(Asteroid(body_a))
-            EntitiesController.instance().add_entity(Asteroid(body_b))
+            radius = Asteroid.SMALL
+
+        velocity.scale_to_length(40)
+        body_a = Body(Vector2(position + body.get_radius()*velocity.normalize().rotate(math.pi/2)), velocity.rotate(30), radius)
+        body_b = Body(Vector2(position - body.get_radius()*velocity.normalize().rotate(math.pi/2)), velocity.rotate(-30), radius)
+        EntitiesController.instance().add_entity(Asteroid(body_a))
+        EntitiesController.instance().add_entity(Asteroid(body_b))
 
         EntitiesController.instance().register_deletion(self)
