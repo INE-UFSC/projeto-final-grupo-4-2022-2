@@ -1,6 +1,11 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#4 = OUT 14 (10:50) Augusto:
+    - Teste das modificações anteriores
+    - Consertado alguns bugs
+    - Modificação da classe StateInGame para iniciar as entidades
+
 #3 = OUT 14 (9:50) Augusto:
     - Modificando como tratar as colisões do jogo
         - Criacao da classe CollisionManager e modificacao do nome de CollisionController para CollisionDetection

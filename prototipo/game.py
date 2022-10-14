@@ -5,16 +5,8 @@ from utility.states.stateingame import StateInGame
 from utility.states.state import State
 import utility.constants as CONST
 
-from model.entities.player import Player
-from model.body import Body
-from model.factory.asteroidfactory import AsteroidFactory
-from model.factory.defaultbulletfactory import DefaultBulletFactory
-from model.weapon.default import DefaultWeapon
-
-from controller.entitiescontroller import EntitiesController
 
 import pygame
-from pygame.math import Vector2
 from pygame import Surface
 from pygame.time import Clock
 
@@ -29,17 +21,6 @@ class Game:
         self.__current_state = StateInGame(self)
         self.__screen = pygame.display.set_mode(tuple(CONST.SCREEN_SIZE))
         self.__clock = pygame.time.Clock()
-
-        player_body = Body(Vector2(10, 10), Vector2(0, 0), 10)
-        player_lives = 5
-        player_weapon = DefaultWeapon(Vector2(1, 1), 1, 1000, RubberBulletFactory())
-
-        player = Player(player_body, player_lives, player_weapon)
-
-        asteroids = AsteroidFactory().create(10)
-
-        EntitiesController.instance().add_entity(player)
-        EntitiesController.instance().add_entities(asteroids)
 
     def is_running(self) -> bool:
         return self.__running

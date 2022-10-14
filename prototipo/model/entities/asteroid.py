@@ -16,7 +16,9 @@ class Asteroid(Entity):
     def __init__(self, body: Body) -> None:
         super().__init__(body, "asteroid")
 
-    def on_collision(self) -> None:
+    def on_collision(self, entity: Entity) -> None:
+        if entity.get_tag() == "asteroid":
+            return
         self.destroy()
 
     def move(self, dt: float) -> None:
@@ -57,5 +59,4 @@ class Asteroid(Entity):
             EntitiesController.instance().add_entity(Asteroid(body_a))
             EntitiesController.instance().add_entity(Asteroid(body_b))
 
-        #EntitiesController.instance().del_entity(self)
         EntitiesController.instance().register_deletion(self)

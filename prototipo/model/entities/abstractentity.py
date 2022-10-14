@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from model.body import Body
 
+class Entity: ...
+
 class Entity(ABC):
 
     next_id = 0
@@ -24,7 +26,7 @@ class Entity(ABC):
         return self.__tag
 
     @abstractmethod
-    def on_collision(self) -> None: ...
+    def on_collision(self, entity: Entity) -> None: ...
 
     @abstractmethod
     def update(self, dt: float) -> None: ...

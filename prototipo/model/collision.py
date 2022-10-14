@@ -14,7 +14,7 @@ class Collision:
     def get_second(self) -> Entity:
         return self.__second
 
-    def __eq__(self, other):
+    def __eq__(self, other: Entity) -> bool:
         if ((other.get_first() == self.get_first() and other.get_second() == self.get_second()) or 
             (other.get_second() == self.get_first() and other.get_first() == self.get_second())):
             return True

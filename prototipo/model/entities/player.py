@@ -43,7 +43,7 @@ class Player(Entity):
     def rotate_anticlockwise(self, angle: float) -> None:
         self.get_direction().rotate_ip(-angle)
 
-    def on_collision(self) -> None:
+    def on_collision(self, entity: Entity) -> None:
         pass
 
     def handle_input(self, dt: float) -> None:

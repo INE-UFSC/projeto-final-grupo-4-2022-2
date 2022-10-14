@@ -30,8 +30,8 @@ class EntitiesController:
         self.__deletion_buffer.clear()
     
     def handle_deletion(self) -> None:
-        for bd in self.__deletion_buffer:
-            self.del_entity(bd)
+        for entity in self.__deletion_buffer:
+            self.del_entity(entity)
 
     def del_entity(self, entity: Entity) -> None:
         try:

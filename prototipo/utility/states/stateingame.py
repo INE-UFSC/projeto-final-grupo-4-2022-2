@@ -1,11 +1,17 @@
 
+from model.entities.player import Player
+from model.body import Body
+from model.factory.asteroidfactory import AsteroidFactory
+from model.factory.rubberbulletfactory import RubberBulletFactory
+from model.weapon.default import DefaultWeapon
+
 from controller.entitiescontroller import EntitiesController
 from controller.collisiondetector import CollisionDetector
 from controller.collisionmanager import CollisionManager
 
 from utility.states.state import State
-import utility.constants as CONST
 
+from pygame.math import Vector2
 import pygame
 
 class StateInGame(State):
@@ -14,7 +20,16 @@ class StateInGame(State):
         super().__init__(owner)
 
     def entry(self) -> None:
-        pass
+        player_body = Body(Vector2(10, 10), Vector2(0, 0), 10)
+        player_lives = 5
+        player_weapon = DefaultWeapon(Vector2(1, 1), 1, 1000, RubberBulletFactory())
+
+        player = Player(player_body, player_lives, player_weapon)
+
+        asteroids = AsteroidFactory().create(10)
+
+        EntitiesController.instance().add_entity(player)
+        EntitiesController.instance().add_entities(asteroids)
 
     def exit(self) -> None:
         pass
@@ -31,6 +46,10 @@ class StateInGame(State):
         
         CollisionDetector.instance().detect_collisions(entities)
         CollisionManager.instance().handle_collisions()
+
+        EntitiesController.instance().handle_deletion()
+        EntitiesController.instance().flush_deletion_buffer()
+        print(f"Numero de entidades: {len(EntitiesController.instance().get_entities())}")
 
     def handle_rendering(self) -> None:
         for entity in EntitiesController.instance().get_entities()[::-1]:

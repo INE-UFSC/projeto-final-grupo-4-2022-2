@@ -13,8 +13,8 @@ class DefaultBullet(Bullet):
     def __init__(self, body: Body, lifetime: int) -> None:
         super().__init__(body, lifetime)
 
-    def on_collision(self) -> None:
-        EntitiesController.instance().register_deletion(self)
+    def on_collision(self, entity: Entity) -> None:
+        pass
 
     def move(self, dt: float) -> None:
         body = self.get_body()

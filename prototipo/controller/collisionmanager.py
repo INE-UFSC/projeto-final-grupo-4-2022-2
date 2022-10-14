@@ -11,8 +11,8 @@ class CollisionManager:
             cls._instance = cls()
         return cls._instance
 
-    def __init__(self, collisions: list):
-        self.__collisions = collisions
+    def __init__(self):
+        self.__collisions = list()
 
     def register_collision(self, collision: Collision):
         for c in self.__collisions:
@@ -21,6 +21,7 @@ class CollisionManager:
         self.__collisions.append(collision)
 
     def handle_collisions(self):
+        print(len(self.__collisions))
         for collision in self.__collisions:
             entity_1 = collision.get_first()
             entity_2 = collision.get_second()
@@ -28,4 +29,4 @@ class CollisionManager:
             entity_1.on_collision(entity_2)
             entity_2.on_collision(entity_1)
 
-        self.__collisions.clear()
+        self.__collisions = list()
