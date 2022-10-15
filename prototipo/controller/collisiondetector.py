@@ -33,5 +33,6 @@ class CollisionDetector:
                     continue
                 if t_radius + e_radius < t_position.distance_to(e_position):
                     continue
-
-                CollisionManager.instance().register_collision(Collision(target, entity))
+                
+                collided = Collision(target, entity)
+                CollisionManager.instance().register_collision(collided)

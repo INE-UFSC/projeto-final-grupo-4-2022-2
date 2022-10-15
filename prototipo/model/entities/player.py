@@ -1,10 +1,22 @@
 
-
 import utility.constants as CONST
 
 from model.entities.abstractentity import Entity
 from model.weapon.weapon import Weapon
 from model.body import Body
+
+# factory imports
+from model.factory.defaultbulletfactory import DefaultBulletFactory
+from model.factory.persistentbulletfactory import PersistentBulletFactory
+from model.factory.piercingbulletfactory import PiercingBulletFactory
+from model.factory.rubberbulletfactory import RubberBulletFactory
+
+# weapon imports
+from model.weapon.bulletless import BulletlessWeapon
+from model.weapon.default import DefaultWeapon
+from model.weapon.infinity import InfinityWeapon
+from model.weapon.shotgun import Shotgun
+
 
 import pygame
 from pygame.math import Vector2
@@ -14,7 +26,7 @@ class Weapon: ...
 class Player(Entity):
 
     def __init__(self, body: Body, lives: int, weapon: Weapon):
-        super().__init__(body, "player")
+        super().__init__(body, CONST.PLAYER_TAG)
         self.__lives = lives
         self.__direction = Vector2(1, 1).normalize()
         self.__weapon = weapon
@@ -61,6 +73,30 @@ class Player(Entity):
 
         if pygame.key.get_pressed()[pygame.K_SPACE]:
             self.get_weapon().shoot(dt, body.get_position())
+
+        if pygame.key.get_pressed()[pygame.K_1]:
+            self.get_weapon().set_bullet_factory(DefaultBulletFactory())
+        
+        if pygame.key.get_pressed()[pygame.K_2]:
+            self.get_weapon().set_bullet_factory(PersistentBulletFactory())
+
+        if pygame.key.get_pressed()[pygame.K_3]:
+            self.get_weapon().set_bullet_factory(PiercingBulletFactory())
+        
+        if pygame.key.get_pressed()[pygame.K_4]:
+            self.get_weapon().set_bullet_factory(RubberBulletFactory())
+
+        if pygame.key.get_pressed()[pygame.K_q]:
+            self.set_weapon(BulletlessWeapon(Vector2(1, 1), 1, 1000, self.get_weapon().get_bullet_factory()))
+        
+        if pygame.key.get_pressed()[pygame.K_w]:
+            self.set_weapon(DefaultWeapon(Vector2(1, 1), 1, 1000, self.get_weapon().get_bullet_factory()))
+        
+        if pygame.key.get_pressed()[pygame.K_e]:
+            self.set_weapon(InfinityWeapon(Vector2(1, 1), 1, 1000, self.get_weapon().get_bullet_factory()))
+        
+        if pygame.key.get_pressed()[pygame.K_r]:
+            self.set_weapon(Shotgun(Vector2(1, 1), 1, 1000, self.get_weapon().get_bullet_factory()))
 
     def move(self, dt: float) -> None:
         body = self.get_body()

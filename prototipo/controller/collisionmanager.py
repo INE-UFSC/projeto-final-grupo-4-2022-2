@@ -16,12 +16,9 @@ class CollisionManager:
 
     def register_collision(self, collision: Collision):
         for c in self.__collisions:
-            e1_c = c.get_first().get_id()
-            e2_c = c.get_second().get_id()
-            e1_co = collision.get_first().get_id()
-            e2_co = collision.get_second().get_id()
-            if ((e1_c == e1_co) and (e2_c == e2_co)) or ((e1_c == e2_co) and (e2_c == e1_co)):
+            if c == collision:
                 return
+        print(f"appended {collision}")
         self.__collisions.append(collision)
 
     def handle_collisions(self):

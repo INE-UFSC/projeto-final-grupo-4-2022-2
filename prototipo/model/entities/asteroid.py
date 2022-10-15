@@ -15,10 +15,10 @@ class Asteroid(Entity):
     SMALL = 10
 
     def __init__(self, body: Body) -> None:
-        super().__init__(body, "asteroid")
+        super().__init__(body, CONST.ASTEROID_TAG)
 
     def on_collision(self, entity: Entity) -> None:
-        if entity.get_tag() == "asteroid":
+        if entity.get_tag() == CONST.ASTEROID_TAG:
             return
         self.destroy()
 
@@ -55,6 +55,10 @@ class Asteroid(Entity):
         elif body.get_radius() == Asteroid.MEDIUM:
             velocity.scale_to_length(50)
             radius = Asteroid.SMALL
+        
+        elif body.get_radius() == Asteroid.SMALL:
+            EntitiesController.instance().register_deletion(self)
+            return
 
         velocity.scale_to_length(40)
         body_a = Body(Vector2(position + body.get_radius()*velocity.normalize().rotate(math.pi/2)), velocity.rotate(30), radius)

@@ -49,7 +49,7 @@ class StateInGame(State):
         CollisionDetector.instance().detect_collisions(entities)
         CollisionManager.instance().handle_collisions()
 
-        print(f"Numero de entidades: {len(EntitiesController.instance().get_entities())}")
+        #print(f"Numero de entidades: {len(EntitiesController.instance().get_entities())}")
         EntitiesController.instance().handle_deletion()
         EntitiesController.instance().flush_deletion_buffer()
 

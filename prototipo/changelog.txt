@@ -1,6 +1,15 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#7 = OUT 14 () Gian:
+    - Não eram colisões repetidas, o asteroid que estava bugado: asteroids SMALL não sumiam ao colidir, criavam outros asteroids;
+        isso entupia a lista de entidades e fazia a verificação de colisão ficar "entupida"
+    - Tags de entidades agora estão em constants.py
+    - Refatorada de construtores com as novas tags
+    - on_collision das entidades
+    - troca de bullets (1 2 3 4)
+    - troca de armas (q w e r)
+
 #6 = OUT 14 (20:20) Augusto:
     - Está pior que antes
         - Permanencia do bug de colisão repetida

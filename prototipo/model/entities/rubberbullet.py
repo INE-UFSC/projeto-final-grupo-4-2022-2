@@ -14,7 +14,9 @@ class RubberBullet(Bullet):
         super().__init__(body, lifetime)
 
     def on_collision(self, entity: Entity) -> None:
-        pass
+        if self.bullet_tag_check(entity.get_tag()):
+            return
+        self.destroy()
 
     def move(self, dt: float) -> None:
         body = self.get_body()

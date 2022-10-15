@@ -2,7 +2,6 @@
 from controller.entitiescontroller import EntitiesController
 
 from model.weapon.weapon import Weapon
-from model.entities.player import Player
 from model.factory.bulletfactory import BulletFactory
 
 from pygame.math import Vector2
@@ -10,8 +9,8 @@ from pygame.math import Vector2
 
 class InfinityWeapon(Weapon):
 
-    def __init__(self, owner: Player, cooldown: float, ammunition: int, bullet_factory: BulletFactory) -> None:
-        super().__init__(owner, cooldown, ammunition, bullet_factory)
+    def __init__(self, direction: Vector2, cooldown: float, ammunition: int, bullet_factory: BulletFactory) -> None:
+        super().__init__(direction, cooldown, ammunition, bullet_factory)
 
     def shoot(self, dt: float, player_position: Vector2) -> None:
         if self.get_time_since_last_shot() < self.get_cooldown():
