@@ -2,8 +2,7 @@
 from model.entities.abstractentity import Entity
 from model.entities.bullet import Bullet
 from model.body import Body
-from controller.entitiescontroller import EntitiesController
-import utility.constants as CONST
+import utility.constants as CONSTANT
 
 class PersistentBullet(Bullet):
 
@@ -20,19 +19,16 @@ class PersistentBullet(Bullet):
 
         position = body.get_position()
         if position.x < 0:
-            position.x = CONST.SCREEN_SIZE.x
-        elif CONST.SCREEN_SIZE.x < position.x:
+            position.x = CONSTANT.SCREEN_SIZE.x
+        elif CONSTANT.SCREEN_SIZE.x < position.x:
             position.x = 0
 
         if position.y < 0:
-            position.y = CONST.SCREEN_SIZE.y
-        elif CONST.SCREEN_SIZE.y < position.y:
+            position.y = CONSTANT.SCREEN_SIZE.y
+        elif CONSTANT.SCREEN_SIZE.y < position.y:
             position.y = 0
 
         body.move(body.get_velocity()*dt*10)
 
     def update(self, dt: float) -> None:
-        #self.set_lifetime(self.get_lifetime() - dt)
-        #if self.get_lifetime() < 0:
-            #EntitiesController.instance().register_deletion(self)
         self.move(dt)

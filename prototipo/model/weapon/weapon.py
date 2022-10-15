@@ -1,27 +1,27 @@
 
 from abc import ABC, abstractmethod
 
-from pygame.math import Vector2
 
 from model.factory.bulletfactory import BulletFactory
 
 
 class Player: ...
 
+
 class Weapon(ABC):
 
-    def __init__(self, direction: Vector2, cooldown: float, ammunition: int, bullet_factory: BulletFactory) -> None:
-        self.__direction = direction
+    def __init__(self, owner: Player, cooldown: float, ammunition: int, bullet_factory: BulletFactory) -> None:
+        self.__owner = owner
         self.__cooldown = cooldown
         self.__ammunition = ammunition
         self.__bullet_factory = bullet_factory
         self.__time_since_last_shot = cooldown
 
-    def get_direction(self) -> Vector2:
-        return self.__direction
+    def get_owner(self) -> Player:
+        return self.__owner
 
-    def set_direction(self, new_direction: Vector2):
-        self.__direction = new_direction
+    def set_owner(self, new_owner: Player):
+        self.__owner = new_owner
 
     def get_cooldown(self) -> float:
         return self.__cooldown
@@ -48,7 +48,7 @@ class Weapon(ABC):
         self.__time_since_last_shot = new_value
 
     @abstractmethod
-    def shoot(self, dt: float, player_position: Vector2) -> None:
+    def shoot(self, dt: float) -> None:
         pass
     
     

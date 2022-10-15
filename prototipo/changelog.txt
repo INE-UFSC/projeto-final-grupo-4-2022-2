@@ -1,7 +1,13 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
-#7 = OUT 14 () Gian:
+#8 = OUT 14 (22:30) Augusto:
+    - Adicionando as constantes no arquivo constantes
+        - Ainda falta algumas
+    - O bug de lag ainda persiste no jogo, ainda mais com um monte de asteroid
+        - Causa ainda desconhecida
+
+#7 = OUT 14 (21:30) Gian:
     - Não eram colisões repetidas, o asteroid que estava bugado: asteroids SMALL não sumiam ao colidir, criavam outros asteroids;
         isso entupia a lista de entidades e fazia a verificação de colisão ficar "entupida"
     - Tags de entidades agora estão em constants.py

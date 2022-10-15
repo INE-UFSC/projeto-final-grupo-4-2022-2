@@ -3,22 +3,19 @@ from turtle import position
 from model.entities.abstractentity import Entity
 from model.body import Body
 from controller.entitiescontroller import EntitiesController
-import utility.constants as CONST
+
+import utility.constants as CONSTANT
 
 from pygame.math import Vector2
 
 
 class Asteroid(Entity):
 
-    BIG = 30
-    MEDIUM = 20
-    SMALL = 10
-
     def __init__(self, body: Body) -> None:
-        super().__init__(body, CONST.ASTEROID_TAG)
+        super().__init__(body, CONSTANT.ASTEROID_TAG)
 
     def on_collision(self, entity: Entity) -> None:
-        if entity.get_tag() == CONST.ASTEROID_TAG:
+        if entity.get_tag() == CONSTANT.ASTEROID_TAG:
             return
         self.destroy()
 
@@ -27,13 +24,13 @@ class Asteroid(Entity):
 
         position = body.get_position()
         if position.x < 0:
-            position.x = CONST.SCREEN_SIZE.x
-        elif CONST.SCREEN_SIZE.x < position.x:
+            position.x = CONSTANT.SCREEN_SIZE.x
+        elif CONSTANT.SCREEN_SIZE.x < position.x:
             position.x = 0
 
         if position.y < 0:
-            position.y = CONST.SCREEN_SIZE.y
-        elif CONST.SCREEN_SIZE.y < position.y:
+            position.y = CONSTANT.SCREEN_SIZE.y
+        elif CONSTANT.SCREEN_SIZE.y < position.y:
             position.y = 0
 
         body.move(body.get_velocity()*dt*1000)
@@ -46,21 +43,19 @@ class Asteroid(Entity):
         position = body.get_position()
         velocity = body.get_velocity()
 
-        radius = Asteroid.SMALL
 
-        if body.get_radius() == Asteroid.BIG:
-            velocity.scale_to_length(40)
-            radius = Asteroid.MEDIUM
+        if body.get_radius() == CONSTANT.BIG_ASTEROID_SIZE:
+            velocity.scale_to_length(CONSTANT.VELOCITY_OF_MEDIUM_ASTEROID)
+            radius = CONSTANT.MEDIUM_ASTEROID_SIZE
 
-        elif body.get_radius() == Asteroid.MEDIUM:
-            velocity.scale_to_length(50)
-            radius = Asteroid.SMALL
+        elif body.get_radius() == CONSTANT.MEDIUM_ASTEROID_SIZE:
+            velocity.scale_to_length(CONSTANT.VELOCITY_OF_SMALL_ASTEROID)
+            radius = CONSTANT.SMALL_ASTEROID_SIZE
         
-        elif body.get_radius() == Asteroid.SMALL:
+        elif body.get_radius() == CONSTANT.SMALL_ASTEROID_SIZE:
             EntitiesController.instance().register_deletion(self)
             return
 
-        velocity.scale_to_length(40)
         body_a = Body(Vector2(position + body.get_radius()*velocity.normalize().rotate(math.pi/2)), velocity.rotate(30), radius)
         body_b = Body(Vector2(position - body.get_radius()*velocity.normalize().rotate(math.pi/2)), velocity.rotate(-30), radius)
         EntitiesController.instance().add_entity(Asteroid(body_a))

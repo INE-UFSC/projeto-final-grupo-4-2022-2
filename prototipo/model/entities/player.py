@@ -1,6 +1,4 @@
 
-import utility.constants as CONST
-
 from model.entities.abstractentity import Entity
 from model.weapon.weapon import Weapon
 from model.body import Body
@@ -17,6 +15,7 @@ from model.weapon.default import DefaultWeapon
 from model.weapon.infinity import InfinityWeapon
 from model.weapon.shotgun import Shotgun
 
+import utility.constants as CONSTANT
 
 import pygame
 from pygame.math import Vector2
@@ -26,7 +25,7 @@ class Weapon: ...
 class Player(Entity):
 
     def __init__(self, body: Body, lives: int, weapon: Weapon):
-        super().__init__(body, CONST.PLAYER_TAG)
+        super().__init__(body, CONSTANT.PLAYER_TAG)
         self.__lives = lives
         self.__direction = Vector2(1, 1).normalize()
         self.__weapon = weapon
@@ -61,7 +60,7 @@ class Player(Entity):
     def handle_input(self, dt: float) -> None:
         body = self.get_body()
         if pygame.key.get_pressed()[pygame.K_UP]:
-            body.accelerate(self.get_direction() * dt*100)
+            body.accelerate(self.get_direction()*dt*100)
         else:
             body.accelerate(-0.7*body.get_velocity()*dt)
 
@@ -72,7 +71,7 @@ class Player(Entity):
             self.rotate_anticlockwise(5)
 
         if pygame.key.get_pressed()[pygame.K_SPACE]:
-            self.get_weapon().shoot(dt, body.get_position())
+            self.get_weapon().shoot(dt)
 
         if pygame.key.get_pressed()[pygame.K_1]:
             self.get_weapon().set_bullet_factory(DefaultBulletFactory())
@@ -87,32 +86,32 @@ class Player(Entity):
             self.get_weapon().set_bullet_factory(RubberBulletFactory())
 
         if pygame.key.get_pressed()[pygame.K_q]:
-            self.set_weapon(BulletlessWeapon(Vector2(1, 1), 1, 1000, self.get_weapon().get_bullet_factory()))
+            self.set_weapon(BulletlessWeapon(self, CONSTANT.COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
         
         if pygame.key.get_pressed()[pygame.K_w]:
-            self.set_weapon(DefaultWeapon(Vector2(1, 1), 1, 1000, self.get_weapon().get_bullet_factory()))
+            self.set_weapon(DefaultWeapon(self, CONSTANT.COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
         
         if pygame.key.get_pressed()[pygame.K_e]:
-            self.set_weapon(InfinityWeapon(Vector2(1, 1), 1, 1000, self.get_weapon().get_bullet_factory()))
+            self.set_weapon(InfinityWeapon(self, CONSTANT.COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
         
         if pygame.key.get_pressed()[pygame.K_r]:
-            self.set_weapon(Shotgun(Vector2(1, 1), 1, 1000, self.get_weapon().get_bullet_factory()))
+            self.set_weapon(Shotgun(self, CONSTANT.COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
 
     def move(self, dt: float) -> None:
         body = self.get_body()
         velocity = body.get_velocity()
-        if velocity.magnitude() >= 70:
-            velocity.scale_to_length(70)
+        if velocity.magnitude() >= CONSTANT.MAX_VELOCITY_OF_PLAYER:
+            velocity.scale_to_length(CONSTANT.MAX_VELOCITY_OF_PLAYER)
 
         position = body.get_position()
         if position.x < 0:
-            position.x = CONST.SCREEN_SIZE.x
-        elif CONST.SCREEN_SIZE.x < position.x:
+            position.x = CONSTANT.SCREEN_SIZE.x
+        elif CONSTANT.SCREEN_SIZE.x < position.x:
             position.x = 0
 
         if position.y < 0:
-            position.y = CONST.SCREEN_SIZE.y
-        elif CONST.SCREEN_SIZE.y < position.y:
+            position.y = CONSTANT.SCREEN_SIZE.y
+        elif CONSTANT.SCREEN_SIZE.y < position.y:
             position.y = 0
 
         body.move(velocity*dt)
@@ -121,7 +120,6 @@ class Player(Entity):
     def update(self, dt: float) -> None:
         self.handle_input(dt)
         self.move(dt)
-        self.get_weapon().set_direction(self.get_direction())
 
     def destroy(self) -> None:
         self.__lives -= 1

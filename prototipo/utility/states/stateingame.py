@@ -3,15 +3,14 @@ from model.entities.player import Player
 from model.body import Body
 from model.factory.asteroidfactory import AsteroidFactory
 from model.factory.rubberbulletfactory import RubberBulletFactory
-from model.weapon.default import DefaultWeapon
 from model.weapon.shotgun import Shotgun
 
 from controller.entitiescontroller import EntitiesController
 from controller.collisiondetector import CollisionDetector
 from controller.collisionmanager import CollisionManager
-from model.entities.abstractentity import Entity
 
 from utility.states.state import State
+import utility.constants as CONSTANT
 
 from pygame.math import Vector2
 import pygame
@@ -22,13 +21,14 @@ class StateInGame(State):
         super().__init__(owner)
 
     def entry(self) -> None:
-        player_body = Body(Vector2(10, 10), Vector2(0, 0), 10)
-        player_lives = 5
-        player_weapon = Shotgun(Vector2(1, 1), 1, 1000, RubberBulletFactory())
+        player_body = Body(Vector2(0, 0), Vector2(0, 0), CONSTANT.PLAYER_SIZE)
+        player_lives = CONSTANT.MAX_LIVES
+        player_weapon = Shotgun(None, CONSTANT.COOLDOWN, CONSTANT.MAX_AMMUNITION, RubberBulletFactory())
 
         player = Player(player_body, player_lives, player_weapon)
+        player.get_weapon().set_owner(player)
 
-        asteroids = AsteroidFactory().create(1)
+        asteroids = AsteroidFactory().create(10)
 
         EntitiesController.instance().add_entity(player)
         EntitiesController.instance().add_entities(asteroids)

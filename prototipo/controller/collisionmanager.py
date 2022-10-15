@@ -18,7 +18,7 @@ class CollisionManager:
         for c in self.__collisions:
             if c == collision:
                 return
-        print(f"appended {collision}")
+        # print(f"appended {collision}")
         self.__collisions.append(collision)
 
     def handle_collisions(self):

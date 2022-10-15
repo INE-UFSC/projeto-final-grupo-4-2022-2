@@ -7,17 +7,19 @@
 
 ## Checklist
 
-#### [ ] - Fabricas de entidades (bullet, asteroid, player), facilitar a criação das entidades
-####    -> Está feito a fábrica de DefaultBullet e de Asteroid
+#### [ ] - Atualizar UML
+#### [ ] - Fabrica de player
 #### [ ] - Placar do usuário e scores salvos em disco (estilo arcade? nome AAA score 999 nome BBB score 998)
 #### [ ] - Fazer estados (menu, fim de jogo, pause), deixar o jogo com cara de jogo
 #### [ ] - Fazer scores de todos os jogadores, requisito
 #### [ ] - Fazer sprites, deixar o jogo bonitão
 #### [ ] - Arrumar singleton, pois ele está permitindo mais de uma instância (instancia como atributo da classe?)
 #### [ ] - Implementar LevelManager e ModeManager
+#### [ ] - Adicionar constantes no arquivo const. Por exemplo, constantes de correção, munição máxima, velocidade máxima e etc
 
 
-## Histórico 
+## Histórico
+#### [x] - Fabricas de entidades (bullet, asteroid), facilitar a criação das entidades
 #### [x] - Colocar screen_size dentro das entidades, facilita a lógica de movimentação (Screen size virou uma constante importada)
 #### [x] - Fazer classe arma abstrata, para poder implementar modos diferentes
 #### [x] - Novas balas, para poder implementar modos diferentes (1)
