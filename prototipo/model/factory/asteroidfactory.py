@@ -16,7 +16,7 @@ class AsteroidFactory:
             velocity.x = -velocity.x
         if random.randint(0, 1):
             velocity.y = -velocity.y
-        velocity.scale_to_length(CONSTANT.VELOCITY_OF_BIG_ASTEROID)
+        velocity.scale_to_length(CONSTANT.BIG_ASTEROID_VELOCITY)
         return velocity
 
     def make_position(self):

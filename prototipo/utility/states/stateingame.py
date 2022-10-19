@@ -23,7 +23,7 @@ class StateInGame(State):
     def entry(self) -> None:
         player_body = Body(Vector2(0, 0), Vector2(0, 0), CONSTANT.PLAYER_SIZE)
         player_lives = CONSTANT.MAX_LIVES
-        player_weapon = Shotgun(None, CONSTANT.COOLDOWN, CONSTANT.MAX_AMMUNITION, RubberBulletFactory())
+        player_weapon = Shotgun(None, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, RubberBulletFactory())
 
         player = Player(player_body, player_lives, player_weapon)
         player.get_weapon().set_owner(player)

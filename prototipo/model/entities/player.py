@@ -86,16 +86,16 @@ class Player(Entity):
             self.get_weapon().set_bullet_factory(RubberBulletFactory())
 
         if pygame.key.get_pressed()[pygame.K_q]:
-            self.set_weapon(BulletlessWeapon(self, CONSTANT.COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
+            self.set_weapon(BulletlessWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
         
         if pygame.key.get_pressed()[pygame.K_w]:
-            self.set_weapon(DefaultWeapon(self, CONSTANT.COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
+            self.set_weapon(DefaultWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
         
         if pygame.key.get_pressed()[pygame.K_e]:
-            self.set_weapon(InfinityWeapon(self, CONSTANT.COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
+            self.set_weapon(InfinityWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
         
         if pygame.key.get_pressed()[pygame.K_r]:
-            self.set_weapon(Shotgun(self, CONSTANT.COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
+            self.set_weapon(Shotgun(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
 
     def move(self, dt: float) -> None:
         body = self.get_body()

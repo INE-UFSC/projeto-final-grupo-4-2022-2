@@ -1,6 +1,9 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#9 = OUT 19 (19:12) Gian:
+    - Renomeando constantes para algo mais natural
+
 #8 = OUT 14 (22:30) Augusto:
     - Adicionando as constantes no arquivo constantes
         - Ainda falta algumas

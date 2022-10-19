@@ -45,11 +45,11 @@ class Asteroid(Entity):
 
 
         if body.get_radius() == CONSTANT.BIG_ASTEROID_SIZE:
-            velocity.scale_to_length(CONSTANT.VELOCITY_OF_MEDIUM_ASTEROID)
+            velocity.scale_to_length(CONSTANT.MEDIUM_ASTEROID_VELOCITY)
             radius = CONSTANT.MEDIUM_ASTEROID_SIZE
 
         elif body.get_radius() == CONSTANT.MEDIUM_ASTEROID_SIZE:
-            velocity.scale_to_length(CONSTANT.VELOCITY_OF_SMALL_ASTEROID)
+            velocity.scale_to_length(CONSTANT.MEDIUM_ASTEROID_VELOCITY)
             radius = CONSTANT.SMALL_ASTEROID_SIZE
         
         elif body.get_radius() == CONSTANT.SMALL_ASTEROID_SIZE:
