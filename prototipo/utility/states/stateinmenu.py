@@ -1,6 +1,8 @@
 from utility.states.state import State
 import pygame
 
+class Game: ...
+
 class StateInMenu(State):
 
     def __init__(self, owner: Game):

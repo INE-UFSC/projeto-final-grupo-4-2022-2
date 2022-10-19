@@ -16,6 +16,10 @@ class CollisionManager:
         self.__collisions = list()
 
     def register_collision(self, collision: Collision):
+        first_tag = collision.get_first().get_tag()
+        second_tag = collision.get_second().get_tag()
+        if first_tag == second_tag:
+            return
         for c in self.__collisions:
             if c == collision:
                 return

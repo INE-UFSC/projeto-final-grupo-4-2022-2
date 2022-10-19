@@ -1,6 +1,10 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#11 = OUT 19 (20:50) Gian:
+    - Agora estamos checando entity tags em CollisionManager para evitar de aglutinar a lista de colisões (possivelmente resolvendo o lag)
+    - Consertado uma tipagem de stateinmenu
+
 #10 = OUT 19 (20:30) Micael:
     - Criado factory de player
     - Afunilando causa do lag(numero de colisoes registradas)
