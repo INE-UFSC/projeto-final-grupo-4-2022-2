@@ -1,7 +1,10 @@
 from abc import ABC, abstractmethod
 from model.body import Body
 
-class Entity: ...
+
+class Entity:
+    ...
+
 
 class Entity(ABC):
 
@@ -33,3 +36,6 @@ class Entity(ABC):
 
     @abstractmethod
     def destroy(self) -> None: ...
+
+    @abstractmethod
+    def move(self) -> None: ...

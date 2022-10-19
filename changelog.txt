@@ -1,6 +1,11 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#10 = OUT 19 (20:30) Micael:
+    - Criado factory de player
+    - Afunilando causa do lag(numero de colisoes registradas)
+    - UML está mais atualizado
+
 #9 = OUT 19 (19:12) Gian:
     - Renomeando constantes para algo mais natural
 

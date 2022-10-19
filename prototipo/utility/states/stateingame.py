@@ -4,6 +4,7 @@ from model.body import Body
 from model.factory.asteroidfactory import AsteroidFactory
 from model.factory.rubberbulletfactory import RubberBulletFactory
 from model.weapon.shotgun import Shotgun
+from model.factory.playerfactory import PlayerFactory
 
 from controller.entitiescontroller import EntitiesController
 from controller.collisiondetector import CollisionDetector
@@ -15,17 +16,20 @@ import utility.constants as CONSTANT
 from pygame.math import Vector2
 import pygame
 
+
 class StateInGame(State):
 
     def __init__(self, owner):
         super().__init__(owner)
 
     def entry(self) -> None:
+
         player_body = Body(Vector2(0, 0), Vector2(0, 0), CONSTANT.PLAYER_SIZE)
         player_lives = CONSTANT.MAX_LIVES
-        player_weapon = Shotgun(None, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, RubberBulletFactory())
+        player_weapon = Shotgun(
+            None, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, RubberBulletFactory())
 
-        player = Player(player_body, player_lives, player_weapon)
+        player = PlayerFactory().create(player_body, player_lives, player_weapon)
         player.get_weapon().set_owner(player)
 
         asteroids = AsteroidFactory().create(10)
@@ -45,7 +49,7 @@ class StateInGame(State):
         entities = EntitiesController.instance().get_entities()
         for entity in entities:
             entity.update(dt)
-        
+
         CollisionDetector.instance().detect_collisions(entities)
         CollisionManager.instance().handle_collisions()
 
@@ -64,5 +68,4 @@ class StateInGame(State):
             elif entity.get_tag() == "bullet":
                 color = (0, 255, 0)
             pygame.draw.circle(self.get_owner().get_screen(), color,
-                            body.get_position(), body.get_radius())
-
+                               body.get_position(), body.get_radius())

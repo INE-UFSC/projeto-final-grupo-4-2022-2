@@ -8,7 +8,6 @@
 ## Checklist
 
 #### [ ] - Atualizar UML
-#### [ ] - Fabrica de player
 #### [ ] - Placar do usuário e scores salvos em disco (estilo arcade? nome AAA score 999 nome BBB score 998)
 #### [ ] - Fazer estados (menu, fim de jogo, pause), deixar o jogo com cara de jogo
 #### [ ] - Fazer scores de todos os jogadores, requisito
@@ -19,6 +18,7 @@
 
 
 ## Histórico
+#### [X] - Fabrica de player
 #### [x] - Fabricas de entidades (bullet, asteroid), facilitar a criação das entidades
 #### [x] - Colocar screen_size dentro das entidades, facilita a lógica de movimentação (Screen size virou uma constante importada)
 #### [x] - Fazer classe arma abstrata, para poder implementar modos diferentes

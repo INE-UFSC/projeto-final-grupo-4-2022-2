@@ -1,6 +1,7 @@
 
 from model.collision import Collision
 
+
 class CollisionManager:
 
     _instance = None
@@ -20,6 +21,7 @@ class CollisionManager:
                 return
         # print(f"appended {collision}")
         self.__collisions.append(collision)
+        # print('Registrando colisão: ', collision)
 
     def handle_collisions(self):
         for collision in self.__collisions:
@@ -28,5 +30,6 @@ class CollisionManager:
 
             entity_1.on_collision(entity_2)
             entity_2.on_collision(entity_1)
+            # print('Handelando colisão: ', collision)
 
         self.__collisions.clear()
