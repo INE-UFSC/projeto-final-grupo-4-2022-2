@@ -1,6 +1,10 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#12 = OUT 19 (21:50) Gian:
+    - Checklist para dia 04 do novembro
+    - Ajustes benignos
+
 #11 = OUT 19 (20:50) Gian:
     - Agora estamos checando entity tags em CollisionManager para evitar de aglutinar a lista de colisões (possivelmente resolvendo o lag)
     - Consertado uma tipagem de stateinmenu

@@ -1,5 +1,4 @@
 import math
-from turtle import position
 from model.entities.abstractentity import Entity
 from model.body import Body
 from controller.entitiescontroller import EntitiesController
@@ -56,8 +55,18 @@ class Asteroid(Entity):
             EntitiesController.instance().register_deletion(self)
             return
 
-        body_a = Body(Vector2(position + body.get_radius()*velocity.normalize().rotate(math.pi/2)), velocity.rotate(30), radius)
-        body_b = Body(Vector2(position - body.get_radius()*velocity.normalize().rotate(math.pi/2)), velocity.rotate(-30), radius)
+        vector_a = Vector2(position + body.get_radius()*velocity.normalize().rotate(math.pi/2))
+        vector_b = Vector2(position - body.get_radius()*velocity.normalize().rotate(math.pi/2))
+
+        # Maybe define this 30 as some constant in constants.py?
+        rotation = 30
+
+        velocity_a = velocity.rotate(rotation)
+        velocity_b = velocity.rotate(-rotation)
+
+        body_a = Body(vector_a, velocity_a, radius)
+        body_b = Body(vector_b, velocity_b, radius)
+
         EntitiesController.instance().add_entity(Asteroid(body_a))
         EntitiesController.instance().add_entity(Asteroid(body_b))
 
