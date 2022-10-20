@@ -9,6 +9,7 @@ from model.factory.playerfactory import PlayerFactory
 from controller.entitiescontroller import EntitiesController
 from controller.collisiondetector import CollisionDetector
 from controller.collisionmanager import CollisionManager
+from controller.scoremanager import ScoreManager
 
 from utility.states.state import State
 import utility.constants as CONSTANT
@@ -32,7 +33,7 @@ class StateInGame(State):
         player = PlayerFactory().create(player_body, player_lives, player_weapon)
         player.get_weapon().set_owner(player)
 
-        asteroids = AsteroidFactory().create(10)
+        asteroids = AsteroidFactory().create(1)
 
         EntitiesController.instance().add_entity(player)
         EntitiesController.instance().add_entities(asteroids)
@@ -46,26 +47,27 @@ class StateInGame(State):
                 self.get_owner().close()
 
     def handle_update(self, dt: float) -> None:
+
+        # Atualiza cada entidade do jogo
         entities = EntitiesController.instance().get_entities()
         for entity in entities:
             entity.update(dt)
 
+        # Detecta as colisões a cada frame e as registram
         CollisionDetector.instance().detect_collisions(entities)
+
+        # Trata as colisões
         CollisionManager.instance().handle_collisions()
 
-        #print(f"Numero de entidades: {len(EntitiesController.instance().get_entities())}")
+        # Atualiza o score do jogador baseado nas destruições e no tempo
+        ScoreManager.instance().update_score(dt)
+
+        # Gerencia as destruições de cada entidade
         EntitiesController.instance().handle_deletion()
-        EntitiesController.instance().flush_deletion_buffer()
 
     def handle_rendering(self) -> None:
+        print(f"Score: {ScoreManager.instance().get_score()}")
         for entity in EntitiesController.instance().get_entities()[::-1]:
             body = entity.get_body()
-
-            # Uma lógica só para visualizar quem é quem
-            color = (0, 0, 255)
-            if entity.get_tag() == "player":
-                color = (255, 0, 0)
-            elif entity.get_tag() == "bullet":
-                color = (0, 255, 0)
-            pygame.draw.circle(self.get_owner().get_screen(), color,
+            pygame.draw.circle(self.get_owner().get_screen(), CONSTANT.COLORS[entity.get_tag()],
                                body.get_position(), body.get_radius())

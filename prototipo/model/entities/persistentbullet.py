@@ -12,7 +12,7 @@ class PersistentBullet(Bullet):
     def on_collision(self, entity: Entity) -> None:
         if self.bullet_tag_check(entity.get_tag()):
             return
-        self.destroy()
+        EntitiesController.instance().register_deletion(self)
 
     def move(self, dt: float) -> None:
         body = self.get_body()

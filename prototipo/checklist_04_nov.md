@@ -14,12 +14,17 @@
             - Livre pelo plano (x)
             - Pseudo-física (momentum/velocidade/inercia blabla) (x)
             - Aproximar a movimentação ao Asteroid clássico ( )
+        Geração de inimigos:
+            - Novos asteroid e aliens ( )
+                - Asteroids apenas quando acabar todos eles
+                - Alien é aleatorio
 
         
     Objetivos:
         Pontuação:
-            - Tempo de sobrevivência ( )
-            - Quantidade de adversários destruídos ( )
+            - Tempo de sobrevivência (x)
+            - Quantidade de adversários destruídos (x)
+            - Escrever em disco ( )
 
     Regras:
         - Num finito de vidas (x)

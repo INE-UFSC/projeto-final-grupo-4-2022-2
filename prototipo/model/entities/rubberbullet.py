@@ -16,7 +16,7 @@ class RubberBullet(Bullet):
     def on_collision(self, entity: Entity) -> None:
         if self.bullet_tag_check(entity.get_tag()):
             return
-        self.destroy()
+        EntitiesController.instance().register_deletion(self)
 
     def move(self, dt: float) -> None:
         body = self.get_body()
@@ -43,6 +43,5 @@ class RubberBullet(Bullet):
     def update(self, dt: float) -> None:
         self.set_lifetime(self.get_lifetime() - dt)
         if self.get_lifetime() < 0:
-            #EntitiesController.instance().del_entity(self)
             EntitiesController.instance().register_deletion(self)
         self.move(dt)

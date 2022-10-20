@@ -7,16 +7,18 @@
 
 ## Checklist
 
-#### [ ] - Placar do usuário e scores salvos em disco (estilo arcade? nome AAA score 999 nome BBB score 998)
+## Outros
+
+#### [ ] - Scores salvos em disco (estilo arcade? nome AAA score 999 nome BBB score 998)
 #### [ ] - Fazer estados (menu, fim de jogo, pause), deixar o jogo com cara de jogo
-#### [ ] - Fazer scores de todos os jogadores, requisito
 #### [ ] - Fazer sprites, deixar o jogo bonitão
-#### [ ] - Arrumar singleton, pois ele está permitindo mais de uma instância (instancia como atributo da classe?)
 #### [ ] - Implementar LevelManager e ModeManager
-#### [ ] - Adicionar constantes no arquivo const. Por exemplo, constantes de correção, munição máxima, velocidade máxima e etc
 
 
 ## Histórico
+
+#### [x] - Adicionar constantes no arquivo const. Por exemplo, constantes de correção, munição máxima, velocidade máxima e etc
+#### [x] - Arrumar singleton, pois ele está permitindo mais de uma instância (instancia como atributo da classe?)
 #### [x] - Atualizar UML
 #### [x] - Fabrica de player
 #### [x] - Fabricas de entidades (bullet, asteroid), facilitar a criação das entidades

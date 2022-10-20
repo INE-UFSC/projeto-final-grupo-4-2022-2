@@ -18,13 +18,14 @@ class EntitiesController:
     def get_entities(self) -> list:
         return self.__entities
 
+    def get_deletion_buffer(self):
+        return list(self.__deletion_buffer)
+
     def add_entity(self, new_entity: Entity) -> None:
         self.__entities.append(new_entity)
-        # print('Nova entidade: ', new_entity)
 
     def add_entities(self, new_entity: Entity) -> None:
         self.__entities.extend(new_entity)
-        # print('Nova entidade: ', new_entity)
 
     def register_deletion(self, entity: Entity) -> None:
         self.__deletion_buffer.add(entity)
@@ -34,8 +35,9 @@ class EntitiesController:
 
     def handle_deletion(self) -> None:
         for entity in self.__deletion_buffer:
+            entity.destroy()
             self.del_entity(entity)
-            # print('Deletando entidade: ', entity)
+        self.flush_deletion_buffer()
 
     def del_entity(self, entity: Entity) -> None:
         try:

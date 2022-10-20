@@ -2,6 +2,7 @@ import math
 from model.entities.abstractentity import Entity
 from model.body import Body
 from controller.entitiescontroller import EntitiesController
+from controller.scoremanager import ScoreManager
 
 import utility.constants as CONSTANT
 
@@ -16,7 +17,7 @@ class Asteroid(Entity):
     def on_collision(self, entity: Entity) -> None:
         if entity.get_tag() == CONSTANT.ASTEROID_TAG:
             return
-        self.destroy()
+        EntitiesController.instance().register_deletion(self)
 
     def move(self, dt: float) -> None:
         body = self.get_body()
@@ -38,6 +39,7 @@ class Asteroid(Entity):
         self.move(dt/1000)
 
     def destroy(self) -> None:
+
         body = self.get_body()
         position = body.get_position()
         velocity = body.get_velocity()
@@ -55,8 +57,8 @@ class Asteroid(Entity):
             EntitiesController.instance().register_deletion(self)
             return
 
-        vector_a = Vector2(position + body.get_radius()*velocity.normalize().rotate(math.pi/2))
-        vector_b = Vector2(position - body.get_radius()*velocity.normalize().rotate(math.pi/2))
+        position_a = Vector2(position + body.get_radius()*velocity.normalize().rotate(math.pi/2))
+        position_b = Vector2(position - body.get_radius()*velocity.normalize().rotate(math.pi/2))
 
         # Maybe define this 30 as some constant in constants.py?
         rotation = 30
@@ -64,10 +66,8 @@ class Asteroid(Entity):
         velocity_a = velocity.rotate(rotation)
         velocity_b = velocity.rotate(-rotation)
 
-        body_a = Body(vector_a, velocity_a, radius)
-        body_b = Body(vector_b, velocity_b, radius)
+        body_a = Body(position_a, velocity_a, radius)
+        body_b = Body(position_b, velocity_b, radius)
 
         EntitiesController.instance().add_entity(Asteroid(body_a))
         EntitiesController.instance().add_entity(Asteroid(body_b))
-
-        EntitiesController.instance().register_deletion(self)

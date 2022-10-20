@@ -9,6 +9,10 @@ BULLET_TAG = "bullet"
 PLAYER_TAG = "player"
 ALIEN_TAG = "alien"
 
+# Constante apenas para a versão sem sprites
+COLORS = {ASTEROID_TAG: (255, 0, 0), BULLET_TAG: (0, 255, 0),
+          PLAYER_TAG: (0, 0, 255), ALIEN_TAG: (255, 255, 255),}
+
 # Constantes player
 PLAYER_SIZE = 10
 MAX_VELOCITY_OF_PLAYER = 70
@@ -33,4 +37,8 @@ BULLET_LIFE_TIME = 10
 WEAPON_COOLDOWN = 1
 MAX_AMMUNITION = 1000
 
+# Constantes score
+DESTROY_SCORE = 10
+TIME_SCORE = 5
+TIME_TO_SCORE = 20
 
