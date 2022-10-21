@@ -2,6 +2,7 @@
 from model.entities.abstractentity import Entity
 from model.entities.bullet import Bullet
 from model.body import Body
+from controller.entitiescontroller import EntitiesController
 import utility.constants as CONSTANT
 
 class PersistentBullet(Bullet):

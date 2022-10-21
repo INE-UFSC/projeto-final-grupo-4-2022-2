@@ -38,3 +38,5 @@ class ScoreManager:
         for entitie in EntitiesController.instance().get_deletion_buffer():
             if entitie.get_tag() == CONSTANT.ASTEROID_TAG:
                 self.increase(CONSTANT.DESTROY_SCORE)
+            if entitie.get_tag() == CONSTANT.ALIEN_TAG:
+                self.increase(CONSTANT.DESTROY_SCORE)

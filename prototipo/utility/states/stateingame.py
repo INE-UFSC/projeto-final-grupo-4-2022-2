@@ -1,5 +1,5 @@
 
-from model.entities.player import Player
+from model.entities.alien import Alien
 from model.body import Body
 from model.factory.asteroidfactory import AsteroidFactory
 from model.factory.rubberbulletfactory import RubberBulletFactory
@@ -35,8 +35,12 @@ class StateInGame(State):
 
         asteroids = AsteroidFactory().create(1)
 
+        body = Body(Vector2(1, CONSTANT.SCREEN_SIZE.y/2), Vector2(1, 0)*CONSTANT.ALIEN_VELOCITY, CONSTANT.ALIEN_SIZE)
+        alien = Alien(body)
+
         EntitiesController.instance().add_entity(player)
-        EntitiesController.instance().add_entities(asteroids)
+        # EntitiesController.instance().add_entities(asteroids)
+        EntitiesController.instance().add_entity(alien)
 
     def exit(self) -> None:
         pass
@@ -47,6 +51,8 @@ class StateInGame(State):
                 self.get_owner().close()
 
     def handle_update(self, dt: float) -> None:
+
+        print(f"Numero de entidades: {len(EntitiesController.instance().get_entities())}")
 
         # Atualiza cada entidade do jogo
         entities = EntitiesController.instance().get_entities()

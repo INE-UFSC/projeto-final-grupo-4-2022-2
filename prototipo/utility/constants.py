@@ -1,3 +1,4 @@
+import math
 import pygame.math
 
 # Constantes da tela
@@ -32,6 +33,14 @@ BIG_ASTEROID_VELOCITY = CORRECTION_CONSTANT / BIG_ASTEROID_SIZE
 BULLET_SIZE = 2
 VELOCITY_OF_BULLET = 80
 BULLET_LIFE_TIME = 10
+
+# Constantes Alien
+ALIEN_SIZE = 10
+ALIEN_VELOCITY = 40
+MOVE_COOLDOWN = 3
+DIRECTIONS = (pygame.math.Vector2(math.sqrt(2)/2, math.sqrt(2)/2),
+              pygame.math.Vector2(1,0),
+              pygame.math.Vector2(math.sqrt(2)/2,-math.sqrt(2)/2))
 
 # Constantes weapon
 WEAPON_COOLDOWN = 1

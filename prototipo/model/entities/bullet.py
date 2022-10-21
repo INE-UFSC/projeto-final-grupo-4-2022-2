@@ -21,5 +21,5 @@ class Bullet(Entity):
         return tag == CONSTANT.BULLET_TAG or tag == CONSTANT.PLAYER_TAG
 
     def destroy(self) -> None:
-        EntitiesController.instance().register_deletion(self)
+        pass
     
