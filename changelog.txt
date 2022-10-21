@@ -1,7 +1,10 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
-#16 = OUT 21 () Micael:
+#17 = OUT 21 (20:57) Micael:
+    - Aliens estão sendo gerado aleatoriamente
+
+#16 = OUT 21 (11:02) Micael:
     - Tirado bullet_tag_checks
     - Alien agora faz tiros aleatórios na tela
 

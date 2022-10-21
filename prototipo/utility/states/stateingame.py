@@ -4,12 +4,14 @@ from model.body import Body
 from model.factory.asteroidfactory import AsteroidFactory
 from model.factory.playerfactory import PlayerFactory
 from model.factory.alienfactory import AlienFactory
+from model.spawn.alienspawn import AlienSpawn
 
 # Controller imports
 from controller.entitiescontroller import EntitiesController
 from controller.collisiondetector import CollisionDetector
 from controller.collisionmanager import CollisionManager
 from controller.scoremanager import ScoreManager
+
 
 # Utility imports
 from utility.states.state import State
@@ -24,6 +26,7 @@ class StateInGame(State):
 
     def __init__(self, owner):
         super().__init__(owner)
+        self.__alien_spawn = AlienSpawn()
 
     def entry(self) -> None:
 
@@ -58,6 +61,9 @@ class StateInGame(State):
         entities = EntitiesController.instance().get_entities()
         for entity in entities:
             entity.update(dt)
+
+        # Gerando alien
+        self.__alien_spawn.generate(dt)
 
         # Detecta as colisões a cada frame e as registram
         CollisionDetector.instance().detect_collisions(entities)

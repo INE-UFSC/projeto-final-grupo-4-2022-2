@@ -12,7 +12,7 @@ ALIEN_TAG = "alien"
 
 # Constante apenas para a versão sem sprites
 COLORS = {ASTEROID_TAG: (255, 0, 0), BULLET_TAG: (0, 255, 0),
-          PLAYER_TAG: (0, 0, 255), ALIEN_TAG: (255, 255, 255),}
+          PLAYER_TAG: (0, 0, 255), ALIEN_TAG: (255, 255, 255), }
 
 # Constantes player
 PLAYER_SIZE = 10
@@ -40,18 +40,22 @@ ALIEN_VELOCITY = 40
 MOVE_COOLDOWN = 3
 ALIEN_SHOT_COOLDOWN = 5
 DIRECTIONS = (pygame.math.Vector2(math.sqrt(2)/2, math.sqrt(2)/2),
-              pygame.math.Vector2(1,0),
-              pygame.math.Vector2(math.sqrt(2)/2,-math.sqrt(2)/2))
+              pygame.math.Vector2(1, 0),
+              pygame.math.Vector2(math.sqrt(2)/2, -math.sqrt(2)/2))
 
 # Constantes weapon
 WEAPON_COOLDOWN = 1
 MAX_AMMUNITION = 1000
 
 # Constantes shooter
-RADIUS_MULTIPLIER = 1.1 # So that the bullet does not spawn inside alien/player and trigger an unwanted on_collision 
+# So that the bullet does not spawn inside alien/player and trigger an unwanted on_collision
+RADIUS_MULTIPLIER = 1.1
 
 # Constantes score
 DESTROY_SCORE = 10
 TIME_SCORE = 5
 TIME_TO_SCORE = 20
 
+# Constants AlienSpawn
+
+ALIEN_SPAWN_COOLDOWN = 5
