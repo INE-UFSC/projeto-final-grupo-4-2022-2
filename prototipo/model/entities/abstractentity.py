@@ -6,7 +6,7 @@ class Entity:
     ...
 
 
-class Entity(ABC):
+class Entity(ABC, object):
 
     next_id = 0
 

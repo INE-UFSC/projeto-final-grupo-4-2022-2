@@ -1,26 +1,24 @@
 
 from abc import ABC, abstractmethod
 
-
+# from model.entities.shooter import Shooter
 from model.factory.bulletfactory import BulletFactory
 
-
-class Player: ...
-
+class Shooter: ...
 
 class Weapon(ABC):
 
-    def __init__(self, owner: Player, cooldown: float, ammunition: int, bullet_factory: BulletFactory) -> None:
+    def __init__(self, owner: Shooter, cooldown: float, ammunition: int, bullet_factory: BulletFactory) -> None:
         self.__owner = owner
         self.__cooldown = cooldown
         self.__ammunition = ammunition
         self.__bullet_factory = bullet_factory
         self.__time_since_last_shot = cooldown
 
-    def get_owner(self) -> Player:
+    def get_owner(self) -> Shooter:
         return self.__owner
 
-    def set_owner(self, new_owner: Player):
+    def set_owner(self, new_owner: Shooter):
         self.__owner = new_owner
 
     def get_cooldown(self) -> float:

@@ -5,6 +5,6 @@ from model.body import Body
 
 
 class PlayerFactory:
-    def create(self, body: Body, lives: int, weapon: Weapon) -> Player:
-        player = Player(body, lives, weapon)
+    def create(self, body: Body, lives: int) -> Player:
+        player = Player(body, lives)
         return player

@@ -1,6 +1,8 @@
 
+from controller.scoremanager import ScoreManager
+
 from model.entities.abstractentity import Entity
-from model.weapon.weapon import Weapon
+from model.entities.shooter import Shooter
 from model.body import Body
 
 # factory imports
@@ -22,13 +24,14 @@ from pygame.math import Vector2
 
 class Weapon: ...
 
-class Player(Entity):
+class Player(Entity, Shooter):
 
-    def __init__(self, body: Body, lives: int, weapon: Weapon):
-        super().__init__(body, CONSTANT.PLAYER_TAG)
+    def __init__(self, body: Body, lives: int):
+        Entity.__init__(self, body, CONSTANT.PLAYER_TAG)
+        Shooter.__init__(self, DefaultWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, DefaultBulletFactory()),
+                           Vector2(1, 1).normalize(), Vector2(0, 0))
         self.__lives = lives
         self.__direction = Vector2(1, 1).normalize()
-        self.__weapon = weapon
 
     def get_lives(self) -> int:
         return self.__lives
@@ -42,12 +45,6 @@ class Player(Entity):
     def set_direction(self, new_direction: Vector2):
         self.__direction = new_direction.normalize()
 
-    def get_weapon(self) -> Weapon:
-        return self.__weapon
-
-    def set_weapon(self, new_weapon: Weapon):
-        self.__weapon = new_weapon
-
     def rotate_clockwise(self, angle: float) -> None:
         self.get_direction().rotate_ip(angle)
 
@@ -55,7 +52,7 @@ class Player(Entity):
         self.get_direction().rotate_ip(-angle)
 
     def on_collision(self, entity: Entity) -> None:
-        pass
+        self.set_lives(self.get_lives() - 1)
 
     def handle_input(self, dt: float) -> None:
         body = self.get_body()
@@ -71,7 +68,7 @@ class Player(Entity):
             self.rotate_anticlockwise(5)
 
         if pygame.key.get_pressed()[pygame.K_SPACE]:
-            self.get_weapon().shoot(dt)
+            self.shoot(dt)
 
         if pygame.key.get_pressed()[pygame.K_1]:
             self.get_weapon().set_bullet_factory(DefaultBulletFactory())
@@ -92,7 +89,7 @@ class Player(Entity):
             self.set_weapon(DefaultWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
         
         if pygame.key.get_pressed()[pygame.K_e]:
-            self.set_weapon(InfinityWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
+            self.set_weapon(InfinityWeapon(self, CONSTANT.WEAPON_COOLDOWN, self.get_weapon().get_bullet_factory()))
         
         if pygame.key.get_pressed()[pygame.K_r]:
             self.set_weapon(Shotgun(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
@@ -118,8 +115,16 @@ class Player(Entity):
         body.set_velocity(self.get_direction()*velocity.magnitude())
 
     def update(self, dt: float) -> None:
+        print(f"Score: {ScoreManager.instance().get_score()}")
+        print(f"Vidas: {self.get_lives()}")
+
+        barrel_position = self.get_direction()*self.get_body().get_radius()*CONSTANT.MULTIPLIER + self.get_body().get_position()
+        aiming_direction = self.get_direction()
+        self.set_barrel_position(barrel_position)
+        self.set_aiming_direction(aiming_direction)
+
         self.handle_input(dt)
         self.move(dt)
 
     def destroy(self) -> None:
-        self.__lives -= 1
+        pass

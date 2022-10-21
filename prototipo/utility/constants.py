@@ -31,13 +31,14 @@ BIG_ASTEROID_VELOCITY = CORRECTION_CONSTANT / BIG_ASTEROID_SIZE
 
 # Constantes bullet
 BULLET_SIZE = 2
-VELOCITY_OF_BULLET = 80
+VELOCITY_OF_BULLET = 10
 BULLET_LIFE_TIME = 10
 
 # Constantes Alien
 ALIEN_SIZE = 10
 ALIEN_VELOCITY = 40
 MOVE_COOLDOWN = 3
+ALIEN_SHOT_COOLDOWN = 5
 DIRECTIONS = (pygame.math.Vector2(math.sqrt(2)/2, math.sqrt(2)/2),
               pygame.math.Vector2(1,0),
               pygame.math.Vector2(math.sqrt(2)/2,-math.sqrt(2)/2))
@@ -45,6 +46,9 @@ DIRECTIONS = (pygame.math.Vector2(math.sqrt(2)/2, math.sqrt(2)/2),
 # Constantes weapon
 WEAPON_COOLDOWN = 1
 MAX_AMMUNITION = 1000
+
+# Constantes shooter
+MULTIPLIER = 1.05
 
 # Constantes score
 DESTROY_SCORE = 10

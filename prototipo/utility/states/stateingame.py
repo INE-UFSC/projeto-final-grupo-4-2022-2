@@ -1,10 +1,7 @@
 
 # Model imports
-from model.entities.alien import Alien
 from model.body import Body
 from model.factory.asteroidfactory import AsteroidFactory
-from model.factory.rubberbulletfactory import RubberBulletFactory
-from model.weapon.shotgun import Shotgun
 from model.factory.playerfactory import PlayerFactory
 from model.factory.alienfactory import AlienFactory
 
@@ -33,21 +30,17 @@ class StateInGame(State):
         # Criando player
         player_body = Body(Vector2(0, 0), Vector2(0, 0), CONSTANT.PLAYER_SIZE)
         player_lives = CONSTANT.MAX_LIVES
-        player_weapon = Shotgun(
-            None, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, RubberBulletFactory())
-
-        player = PlayerFactory().create(player_body, player_lives, player_weapon)
-        player.get_weapon().set_owner(player)
+        player = PlayerFactory().create(player_body, player_lives)
 
         # Asteroides
-        asteroids = AsteroidFactory().create(0)
+        asteroids = AsteroidFactory().create(1)
 
         # Alien
         alien_body = Body(Vector2(1, CONSTANT.SCREEN_SIZE.y/2), Vector2(1, 0)*CONSTANT.ALIEN_VELOCITY, CONSTANT.ALIEN_SIZE)
         alien = AlienFactory().create()
 
         EntitiesController.instance().add_entity(player)
-        # EntitiesController.instance().add_entities(asteroids)
+        EntitiesController.instance().add_entities(asteroids)
         EntitiesController.instance().add_entity(alien)
 
     def exit(self) -> None:
@@ -80,7 +73,6 @@ class StateInGame(State):
         EntitiesController.instance().handle_deletion()
 
     def handle_rendering(self) -> None:
-        #print(f"Score: {ScoreManager.instance().get_score()}")
         for entity in EntitiesController.instance().get_entities()[::-1]:
             body = entity.get_body()
             pygame.draw.circle(self.get_owner().get_screen(), CONSTANT.COLORS[entity.get_tag()],

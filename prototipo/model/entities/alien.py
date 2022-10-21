@@ -1,19 +1,25 @@
 
 import random
 
-from pygame import Vector2
 from controller.entitiescontroller import EntitiesController
 
 from model.entities.abstractentity import Entity
+from model.entities.shooter import Shooter
 from model.body import Body
+from model.weapon.weapon import Weapon
+from model.weapon.infinity import InfinityWeapon
+from model.factory.defaultbulletfactory import DefaultBulletFactory
 
 import utility.constants as CONSTANT
 
+from pygame import Vector2
 
-class Alien(Entity):
+class Alien(Entity, Shooter):
 
     def __init__(self, body: Body, direction: int):
-        super().__init__(body, CONSTANT.ALIEN_TAG)
+        Entity.__init__(self, body, CONSTANT.ALIEN_TAG)
+        Shooter.__init__(self, InfinityWeapon(self, CONSTANT.ALIEN_SHOT_COOLDOWN, DefaultBulletFactory()),
+                           Vector2(1, 1).normalize(), Vector2(0, 0))
         self.__move_cooldown = 0
         self.__direction = direction
 
@@ -56,6 +62,12 @@ class Alien(Entity):
         body.move(velocity*dt)
 
     def update(self, dt: float) -> None:
+        barrel_position = Vector2(self.get_direction(), 0)*self.get_body().get_radius()*CONSTANT.MULTIPLIER + self.get_body().get_position()
+        aiming_direction = Vector2(self.get_direction(), 0)
+        self.set_barrel_position(barrel_position)
+        self.set_aiming_direction(aiming_direction)
+
+        self.shoot(dt)
         self.move(dt)
 
     def destroy(self) -> None:

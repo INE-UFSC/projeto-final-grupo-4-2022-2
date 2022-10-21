@@ -1,16 +1,16 @@
 
 from controller.entitiescontroller import EntitiesController
 
+from model.entities.shooter import Shooter
 from model.weapon.weapon import Weapon
 from model.factory.bulletfactory import BulletFactory
 
-
-class Player: ...
+import utility.constants as CONSTANT
 
 
 class DefaultWeapon(Weapon):
 
-    def __init__(self, owner: Player, cooldown: float, ammunition: int, bullet_factory: BulletFactory) -> None:
+    def __init__(self, owner: Shooter, cooldown: float, ammunition: int, bullet_factory: BulletFactory) -> None:
         super().__init__(owner, cooldown, ammunition, bullet_factory)
 
     def shoot(self, dt: float) -> None:
@@ -20,12 +20,12 @@ class DefaultWeapon(Weapon):
         if self.get_ammunition() <= 0:
             return
 
-        player_position = self.get_owner().get_body().get_position()
-        player_radius = self.get_owner().get_body().get_radius()
-        player_direction = self.get_owner().get_direction()
+        owner_position = self.get_owner().get_barrel_position()
+        owner_aiming_direction = self.get_owner().get_aiming_direction()
+        velocity = owner_aiming_direction*CONSTANT.VELOCITY_OF_BULLET
 
         bullet_factory = self.get_bullet_factory()
-        bullet = bullet_factory.create(player_position, player_direction*player_radius*1.05)
+        bullet = bullet_factory.create(owner_position, velocity)
         EntitiesController.instance().add_entity(bullet)
 
         self.set_time_since_last_shot(0)
