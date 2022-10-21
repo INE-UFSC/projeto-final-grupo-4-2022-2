@@ -1,8 +1,8 @@
 #### Checklist Protótipo:
     Adversários:
         - Asteroides (x)
-        - Alienígenas ( )
-        - Próprio tiro do player ( )
+        - Alienígenas (x)
+        - Próprio tiro do player (x)
 
         Obs: 
             - Asteroides menores são mais rapidos
@@ -28,8 +28,8 @@
 
     Regras:
         - Num finito de vidas (x)
-        - Munição infinita (/)
-        - Perde vida ao colidir com asteroide ou tomar um tiro (do alien ou de si mesmo) (/)
+        - Munição infinita (X)
+        - Perde vida ao colidir com asteroide ou tomar um tiro (do alien ou de si mesmo) (X)
         - Velocidade dos asteroides e inimigos aumenta conforme o tempo ( )
 
     Condição de vitória-empate-derrota:

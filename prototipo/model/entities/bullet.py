@@ -16,9 +16,6 @@ class Bullet(Entity):
 
     def set_lifetime(self, new_lifetime: int) -> int:
         self.__lifetime = new_lifetime
-    
-    def bullet_tag_check(self, tag: str) -> bool:
-        return tag == CONSTANT.BULLET_TAG or tag == CONSTANT.PLAYER_TAG
 
     def destroy(self) -> None:
         pass

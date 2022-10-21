@@ -14,8 +14,6 @@ class DefaultBullet(Bullet):
         super().__init__(body, lifetime)
 
     def on_collision(self, entity: Entity) -> None:
-        if self.bullet_tag_check(entity.get_tag()):
-            return
         EntitiesController.instance().register_deletion(self)
 
     def move(self, dt: float) -> None:

@@ -58,12 +58,12 @@ class Alien(Entity, Shooter):
             position.y = CONSTANT.SCREEN_SIZE.y
         elif CONSTANT.SCREEN_SIZE.y < position.y:
             position.y = 0
-
         body.move(velocity*dt)
 
+            
     def update(self, dt: float) -> None:
-        barrel_position = Vector2(self.get_direction(), 0)*self.get_body().get_radius()*CONSTANT.RADIUS_MULTIPLIER + self.get_body().get_position()
-        aiming_direction = Vector2(self.get_direction(), 0)
+        aiming_direction = Vector2(self.get_direction(), 0).rotate(random.uniform(0,360))
+        barrel_position = Vector2(aiming_direction*self.get_body().get_radius()*CONSTANT.RADIUS_MULTIPLIER + self.get_body().get_position())
         self.set_barrel_position(barrel_position)
         self.set_aiming_direction(aiming_direction)
 

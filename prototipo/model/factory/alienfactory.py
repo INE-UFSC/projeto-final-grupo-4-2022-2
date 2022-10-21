@@ -29,9 +29,9 @@ class AlienFactory:
         position = Vector2(0, random.randint(0, CONSTANT.SCREEN_SIZE.y))
 
         if (direction == -1):
-            position.x = CONSTANT.SCREEN_SIZE.x
+            position.x = CONSTANT.SCREEN_SIZE.x - 10
         else:
-            position.x = 0
+            position.x = 10
 
         return position
 

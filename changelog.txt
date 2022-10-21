@@ -1,6 +1,10 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#16 = OUT 21 () Micael:
+    - Tirado bullet_tag_checks
+    - Alien agora faz tiros aleatórios na tela
+
 #15 = OUT 21 (10:16) Gian:
     - Infos de Debug adcionais
     - Menos spam de prints no terminal
