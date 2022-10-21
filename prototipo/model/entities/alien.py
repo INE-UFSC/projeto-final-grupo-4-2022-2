@@ -1,5 +1,7 @@
 
 import random
+
+from pygame import Vector2
 from controller.entitiescontroller import EntitiesController
 
 from model.entities.abstractentity import Entity
@@ -10,15 +12,22 @@ import utility.constants as CONSTANT
 
 class Alien(Entity):
 
-    def __init__(self, body: Body):
+    def __init__(self, body: Body, direction: int):
         super().__init__(body, CONSTANT.ALIEN_TAG)
         self.__move_cooldown = 0
+        self.__direction = direction
 
     def get_move_cooldown(self) -> float:
         return self.__move_cooldown
 
     def set_move_cooldown(self, new_value):
         self.__move_cooldown = new_value
+
+    def get_direction(self) -> int:
+        return self.__direction
+
+    def set_direction(self, direction: int):
+        self.__direction = direction
 
     def on_collision(self, entity: Entity) -> None:
         EntitiesController.instance().register_deletion(self)
@@ -32,6 +41,7 @@ class Alien(Entity):
         if self.get_move_cooldown() < 0:
             self.set_move_cooldown(CONSTANT.MOVE_COOLDOWN)
             body.set_velocity(CONSTANT.DIRECTIONS[random.randint(0, len(CONSTANT.DIRECTIONS) - 1)] * CONSTANT.ALIEN_VELOCITY)
+            body.set_velocity(Vector2(body.get_velocity().x*self.get_direction(), body.get_velocity().y))
 
         if position.x < 0:
             EntitiesController.instance().register_deletion(self)

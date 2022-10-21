@@ -19,7 +19,7 @@ class AsteroidFactory:
         velocity.scale_to_length(CONSTANT.BIG_ASTEROID_VELOCITY)
         return velocity
 
-    def make_position(self):
+    def make_position(self) -> Vector2:
         return Vector2(random.randint(0, CONSTANT.SCREEN_SIZE.x), random.randint(0, CONSTANT.SCREEN_SIZE.y))
 
     def create(self, number_of_asteroids: int) -> list():
