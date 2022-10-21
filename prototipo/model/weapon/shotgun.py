@@ -35,3 +35,6 @@ class Shotgun(Weapon):
 
         self.set_time_since_last_shot(0)
         self.set_ammunition(self.get_ammunition() - 9)
+
+    def __str__(self) -> str:
+        return f"Shotgun"

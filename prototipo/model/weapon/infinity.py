@@ -26,3 +26,6 @@ class InfinityWeapon(Weapon):
         EntitiesController.instance().add_entity(bullet)
 
         self.set_time_since_last_shot(0)
+
+    def __str__(self) -> str:
+        return f"Infinity Weapon"

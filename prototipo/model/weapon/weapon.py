@@ -49,4 +49,5 @@ class Weapon(ABC):
     def shoot(self, dt: float) -> None:
         pass
     
-    
+    def __str__(self) -> str:
+        return f"Weapon (ABC) (!)"

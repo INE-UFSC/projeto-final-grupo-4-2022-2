@@ -1,6 +1,10 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#15 = OUT 21 (10:16) Gian:
+    - Infos de Debug adcionais
+    - Menos spam de prints no terminal
+
 #14 = OUT 20 (23:50) Augusto:
     - Criação quase completa da classe alien
     - Modificação de como funciona a lógica de tiro

@@ -3,7 +3,6 @@ from model.entities.shooter import Shooter
 from model.weapon.weapon import Weapon
 from model.factory.bulletfactory import BulletFactory
 
-
 class BulletlessWeapon(Weapon):
 
 
@@ -12,3 +11,6 @@ class BulletlessWeapon(Weapon):
 
     def shoot(self, dt: float) -> None:
         pass
+
+    def __str__(self) -> str:
+        return f"Buletless Weapon (No Weapon)"

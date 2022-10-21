@@ -15,3 +15,6 @@ class PiercingBulletFactory(BulletFactory):
         body = Body(position, velocity, CONSTANT.BULLET_SIZE)
         bullet = PiercingBullet(body, CONSTANT.BULLET_LIFE_TIME)
         return bullet
+
+    def __str__(self) -> str:
+        return f"Piercing Bullet Factory"

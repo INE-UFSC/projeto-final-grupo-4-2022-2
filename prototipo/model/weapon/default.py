@@ -30,3 +30,6 @@ class DefaultWeapon(Weapon):
 
         self.set_time_since_last_shot(0)
         self.set_ammunition(self.get_ammunition() - 1)
+
+    def __str__(self) -> str:
+        return f"Default Weapon"    

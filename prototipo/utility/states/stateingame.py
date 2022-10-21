@@ -33,7 +33,7 @@ class StateInGame(State):
         player = PlayerFactory().create(player_body, player_lives)
 
         # Asteroides
-        asteroids = AsteroidFactory().create(1)
+        asteroids = AsteroidFactory().create(0)
 
         # Alien
         alien_body = Body(Vector2(1, CONSTANT.SCREEN_SIZE.y/2), Vector2(1, 0)*CONSTANT.ALIEN_VELOCITY, CONSTANT.ALIEN_SIZE)

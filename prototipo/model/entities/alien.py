@@ -62,7 +62,7 @@ class Alien(Entity, Shooter):
         body.move(velocity*dt)
 
     def update(self, dt: float) -> None:
-        barrel_position = Vector2(self.get_direction(), 0)*self.get_body().get_radius()*CONSTANT.MULTIPLIER + self.get_body().get_position()
+        barrel_position = Vector2(self.get_direction(), 0)*self.get_body().get_radius()*CONSTANT.RADIUS_MULTIPLIER + self.get_body().get_position()
         aiming_direction = Vector2(self.get_direction(), 0)
         self.set_barrel_position(barrel_position)
         self.set_aiming_direction(aiming_direction)

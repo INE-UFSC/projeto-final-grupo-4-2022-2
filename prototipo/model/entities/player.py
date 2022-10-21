@@ -33,6 +33,23 @@ class Player(Entity, Shooter):
         self.__lives = lives
         self.__direction = Vector2(1, 1).normalize()
 
+        self.__score_atual = ScoreManager.instance().get_score()
+        self.__ammo = CONSTANT.MAX_AMMUNITION
+        self.__weapon = self.get_weapon()
+        self.__bullet_factory = self.get_weapon().get_bullet_factory()
+
+        # FIXME: Jogar as coisas abaixo (e outras linhas relevantes) numa classe debug
+        self.DefaultBulletFactory = DefaultBulletFactory()
+        self.PersistentBulletFactory = PersistentBulletFactory()
+        self.PiercingBullerFactory = PiercingBulletFactory()
+        self.RubberBulletFactory = RubberBulletFactory()
+
+        self.DefaultWeapon = DefaultWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.__bullet_factory)
+        self.BulletLessWeapon = BulletlessWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.__bullet_factory)
+        self.InfinityWeapon = InfinityWeapon(self, CONSTANT.WEAPON_COOLDOWN, self.__bullet_factory)
+        self.Shotgun = Shotgun(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.__bullet_factory)
+
+
     def get_lives(self) -> int:
         return self.__lives
 
@@ -52,7 +69,9 @@ class Player(Entity, Shooter):
         self.get_direction().rotate_ip(-angle)
 
     def on_collision(self, entity: Entity) -> None:
-        self.set_lives(self.get_lives() - 1)
+        if (self.get_lives() >= 1):
+            self.set_lives(self.get_lives() - 1)
+            print(f"Vidas: {self.get_lives()}")
 
     def handle_input(self, dt: float) -> None:
         body = self.get_body()
@@ -71,28 +90,28 @@ class Player(Entity, Shooter):
             self.shoot(dt)
 
         if pygame.key.get_pressed()[pygame.K_1]:
-            self.get_weapon().set_bullet_factory(DefaultBulletFactory())
+            self.get_weapon().set_bullet_factory(self.DefaultBulletFactory)
         
         if pygame.key.get_pressed()[pygame.K_2]:
-            self.get_weapon().set_bullet_factory(PersistentBulletFactory())
+            self.get_weapon().set_bullet_factory(self.PersistentBulletFactory)
 
         if pygame.key.get_pressed()[pygame.K_3]:
-            self.get_weapon().set_bullet_factory(PiercingBulletFactory())
+            self.get_weapon().set_bullet_factory(self.PiercingBullerFactory)
         
         if pygame.key.get_pressed()[pygame.K_4]:
-            self.get_weapon().set_bullet_factory(RubberBulletFactory())
+            self.get_weapon().set_bullet_factory(self.RubberBulletFactory)
 
         if pygame.key.get_pressed()[pygame.K_q]:
-            self.set_weapon(BulletlessWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
-        
+            self.set_weapon(self.BulletLessWeapon)
+            
         if pygame.key.get_pressed()[pygame.K_w]:
-            self.set_weapon(DefaultWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
-        
+            self.set_weapon(self.DefaultWeapon)
+
         if pygame.key.get_pressed()[pygame.K_e]:
-            self.set_weapon(InfinityWeapon(self, CONSTANT.WEAPON_COOLDOWN, self.get_weapon().get_bullet_factory()))
-        
+            self.set_weapon(self.InfinityWeapon)
+
         if pygame.key.get_pressed()[pygame.K_r]:
-            self.set_weapon(Shotgun(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
+            self.set_weapon(self.Shotgun)
 
     def move(self, dt: float) -> None:
         body = self.get_body()
@@ -115,10 +134,29 @@ class Player(Entity, Shooter):
         body.set_velocity(self.get_direction()*velocity.magnitude())
 
     def update(self, dt: float) -> None:
-        print(f"Score: {ScoreManager.instance().get_score()}")
-        print(f"Vidas: {self.get_lives()}")
 
-        barrel_position = self.get_direction()*self.get_body().get_radius()*CONSTANT.MULTIPLIER + self.get_body().get_position()
+        score = ScoreManager.instance().get_score()
+        if score != self.__score_atual: 
+            print(f"Score: {score}")
+            self.__score_atual = score
+
+        ammo = self.get_weapon().get_ammunition()
+        if ammo != self.__ammo:
+            print(f"Ammo: {ammo}")
+            self.__ammo = ammo
+
+        weapon = self.get_weapon()
+        if weapon != self.__weapon:
+            print(f"Weapon: {weapon}")
+            self.__weapon = weapon
+        
+        bullet_factory = self.get_weapon().get_bullet_factory()
+        if bullet_factory != self.__bullet_factory:
+            print(f"Bullet Factory: {bullet_factory}")
+            self.__bullet_factory = bullet_factory
+        
+
+        barrel_position = self.get_direction()*self.get_body().get_radius()*CONSTANT.RADIUS_MULTIPLIER + self.get_body().get_position()
         aiming_direction = self.get_direction()
         self.set_barrel_position(barrel_position)
         self.set_aiming_direction(aiming_direction)

@@ -38,7 +38,7 @@ BULLET_LIFE_TIME = 10
 ALIEN_SIZE = 10
 ALIEN_VELOCITY = 40
 MOVE_COOLDOWN = 3
-ALIEN_SHOT_COOLDOWN = 5
+ALIEN_SHOT_COOLDOWN = 1
 DIRECTIONS = (pygame.math.Vector2(math.sqrt(2)/2, math.sqrt(2)/2),
               pygame.math.Vector2(1,0),
               pygame.math.Vector2(math.sqrt(2)/2,-math.sqrt(2)/2))
@@ -48,7 +48,7 @@ WEAPON_COOLDOWN = 1
 MAX_AMMUNITION = 1000
 
 # Constantes shooter
-MULTIPLIER = 1.05
+RADIUS_MULTIPLIER = 1.05 # So that the bullet does not spawn inside alien/player and trigger an unwanted on_collision 
 
 # Constantes score
 DESTROY_SCORE = 10
