@@ -71,7 +71,7 @@ class Game:
     def run(self) -> None:
         self.get_current_state().entry()
         while self.is_running():
-            dt = 1.0/self.get_clock().tick(60)
+            dt = 1.0/self.get_clock().tick(CONSTANT.FPS)
             self.handle_event()
             self.handle_update(dt)
             self.handle_rendering()

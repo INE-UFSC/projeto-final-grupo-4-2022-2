@@ -1,10 +1,9 @@
 
 # Model imports
 from model.body import Body
-from model.factory.asteroidfactory import AsteroidFactory
 from model.factory.playerfactory import PlayerFactory
-from model.factory.alienfactory import AlienFactory
-from model.spawn.alienspawn import AlienSpawn
+from model.spawn.alienspawn import AlienSpawner
+from model.spawn.asteroidspawner import AsteroidSpawner
 
 # Controller imports
 from controller.entitiescontroller import EntitiesController
@@ -25,7 +24,8 @@ class StateInGame(State):
 
     def __init__(self, owner):
         super().__init__(owner)
-        self.__alien_spawn = AlienSpawn()
+        self.__alien_spawner = AlienSpawner()
+        self.__asteroid_spawner = AsteroidSpawner()
 
         self.__debug = Debug()
 
@@ -36,15 +36,7 @@ class StateInGame(State):
         player_lives = CONSTANT.MAX_LIVES
         player = PlayerFactory().create(player_body, player_lives)
 
-        # Asteroides
-        asteroids = AsteroidFactory().create(0)
-
-        # Alien
-        alien = AlienFactory().create()
-
         EntitiesController.instance().add_entity(player)
-        EntitiesController.instance().add_entities(asteroids)
-        EntitiesController.instance().add_entity(alien)
 
     def exit(self) -> None:
         pass
@@ -64,7 +56,10 @@ class StateInGame(State):
             entity.update(dt)
 
         # Gerando alien
-        self.__alien_spawn.generate(dt)
+        self.__alien_spawner.generate(dt)
+
+        # Gerando asteroids
+        self.__asteroid_spawner.generate()
 
         # Detecta as colisões a cada frame e as registram
         CollisionDetector.instance().detect_collisions(entities)
@@ -78,7 +73,7 @@ class StateInGame(State):
         # Gerencia as destruições de cada entidade
         EntitiesController.instance().handle_deletion()
 
-        self.__debug.update(dt)
+        self.__debug.update(self.get_owner().get_clock(), EntitiesController.instance().get_entities()[0])
 
     def handle_rendering(self) -> None:
         for entity in EntitiesController.instance().get_entities()[::-1]:

@@ -1,7 +1,11 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
-18 = OUT 21 (21:54) Gian:
+#19 = OUT 21 (22:30) Gian:
+    - Asteroid spawner implementado
+    - StateInGame atualizado
+
+#18 = OUT 21 (21:54) Gian:
     - Classe para Debug
     - Constantes para cores
 

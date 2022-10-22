@@ -15,7 +15,7 @@
             - Pseudo-física (momentum/velocidade/inercia blabla) (x)
             - Aproximar a movimentação ao Asteroid clássico ( )
         Geração de inimigos:
-            - Novos asteroid e aliens (/)
+            - Novos asteroid e aliens (x)
                 - Asteroids apenas quando acabar todos eles
                 - Alien é aleatorio
 
@@ -28,7 +28,7 @@
 
     Regras:
         - Num finito de vidas (x)
-        - Munição infinita (X)
+        - Munição infinita (x)
         - Perde vida ao colidir com asteroide ou tomar um tiro (do alien ou de si mesmo) (X)
         - Velocidade dos asteroides e inimigos aumenta conforme o tempo ( )
 

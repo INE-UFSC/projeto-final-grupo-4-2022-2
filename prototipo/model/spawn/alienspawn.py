@@ -5,10 +5,10 @@ from model.factory.alienfactory import AlienFactory
 
 from controller.entitiescontroller import EntitiesController
 
-import utility.constants as CONTANTS
+import utility.constants as CONSTANTS
 
 
-class AlienSpawn:
+class AlienSpawner:
     def __init__(self) -> None:
         self.__cooldown = 20
         self.__factory = AlienFactory()
@@ -28,6 +28,6 @@ class AlienSpawn:
     def generate(self, dt: float) -> Entity:
         self.decrease(dt)
         if self.get_cooldown() < 0:
-            self.set_cooldown(CONTANTS.ALIEN_SPAWN_COOLDOWN)
-            Alien = self.get_factory().create()
-            EntitiesController.instance().add_entity(Alien)
+            self.set_cooldown(CONSTANTS.ALIEN_SPAWN_COOLDOWN)
+            alien = self.get_factory().create()
+            EntitiesController.instance().add_entity(alien)
