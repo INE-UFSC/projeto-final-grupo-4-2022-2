@@ -12,21 +12,22 @@ from controller.collisiondetector import CollisionDetector
 from controller.collisionmanager import CollisionManager
 from controller.scoremanager import ScoreManager
 
-
 # Utility imports
 from utility.states.state import State
 import utility.constants as CONSTANT
+from utility.debug import Debug
 
 # Pygame
 from pygame.math import Vector2
 import pygame
-
 
 class StateInGame(State):
 
     def __init__(self, owner):
         super().__init__(owner)
         self.__alien_spawn = AlienSpawn()
+
+        self.__debug = Debug()
 
     def entry(self) -> None:
 
@@ -77,8 +78,13 @@ class StateInGame(State):
         # Gerencia as destruições de cada entidade
         EntitiesController.instance().handle_deletion()
 
+        self.__debug.update(dt)
+
     def handle_rendering(self) -> None:
         for entity in EntitiesController.instance().get_entities()[::-1]:
             body = entity.get_body()
-            pygame.draw.circle(self.get_owner().get_screen(), CONSTANT.COLORS[entity.get_tag()],
+            pygame.draw.circle(self.get_owner().get_screen(), CONSTANT.COLORS_DIC[entity.get_tag()],
                                body.get_position(), body.get_radius())
+
+        screen = self.get_owner().get_screen()
+        self.__debug.blit_strings(screen)

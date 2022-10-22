@@ -15,7 +15,7 @@
             - Pseudo-física (momentum/velocidade/inercia blabla) (x)
             - Aproximar a movimentação ao Asteroid clássico ( )
         Geração de inimigos:
-            - Novos asteroid e aliens ( )
+            - Novos asteroid e aliens (/)
                 - Asteroids apenas quando acabar todos eles
                 - Alien é aleatorio
 

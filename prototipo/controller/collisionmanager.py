@@ -15,6 +15,9 @@ class CollisionManager:
     def __init__(self):
         self.__collisions = list()
 
+    def get_collisions(self) -> list():
+        return self.__collisions
+
     def register_collision(self, collision: Collision):
         for c in self.__collisions:
             if c == collision:

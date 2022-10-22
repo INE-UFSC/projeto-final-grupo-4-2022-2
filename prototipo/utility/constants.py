@@ -2,7 +2,7 @@ import math
 import pygame.math
 
 # Constantes da tela
-SCREEN_SIZE = pygame.math.Vector2(640, 360)
+SCREEN_SIZE = pygame.math.Vector2(1024, 768)
 
 # Constantes entity
 ASTEROID_TAG = "asteroid"
@@ -10,9 +10,16 @@ BULLET_TAG = "bullet"
 PLAYER_TAG = "player"
 ALIEN_TAG = "alien"
 
+# Cores
+ORANGE = (255, 128, 0)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+WHITE = (255, 255, 255)
+
 # Constante apenas para a versão sem sprites
-COLORS = {ASTEROID_TAG: (255, 0, 0), BULLET_TAG: (0, 255, 0),
-          PLAYER_TAG: (0, 0, 255), ALIEN_TAG: (255, 255, 255), }
+COLORS_DIC = {ASTEROID_TAG: RED, BULLET_TAG: GREEN,
+          PLAYER_TAG: BLUE, ALIEN_TAG: ORANGE}
 
 # Constantes player
 PLAYER_SIZE = 10
@@ -57,5 +64,5 @@ TIME_SCORE = 5
 TIME_TO_SCORE = 20
 
 # Constants AlienSpawn
-
 ALIEN_SPAWN_COOLDOWN = 5
+

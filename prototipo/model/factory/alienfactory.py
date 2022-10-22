@@ -1,5 +1,4 @@
 import random
-from turtle import position
 import utility.constants as CONSTANT
 
 from pygame import Vector2

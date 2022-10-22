@@ -1,6 +1,10 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+18 = OUT 21 (21:54) Gian:
+    - Classe para Debug
+    - Constantes para cores
+
 #17 = OUT 21 (20:57) Micael:
     - Aliens estão sendo gerado aleatoriamente
 

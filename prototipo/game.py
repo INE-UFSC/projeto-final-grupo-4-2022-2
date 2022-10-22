@@ -3,7 +3,7 @@
 from model.factory.rubberbulletfactory import RubberBulletFactory
 from utility.states.stateingame import StateInGame
 from utility.states.state import State
-import utility.constants as CONST
+import utility.constants as CONSTANT
 
 
 import pygame
@@ -19,7 +19,7 @@ class Game:
 
         self.__running = True
         self.__current_state = StateInGame(self)
-        self.__screen = pygame.display.set_mode(tuple(CONST.SCREEN_SIZE))
+        self.__screen = pygame.display.set_mode(tuple(CONSTANT.SCREEN_SIZE))
         self.__clock = pygame.time.Clock()
 
     def is_running(self) -> bool:
@@ -61,7 +61,7 @@ class Game:
         self.get_screen().fill((0, 0, 0))
 
     def update_screen(self) -> None:
-        pygame.display.flip()
+        pygame.display.update()
 
     def handle_rendering(self) -> None:
         self.clean_window()
