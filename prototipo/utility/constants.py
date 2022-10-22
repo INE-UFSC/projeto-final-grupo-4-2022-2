@@ -2,7 +2,7 @@ import math
 import pygame.math
 
 # Constantes da tela
-SCREEN_SIZE = pygame.math.Vector2(1024, 768)
+SCREEN_SIZE = pygame.math.Vector2(960, 500)
 
 # FPS
 FPS = 60
@@ -28,6 +28,8 @@ COLORS_DIC = {ASTEROID_TAG: BLUE, BULLET_TAG: GREEN,
 PLAYER_SIZE = 10
 MAX_VELOCITY_OF_PLAYER = 70
 MAX_LIVES = 5
+ACCELERATION_MAGNITUDE = 20
+SLOWDOWN_COEFFICIENT = -18
 
 # Constantes asteroid (Só valores positivos)
 SMALL_ASTEROID_SIZE = 8
@@ -69,3 +71,4 @@ TIME_TO_SCORE = 20
 # Constants AlienSpawn
 ALIEN_SPAWN_COOLDOWN = 5
 
+# Armas

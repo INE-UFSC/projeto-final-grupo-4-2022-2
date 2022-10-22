@@ -1,21 +1,13 @@
 
-from controller.scoremanager import ScoreManager
-
 from model.entities.abstractentity import Entity
 from model.entities.shooter import Shooter
 from model.body import Body
 
 # factory imports
 from model.factory.defaultbulletfactory import DefaultBulletFactory
-from model.factory.persistentbulletfactory import PersistentBulletFactory
-from model.factory.piercingbulletfactory import PiercingBulletFactory
-from model.factory.rubberbulletfactory import RubberBulletFactory
 
 # weapon imports
-from model.weapon.bulletless import BulletlessWeapon
 from model.weapon.default import DefaultWeapon
-from model.weapon.infinity import InfinityWeapon
-from model.weapon.shotgun import Shotgun
 
 import utility.constants as CONSTANT
 
@@ -32,22 +24,6 @@ class Player(Entity, Shooter):
                            Vector2(1, 1).normalize(), Vector2(0, 0))
         self.__lives = lives
         self.__direction = Vector2(1, 1).normalize()
-
-        self.__score_atual = ScoreManager.instance().get_score()
-        self.__ammo = CONSTANT.MAX_AMMUNITION
-        self.__weapon = self.get_weapon()
-        self.__bullet_factory = self.get_weapon().get_bullet_factory()
-
-        # FIXME: Jogar as coisas abaixo (e outras linhas relevantes) numa classe debug
-        self.DefaultBulletFactory = DefaultBulletFactory()
-        self.PersistentBulletFactory = PersistentBulletFactory()
-        self.PiercingBullerFactory = PiercingBulletFactory()
-        self.RubberBulletFactory = RubberBulletFactory()
-
-        self.DefaultWeapon = DefaultWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.__bullet_factory)
-        self.BulletLessWeapon = BulletlessWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.__bullet_factory)
-        self.InfinityWeapon = InfinityWeapon(self, CONSTANT.WEAPON_COOLDOWN, self.__bullet_factory)
-        self.Shotgun = Shotgun(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.__bullet_factory)
 
 
     def get_lives(self) -> int:
@@ -71,14 +47,17 @@ class Player(Entity, Shooter):
     def on_collision(self, entity: Entity) -> None:
         if (self.get_lives() >= 1):
             self.set_lives(self.get_lives() - 1)
-            print(f"Vidas: {self.get_lives()}")
 
     def handle_input(self, dt: float) -> None:
         body = self.get_body()
+        
+        # Forward
         if pygame.key.get_pressed()[pygame.K_UP]:
-            body.accelerate(self.get_direction()*dt*100)
-        else:
-            body.accelerate(-0.7*body.get_velocity()*dt)
+            body.accelerate(self.get_direction()*CONSTANT.ACCELERATION_MAGNITUDE*dt)
+
+        # Slowing down
+        elif (body.get_velocity().magnitude() > 0):
+            body.accelerate(self.get_direction()*CONSTANT.SLOWDOWN_COEFFICIENT*dt)
 
         if pygame.key.get_pressed()[pygame.K_RIGHT]:
             self.rotate_clockwise(5)
@@ -134,27 +113,6 @@ class Player(Entity, Shooter):
         body.set_velocity(self.get_direction()*velocity.magnitude())
 
     def update(self, dt: float) -> None:
-
-        score = ScoreManager.instance().get_score()
-        if score != self.__score_atual: 
-            print(f"Score: {score}")
-            self.__score_atual = score
-
-        ammo = self.get_weapon().get_ammunition()
-        if ammo != self.__ammo:
-            print(f"Ammo: {ammo}")
-            self.__ammo = ammo
-
-        weapon = self.get_weapon()
-        if weapon != self.__weapon:
-            print(f"Weapon: {weapon}")
-            self.__weapon = weapon
-        
-        bullet_factory = self.get_weapon().get_bullet_factory()
-        if bullet_factory != self.__bullet_factory:
-            print(f"Bullet Factory: {bullet_factory}")
-            self.__bullet_factory = bullet_factory
-        
 
         barrel_position = self.get_direction()*self.get_body().get_radius()*CONSTANT.RADIUS_MULTIPLIER + self.get_body().get_position()
         aiming_direction = self.get_direction()
