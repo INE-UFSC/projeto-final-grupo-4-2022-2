@@ -1,6 +1,10 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#21 = OUT (00:20) Augusto:
+    - Começo do StateInEndGame
+    - Alguma refatoraç
+
 #20 = OUT 24 (22:40) Gian:
     - Verificação das vidas do player e transição de state de acordo
     - Criada GameController
