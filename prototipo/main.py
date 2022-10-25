@@ -1,4 +1,6 @@
-
 from game import Game
+from controller.gamecontroller import GameController
 
-Game("Pousando em Congonhas").run()
+game_controller = GameController.instance()
+game_controller.set_game(Game("Pousando em congonhas"))
+game_controller.run()

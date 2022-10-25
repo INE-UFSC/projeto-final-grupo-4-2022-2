@@ -9,6 +9,7 @@
 
 ## Outros
 
+#### [ ] - Atualizar o UML
 #### [ ] - Scores salvos em disco (estilo arcade? nome AAA score 999 nome BBB score 998)
 #### [ ] - Fazer estados (menu, fim de jogo, pause), deixar o jogo com cara de jogo
 #### [ ] - Fazer sprites, deixar o jogo bonitão

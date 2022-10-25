@@ -5,9 +5,15 @@ from model.body import Body
 
 # factory imports
 from model.factory.defaultbulletfactory import DefaultBulletFactory
+from model.factory.persistentbulletfactory import PersistentBulletFactory
+from model.factory.piercingbulletfactory import PiercingBulletFactory
+from model.factory.rubberbulletfactory import RubberBulletFactory
 
 # weapon imports
 from model.weapon.default import DefaultWeapon
+from model.weapon.bulletless import BulletlessWeapon
+from model.weapon.infinity import InfinityWeapon
+from model.weapon.shotgun import Shotgun
 
 import utility.constants as CONSTANT
 
@@ -71,28 +77,28 @@ class Player(Entity, Shooter):
             self.shoot(dt)
 
         if pygame.key.get_pressed()[pygame.K_1]:
-            self.get_weapon().set_bullet_factory(self.DefaultBulletFactory)
+            self.get_weapon().set_bullet_factory(DefaultBulletFactory())
         
         if pygame.key.get_pressed()[pygame.K_2]:
-            self.get_weapon().set_bullet_factory(self.PersistentBulletFactory)
+            self.get_weapon().set_bullet_factory(PersistentBulletFactory())
 
         if pygame.key.get_pressed()[pygame.K_3]:
-            self.get_weapon().set_bullet_factory(self.PiercingBullerFactory)
+            self.get_weapon().set_bullet_factory(PiercingBulletFactory())
         
         if pygame.key.get_pressed()[pygame.K_4]:
-            self.get_weapon().set_bullet_factory(self.RubberBulletFactory)
+            self.get_weapon().set_bullet_factory(RubberBulletFactory())
 
         if pygame.key.get_pressed()[pygame.K_q]:
-            self.set_weapon(self.BulletLessWeapon)
+            self.set_weapon(BulletlessWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
             
         if pygame.key.get_pressed()[pygame.K_w]:
-            self.set_weapon(self.DefaultWeapon)
+            self.set_weapon(DefaultWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
 
         if pygame.key.get_pressed()[pygame.K_e]:
-            self.set_weapon(self.InfinityWeapon)
+            self.set_weapon(InfinityWeapon(self, CONSTANT.WEAPON_COOLDOWN, self.get_weapon().get_bullet_factory()))
 
         if pygame.key.get_pressed()[pygame.K_r]:
-            self.set_weapon(self.Shotgun)
+            self.set_weapon(Shotgun(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
 
     def move(self, dt: float) -> None:
         body = self.get_body()

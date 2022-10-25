@@ -5,7 +5,7 @@ class Game: ...
 
 class State(ABC):
 
-    def __init__(self, owner: Game):
+    def __init__(self, owner):
         self.__owner = owner
 
     def get_owner(self):
@@ -28,3 +28,6 @@ class State(ABC):
 
     @abstractmethod
     def handle_rendering(self) -> None: ...
+
+    @abstractmethod
+    def handle_transition(self) -> None: ...

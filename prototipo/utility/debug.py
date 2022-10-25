@@ -25,8 +25,7 @@ class Debug:
 
         self.__font = pygame.font.SysFont(None, 20)
 
-    @property
-    def font(self):
+    def get_font(self):
         return self.__font
 
     def update(self, clock: pygame.time.Clock, player: Player) -> None:
@@ -40,7 +39,7 @@ class Debug:
         self.__weapon = player.get_weapon()
 
 
-    def blit_strings(self, screen: pygame.Surface) -> None:
+    def render(self, screen: pygame.Surface) -> None:
 
         gray = pygame.Color(180, 180, 180)
 
@@ -52,13 +51,13 @@ class Debug:
         weapon_str = f"Arma: {self.__weapon}"
         bullet_str = f"Bullet: {self.__bullet_factory}"
 
-        entities_img = self.font.render(entities_str, True, gray)
-        fps_img = self.font.render(fps_str, True, gray)
-        lives_img = self.font.render(lives_str, True, gray)
-        ammo_img = self.font.render(ammo_str, True, gray)
-        score_img = self.font.render(score_str, True, gray)
-        weapon_img = self.font.render(weapon_str, True, gray)
-        bullet_img = self.font.render(bullet_str, True, gray)
+        entities_img = self.get_font().render(entities_str, True, gray)
+        fps_img = self.get_font().render(fps_str, True, gray)
+        lives_img = self.get_font().render(lives_str, True, gray)
+        ammo_img = self.get_font().render(ammo_str, True, gray)
+        score_img = self.get_font().render(score_str, True, gray)
+        weapon_img = self.get_font().render(weapon_str, True, gray)
+        bullet_img = self.get_font().render(bullet_str, True, gray)
 
         screen.blit(entities_img, (20, 20))
         screen.blit(fps_img, (20, 50))

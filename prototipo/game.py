@@ -1,6 +1,4 @@
 
-from controller.gamecontroller import GameController
-
 from utility.states.stateingame import StateInGame
 from utility.states.state import State
 import utility.constants as CONSTANT
@@ -21,8 +19,6 @@ class Game:
         self.__current_state = StateInGame(self)
         self.__screen = pygame.display.set_mode(tuple(CONSTANT.SCREEN_SIZE))
         self.__clock = pygame.time.Clock()
-
-        GameController.instance().set_game(self)
 
     def is_running(self) -> bool:
         return self.__running
@@ -70,6 +66,9 @@ class Game:
         self.__current_state.handle_rendering()
         self.update_screen()
 
+    def handle_transition(self):
+        self.__current_state.handle_transition()
+
     def run(self) -> None:
         self.get_current_state().entry()
         while self.is_running():
@@ -77,5 +76,6 @@ class Game:
             self.handle_event()
             self.handle_update(dt)
             self.handle_rendering()
+            self.handle_transition()
         self.get_current_state().exit()
         pygame.quit()

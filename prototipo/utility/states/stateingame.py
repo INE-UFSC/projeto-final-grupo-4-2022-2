@@ -10,11 +10,11 @@ from controller.entitiescontroller import EntitiesController
 from controller.collisiondetector import CollisionDetector
 from controller.collisionmanager import CollisionManager
 from controller.scoremanager import ScoreManager
+from controller.levelcontroller import LevelController
 
 # Utility imports
 import utility.constants as CONSTANT
 from utility.states.state import State
-from utility.board import Board
 from utility.debug import Debug
 
 # Pygame
@@ -27,24 +27,21 @@ class StateInGame(State):
         super().__init__(owner)
         self.__alien_spawner = AlienSpawner()
         self.__asteroid_spawner = AsteroidSpawner()
-        self.__board = None
+        self.__level_controller = LevelController()
 
         self.__debug = Debug()
 
     def entry(self) -> None:
-
         # Criando player
         player_body = Body(Vector2(0, 0), Vector2(0, 0), CONSTANT.PLAYER_SIZE)
         player_lives = CONSTANT.MAX_LIVES
         player = PlayerFactory().create(player_body, player_lives)
 
-        self.__board = Board(player)
-
+        self.__level_controller.set_player(player)
         EntitiesController.instance().add_entity(player)
 
     def exit(self) -> None:
         EntitiesController.instance().clear_entities() # limpar tudo
-
 
     def handle_event(self) -> None:
         for event in pygame.event.get():
@@ -76,15 +73,16 @@ class StateInGame(State):
         # Gerencia as destruições de cada entidade
         EntitiesController.instance().handle_deletion()
 
-        self.__board.update()
-
         self.__debug.update(self.get_owner().get_clock(), EntitiesController.instance().get_entities()[0])
 
     def handle_rendering(self) -> None:
+        screen = self.get_owner().get_screen()
         for entity in EntitiesController.instance().get_entities()[::-1]:
             body = entity.get_body()
-            pygame.draw.circle(self.get_owner().get_screen(), CONSTANT.COLORS_DIC[entity.get_tag()],
+            pygame.draw.circle(screen, CONSTANT.COLORS_DIC[entity.get_tag()],
                                body.get_position(), body.get_radius())
+        self.__debug.render(screen)
 
-        screen = self.get_owner().get_screen()
-        self.__debug.blit_strings(screen)
+    def handle_transition(self) -> None:
+        self.__level_controller.update()
+    
