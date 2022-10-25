@@ -1,6 +1,6 @@
 
+from controller.gamecontroller import GameController
 
-from model.factory.rubberbulletfactory import RubberBulletFactory
 from utility.states.stateingame import StateInGame
 from utility.states.state import State
 import utility.constants as CONSTANT
@@ -21,6 +21,8 @@ class Game:
         self.__current_state = StateInGame(self)
         self.__screen = pygame.display.set_mode(tuple(CONSTANT.SCREEN_SIZE))
         self.__clock = pygame.time.Clock()
+
+        GameController.instance().set_game(self)
 
     def is_running(self) -> bool:
         return self.__running

@@ -44,3 +44,6 @@ class EntitiesController:
             self.__entities.remove(entity)
         except ValueError as ve:
             print(ve)
+
+    def clear_entities(self):
+        self.__entities.clear()

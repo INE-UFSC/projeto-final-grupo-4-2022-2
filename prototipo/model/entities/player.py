@@ -25,7 +25,6 @@ class Player(Entity, Shooter):
         self.__lives = lives
         self.__direction = Vector2(1, 1).normalize()
 
-
     def get_lives(self) -> int:
         return self.__lives
 
@@ -45,8 +44,11 @@ class Player(Entity, Shooter):
         self.get_direction().rotate_ip(-angle)
 
     def on_collision(self, entity: Entity) -> None:
-        if (self.get_lives() >= 1):
+        if (self.get_lives() >= 0):
             self.set_lives(self.get_lives() - 1)
+
+    def alive(self) -> bool:
+        return self.__lives > -1
 
     def handle_input(self, dt: float) -> None:
         body = self.get_body()

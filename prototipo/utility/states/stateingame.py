@@ -12,8 +12,9 @@ from controller.collisionmanager import CollisionManager
 from controller.scoremanager import ScoreManager
 
 # Utility imports
-from utility.states.state import State
 import utility.constants as CONSTANT
+from utility.states.state import State
+from utility.board import Board
 from utility.debug import Debug
 
 # Pygame
@@ -26,6 +27,7 @@ class StateInGame(State):
         super().__init__(owner)
         self.__alien_spawner = AlienSpawner()
         self.__asteroid_spawner = AsteroidSpawner()
+        self.__board = None
 
         self.__debug = Debug()
 
@@ -36,10 +38,13 @@ class StateInGame(State):
         player_lives = CONSTANT.MAX_LIVES
         player = PlayerFactory().create(player_body, player_lives)
 
+        self.__board = Board(player)
+
         EntitiesController.instance().add_entity(player)
 
     def exit(self) -> None:
-        pass
+        EntitiesController.instance().clear_entities() # limpar tudo
+
 
     def handle_event(self) -> None:
         for event in pygame.event.get():
@@ -47,8 +52,6 @@ class StateInGame(State):
                 self.get_owner().close()
 
     def handle_update(self, dt: float) -> None:
-
-        #print(f"Numero de entidades: {len(EntitiesController.instance().get_entities())}")
 
         # Atualiza cada entidade do jogo
         entities = EntitiesController.instance().get_entities()
@@ -72,6 +75,8 @@ class StateInGame(State):
 
         # Gerencia as destruições de cada entidade
         EntitiesController.instance().handle_deletion()
+
+        self.__board.update()
 
         self.__debug.update(self.get_owner().get_clock(), EntitiesController.instance().get_entities()[0])
 

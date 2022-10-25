@@ -1,6 +1,11 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#20 = OUT 24 (22:40) Gian:
+    - Verificação das vidas do player e transição de state de acordo
+    - Criada GameController
+    - Criado Board
+
 #19 = OUT 21 (22:30) Gian:
     - Asteroid spawner implementado
     - StateInGame atualizado
