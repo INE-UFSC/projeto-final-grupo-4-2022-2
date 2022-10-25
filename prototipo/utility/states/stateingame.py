@@ -13,7 +13,7 @@ from controller.scoremanager import ScoreManager
 from controller.levelcontroller import LevelController
 
 # Utility imports
-import utility.constants as CONSTANT
+import utility.constants as CONSTANTE
 from utility.states.state import State
 from utility.debug import Debug
 
@@ -33,8 +33,8 @@ class StateInGame(State):
 
     def entry(self) -> None:
         # Criando player
-        player_body = Body(Vector2(0, 0), Vector2(0, 0), CONSTANT.PLAYER_SIZE)
-        player_lives = CONSTANT.MAX_LIVES
+        player_body = Body(Vector2(0, 0), Vector2(0, 0), CONSTANTE.PLAYER_SIZE)
+        player_lives = CONSTANTE.MAX_LIVES
         player = PlayerFactory().create(player_body, player_lives)
 
         self.__level_controller.set_player(player)
@@ -79,7 +79,7 @@ class StateInGame(State):
         screen = self.get_owner().get_screen()
         for entity in EntitiesController.instance().get_entities()[::-1]:
             body = entity.get_body()
-            pygame.draw.circle(screen, CONSTANT.COLORS_DIC[entity.get_tag()],
+            pygame.draw.circle(screen, CONSTANTE.COLORS_DIC[entity.get_tag()],
                                body.get_position(), body.get_radius())
         self.__debug.render(screen)
 

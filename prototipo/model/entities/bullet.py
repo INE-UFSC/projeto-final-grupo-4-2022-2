@@ -2,13 +2,13 @@
 from model.entities.abstractentity import Entity
 from controller.entitiescontroller import EntitiesController
 from model.body import Body
-import utility.constants as CONSTANT
+import utility.constants as CONSTANTE
 
 
 class Bullet(Entity):
 
     def __init__(self, body: Body, lifetime: int) -> None:
-        super().__init__(body, CONSTANT.BULLET_TAG)
+        super().__init__(body, CONSTANTE.BULLET_TAG)
         self.__lifetime = lifetime
 
     def get_lifetime(self) -> int:

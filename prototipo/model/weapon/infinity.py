@@ -5,7 +5,7 @@ from model.entities.shooter import Shooter
 from model.weapon.weapon import Weapon
 from model.factory.bulletfactory import BulletFactory
 
-import utility.constants as CONSTANT
+import utility.constants as CONSTANTE
 
 class InfinityWeapon(Weapon):
 
@@ -19,7 +19,7 @@ class InfinityWeapon(Weapon):
 
         owner_position = self.get_owner().get_barrel_position()
         owner_aiming_direction = self.get_owner().get_aiming_direction()
-        velocity = owner_aiming_direction*CONSTANT.VELOCITY_OF_BULLET
+        velocity = owner_aiming_direction*CONSTANTE.VELOCITY_OF_BULLET
 
         bullet_factory = self.get_bullet_factory()
         bullet = bullet_factory.create(owner_position, velocity)

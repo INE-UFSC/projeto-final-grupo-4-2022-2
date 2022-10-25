@@ -1,7 +1,7 @@
 
 
 from controller.entitiescontroller import EntitiesController
-import utility.constants as CONSTANT
+import utility.constants as CONSTANTE
 
 
 class ScoreManager:
@@ -32,11 +32,11 @@ class ScoreManager:
 
     def update_score(self, dt: float):
         self.last_update += dt
-        if self.last_update > CONSTANT.TIME_TO_SCORE:
+        if self.last_update > CONSTANTE.TIME_TO_SCORE:
             self.last_update = 0
-            self.increase(CONSTANT.TIME_SCORE)
+            self.increase(CONSTANTE.TIME_SCORE)
         for entitie in EntitiesController.instance().get_deletion_buffer():
-            if entitie.get_tag() == CONSTANT.ASTEROID_TAG:
-                self.increase(CONSTANT.DESTROY_SCORE)
-            if entitie.get_tag() == CONSTANT.ALIEN_TAG:
-                self.increase(CONSTANT.DESTROY_SCORE)
+            if entitie.get_tag() == CONSTANTE.ASTEROID_TAG:
+                self.increase(CONSTANTE.DESTROY_SCORE)
+            if entitie.get_tag() == CONSTANTE.ALIEN_TAG:
+                self.increase(CONSTANTE.DESTROY_SCORE)

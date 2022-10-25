@@ -1,5 +1,5 @@
 import random
-import utility.constants as CONSTANT
+import utility.constants as CONSTANTE
 
 from pygame import Vector2
 
@@ -15,20 +15,20 @@ class AlienFactory:
         position = self.make_position(direction)
         velocity = self.make_velocity(direction)
 
-        alien_body = Body(position, velocity, CONSTANT.ALIEN_SIZE)
+        alien_body = Body(position, velocity, CONSTANTE.ALIEN_SIZE)
         alien = Alien(alien_body, direction)
         return alien
 
     def make_velocity(self, direction: int) -> Vector2:
-        return direction*Vector2(1, 0)*CONSTANT.ALIEN_VELOCITY
+        return direction*Vector2(1, 0)*CONSTANTE.ALIEN_VELOCITY
 
 
     def make_position(self, direction: int) -> Vector2:
 
-        position = Vector2(0, random.randint(0, CONSTANT.SCREEN_SIZE.y))
+        position = Vector2(0, random.randint(0, CONSTANTE.SCREEN_SIZE.y))
 
         if (direction == -1):
-            position.x = CONSTANT.SCREEN_SIZE.x - 10
+            position.x = CONSTANTE.SCREEN_SIZE.x - 10
         else:
             position.x = 10
 

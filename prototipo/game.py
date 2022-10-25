@@ -1,7 +1,7 @@
 
 from utility.states.stateingame import StateInGame
 from utility.states.state import State
-import utility.constants as CONSTANT
+import utility.constants as CONSTANTE
 
 
 import pygame
@@ -17,7 +17,7 @@ class Game:
 
         self.__running = True
         self.__current_state = StateInGame(self)
-        self.__screen = pygame.display.set_mode(tuple(CONSTANT.SCREEN_SIZE))
+        self.__screen = pygame.display.set_mode(tuple(CONSTANTE.SCREEN_SIZE))
         self.__clock = pygame.time.Clock()
 
     def is_running(self) -> bool:
@@ -72,7 +72,7 @@ class Game:
     def run(self) -> None:
         self.get_current_state().entry()
         while self.is_running():
-            dt = 1.0/self.get_clock().tick(CONSTANT.FPS)
+            dt = 1.0/self.get_clock().tick(CONSTANTE.FPS)
             self.handle_event()
             self.handle_update(dt)
             self.handle_rendering()

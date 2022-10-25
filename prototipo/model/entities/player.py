@@ -15,7 +15,7 @@ from model.weapon.bulletless import BulletlessWeapon
 from model.weapon.infinity import InfinityWeapon
 from model.weapon.shotgun import Shotgun
 
-import utility.constants as CONSTANT
+import utility.constants as CONSTANTE
 
 import pygame
 from pygame.math import Vector2
@@ -25,8 +25,8 @@ class Weapon: ...
 class Player(Entity, Shooter):
 
     def __init__(self, body: Body, lives: int):
-        Entity.__init__(self, body, CONSTANT.PLAYER_TAG)
-        Shooter.__init__(self, DefaultWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, DefaultBulletFactory()),
+        Entity.__init__(self, body, CONSTANTE.PLAYER_TAG)
+        Shooter.__init__(self, DefaultWeapon(self, CONSTANTE.WEAPON_COOLDOWN, CONSTANTE.MAX_AMMUNITION, DefaultBulletFactory()),
                            Vector2(1, 1).normalize(), Vector2(0, 0))
         self.__lives = lives
         self.__direction = Vector2(1, 1).normalize()
@@ -61,11 +61,11 @@ class Player(Entity, Shooter):
         
         # Forward
         if pygame.key.get_pressed()[pygame.K_UP]:
-            body.accelerate(self.get_direction()*CONSTANT.ACCELERATION_MAGNITUDE*dt)
+            body.accelerate(self.get_direction()*CONSTANTE.ACCELERATION_MAGNITUDE*dt)
 
         # Slowing down
         elif (body.get_velocity().magnitude() > 0):
-            body.accelerate(self.get_direction()*CONSTANT.SLOWDOWN_COEFFICIENT*dt)
+            body.accelerate(self.get_direction()*CONSTANTE.SLOWDOWN_COEFFICIENT*dt)
 
         if pygame.key.get_pressed()[pygame.K_RIGHT]:
             self.rotate_clockwise(5)
@@ -76,45 +76,21 @@ class Player(Entity, Shooter):
         if pygame.key.get_pressed()[pygame.K_SPACE]:
             self.shoot(dt)
 
-        if pygame.key.get_pressed()[pygame.K_1]:
-            self.get_weapon().set_bullet_factory(DefaultBulletFactory())
-        
-        if pygame.key.get_pressed()[pygame.K_2]:
-            self.get_weapon().set_bullet_factory(PersistentBulletFactory())
-
-        if pygame.key.get_pressed()[pygame.K_3]:
-            self.get_weapon().set_bullet_factory(PiercingBulletFactory())
-        
-        if pygame.key.get_pressed()[pygame.K_4]:
-            self.get_weapon().set_bullet_factory(RubberBulletFactory())
-
-        if pygame.key.get_pressed()[pygame.K_q]:
-            self.set_weapon(BulletlessWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
-            
-        if pygame.key.get_pressed()[pygame.K_w]:
-            self.set_weapon(DefaultWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
-
-        if pygame.key.get_pressed()[pygame.K_e]:
-            self.set_weapon(InfinityWeapon(self, CONSTANT.WEAPON_COOLDOWN, self.get_weapon().get_bullet_factory()))
-
-        if pygame.key.get_pressed()[pygame.K_r]:
-            self.set_weapon(Shotgun(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.get_weapon().get_bullet_factory()))
-
     def move(self, dt: float) -> None:
         body = self.get_body()
         velocity = body.get_velocity()
-        if velocity.magnitude() >= CONSTANT.MAX_VELOCITY_OF_PLAYER:
-            velocity.scale_to_length(CONSTANT.MAX_VELOCITY_OF_PLAYER)
+        if velocity.magnitude() >= CONSTANTE.MAX_VELOCITY_OF_PLAYER:
+            velocity.scale_to_length(CONSTANTE.MAX_VELOCITY_OF_PLAYER)
 
         position = body.get_position()
         if position.x < 0:
-            position.x = CONSTANT.SCREEN_SIZE.x
-        elif CONSTANT.SCREEN_SIZE.x < position.x:
+            position.x = CONSTANTE.SCREEN_SIZE.x
+        elif CONSTANTE.SCREEN_SIZE.x < position.x:
             position.x = 0
 
         if position.y < 0:
-            position.y = CONSTANT.SCREEN_SIZE.y
-        elif CONSTANT.SCREEN_SIZE.y < position.y:
+            position.y = CONSTANTE.SCREEN_SIZE.y
+        elif CONSTANTE.SCREEN_SIZE.y < position.y:
             position.y = 0
 
         body.move(velocity*dt)
@@ -122,7 +98,7 @@ class Player(Entity, Shooter):
 
     def update(self, dt: float) -> None:
 
-        barrel_position = self.get_direction()*self.get_body().get_radius()*CONSTANT.RADIUS_MULTIPLIER + self.get_body().get_position()
+        barrel_position = self.get_direction()*self.get_body().get_radius()*CONSTANTE.RADIUS_MULTIPLIER + self.get_body().get_position()
         aiming_direction = self.get_direction()
         self.set_barrel_position(barrel_position)
         self.set_aiming_direction(aiming_direction)

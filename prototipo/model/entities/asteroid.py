@@ -4,7 +4,7 @@ from model.body import Body
 from controller.entitiescontroller import EntitiesController
 from controller.scoremanager import ScoreManager
 
-import utility.constants as CONSTANT
+import utility.constants as CONSTANTE
 
 from pygame.math import Vector2
 
@@ -12,10 +12,10 @@ from pygame.math import Vector2
 class Asteroid(Entity):
 
     def __init__(self, body: Body) -> None:
-        super().__init__(body, CONSTANT.ASTEROID_TAG)
+        super().__init__(body, CONSTANTE.ASTEROID_TAG)
 
     def on_collision(self, entity: Entity) -> None:
-        if entity.get_tag() == CONSTANT.ASTEROID_TAG:
+        if entity.get_tag() == CONSTANTE.ASTEROID_TAG:
             return
         EntitiesController.instance().register_deletion(self)
 
@@ -24,13 +24,13 @@ class Asteroid(Entity):
 
         position = body.get_position()
         if position.x < 0:
-            position.x = CONSTANT.SCREEN_SIZE.x
-        elif CONSTANT.SCREEN_SIZE.x < position.x:
+            position.x = CONSTANTE.SCREEN_SIZE.x
+        elif CONSTANTE.SCREEN_SIZE.x < position.x:
             position.x = 0
 
         if position.y < 0:
-            position.y = CONSTANT.SCREEN_SIZE.y
-        elif CONSTANT.SCREEN_SIZE.y < position.y:
+            position.y = CONSTANTE.SCREEN_SIZE.y
+        elif CONSTANTE.SCREEN_SIZE.y < position.y:
             position.y = 0
 
         body.move(body.get_velocity()*dt*1000)
@@ -45,15 +45,15 @@ class Asteroid(Entity):
         velocity = body.get_velocity()
 
 
-        if body.get_radius() == CONSTANT.BIG_ASTEROID_SIZE:
-            velocity.scale_to_length(CONSTANT.MEDIUM_ASTEROID_VELOCITY)
-            radius = CONSTANT.MEDIUM_ASTEROID_SIZE
+        if body.get_radius() == CONSTANTE.BIG_ASTEROID_SIZE:
+            velocity.scale_to_length(CONSTANTE.MEDIUM_ASTEROID_VELOCITY)
+            radius = CONSTANTE.MEDIUM_ASTEROID_SIZE
 
-        elif body.get_radius() == CONSTANT.MEDIUM_ASTEROID_SIZE:
-            velocity.scale_to_length(CONSTANT.MEDIUM_ASTEROID_VELOCITY)
-            radius = CONSTANT.SMALL_ASTEROID_SIZE
+        elif body.get_radius() == CONSTANTE.MEDIUM_ASTEROID_SIZE:
+            velocity.scale_to_length(CONSTANTE.MEDIUM_ASTEROID_VELOCITY)
+            radius = CONSTANTE.SMALL_ASTEROID_SIZE
         
-        elif body.get_radius() == CONSTANT.SMALL_ASTEROID_SIZE:
+        elif body.get_radius() == CONSTANTE.SMALL_ASTEROID_SIZE:
             EntitiesController.instance().register_deletion(self)
             return
 

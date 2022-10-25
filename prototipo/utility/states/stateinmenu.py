@@ -2,7 +2,7 @@
 from controller.gamecontroller import GameController
 
 from utility.states.state import State
-import utility.constants as CONSTANT
+import utility.constants as CONSTANTE
 
 import pygame
 
@@ -33,7 +33,7 @@ class StateInMenu(State):
         message = f"Menu"
         font = pygame.font.get_default_font() 
         message = pygame.font.SysFont(font, 50).render(message, True, (255,255,255))
-        self.get_owner().get_screen().blit(message, (CONSTANT.SCREEN_SIZE.x/2 - 40, CONSTANT.SCREEN_SIZE.y/2 - 20))
+        self.get_owner().get_screen().blit(message, (CONSTANTE.SCREEN_SIZE.x/2 - 40, CONSTANTE.SCREEN_SIZE.y/2 - 20))
 
     def handle_transition(self) -> None:
         pass
