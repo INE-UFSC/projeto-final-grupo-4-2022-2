@@ -1,5 +1,6 @@
 
 # Model imports
+from math import ceil
 from model.body import Body
 from model.factory.playerfactory import PlayerFactory
 from model.spawn.alienspawn import AlienSpawner
@@ -36,9 +37,10 @@ class StateInGame(State):
 
     def entry(self) -> None:
         # Criando player
-        player_body = Body(Vector2(0, 0), Vector2(0, 0), CONSTANTE.PLAYER_SIZE)
+        player_body = Body(Vector2(ceil(CONSTANTE.SCREEN_SIZE.x/2), ceil(CONSTANTE.SCREEN_SIZE.y/2)), Vector2(0, 0), CONSTANTE.PLAYER_SIZE)
         player_lives = CONSTANTE.MAX_LIVES
         player = PlayerFactory().create(player_body, player_lives)
+        player.set_direction(Vector2(0, -CONSTANTE.SCREEN_SIZE.y/2).normalize())
 
         self.__level_controller.set_player(player)
         EntitiesController.instance().add_entity(player)

@@ -12,7 +12,7 @@ class StateInMenu(State):
         self.__can_transition = False
 
     def entry(self) -> None:
-        print("Entrou no In Menu")
+        pass
 
     def exit(self) -> None:
         pass

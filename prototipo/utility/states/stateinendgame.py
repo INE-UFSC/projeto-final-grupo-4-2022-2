@@ -1,4 +1,5 @@
 from controller.gamecontroller import GameController
+from controller.scoremanager import ScoreManager
 from utility.states.state import State
 
 import utility.constants as CONSTANTE
@@ -15,7 +16,7 @@ class StateInEndGame(State):
         pass
 
     def exit(self) -> None:
-        pass
+        ScoreManager.instance().reset_score()
 
     def handle_event(self) -> None:
         for event in pygame.event.get():
