@@ -1,17 +1,14 @@
-
-
 from utility.states.state import State
 
 import utility.constants as CONSTANTE
 
 import pygame
 
-class StateInMenu: ...
-
 class StateInEndGame(State):
 
     def __init__(self, owner):
         super().__init__(owner)
+        self.__can_transition = False
 
     def entry(self) -> None:
         pass
@@ -25,14 +22,21 @@ class StateInEndGame(State):
                 self.get_owner().close()
 
     def handle_update(self, dt: float) -> None:
-        pass
+        if pygame.key.get_pressed()[pygame.K_m]:
+            self.__can_transition = True
 
     def handle_rendering(self) -> None:
         # Temporário
-        message = f"Game over!"
+        message = f"STATE IN END GAME"
+        message2 = f"Aperte M para transitar para STATE IN MENU"
         font = pygame.font.get_default_font() 
-        message = pygame.font.SysFont(font, 50).render(message, True, (255,255,255))
-        self.get_owner().get_screen().blit(message, (CONSTANTE.SCREEN_SIZE.x/2 - 100, CONSTANTE.SCREEN_SIZE.y/2 - 20))
+        message_img = pygame.font.SysFont(font, 50).render(message, True, (255,255,255))
+        message2_img = pygame.font.SysFont(font, 20).render(message2, True, (255, 255, 255))
+        self.get_owner().get_screen().blit(message_img, (CONSTANTE.SCREEN_SIZE.x/2 - 100, CONSTANTE.SCREEN_SIZE.y/2 - 20))
+        self.get_owner().get_screen().blit(message2_img, (CONSTANTE.SCREEN_SIZE.x/2 - 100, CONSTANTE.SCREEN_SIZE.y/2 + 30))
 
     def handle_transition(self) -> None:
-        pass
+        if self.__can_transition:
+            next_state = self.get_owner().get_next_state(self)
+            self.get_owner().change_state(next_state)
+
