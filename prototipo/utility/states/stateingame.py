@@ -11,6 +11,7 @@ from controller.collisiondetector import CollisionDetector
 from controller.collisionmanager import CollisionManager
 from controller.scoremanager import ScoreManager
 from controller.levelcontroller import LevelController
+from controller.gamecontroller import GameController
 
 # Utility imports
 import utility.constants as CONSTANTE
@@ -90,5 +91,5 @@ class StateInGame(State):
         self.__level_controller.update()
         if self.__can_transition:
             next_state = self.get_owner().get_next_state(self)
-            self.get_owner().change_state(next_state)
+            GameController.instance().change_state(next_state)
     

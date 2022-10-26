@@ -1,3 +1,4 @@
+from controller.gamecontroller import GameController
 from utility.states.state import State
 
 import utility.constants as CONSTANTE
@@ -38,5 +39,5 @@ class StateInEndGame(State):
     def handle_transition(self) -> None:
         if self.__can_transition:
             next_state = self.get_owner().get_next_state(self)
-            self.get_owner().change_state(next_state)
+            GameController.instance().change_state(next_state)
 
