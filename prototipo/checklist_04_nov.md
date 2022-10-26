@@ -1,15 +1,16 @@
 #### Checklist Protótipo:
+
     Adversários:
         - Asteroides (x)
         - Alienígenas (x)
         - Próprio tiro do player (x)
 
-        Obs: 
+        Obs:
             - Asteroides menores são mais rapidos
             - Alienígenas lentos que disparam (em várias direções?)
 
     Mecânica:
-        Player: 
+        Player:
             - Controle pelo teclado (x)
             - Livre pelo plano (x)
             - Pseudo-física (momentum/velocidade/inercia blabla) (x)
@@ -19,12 +20,12 @@
                 - Asteroids apenas quando acabar todos eles
                 - Alien é aleatorio
 
-        
+
     Objetivos:
         Pontuação:
             - Tempo de sobrevivência (x)
             - Quantidade de adversários destruídos (x)
-            - Escrever em disco ( )
+            - Escrever em disco (x)
 
     Regras:
         - Num finito de vidas (x)
@@ -40,4 +41,3 @@
 
         Obs: Equivale a ter uma quantidade negativa de vidas, pois contamos as vidas como vida atual + vidas reservas, então
         lives = 0 seriam 0 vidas reservas
-

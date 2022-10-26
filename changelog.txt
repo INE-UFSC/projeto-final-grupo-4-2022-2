@@ -1,5 +1,7 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
+#23 = OUT 25 (22:55) Micael:
+    - Criada as classes para persistência de dados(DAO)
 
 #22 = OUT 25 (09:55) Gian:
     - Mais alguma refatoração (especialmente no debug)
