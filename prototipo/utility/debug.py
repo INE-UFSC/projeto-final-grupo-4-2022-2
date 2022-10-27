@@ -2,8 +2,6 @@
 from model.entities.player import Player
 
 # Controllers
-from controller.collisiondetector import CollisionDetector
-from controller.collisionmanager import CollisionManager
 from controller.entitiescontroller import EntitiesController
 from controller.scoremanager import ScoreManager
 

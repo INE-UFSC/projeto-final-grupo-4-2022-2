@@ -3,7 +3,6 @@ import utility.constants as CONSTANTE
 
 from pygame import Vector2
 
-from model.weapon.weapon import Weapon
 from model.body import Body
 from model.entities.alien import Alien
 

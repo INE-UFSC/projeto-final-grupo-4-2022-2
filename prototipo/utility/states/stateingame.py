@@ -12,7 +12,6 @@ from controller.collisiondetector import CollisionDetector
 from controller.collisionmanager import CollisionManager
 from controller.scoremanager import ScoreManager
 from controller.levelcontroller import LevelController
-from controller.gamecontroller import GameController
 
 # Utility imports
 import utility.constants as CONSTANTE
@@ -32,8 +31,6 @@ class StateInGame(State):
         self.__level_controller = LevelController()
 
         self.__debug = Debug()
-
-        self.__can_transition = False
 
     def entry(self) -> None:
         # Criando player
@@ -91,7 +88,3 @@ class StateInGame(State):
 
     def handle_transition(self) -> None:
         self.__level_controller.update()
-        if self.__can_transition:
-            next_state = self.get_owner().get_next_state(self)
-            GameController.instance().change_state(next_state)
-    

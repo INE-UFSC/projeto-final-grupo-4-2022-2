@@ -2,7 +2,6 @@
 
 from controller.collisionmanager import CollisionManager
 
-from model.entities.abstractentity import Entity
 from model.collision import Collision
 
 

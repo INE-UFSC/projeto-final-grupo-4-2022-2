@@ -1,6 +1,4 @@
 
-from model.entities.abstractentity import Entity
-from model.entities.asteroid import Asteroid
 from model.factory.asteroidfactory import AsteroidFactory
 
 from controller.entitiescontroller import EntitiesController

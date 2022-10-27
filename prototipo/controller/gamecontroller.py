@@ -1,6 +1,4 @@
 
-from utility.states.state import State
-
 class Game: ...
 
 class GameController:
@@ -22,8 +20,8 @@ class GameController:
     def get_game(self) -> Game:
         return self.__game
     
-    def change_state(self, state: State):
-        self.get_game().change_state(state)
+    def change_state(self, state_str: str):
+        self.get_game().change_state(state_str)
 
     def run(self):
         self.get_game().run()

@@ -1,6 +1,5 @@
 
 from model.entities.abstractentity import Entity
-from controller.entitiescontroller import EntitiesController
 from model.body import Body
 import utility.constants as CONSTANTE
 

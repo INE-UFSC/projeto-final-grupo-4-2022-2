@@ -34,23 +34,11 @@ class Game:
     def set_current_state(self, new_state: State) -> None:
         self.__current_state = new_state
 
-    def change_state(self, new_state: State) -> None:
+    def change_state(self, new_state_str: str) -> None:
+        states = {"inmenu": StateInMenu(self), "ingame": StateInGame(self), "inendgame": StateInEndGame(self)}
         self.get_current_state().exit()
-        self.set_current_state(new_state)
+        self.set_current_state(states[new_state_str])
         self.get_current_state().entry()
-
-    # Game faz o papel do contexto
-    def get_next_state(self, state: State):
-        if (isinstance(state, StateInEndGame)):
-            return StateInMenu(self)
-
-        if (isinstance(state, StateInGame)):
-            return StateInEndGame(self)
-        
-        if (isinstance(state, StateInMenu)):
-            return StateInGame(self)
-
-        return None
 
     def get_screen(self) -> Surface:
         return self.__screen

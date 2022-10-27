@@ -2,7 +2,6 @@ import math
 from model.entities.abstractentity import Entity
 from model.body import Body
 from controller.entitiescontroller import EntitiesController
-from controller.scoremanager import ScoreManager
 
 import utility.constants as CONSTANTE
 

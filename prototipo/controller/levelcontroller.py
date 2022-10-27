@@ -1,6 +1,5 @@
 from controller.gamecontroller import GameController
 from model.entities.player import Player
-from utility.states.stateinendgame import StateInEndGame
 
 
 class LevelController:
@@ -16,4 +15,5 @@ class LevelController:
 
     def update(self) -> None:
         if not self.get_player().alive():
-            GameController.instance().change_state(StateInEndGame(GameController.instance().get_game()))
+            next_state = "inendgame"
+            GameController.instance().change_state(next_state)

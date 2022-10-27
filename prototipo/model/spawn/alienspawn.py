@@ -1,6 +1,5 @@
 
 from model.entities.abstractentity import Entity
-from model.entities.alien import Alien
 from model.factory.alienfactory import AlienFactory
 
 from controller.entitiescontroller import EntitiesController
