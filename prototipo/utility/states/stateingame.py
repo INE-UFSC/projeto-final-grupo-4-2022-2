@@ -1,5 +1,6 @@
 
 # Model imports
+from math import ceil
 from model.body import Body
 from model.factory.playerfactory import PlayerFactory
 from model.spawn.alienspawn import AlienSpawner
@@ -11,6 +12,7 @@ from controller.collisiondetector import CollisionDetector
 from controller.collisionmanager import CollisionManager
 from controller.scoremanager import ScoreManager
 from controller.levelcontroller import LevelController
+from controller.gamecontroller import GameController
 
 # Utility imports
 import utility.constants as CONSTANTE
@@ -31,14 +33,18 @@ class StateInGame(State):
 
         self.__debug = Debug()
 
+        self.__can_transition = False
+
     def entry(self) -> None:
         # Criando player
-        player_body = Body(Vector2(0, 0), Vector2(0, 0), CONSTANTE.PLAYER_SIZE)
+        player_body = Body(Vector2(ceil(CONSTANTE.SCREEN_SIZE.x/2), ceil(CONSTANTE.SCREEN_SIZE.y/2)), Vector2(0, 0), CONSTANTE.PLAYER_SIZE)
         player_lives = CONSTANTE.MAX_LIVES
         player = PlayerFactory().create(player_body, player_lives)
+        player.set_direction(Vector2(0, -CONSTANTE.SCREEN_SIZE.y/2).normalize())
 
         self.__level_controller.set_player(player)
         EntitiesController.instance().add_entity(player)
+
 
     def exit(self) -> None:
         EntitiesController.instance().clear_entities() # limpar tudo
@@ -85,4 +91,7 @@ class StateInGame(State):
 
     def handle_transition(self) -> None:
         self.__level_controller.update()
+        if self.__can_transition:
+            next_state = self.get_owner().get_next_state(self)
+            GameController.instance().change_state(next_state)
     

@@ -23,7 +23,7 @@ class GameController:
         return self.__game
     
     def change_state(self, state: State):
-        self.get_game().set_current_state(state)
+        self.get_game().change_state(state)
 
     def run(self):
         self.get_game().run()

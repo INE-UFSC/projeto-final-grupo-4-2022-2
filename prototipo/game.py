@@ -1,5 +1,7 @@
 
 from utility.states.stateingame import StateInGame
+from utility.states.stateinendgame import StateInEndGame
+from utility.states.stateinmenu import StateInMenu
 from utility.states.state import State
 import utility.constants as CONSTANTE
 
@@ -36,6 +38,19 @@ class Game:
         self.get_current_state().exit()
         self.set_current_state(new_state)
         self.get_current_state().entry()
+
+    # Game faz o papel do contexto
+    def get_next_state(self, state: State):
+        if (isinstance(state, StateInEndGame)):
+            return StateInMenu(self)
+
+        if (isinstance(state, StateInGame)):
+            return StateInEndGame(self)
+        
+        if (isinstance(state, StateInMenu)):
+            return StateInGame(self)
+
+        return None
 
     def get_screen(self) -> Surface:
         return self.__screen
