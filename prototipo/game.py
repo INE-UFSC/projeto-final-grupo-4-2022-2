@@ -23,9 +23,9 @@ class Game:
         self.__clock = pygame.time.Clock()
         
         self.__states_dictionary = {
-            CONSTANTE.STATE_IN_MENU: StateInMenu(self),
-            CONSTANTE.STATE_IN_GAME: StateInGame(self), 
-            CONSTANTE.STATE_END_GAME: StateInEndGame(self)
+            "inmenu": StateInMenu(self),
+            "ingame": StateInGame(self), 
+            "inendgame": StateInEndGame(self)
         }
 
     def is_running(self) -> bool:

@@ -63,9 +63,9 @@ class Player(Entity, Shooter):
             body.accelerate(self.get_direction()*CONSTANTE.ACCELERATION_MAGNITUDE*dt)
 
         # Slowing down
-        elif (body.get_velocity().magnitude() > 10):
-            body.accelerate(self.get_direction()*CONSTANTE.SLOWDOWN_COEFFICIENT*dt)
-
+        elif (body.get_velocity().magnitude() > 1):
+            body.accelerate(body.get_velocity().normalize()*CONSTANTE.SLOWDOWN_COEFFICIENT*dt)
+        
         else:
             body.set_velocity(Vector2(0,0))
 

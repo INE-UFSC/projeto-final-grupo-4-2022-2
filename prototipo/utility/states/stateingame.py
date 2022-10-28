@@ -86,8 +86,8 @@ class StateInGame(State):
             pygame.draw.circle(screen, CONSTANTE.COLORS_DIC[entity.get_tag()],
                                body.get_position(), body.get_radius())
             if isinstance(entity, Player):
-                pygame.draw.line(screen, (255,255,255), entity.get_body().get_position(), entity.get_body().get_position() + entity.get_body().get_velocity(), 1)
                 pygame.draw.line(screen, (255,0,0), entity.get_body().get_position(), entity.get_body().get_position() + entity.get_direction()*100, 1)
+                pygame.draw.line(screen, (255,255,255), entity.get_body().get_position(), entity.get_body().get_position() + entity.get_body().get_velocity(), 1)
         self.__debug.render(screen)
 
     def handle_transition(self) -> None:
