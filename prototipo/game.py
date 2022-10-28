@@ -21,6 +21,12 @@ class Game:
         self.__current_state = StateInGame(self)
         self.__screen = pygame.display.set_mode(tuple(CONSTANTE.SCREEN_SIZE))
         self.__clock = pygame.time.Clock()
+        
+        self.__states_dictionary = {
+            CONSTANTE.STATE_IN_MENU: StateInMenu(self),
+            CONSTANTE.STATE_IN_GAME: StateInGame(self), 
+            CONSTANTE.STATE_END_GAME: StateInEndGame(self)
+        }
 
     def is_running(self) -> bool:
         return self.__running
@@ -35,9 +41,11 @@ class Game:
         self.__current_state = new_state
 
     def change_state(self, new_state_str: str) -> None:
-        states = {"inmenu": StateInMenu(self), "ingame": StateInGame(self), "inendgame": StateInEndGame(self)}
+
+        next_state = self.get_states_dictionary()[new_state_str]        
+
         self.get_current_state().exit()
-        self.set_current_state(states[new_state_str])
+        self.set_current_state(next_state)
         self.get_current_state().entry()
 
     def get_screen(self) -> Surface:
@@ -51,6 +59,12 @@ class Game:
 
     def set_clock(self, new_clock: Clock) -> None:
         self.__clock = new_clock
+
+    def get_states_dictionary(self) -> dict:
+        return self.__states_dictionary
+
+    def set_states_dictionary(self, states_dic: dict) -> None:
+        self.__states_dictionary = states_dic
 
     def handle_event(self) -> None:
         self.__current_state.handle_event()

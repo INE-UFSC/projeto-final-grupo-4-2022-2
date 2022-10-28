@@ -1,19 +1,14 @@
 
+import math
 from model.entities.abstractentity import Entity
 from model.entities.shooter import Shooter
 from model.body import Body
 
 # factory imports
 from model.factory.defaultbulletfactory import DefaultBulletFactory
-from model.factory.persistentbulletfactory import PersistentBulletFactory
-from model.factory.piercingbulletfactory import PiercingBulletFactory
-from model.factory.rubberbulletfactory import RubberBulletFactory
 
 # weapon imports
 from model.weapon.default import DefaultWeapon
-from model.weapon.bulletless import BulletlessWeapon
-from model.weapon.infinity import InfinityWeapon
-from model.weapon.shotgun import Shotgun
 
 import utility.constants as CONSTANTE
 
@@ -58,10 +53,20 @@ class Player(Entity, Shooter):
 
     def handle_input(self, dt: float) -> None:
         body = self.get_body()
-        
+                    
+        velocity = body.get_velocity()
+
         # Forward
         if pygame.key.get_pressed()[pygame.K_UP]:
-            body.accelerate(self.get_direction()*CONSTANTE.ACCELERATION_MAGNITUDE*dt)
+
+            if velocity.magnitude() != 0:   
+                if velocity.angle_to(self.get_direction()) != 0:
+                    difference = math.atan2(velocity.y, velocity.x) - math.atan2(self.get_direction().y, self.get_direction().x)
+                    sign = abs(difference)/difference
+                    velocity.rotate_ip(sign*CONSTANTE.ANGULAR_SPEED * dt)
+                body.accelerate(velocity.normalize()*CONSTANTE.ACCELERATION_MAGNITUDE*dt)
+            else:
+                body.accelerate(self.get_direction()*CONSTANTE.ACCELERATION_MAGNITUDE*dt)
 
         # Slowing down
         elif (body.get_velocity().magnitude() > 0):
@@ -77,8 +82,17 @@ class Player(Entity, Shooter):
             self.shoot(dt)
 
     def move(self, dt: float) -> None:
+
         body = self.get_body()
         velocity = body.get_velocity()
+
+        if velocity.magnitude() != 0:   
+            if velocity.angle_to(self.get_direction()) > CONSTANTE.MINIMAL_ANGLE:
+                difference = math.atan2(velocity.y, velocity.x) - math.atan2(self.get_direction().y, self.get_direction().x)
+                sign = abs(difference)/difference
+                velocity.rotate_ip(sign*CONSTANTE.ANGULAR_SPEED * dt)
+
+
         if velocity.magnitude() >= CONSTANTE.MAX_VELOCITY_OF_PLAYER:
             velocity.scale_to_length(CONSTANTE.MAX_VELOCITY_OF_PLAYER)
 
