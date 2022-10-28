@@ -23,9 +23,9 @@ class Game:
         self.__clock = pygame.time.Clock()
         
         self.__states_dictionary = {
-            "inmenu": StateInMenu(self),
-            "ingame": StateInGame(self), 
-            "inendgame": StateInEndGame(self)
+            CONSTANTE.STATE_MENU: StateInMenu(self),
+            CONSTANTE.STATE_IN_GAME: StateInGame(self), 
+            CONSTANTE.STATE_END_GAME: StateInEndGame(self)
         }
 
     def is_running(self) -> bool:
@@ -42,8 +42,10 @@ class Game:
 
     def change_state(self, new_state_str: str) -> None:
 
+        # Game fazendo o papel do contexto
         next_state = self.get_states_dictionary()[new_state_str]        
 
+        # Troca de estado
         self.get_current_state().exit()
         self.set_current_state(next_state)
         self.get_current_state().entry()

@@ -1,5 +1,10 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
+
+#24 = OUT 28 (19:25) Gian:
+    - Entrada de texto do player
+    - Métodos no ScoreManager para gerar ScoreLog e salvar no disco (NÃO funcionam - ver FIXME de ScoreManager)
+
 #23 = OUT 25 (22:55) Micael:
     - Criada as classes para persistência de dados(DAO)
 

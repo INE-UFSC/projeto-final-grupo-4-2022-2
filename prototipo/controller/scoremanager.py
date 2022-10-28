@@ -1,6 +1,8 @@
 
 
 from controller.entitiescontroller import EntitiesController
+from utility.data.scoreDAO import ScoreDAO
+from utility.data.scorelog import ScoreLog
 import utility.constants as CONSTANTE
 
 
@@ -16,6 +18,7 @@ class ScoreManager:
 
     def __init__(self):
         self.__score = 0
+        self.__score_dao = ScoreDAO()
         self.last_update = 0
 
     def get_score(self):
@@ -23,6 +26,9 @@ class ScoreManager:
 
     def set_score(self, new_score):
         self.__score = new_score
+
+    def get_score_dao(self):
+        return self.__score_dao
 
     def reset_score(self):
         self.__score = 0
@@ -40,3 +46,20 @@ class ScoreManager:
                 self.increase(CONSTANTE.DESTROY_SCORE)
             if entitie.get_tag() == CONSTANTE.ALIEN_TAG:
                 self.increase(CONSTANTE.DESTROY_SCORE)
+
+    def generate_score_log(self, name) -> ScoreLog:
+
+        return ScoreLog(self.get_score(), name)
+    
+    # FIXME: Exceção no load() do DAO, provavelmente faltou um datasource
+    def write_to_disk(self, score_log: ScoreLog) -> bool:
+        try:
+            self.get_score_dao().add(score_log)
+            self.get_score_dao().dump()
+
+            return True
+        except Exception as e:
+            print("!!!!!!!!!!!!!!!")
+            print("ScoreManager write_to_disk()")
+            print(e)
+            return False

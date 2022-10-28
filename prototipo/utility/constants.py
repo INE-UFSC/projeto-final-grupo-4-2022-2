@@ -72,4 +72,7 @@ TIME_TO_SCORE = 20
 # Constants AlienSpawn
 ALIEN_SPAWN_COOLDOWN = 5
 
-# Armas
+# Constantes para os estados
+STATE_MENU = "in_menu"
+STATE_END_GAME = "end_game"
+STATE_IN_GAME = "in_game"

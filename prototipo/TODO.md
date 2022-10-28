@@ -9,18 +9,17 @@
 
 ## Outros
 
-#### [ ] - Atualizar o UML
 #### [ ] - Scores salvos em disco (estilo arcade? nome AAA score 999 nome BBB score 998)
 #### [ ] - Fazer estados (menu, fim de jogo, pause), deixar o jogo com cara de jogo
 #### [ ] - Fazer sprites, deixar o jogo bonitão
 #### [ ] - Implementar LevelManager e ModeManager
+#### [ ] - Otimizar imports (principalmente imports das constantes)
 
 
 ## Histórico
 
 #### [x] - Adicionar constantes no arquivo const. Por exemplo, constantes de correção, munição máxima, velocidade máxima e etc
 #### [x] - Arrumar singleton, pois ele está permitindo mais de uma instância (instancia como atributo da classe?)
-#### [x] - Atualizar UML
 #### [x] - Fabrica de player
 #### [x] - Fabricas de entidades (bullet, asteroid), facilitar a criação das entidades
 #### [x] - Colocar screen_size dentro das entidades, facilita a lógica de movimentação (Screen size virou uma constante importada)

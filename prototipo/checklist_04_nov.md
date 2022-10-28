@@ -14,7 +14,7 @@
             - Controle pelo teclado (x)
             - Livre pelo plano (x)
             - Pseudo-física (momentum/velocidade/inercia blabla) (x)
-            - Aproximar a movimentação ao Asteroid clássico ( )
+            - Aproximar a movimentação ao Asteroid clássico (x)
         Geração de inimigos:
             - Novos asteroid e aliens (x)
                 - Asteroids apenas quando acabar todos eles
@@ -30,13 +30,13 @@
     Regras:
         - Num finito de vidas (x)
         - Munição infinita (x)
-        - Perde vida ao colidir com asteroide ou tomar um tiro (do alien ou de si mesmo) (X)
+        - Perde vida ao colidir com asteroide ou tomar um tiro (do alien ou de si mesmo) (x)
         - Velocidade dos asteroides e inimigos aumenta conforme o tempo ( )
 
     Condição de vitória-empate-derrota:
         - Jogo acaba quando jogador perde todas as vidas (x) [Obs]
-        - Tecnicamente há um empate se um mesmo player obtiver a mesma quantidade de score do que a maior ja registrado ( )
-        - Vitória é obter o highest score ( )
+        - Tecnicamente há um empate se um mesmo player obtiver a mesma quantidade de score do que a maior ja registrado (x)
+        - Vitória é obter o highest score (x)
 
 
         Obs: Equivale a ter uma quantidade negativa de vidas, pois contamos as vidas como vida atual + vidas reservas, então
