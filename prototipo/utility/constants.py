@@ -21,6 +21,11 @@ GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 WHITE = (255, 255, 255)
 
+# Constantes para troca de estado
+STATE_IN_MENU = "state_in_menu"
+STATE_END_GAME = "state_end_game"
+STATE_IN_GAME = "state_in_game"
+
 # Constante apenas para a versão sem sprites
 COLORS_DIC = {ASTEROID_TAG: BLUE, BULLET_TAG: GREEN,
           PLAYER_TAG: RED, ALIEN_TAG: ORANGE}
