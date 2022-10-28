@@ -35,12 +35,7 @@ PLAYER_SIZE = 10
 MAX_VELOCITY_OF_PLAYER = 70
 MAX_LIVES = 5
 ACCELERATION_MAGNITUDE = 20
-SLOWDOWN_COEFFICIENT = -18
-ANGULAR_SPEED = 10 # degrees
-MINIMAL_ANGLE = 0.5 # degrees
-
-# Dificuldade crescentes
-
+SLOWDOWN_COEFFICIENT = -8
 
 # Constantes asteroid (Só valores positivos)
 SMALL_ASTEROID_SIZE = 8

@@ -5,6 +5,7 @@ from model.body import Body
 from model.factory.playerfactory import PlayerFactory
 from model.spawn.alienspawn import AlienSpawner
 from model.spawn.asteroidspawner import AsteroidSpawner
+from model.entities.player import Player
 
 # Controller imports
 from controller.entitiescontroller import EntitiesController
@@ -59,10 +60,10 @@ class StateInGame(State):
             entity.update(dt)
 
         # Gerando alien
-        self.__alien_spawner.generate(dt)
+        #self.__alien_spawner.generate(dt)
 
         # Gerando asteroids
-        self.__asteroid_spawner.generate()
+        #self.__asteroid_spawner.generate()
 
         # Detecta as colisões a cada frame e as registram
         CollisionDetector.instance().detect_collisions(entities)
@@ -84,6 +85,9 @@ class StateInGame(State):
             body = entity.get_body()
             pygame.draw.circle(screen, CONSTANTE.COLORS_DIC[entity.get_tag()],
                                body.get_position(), body.get_radius())
+            if isinstance(entity, Player):
+                pygame.draw.line(screen, (255,255,255), entity.get_body().get_position(), entity.get_body().get_position() + entity.get_body().get_velocity(), 1)
+                pygame.draw.line(screen, (255,0,0), entity.get_body().get_position(), entity.get_body().get_position() + entity.get_direction()*100, 1)
         self.__debug.render(screen)
 
     def handle_transition(self) -> None:

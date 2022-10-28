@@ -35,7 +35,7 @@
 
     Condição de vitória-empate-derrota:
         - Jogo acaba quando jogador perde todas as vidas (x) [Obs]
-        - Tecnicamente há um empate se um mesmo player obtiver a mesma quantidade de score do que a maior ja registrada ( )
+        - Tecnicamente há um empate se um mesmo player obtiver a mesma quantidade de score do que a maior ja registrado ( )
         - Vitória é obter o highest score ( )
 
 

@@ -69,8 +69,11 @@ class Player(Entity, Shooter):
                 body.accelerate(self.get_direction()*CONSTANTE.ACCELERATION_MAGNITUDE*dt)
 
         # Slowing down
-        elif (body.get_velocity().magnitude() > 0):
+        elif (body.get_velocity().magnitude() > 10):
             body.accelerate(self.get_direction()*CONSTANTE.SLOWDOWN_COEFFICIENT*dt)
+
+        else:
+            body.set_velocity(Vector2(0,0))
 
         if pygame.key.get_pressed()[pygame.K_RIGHT]:
             self.rotate_clockwise(5)
@@ -108,7 +111,7 @@ class Player(Entity, Shooter):
             position.y = 0
 
         body.move(velocity*dt)
-        body.set_velocity(self.get_direction()*velocity.magnitude())
+        #body.set_velocity(velocity)
 
     def update(self, dt: float) -> None:
 
