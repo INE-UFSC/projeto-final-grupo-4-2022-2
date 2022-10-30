@@ -5,7 +5,7 @@ from model.entities.abstractentity import Entity
 from model.entities.bullet import Bullet
 from model.body import Body
 
-import utility.constants as CONSTANTE
+import utility.constants as CONSTANT
 import pygame
 
 class RubberBullet(Bullet):
@@ -20,7 +20,7 @@ class RubberBullet(Bullet):
         body = self.get_body()
 
         position = body.get_position()
-        if position.x < 0 or CONSTANTE.SCREEN_SIZE.x < position.x:
+        if position.x < 0 or CONSTANT.SCREEN_SIZE.x < position.x:
 
             new_x = -(self.get_body().get_velocity().x)
             y = self.get_body().get_velocity().y
@@ -28,7 +28,7 @@ class RubberBullet(Bullet):
             velocity_switch_x = pygame.Vector2(new_x, y)
             self.get_body().set_velocity(velocity_switch_x)
 
-        if position.y < 0 or CONSTANTE.SCREEN_SIZE.y < position.y:
+        if position.y < 0 or CONSTANT.SCREEN_SIZE.y < position.y:
 
             x = self.get_body().get_velocity().x
             new_y = -(self.get_body().get_velocity().y)
@@ -36,7 +36,7 @@ class RubberBullet(Bullet):
             velocity_switch_x = pygame.Vector2(x, new_y)
             self.get_body().set_velocity(velocity_switch_x)
 
-        body.move(body.get_velocity()*dt*10)
+        body.move(body.get_velocity() * dt)
 
     def update(self, dt: float) -> None:
         self.set_lifetime(self.get_lifetime() - dt)

@@ -5,7 +5,7 @@ from model.entities.abstractentity import Entity
 from model.entities.bullet import Bullet
 from model.body import Body
 
-import utility.constants as CONSTANTE
+import utility.constants as CONSTANT
 
 
 class DefaultBullet(Bullet):
@@ -21,16 +21,16 @@ class DefaultBullet(Bullet):
 
         position = body.get_position()
         if position.x < 0:
-            position.x = CONSTANTE.SCREEN_SIZE.x
-        elif CONSTANTE.SCREEN_SIZE.x < position.x:
+            position.x = CONSTANT.SCREEN_SIZE.x
+        elif CONSTANT.SCREEN_SIZE.x < position.x:
             position.x = 0
 
         if position.y < 0:
-            position.y = CONSTANTE.SCREEN_SIZE.y
-        elif CONSTANTE.SCREEN_SIZE.y < position.y:
+            position.y = CONSTANT.SCREEN_SIZE.y
+        elif CONSTANT.SCREEN_SIZE.y < position.y:
             position.y = 0
 
-        body.move(body.get_velocity()*dt*10)
+        body.move(body.get_velocity() * dt)
 
     def update(self, dt: float) -> None:
         self.set_lifetime(self.get_lifetime() - dt)

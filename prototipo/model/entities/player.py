@@ -4,17 +4,11 @@ from model.body import Body
 
 # factory imports
 from model.factory.defaultbulletfactory import DefaultBulletFactory
-from model.factory.persistentbulletfactory import PersistentBulletFactory
-from model.factory.piercingbulletfactory import PiercingBulletFactory
-from model.factory.rubberbulletfactory import RubberBulletFactory
 
 # weapon imports
 from model.weapon.default import DefaultWeapon
-from model.weapon.bulletless import BulletlessWeapon
-from model.weapon.infinity import InfinityWeapon
-from model.weapon.shotgun import Shotgun
 
-import utility.constants as CONSTANTE
+import utility.constants as CONSTANT
 
 import pygame
 from pygame.math import Vector2
@@ -24,8 +18,8 @@ class Weapon: ...
 class Player(Entity, Shooter):
 
     def __init__(self, body: Body, lives: int):
-        Entity.__init__(self, body, CONSTANTE.PLAYER_TAG)
-        Shooter.__init__(self, DefaultWeapon(self, CONSTANTE.WEAPON_COOLDOWN, CONSTANTE.MAX_AMMUNITION, DefaultBulletFactory()),
+        Entity.__init__(self, body, CONSTANT.PLAYER_TAG)
+        Shooter.__init__(self, DefaultWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, DefaultBulletFactory()),
                            Vector2(1, 1).normalize(), Vector2(0, 0))
         self.__lives = lives
         self.__direction = Vector2(1, 1).normalize()
@@ -60,12 +54,11 @@ class Player(Entity, Shooter):
         
         # Forward
         if pygame.key.get_pressed()[pygame.K_UP]:
-            body.accelerate(self.get_direction()*CONSTANTE.ACCELERATION_MAGNITUDE*dt)
+            body.accelerate(self.get_direction() * CONSTANT.ACCELERATION_MAGNITUDE*dt)
 
         # Slowing down
         elif (body.get_velocity().magnitude() > 1):
-            body.accelerate(body.get_velocity().normalize()*CONSTANTE.SLOWDOWN_COEFFICIENT*dt)
-        
+            body.accelerate(body.get_velocity().normalize() * CONSTANT.SLOWDOWN_COEFFICIENT*dt)
         else:
             body.set_velocity(Vector2(0,0))
 
@@ -81,26 +74,25 @@ class Player(Entity, Shooter):
     def move(self, dt: float) -> None:
         body = self.get_body()
         velocity = body.get_velocity()
-        if velocity.magnitude() >= CONSTANTE.MAX_VELOCITY_OF_PLAYER:
-            velocity.scale_to_length(CONSTANTE.MAX_VELOCITY_OF_PLAYER)
+        if velocity.magnitude() >= CONSTANT.MAX_VELOCITY_OF_PLAYER:
+            velocity.scale_to_length(CONSTANT.MAX_VELOCITY_OF_PLAYER)
 
         position = body.get_position()
         if position.x < 0:
-            position.x = CONSTANTE.SCREEN_SIZE.x
-        elif CONSTANTE.SCREEN_SIZE.x < position.x:
+            position.x = CONSTANT.SCREEN_SIZE.x
+        elif CONSTANT.SCREEN_SIZE.x < position.x:
             position.x = 0
 
         if position.y < 0:
-            position.y = CONSTANTE.SCREEN_SIZE.y
-        elif CONSTANTE.SCREEN_SIZE.y < position.y:
+            position.y = CONSTANT.SCREEN_SIZE.y
+        elif CONSTANT.SCREEN_SIZE.y < position.y:
             position.y = 0
 
-        body.move(velocity*dt)
-        #body.set_velocity(velocity)
+        body.move(velocity * dt)
 
     def update(self, dt: float) -> None:
 
-        barrel_position = self.get_direction()*self.get_body().get_radius()*CONSTANTE.RADIUS_MULTIPLIER + self.get_body().get_position()
+        barrel_position = self.get_direction()*self.get_body().get_radius()*CONSTANT.RADIUS_MULTIPLIER + self.get_body().get_position()
         aiming_direction = self.get_direction()
         self.set_barrel_position(barrel_position)
         self.set_aiming_direction(aiming_direction)

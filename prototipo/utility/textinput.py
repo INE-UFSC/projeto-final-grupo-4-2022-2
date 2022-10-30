@@ -26,9 +26,8 @@ class TextInput:
                 new_text = self.text[:-1]
                 self.text = new_text
             else:
-                print(f"{event.unicode}")
                 self.text += event.unicode
-                print(f"{self.text}")
+        print(self.get_text())
     
     def get_text_as_image(self, size: int, color: pg.Color) -> pg.Surface:
 

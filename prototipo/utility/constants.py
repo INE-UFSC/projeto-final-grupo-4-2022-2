@@ -27,10 +27,10 @@ COLORS_DIC = {ASTEROID_TAG: BLUE, BULLET_TAG: GREEN,
 
 # Constantes player
 PLAYER_SIZE = 10
-MAX_VELOCITY_OF_PLAYER = 70
+MAX_VELOCITY_OF_PLAYER = 100
 MAX_LIVES = 5
-ACCELERATION_MAGNITUDE = 20
-SLOWDOWN_COEFFICIENT = -12
+ACCELERATION_MAGNITUDE = 80
+SLOWDOWN_COEFFICIENT = -10
 
 # Constantes asteroid (Só valores positivos)
 SMALL_ASTEROID_SIZE = 8
@@ -44,7 +44,7 @@ BIG_ASTEROID_VELOCITY = CORRECTION_CONSTANT / BIG_ASTEROID_SIZE
 
 # Constantes bullet
 BULLET_SIZE = 2
-VELOCITY_OF_BULLET = 10
+BULLET_VELOCITY = 110
 BULLET_LIFE_TIME = 10
 
 # Constantes Alien
@@ -62,7 +62,7 @@ MAX_AMMUNITION = 1000
 
 # Constantes shooter
 # So that the bullet does not spawn inside alien/player and trigger an unwanted on_collision
-RADIUS_MULTIPLIER = 1.1
+RADIUS_MULTIPLIER = 1.2
 
 # Constantes score
 DESTROY_SCORE = 10

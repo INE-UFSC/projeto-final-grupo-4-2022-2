@@ -1,15 +1,15 @@
 
 class ScoreLog():
 
-    def __init__(self, score: int, nome: str):
+    def __init__(self, score: int, name: str):
         self.__score = score
-        self.__nome = nome
+        self.__name = name
 
     def get_score(self):
         return self.__score
 
-    def get_nome(self):
-        return self.__nome
+    def get_name(self):
+        return self.__name
 
     def __str__(self):
-        return f"Nome: {self.__nome}, Score: {self.__score}"
+        return f"Name: {self.__name}, Score: {self.__score}"

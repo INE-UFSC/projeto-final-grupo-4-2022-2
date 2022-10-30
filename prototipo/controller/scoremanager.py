@@ -47,19 +47,9 @@ class ScoreManager:
             if entitie.get_tag() == CONSTANTE.ALIEN_TAG:
                 self.increase(CONSTANTE.DESTROY_SCORE)
 
-    def generate_score_log(self, name) -> ScoreLog:
-
-        return ScoreLog(self.get_score(), name)
+    def generate_score_log(self, name, score) -> ScoreLog:
+        print(ScoreLog(score, name))
+        return ScoreLog(score, name)
     
-    # FIXME: Exceção no load() do DAO, provavelmente faltou um datasource
     def write_to_disk(self, score_log: ScoreLog) -> bool:
-        try:
-            self.get_score_dao().add(score_log)
-            self.get_score_dao().dump()
-
-            return True
-        except Exception as e:
-            print("!!!!!!!!!!!!!!!")
-            print("ScoreManager write_to_disk()")
-            print(e)
-            return False
+        self.get_score_dao().add(score_log)

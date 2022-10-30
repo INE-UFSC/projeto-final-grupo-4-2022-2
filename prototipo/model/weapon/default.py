@@ -22,7 +22,7 @@ class DefaultWeapon(Weapon):
 
         owner_position = self.get_owner().get_barrel_position()
         owner_aiming_direction = self.get_owner().get_aiming_direction()
-        velocity = owner_aiming_direction*CONSTANTE.VELOCITY_OF_BULLET
+        velocity = owner_aiming_direction * CONSTANTE.BULLET_VELOCITY
 
         bullet_factory = self.get_bullet_factory()
         bullet = bullet_factory.create(owner_position, velocity)
