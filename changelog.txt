@@ -1,6 +1,9 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#25 = OUT 31(22:52) Micael:
+    - Aumentando velocidade dos asteroides conforme o tempo
+
 #24 = OUT 28 (19:25) Gian:
     - Entrada de texto do player
     - Métodos no ScoreManager para gerar ScoreLog e salvar no disco (NÃO funcionam - ver FIXME de ScoreManager)

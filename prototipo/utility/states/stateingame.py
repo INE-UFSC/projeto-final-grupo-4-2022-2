@@ -23,6 +23,7 @@ from utility.debug import Debug
 from pygame.math import Vector2
 import pygame
 
+
 class StateInGame(State):
 
     def __init__(self, owner):
@@ -35,17 +36,18 @@ class StateInGame(State):
 
     def entry(self) -> None:
         # Criando player
-        player_body = Body(Vector2(ceil(CONSTANTE.SCREEN_SIZE.x/2), ceil(CONSTANTE.SCREEN_SIZE.y/2)), Vector2(0, 0), CONSTANTE.PLAYER_SIZE)
+        player_body = Body(Vector2(ceil(CONSTANTE.SCREEN_SIZE.x/2), ceil(
+            CONSTANTE.SCREEN_SIZE.y/2)), Vector2(0, 0), CONSTANTE.PLAYER_SIZE)
         player_lives = CONSTANTE.MAX_LIVES
         player = PlayerFactory().create(player_body, player_lives)
-        player.set_direction(Vector2(0, -CONSTANTE.SCREEN_SIZE.y/2).normalize())
+        player.set_direction(
+            Vector2(0, -CONSTANTE.SCREEN_SIZE.y/2).normalize())
 
         self.__level_controller.set_player(player)
         EntitiesController.instance().add_entity(player)
 
-
     def exit(self) -> None:
-        EntitiesController.instance().clear_entities() # limpar tudo
+        EntitiesController.instance().clear_entities()  # limpar tudo
 
     def handle_event(self) -> None:
         for event in pygame.event.get():
@@ -60,10 +62,10 @@ class StateInGame(State):
             entity.update(dt)
 
         # Gerando alien
-        #self.__alien_spawner.generate(dt)
+        self.__alien_spawner.generate(dt)
 
         # Gerando asteroids
-        #self.__asteroid_spawner.generate()
+        self.__asteroid_spawner.generate()
 
         # Detecta as colisões a cada frame e as registram
         CollisionDetector.instance().detect_collisions(entities)
@@ -74,10 +76,14 @@ class StateInGame(State):
         # Atualiza o score do jogador baseado nas destruições e no tempo
         ScoreManager.instance().update_score(dt)
 
+        # Aumento de velocidade de asteroids conforme o tempo
+        self.__level_controller.countdown(dt)
+
         # Gerencia as destruições de cada entidade
         EntitiesController.instance().handle_deletion()
 
-        self.__debug.update(self.get_owner().get_clock(), EntitiesController.instance().get_entities()[0])
+        self.__debug.update(self.get_owner().get_clock(),
+                            EntitiesController.instance().get_entities()[0])
 
     def handle_rendering(self) -> None:
         screen = self.get_owner().get_screen()
@@ -86,8 +92,10 @@ class StateInGame(State):
             pygame.draw.circle(screen, CONSTANTE.COLORS_DIC[entity.get_tag()],
                                body.get_position(), body.get_radius())
             if isinstance(entity, Player):
-                pygame.draw.line(screen, (255,0,0), entity.get_body().get_position(), entity.get_body().get_position() + entity.get_direction()*100, 1)
-                pygame.draw.line(screen, (255,255,255), entity.get_body().get_position(), entity.get_body().get_position() + entity.get_body().get_velocity(), 1)
+                pygame.draw.line(screen, (255, 0, 0), entity.get_body().get_position(
+                ), entity.get_body().get_position() + entity.get_direction()*100, 1)
+                pygame.draw.line(screen, (255, 255, 255), entity.get_body().get_position(
+                ), entity.get_body().get_position() + entity.get_body().get_velocity(), 1)
         self.__debug.render(screen)
 
     def handle_transition(self) -> None:

@@ -47,9 +47,8 @@ class ScoreManager:
             if entitie.get_tag() == CONSTANTE.ALIEN_TAG:
                 self.increase(CONSTANTE.DESTROY_SCORE)
 
-    def generate_score_log(self, name, score) -> ScoreLog:
-        print(ScoreLog(score, name))
-        return ScoreLog(score, name)
-    
+    def generate_score_log(self, name) -> ScoreLog:
+        return ScoreLog(self.get_score(), name)
+
     def write_to_disk(self, score_log: ScoreLog) -> bool:
         self.get_score_dao().add(score_log)
