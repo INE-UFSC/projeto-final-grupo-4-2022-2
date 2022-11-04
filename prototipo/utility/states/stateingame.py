@@ -66,6 +66,7 @@ class StateInGame(State):
 
         # Gerando asteroids
         self.__asteroid_spawner.generate()
+        EntitiesController.instance().check_increase_speed(dt)
 
         # Detecta as colisões a cada frame e as registram
         CollisionDetector.instance().detect_collisions(entities)
@@ -75,9 +76,6 @@ class StateInGame(State):
 
         # Atualiza o score do jogador baseado nas destruições e no tempo
         ScoreManager.instance().update_score(dt)
-
-        # Aumento de velocidade de asteroids conforme o tempo
-        self.__level_controller.countdown(dt)
 
         # Gerencia as destruições de cada entidade
         EntitiesController.instance().handle_deletion()

@@ -3,7 +3,7 @@ from model.factory.asteroidfactory import AsteroidFactory
 
 from controller.entitiescontroller import EntitiesController
 
-import utility.constants as CONSTANTS
+import utility.constants as CONSTANTE
 
 
 class AsteroidSpawner:
@@ -15,7 +15,7 @@ class AsteroidSpawner:
 
     def has_asteroids(self) -> bool:
         for entity in EntitiesController.instance().get_entities():
-            if entity.get_tag() == CONSTANTS.ASTEROID_TAG:
+            if entity.get_tag() == CONSTANTE.ASTEROID_TAG:
                 return True
         return False
 
@@ -23,3 +23,5 @@ class AsteroidSpawner:
         if not(self.has_asteroids()):
             asteroids = AsteroidFactory().create(10)
             EntitiesController.instance().add_entities(asteroids)
+            for i in asteroids:
+                EntitiesController.instance().increase_speed(i)

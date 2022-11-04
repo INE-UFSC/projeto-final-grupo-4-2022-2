@@ -43,7 +43,6 @@ class Asteroid(Entity):
         position = body.get_position()
         velocity = body.get_velocity()
 
-
         if body.get_radius() == CONSTANTE.BIG_ASTEROID_SIZE:
             velocity.scale_to_length(CONSTANTE.MEDIUM_ASTEROID_VELOCITY)
             radius = CONSTANTE.MEDIUM_ASTEROID_SIZE
@@ -51,13 +50,15 @@ class Asteroid(Entity):
         elif body.get_radius() == CONSTANTE.MEDIUM_ASTEROID_SIZE:
             velocity.scale_to_length(CONSTANTE.MEDIUM_ASTEROID_VELOCITY)
             radius = CONSTANTE.SMALL_ASTEROID_SIZE
-        
+
         elif body.get_radius() == CONSTANTE.SMALL_ASTEROID_SIZE:
             EntitiesController.instance().register_deletion(self)
             return
 
-        position_a = Vector2(position + body.get_radius()*velocity.normalize().rotate(math.pi/2))
-        position_b = Vector2(position - body.get_radius()*velocity.normalize().rotate(math.pi/2))
+        position_a = Vector2(position + body.get_radius()
+                             * velocity.normalize().rotate(math.pi/2))
+        position_b = Vector2(position - body.get_radius()
+                             * velocity.normalize().rotate(math.pi/2))
 
         # Maybe define this 30 as some constant in constants.py?
         rotation = 30
@@ -68,5 +69,11 @@ class Asteroid(Entity):
         body_a = Body(position_a, velocity_a, radius)
         body_b = Body(position_b, velocity_b, radius)
 
-        EntitiesController.instance().add_entity(Asteroid(body_a))
-        EntitiesController.instance().add_entity(Asteroid(body_b))
+        asteroid_a = Asteroid(body_a)
+        asteroid_b = Asteroid(body_b)
+
+        EntitiesController.instance().add_entity(asteroid_a)
+        EntitiesController.instance().add_entity(asteroid_b)
+
+        EntitiesController.instance().increase_speed(asteroid_a)
+        EntitiesController.instance().increase_speed(asteroid_b)

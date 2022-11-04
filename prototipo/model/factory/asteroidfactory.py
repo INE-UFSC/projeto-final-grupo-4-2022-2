@@ -8,8 +8,9 @@ from pygame.math import Vector2
 
 import random
 
+
 class AsteroidFactory:
-    
+
     def make_velocity(self):
         velocity = Vector2(random.randint(1, 1000), random.randint(1, 1000))
         if random.randint(0, 1):
@@ -25,6 +26,7 @@ class AsteroidFactory:
     def create(self, number_of_asteroids: int) -> list():
         asteroids = list()
         for i in range(number_of_asteroids):
-            asteroids.append(
-                Asteroid(Body(self.make_position(), self.make_velocity(), CONSTANTE.BIG_ASTEROID_SIZE)))
+            asteroid = Asteroid(
+                Body(self.make_position(), self.make_velocity(), CONSTANTE.BIG_ASTEROID_SIZE))
+            asteroids.append(asteroid)
         return asteroids[:]
