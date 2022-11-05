@@ -1,7 +1,7 @@
 
 from model.collision import Collision
 
-
+# Singleton que tratará as colisões
 class CollisionManager:
 
     _instance = None
@@ -19,12 +19,15 @@ class CollisionManager:
         return self.__collisions
 
     def register_collision(self, collision: Collision):
+        # Não registra a colisão caso ela já exista
         for c in self.__collisions:
             if c == collision:
                 return
         self.__collisions.append(collision)
 
     def handle_collisions(self):
+        # Tratando as colisões
+        # Cada entidade irá reagir de uma forma à colisão
         for collision in self.__collisions:
             entity_1 = collision.get_first()
             entity_2 = collision.get_second()

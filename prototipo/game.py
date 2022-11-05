@@ -10,7 +10,7 @@ import pygame
 from pygame import Surface
 from pygame.time import Clock
 
-
+# O Game determinará o fluxo do jogo
 class Game:
 
     def __init__(self, name="Game"):

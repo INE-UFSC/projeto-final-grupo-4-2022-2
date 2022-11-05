@@ -7,6 +7,8 @@ from model.factory.bulletfactory import BulletFactory
 
 import utility.constants as CONSTANTE
 
+
+# Arma com balas infinitas e com cooldown
 class InfinityWeapon(Weapon):
 
     def __init__(self, owner: Shooter, cooldown: float, bullet_factory: BulletFactory) -> None:

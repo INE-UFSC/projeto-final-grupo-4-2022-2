@@ -5,11 +5,14 @@ import utility.constants as CONSTANTE
 
 import pygame
 
+# Implementação do Menu
+# Mostrará as opções de ações que
+# o usuário pode fazer, como acessar
+# scoreboard, sair do jogo ou jogar
 class StateInMenu(State):
 
     def __init__(self, owner):
         super().__init__(owner)
-        self.__can_transition = False
 
     def entry(self) -> None:
         pass
@@ -23,8 +26,7 @@ class StateInMenu(State):
                 self.get_owner().close()
 
     def handle_update(self, dt: float) -> None:
-        if pygame.key.get_pressed()[pygame.K_g]:
-            self.__can_transition = True
+        pass
 
     def handle_rendering(self) -> None:
         # Temporário
@@ -37,7 +39,6 @@ class StateInMenu(State):
         self.get_owner().get_screen().blit(message2_img, (CONSTANTE.SCREEN_SIZE.x/2 - 100, CONSTANTE.SCREEN_SIZE.y/2 + 30))
 
     def handle_transition(self) -> None:
-        if self.__can_transition:
+        if pygame.key.get_pressed()[pygame.K_g]:
             next_state = CONSTANTE.STATE_IN_GAME
             GameController.instance().change_state(next_state)
-            self.__can_transition = False

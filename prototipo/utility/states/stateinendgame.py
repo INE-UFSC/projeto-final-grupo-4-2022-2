@@ -4,10 +4,13 @@ from controller.scoremanager import ScoreManager
 from utility.textinput import TextInput
 from utility.states.state import State
 
-import utility.constants as CONSTANTE
+import utility.constants as CONSTANT
 import pygame
 
 
+# Implementação do estado no fim do jogo
+# Nele estará a lógica persistência do score
+# do player
 class StateInEndGame(State):
 
     def __init__(self, owner):
@@ -16,7 +19,7 @@ class StateInEndGame(State):
         self.__text_input = TextInput(" ")
 
     def entry(self) -> None:
-        pass
+        self.__text_input = TextInput(" ")
 
     def exit(self) -> None:
         score_log = ScoreManager.instance().generate_score_log(self.__text_input.text)
@@ -52,16 +55,16 @@ class StateInEndGame(State):
 
         digite_aqui_img = pygame.font.SysFont(
             font, 32).render("Nome: ", True, white)
-        screen.blit(message_img, (CONSTANTE.SCREEN_SIZE.x /
-                    2 - 200, CONSTANTE.SCREEN_SIZE.y/2 - 40))
-        screen.blit(message2_img, (CONSTANTE.SCREEN_SIZE.x /
-                    2 - 200, CONSTANTE.SCREEN_SIZE.y/2 + 60))
-        screen.blit(digite_aqui_img, (CONSTANTE.SCREEN_SIZE.x /
-                    2 - 96, CONSTANTE.SCREEN_SIZE.y/2))
-        screen.blit(nome_img, (CONSTANTE.SCREEN_SIZE.x /
-                    2, CONSTANTE.SCREEN_SIZE.y/2))
+        screen.blit(message_img, (CONSTANT.SCREEN_SIZE.x /
+                    2 - 200, CONSTANT.SCREEN_SIZE.y/2 - 40))
+        screen.blit(message2_img, (CONSTANT.SCREEN_SIZE.x /
+                    2 - 200, CONSTANT.SCREEN_SIZE.y/2 + 60))
+        screen.blit(digite_aqui_img, (CONSTANT.SCREEN_SIZE.x /
+                    2 - 96, CONSTANT.SCREEN_SIZE.y/2))
+        screen.blit(nome_img, (CONSTANT.SCREEN_SIZE.x /
+                    2, CONSTANT.SCREEN_SIZE.y/2))
 
     def handle_transition(self) -> None:
         if pygame.key.get_pressed()[pygame.K_RETURN]:
-            next_state = CONSTANTE.STATE_MENU
+            next_state = CONSTANT.STATE_MENU
             GameController.instance().change_state(next_state)

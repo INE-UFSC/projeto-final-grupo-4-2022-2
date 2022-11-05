@@ -8,6 +8,8 @@ from model.factory.bulletfactory import BulletFactory
 import utility.constants as CONSTANTE
 
 
+# Arma padrão, atira quando aperta espaço,
+# tem cooldown e munição
 class DefaultWeapon(Weapon):
 
     def __init__(self, owner: Shooter, cooldown: float, ammunition: int, bullet_factory: BulletFactory) -> None:

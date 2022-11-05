@@ -6,8 +6,11 @@ from controller.entitiescontroller import EntitiesController
 
 import utility.constants as CONSTANTS
 
-
+# Um spawn de Alien. Muito parecido com os spawns
+# do Minecraft. A cada tantos segundos nasce um
+# novo Alien randômicamente
 class AlienSpawner:
+
     def __init__(self) -> None:
         self.__cooldown = 20
         self.__factory = AlienFactory()
@@ -25,6 +28,8 @@ class AlienSpawner:
         self.set_cooldown(self.get_cooldown() - dt)
 
     def generate(self, dt: float) -> Entity:
+        # Caso já passo o tempo de cooldown,
+        # então cria-se um novo Alien randomicamente
         self.decrease(dt)
         if self.get_cooldown() < 0:
             self.set_cooldown(CONSTANTS.ALIEN_SPAWN_COOLDOWN)

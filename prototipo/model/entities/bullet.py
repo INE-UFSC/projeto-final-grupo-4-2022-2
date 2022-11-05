@@ -1,13 +1,14 @@
 
 from model.entities.abstractentity import Entity
 from model.body import Body
-import utility.constants as CONSTANTE
+import utility.constants as CONSTANT
 
 
+# Bala abstrata
 class Bullet(Entity):
 
     def __init__(self, body: Body, lifetime: int) -> None:
-        super().__init__(body, CONSTANTE.BULLET_TAG)
+        super().__init__(body, CONSTANT.BULLET_TAG)
         self.__lifetime = lifetime
 
     def get_lifetime(self) -> int:

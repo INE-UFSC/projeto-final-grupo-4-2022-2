@@ -20,6 +20,9 @@ import utility.constants as CONSTANTE
 
 import pygame
 
+
+# Classe para debugar mais facilmente
+# Estará presente apenas para teste
 class Debug:
 
     def __init__(self) -> None:

@@ -3,6 +3,8 @@ from model.weapon.weapon import Weapon
 
 from pygame.math import Vector2
 
+
+# Interface para entidades atiradoras
 class Shooter(object):
 
     def __init__(self, weapon: Weapon, aiming_direction: Vector2, barrel_position: Vector2) -> None:

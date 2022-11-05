@@ -6,6 +6,7 @@ from model.factory.bulletfactory import BulletFactory
 
 class Shooter: ...
 
+# Classe abstrata para as armas
 class Weapon(ABC):
 
     def __init__(self, owner: Shooter, cooldown: float, ammunition: int, bullet_factory: BulletFactory) -> None:

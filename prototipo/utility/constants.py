@@ -27,10 +27,11 @@ COLORS_DIC = {ASTEROID_TAG: BLUE, BULLET_TAG: GREEN,
 
 # Constantes player
 PLAYER_SIZE = 10
-MAX_VELOCITY_OF_PLAYER = 100
-MAX_LIVES = 10000
-ACCELERATION_MAGNITUDE = 80
+MAX_VELOCITY_OF_PLAYER = 90
+MAX_LIVES = 5
+ACCELERATION_MAGNITUDE = 90
 SLOWDOWN_COEFFICIENT = -10
+ANGULAR_VELOCITY = 80
 
 # Constantes asteroid (Só valores positivos)
 SMALL_ASTEROID_SIZE = 8
@@ -44,7 +45,7 @@ BIG_ASTEROID_VELOCITY = CORRECTION_CONSTANT / BIG_ASTEROID_SIZE
 
 # Constantes bullet
 BULLET_SIZE = 2
-BULLET_VELOCITY = 110
+BULLET_VELOCITY = 150
 BULLET_LIFE_TIME = 10
 
 # Constantes Alien
@@ -57,7 +58,7 @@ DIRECTIONS = (pygame.math.Vector2(math.sqrt(2)/2, math.sqrt(2)/2),
               pygame.math.Vector2(math.sqrt(2)/2, -math.sqrt(2)/2))
 
 # Constantes weapon
-WEAPON_COOLDOWN = 1
+WEAPON_COOLDOWN = 0.5
 MAX_AMMUNITION = 1000
 
 # Constantes shooter

@@ -9,7 +9,7 @@ from model.factory.bulletfactory import BulletFactory
 
 import utility.constants as CONSTANTE
 
-
+# Shotgun, atira múltiplas balas
 class Shotgun(Weapon):
 
     def __init__(self, owner: Shooter, cooldown: float, ammunition: int, bullet_factory: BulletFactory) -> None:

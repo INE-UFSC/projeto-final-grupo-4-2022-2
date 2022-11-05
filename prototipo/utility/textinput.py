@@ -2,6 +2,9 @@ from cgitb import text
 import pygame as pg
 
 
+# Classe de entrada de texto
+# servirá para obter o nome do
+# jogador ao final do jogo
 class TextInput:
 
     def __init__(self, default_text: str) -> None:
@@ -22,13 +25,14 @@ class TextInput:
         self.__text = text
 
     def handle_event(self, event: pg.event.Event) -> None:
+        char_limit = 5
         if event.type == pg.KEYDOWN:
-            if event.key == pg.K_RETURN:
+            if event.key == pg.K_RETURN or event.key == pg.K_SPACE:
                 return
-            if event.key == pg.K_BACKSPACE:
+            elif event.key == pg.K_BACKSPACE:
                 new_text = self.text[:-1]
                 self.text = new_text
-            else:
+            elif len(self.text) < char_limit:
                 self.text += event.unicode
 
     def get_text_as_image(self, size: int, color: pg.Color) -> pg.Surface:

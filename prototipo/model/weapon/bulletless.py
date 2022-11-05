@@ -3,6 +3,8 @@ from model.entities.shooter import Shooter
 from model.weapon.weapon import Weapon
 from model.factory.bulletfactory import BulletFactory
 
+
+# Arma que não dispara bala
 class BulletlessWeapon(Weapon):
 
 

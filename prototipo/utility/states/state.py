@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 
 class Game: ...
 
+# Classe asbtrata do State
 class State(ABC):
 
     def __init__(self, owner):

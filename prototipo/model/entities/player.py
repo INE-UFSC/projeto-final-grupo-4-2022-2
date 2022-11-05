@@ -15,6 +15,7 @@ from pygame.math import Vector2
 
 class Weapon: ...
 
+
 class Player(Entity, Shooter):
 
     def __init__(self, body: Body, lives: int):
@@ -52,32 +53,37 @@ class Player(Entity, Shooter):
     def handle_input(self, dt: float) -> None:
         body = self.get_body()
         
-        # Forward
+        # Acelerando
         if pygame.key.get_pressed()[pygame.K_UP]:
             body.accelerate(self.get_direction() * CONSTANT.ACCELERATION_MAGNITUDE*dt)
 
-        # Slowing down
+        # Desacelerando
         elif (body.get_velocity().magnitude() > 1):
             body.accelerate(body.get_velocity().normalize() * CONSTANT.SLOWDOWN_COEFFICIENT*dt)
         else:
             body.set_velocity(Vector2(0,0))
 
+        # Lidando com o comportamento de mudança de direção
         if pygame.key.get_pressed()[pygame.K_RIGHT]:
-            self.rotate_clockwise(5)
+            self.rotate_clockwise(CONSTANT.ANGULAR_VELOCITY*dt)
 
         if pygame.key.get_pressed()[pygame.K_LEFT]:
-            self.rotate_anticlockwise(5)
+            self.rotate_anticlockwise(CONSTANT.ANGULAR_VELOCITY*dt)
 
+        # Ação de atirar
         if pygame.key.get_pressed()[pygame.K_SPACE]:
             self.shoot(dt)
 
     def move(self, dt: float) -> None:
         body = self.get_body()
         velocity = body.get_velocity()
+        position = body.get_position()
+
+        # Truncando a velocidade para não passar da máxima
         if velocity.magnitude() >= CONSTANT.MAX_VELOCITY_OF_PLAYER:
             velocity.scale_to_length(CONSTANT.MAX_VELOCITY_OF_PLAYER)
 
-        position = body.get_position()
+        # Condicionais para evitar que o player saia da tela
         if position.x < 0:
             position.x = CONSTANT.SCREEN_SIZE.x
         elif CONSTANT.SCREEN_SIZE.x < position.x:
@@ -88,12 +94,16 @@ class Player(Entity, Shooter):
         elif CONSTANT.SCREEN_SIZE.y < position.y:
             position.y = 0
 
+        # Atualizando a posição
         body.move(velocity * dt)
 
     def update(self, dt: float) -> None:
 
-        barrel_position = self.get_direction()*self.get_body().get_radius()*CONSTANT.RADIUS_MULTIPLIER + self.get_body().get_position()
+        # Definindo a direção da mira do player
         aiming_direction = self.get_direction()
+        # Evitando que a bala seja criada dentro do player
+        barrel_position = self.get_direction()*self.get_body().get_radius()*CONSTANT.RADIUS_MULTIPLIER + self.get_body().get_position()
+        
         self.set_barrel_position(barrel_position)
         self.set_aiming_direction(aiming_direction)
 

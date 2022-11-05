@@ -3,6 +3,9 @@ from model.entities.abstractentity import Entity
 
 class Collision: ...
 
+
+# Uma classe que guarda a lógica de uma colisão
+# quando elas são iguais e quem colidiu com quem
 class Collision:
 
     def __init__(self, first: Entity, second: Entity):

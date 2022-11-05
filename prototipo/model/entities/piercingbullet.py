@@ -6,6 +6,9 @@ from controller.entitiescontroller import EntitiesController
 
 import utility.constants as CONSTANT
 
+
+# Bala que apenas é destruida após
+# não ter mais tempo de vida
 class PiercingBullet(Bullet):
     
     def __init__(self, body: Body, lifetime: int) -> None:
@@ -16,8 +19,9 @@ class PiercingBullet(Bullet):
 
     def move(self, dt: float) -> None:
         body = self.get_body()
-
         position = body.get_position()
+
+        # Condições para manter a bala sempre dentro da janela
         if position.x < 0:
             position.x = CONSTANT.SCREEN_SIZE.x
         elif CONSTANT.SCREEN_SIZE.x < position.x:
@@ -28,6 +32,7 @@ class PiercingBullet(Bullet):
         elif CONSTANT.SCREEN_SIZE.y < position.y:
             position.y = 0
 
+        # Atualiza a posição
         body.move(body.get_velocity() * dt)
 
     def update(self, dt: float) -> None:

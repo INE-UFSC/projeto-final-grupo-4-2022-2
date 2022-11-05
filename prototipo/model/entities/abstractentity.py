@@ -5,7 +5,8 @@ from model.body import Body
 class Entity:
     ...
 
-
+# Classe abstrata para aplicar polimorfismo
+# Ela será a base de todas as entidades do jogo
 class Entity(ABC, object):
 
     next_id = 0

@@ -1,6 +1,7 @@
 
 class Game: ...
 
+# Singleton para gerenciar a troca de estados do jogo
 class GameController:
 
     _instance = None

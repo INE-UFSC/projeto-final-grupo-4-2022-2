@@ -2,6 +2,7 @@ from model.entities.abstractentity import Entity
 from utility.constants import VELOCITY_MULTIPLIER, TIME_TO_SCORE
 
 
+# Singleton que controla a criação e a destruição das entidades 
 class EntitiesController:
 
     _instance = None
@@ -15,8 +16,6 @@ class EntitiesController:
     def __init__(self):
         self.__entities = []
         self.__deletion_buffer = set()
-        self.__increases = 0
-        self.__last_update = 0
 
     def get_entities(self) -> list:
         return self.__entities
@@ -50,14 +49,3 @@ class EntitiesController:
 
     def clear_entities(self):
         self.__entities.clear()
-
-    def increase_speed(self, entity: Entity):
-        body = entity.get_body()
-        new_velocity = body.get_velocity() * VELOCITY_MULTIPLIER
-        body.set_velocity(new_velocity)
-
-    def check_increase_speed(self, dt: float):
-        self.__last_update += dt
-        if self.__last_update > TIME_TO_SCORE:
-            self.__last_update = 0
-            self.__increases += 1

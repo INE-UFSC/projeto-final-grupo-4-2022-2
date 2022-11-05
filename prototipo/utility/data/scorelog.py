@@ -1,4 +1,6 @@
 
+
+# Classe para armazenar as informações do score
 class ScoreLog():
 
     def __init__(self, score: int, name: str):

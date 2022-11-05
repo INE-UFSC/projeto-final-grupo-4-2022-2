@@ -8,7 +8,7 @@ import utility.constants as CONSTANTE
 
 from pygame.math import Vector2
 
-
+# Constroi uma bala ricochete
 class RubberBulletFactory(BulletFactory):
 
     def create(self, position: Vector2, velocity: Vector2) -> Entity:

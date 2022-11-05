@@ -3,9 +3,10 @@
 from controller.entitiescontroller import EntitiesController
 from utility.data.scoreDAO import ScoreDAO
 from utility.data.scorelog import ScoreLog
-import utility.constants as CONSTANTE
+import utility.constants as CONSTANT
 
 
+# Singleton para gerenciar o score do player
 class ScoreManager:
 
     _instance = None
@@ -38,14 +39,14 @@ class ScoreManager:
 
     def update_score(self, dt: float):
         self.last_update += dt
-        if self.last_update > CONSTANTE.TIME_TO_SCORE:
+        if self.last_update > CONSTANT.TIME_TO_SCORE:
             self.last_update = 0
-            self.increase(CONSTANTE.TIME_SCORE)
+            self.increase(CONSTANT.TIME_SCORE)
         for entitie in EntitiesController.instance().get_deletion_buffer():
-            if entitie.get_tag() == CONSTANTE.ASTEROID_TAG:
-                self.increase(CONSTANTE.DESTROY_SCORE)
-            if entitie.get_tag() == CONSTANTE.ALIEN_TAG:
-                self.increase(CONSTANTE.DESTROY_SCORE)
+            if entitie.get_tag() == CONSTANT.ASTEROID_TAG:
+                self.increase(CONSTANT.DESTROY_SCORE)
+            if entitie.get_tag() == CONSTANT.ALIEN_TAG:
+                self.increase(CONSTANT.DESTROY_SCORE)
 
     def generate_score_log(self, name) -> ScoreLog:
         return ScoreLog(self.get_score(), name)

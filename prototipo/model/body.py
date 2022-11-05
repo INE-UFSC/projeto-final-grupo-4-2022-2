@@ -1,5 +1,7 @@
 from pygame.math import Vector2
 
+
+# Um rigidbody para servir de corpo físico das entidades
 class Body:
 
     def __init__(self, position: Vector2, velocity: Vector2, radius: int):
