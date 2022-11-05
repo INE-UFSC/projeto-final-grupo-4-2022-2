@@ -16,7 +16,7 @@ from model.weapon.infinity import InfinityWeapon
 from model.weapon.shotgun import Shotgun
 
 
-import utility.constants as CONSTANTE
+import utility.constants as CONSTANT
 
 import pygame
 
@@ -64,16 +64,16 @@ class Debug:
             player.get_weapon().set_bullet_factory(RubberBulletFactory())
 
         if pygame.key.get_pressed()[pygame.K_q]:
-            player.set_weapon(BulletlessWeapon(player, CONSTANTE.WEAPON_COOLDOWN, CONSTANTE.MAX_AMMUNITION, player.get_weapon().get_bullet_factory()))
+            player.set_weapon(BulletlessWeapon(player, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, player.get_weapon().get_bullet_factory()))
             
         if pygame.key.get_pressed()[pygame.K_w]:
-            player.set_weapon(DefaultWeapon(player, CONSTANTE.WEAPON_COOLDOWN, CONSTANTE.MAX_AMMUNITION, player.get_weapon().get_bullet_factory()))
+            player.set_weapon(DefaultWeapon(player, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, player.get_weapon().get_bullet_factory()))
 
         if pygame.key.get_pressed()[pygame.K_e]:
-            player.set_weapon(InfinityWeapon(player, CONSTANTE.WEAPON_COOLDOWN, player.get_weapon().get_bullet_factory()))
+            player.set_weapon(InfinityWeapon(player, CONSTANT.WEAPON_COOLDOWN, player.get_weapon().get_bullet_factory()))
 
         if pygame.key.get_pressed()[pygame.K_r]:
-            player.set_weapon(Shotgun(player, CONSTANTE.WEAPON_COOLDOWN, CONSTANTE.MAX_AMMUNITION, player.get_weapon().get_bullet_factory()))
+            player.set_weapon(Shotgun(player, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, player.get_weapon().get_bullet_factory()))
 
     def render(self, screen: pygame.Surface) -> None:
 
@@ -106,5 +106,5 @@ class Debug:
     def gambiarra_lives() -> int:
 
         for e in EntitiesController.instance().get_entities():
-            if e.get_tag() == CONSTANTES.PLAYER_TAG:
+            if e.get_tag() == CONSTANT.PLAYER_TAG:
                 return e.get_lives()

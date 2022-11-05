@@ -1,4 +1,4 @@
-from cgitb import text
+
 import pygame as pg
 
 
