@@ -38,6 +38,7 @@ class DefaultBullet(Bullet):
         body.move(body.get_velocity() * dt)
 
     def update(self, dt: float) -> None:
+        Entity.update(self, dt)
         # Decrementa o tempo de vida da bala.
         # Caso não tenha mais, a bala desaparece
         self.set_lifetime(self.get_lifetime() - dt)

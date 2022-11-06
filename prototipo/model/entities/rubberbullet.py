@@ -43,6 +43,7 @@ class RubberBullet(Bullet):
         body.move(body.get_velocity() * dt)
 
     def update(self, dt: float) -> None:
+        Entity.update(self, dt)
         # Morre quando não tiver mais tempo de vida
         self.set_lifetime(self.get_lifetime() - dt)
         if self.get_lifetime() < 0:

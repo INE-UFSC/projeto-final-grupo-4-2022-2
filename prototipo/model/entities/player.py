@@ -18,12 +18,18 @@ class Weapon: ...
 
 class Player(Entity, Shooter):
 
+    __original_image = pygame.transform.scale(pygame.image.load('./images/player/player_inertial.png'), (40, 20))
+
     def __init__(self, body: Body, lives: int):
         Entity.__init__(self, body, CONSTANT.PLAYER_TAG)
         Shooter.__init__(self, DefaultWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, DefaultBulletFactory()),
-                           Vector2(1, 1).normalize(), Vector2(0, 0))
+                           Vector2(1, 0).normalize(), Vector2(0, 0))
+        self.image = Player.__original_image
+        self.rect = self.image.get_rect()
+        self.angle = 0
+
         self.__lives = lives
-        self.__direction = Vector2(1, 1).normalize()
+        self.__direction = Vector2(1, 0).normalize()
 
     def get_lives(self) -> int:
         return self.__lives
@@ -38,9 +44,13 @@ class Player(Entity, Shooter):
         self.__direction = new_direction.normalize()
 
     def rotate_clockwise(self, angle: float) -> None:
+        self.angle += -angle % 360
+        self.image = pygame.transform.rotate(Player.__original_image, self.angle)
         self.get_direction().rotate_ip(angle)
 
     def rotate_anticlockwise(self, angle: float) -> None:
+        self.angle += angle % 360
+        self.image = pygame.transform.rotate(Player.__original_image, self.angle)
         self.get_direction().rotate_ip(-angle)
 
     def on_collision(self, entity: Entity) -> None:
@@ -98,7 +108,7 @@ class Player(Entity, Shooter):
         body.move(velocity * dt)
 
     def update(self, dt: float) -> None:
-
+        Entity.update(self, dt)
         # Definindo a direção da mira do player
         aiming_direction = self.get_direction()
         # Evitando que a bala seja criada dentro do player

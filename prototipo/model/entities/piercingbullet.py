@@ -36,6 +36,7 @@ class PiercingBullet(Bullet):
         body.move(body.get_velocity() * dt)
 
     def update(self, dt: float) -> None:
+        Entity.update(self, dt)
         self.set_lifetime(self.get_lifetime() - dt)
         if self.get_lifetime() < 0:
             EntitiesController.instance().register_deletion(self)

@@ -25,5 +25,5 @@ class AsteroidSpawner:
 
     def generate(self) -> None:
         if not(self._has_asteroids()):
-            asteroids = AsteroidFactory().create(10)
+            asteroids = AsteroidFactory().create(3)
             EntitiesController.instance().add_entities(asteroids)

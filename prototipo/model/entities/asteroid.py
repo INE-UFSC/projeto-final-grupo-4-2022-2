@@ -6,12 +6,27 @@ from controller.entitiescontroller import EntitiesController
 import utility.constants as CONSTANT
 
 from pygame.math import Vector2
+import pygame
 
 
 class Asteroid(Entity):
 
+    __original_big_asteroid = pygame.transform.scale(pygame.image.load('./images/asteroid/asteroid_1.png'), (3*CONSTANT.BIG_ASTEROID_SIZE, 3*CONSTANT.BIG_ASTEROID_SIZE))
+    __original_medium_asteroid = pygame.transform.scale(pygame.image.load('./images/asteroid/asteroid_1.png'), (3*CONSTANT.MEDIUM_ASTEROID_SIZE, 3*CONSTANT.MEDIUM_ASTEROID_SIZE))
+    __original_small_asteroid = pygame.transform.scale(pygame.image.load('./images/asteroid/asteroid_1.png'), (3*CONSTANT.SMALL_ASTEROID_SIZE, 3*CONSTANT.SMALL_ASTEROID_SIZE))
+    
+
     def __init__(self, body: Body) -> None:
         super().__init__(body, CONSTANT.ASTEROID_TAG)
+        
+        if body.get_radius() == CONSTANT.BIG_ASTEROID_SIZE:
+            self.image = Asteroid.__original_big_asteroid
+        elif body.get_radius() == CONSTANT.MEDIUM_ASTEROID_SIZE:
+            self.image = Asteroid.__original_medium_asteroid
+        else:
+            self.image = Asteroid.__original_small_asteroid
+            
+        self.rect = self.image.get_rect()
 
     def on_collision(self, entity: Entity) -> None:
         if entity.get_tag() == CONSTANT.ASTEROID_TAG:
@@ -38,6 +53,7 @@ class Asteroid(Entity):
         body.move(body.get_velocity()*dt)
 
     def update(self, dt: float) -> None:
+        Entity.update(self, dt)
         self.move(dt)
 
     def destroy(self) -> None:

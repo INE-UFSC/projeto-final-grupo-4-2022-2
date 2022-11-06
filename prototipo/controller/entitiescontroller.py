@@ -1,4 +1,3 @@
-
 from model.entities.abstractentity import Entity
 
 
@@ -26,8 +25,8 @@ class EntitiesController:
     def add_entity(self, new_entity: Entity) -> None:
         self.__entities.append(new_entity)
 
-    def add_entities(self, new_entity: Entity) -> None:
-        self.__entities.extend(new_entity)
+    def add_entities(self, new_entities: list) -> None:
+        self.__entities.extend(new_entities)
 
     def register_deletion(self, entity: Entity) -> None:
         self.__deletion_buffer.add(entity)

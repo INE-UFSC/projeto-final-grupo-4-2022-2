@@ -12,8 +12,11 @@ from model.factory.defaultbulletfactory import DefaultBulletFactory
 import utility.constants as CONSTANT
 
 from pygame import Vector2
+import pygame
 
 class Alien(Entity, Shooter):
+
+    __original_alien = pygame.transform.scale(pygame.image.load('./images/alien/alien.png'), (4*CONSTANT.ALIEN_SIZE, 3*CONSTANT.ALIEN_SIZE))
 
     def __init__(self, body: Body, direction: int):
         Entity.__init__(self, body, CONSTANT.ALIEN_TAG)
@@ -21,6 +24,9 @@ class Alien(Entity, Shooter):
                            Vector2(1, 1).normalize(), Vector2(0, 0))
         self.__move_cooldown = 0
         self.__direction = direction
+
+        self.image = self.__original_alien
+        self.rect = self.image.get_rect()
 
     def get_move_cooldown(self) -> float:
         return self.__move_cooldown
@@ -68,6 +74,7 @@ class Alien(Entity, Shooter):
 
             
     def update(self, dt: float) -> None:
+        Entity.update(self, dt)
         # Determina a direção da mira randomicamente
         aiming_direction = Vector2(self.get_direction(), 0).rotate(random.uniform(0,360))
         # Evita que a bala nasça dentro do Alien

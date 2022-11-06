@@ -6,6 +6,7 @@ from model.factory.playerfactory import PlayerFactory
 from model.spawn.alienspawn import AlienSpawner
 from model.spawn.asteroidspawner import AsteroidSpawner
 from model.entities.player import Player
+from model.entities.asteroid import Asteroid
 
 # Controller imports
 from controller.entitiescontroller import EntitiesController
@@ -43,8 +44,6 @@ class StateInGame(State):
                            Vector2(0, 0), CONSTANT.PLAYER_SIZE)
         player_lives = CONSTANT.MAX_LIVES
         player = PlayerFactory().create(player_body, player_lives)
-        player.set_direction(
-            Vector2(0, -CONSTANT.SCREEN_SIZE.y/2).normalize())
 
         self.__debug = Debug(player)
         self.__level_controller.set_player(player)
@@ -71,7 +70,7 @@ class StateInGame(State):
         # Gerando asteroids
         self.__asteroid_spawner.generate()
 
-        # Detecta as colisões a cada frame e as registram
+        # Detecta as colisões a cada frame
         collisions = CollisionDetector().detect_collisions(entities)
 
         # Trata as colisões
@@ -88,15 +87,17 @@ class StateInGame(State):
 
     def handle_rendering(self) -> None:
         screen = self.get_owner().get_screen()
+
         for entity in EntitiesController.instance().get_entities()[::-1]:
-            body = entity.get_body()
-            pygame.draw.circle(screen, CONSTANT.COLORS_DIC[entity.get_tag()],
-                               body.get_position(), body.get_radius())
             if isinstance(entity, Player):
                 pygame.draw.line(screen, (255, 0, 0), entity.get_body().get_position(),
                                  entity.get_body().get_position() + entity.get_direction()*100, 1)
                 pygame.draw.line(screen, (255, 255, 255), entity.get_body().get_position(),
                                  entity.get_body().get_position() + entity.get_body().get_velocity(), 1)
+            if entity.image is None:
+                continue
+            screen.blit(entity.image, entity.rect)
+            
         self.__debug.render(screen)
 
     def handle_transition(self) -> None:

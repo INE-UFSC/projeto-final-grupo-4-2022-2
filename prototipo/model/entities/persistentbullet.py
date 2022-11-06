@@ -36,4 +36,5 @@ class PersistentBullet(Bullet):
         body.move(body.get_velocity() * dt)
 
     def update(self, dt: float) -> None:
+        Entity.update(self, dt)
         self.move(dt)
