@@ -1,22 +1,12 @@
 
-
-from controller.collisionmanager import CollisionManager
-
 from model.collision import Collision
 
 # Singleton, identifica as colisões e registra no
 # gerenciador de colisões onde serão tratadas
 class CollisionDetector:
 
-    _instance = None
-
-    @classmethod
-    def instance(cls):
-        if cls._instance is None:
-            cls._instance = cls()
-        return cls._instance
-
     def detect_collisions(self, entities: list) -> None:
+        collisions = list()
         for target in entities:
             t_id = target.get_id()
             t_body = target.get_body()
@@ -40,7 +30,14 @@ class CollisionDetector:
                 # If para identificar a colisão
                 if t_radius + e_radius < t_position.distance_to(e_position):
                     continue
-                
+
+                # Verificnado se a colisão já não existe
+                collision = Collision(target, entity)
+                for c in collisions:
+                    if c == collision:
+                        continue
+
                 # Registrando a colisão
-                collided = Collision(target, entity)
-                CollisionManager.instance().register_collision(collided)
+                collisions.append(collision)
+            
+        return collisions[:]

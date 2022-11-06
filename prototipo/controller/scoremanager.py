@@ -37,15 +37,15 @@ class ScoreManager:
     def increase(self, value):
         self.set_score(self.get_score() + value)
 
-    def update_score(self, dt: float):
+    def update_score(self, dt: float, deletion_buffer):
         self.last_update += dt
         if self.last_update > CONSTANT.TIME_TO_SCORE:
             self.last_update = 0
             self.increase(CONSTANT.TIME_SCORE)
-        for entitie in EntitiesController.instance().get_deletion_buffer():
-            if entitie.get_tag() == CONSTANT.ASTEROID_TAG:
+        for entity in deletion_buffer:
+            if entity.get_tag() == CONSTANT.ASTEROID_TAG:
                 self.increase(CONSTANT.DESTROY_SCORE)
-            if entitie.get_tag() == CONSTANT.ALIEN_TAG:
+            elif entity.get_tag() == CONSTANT.ALIEN_TAG:
                 self.increase(CONSTANT.DESTROY_SCORE)
 
     def generate_score_log(self, name) -> ScoreLog:

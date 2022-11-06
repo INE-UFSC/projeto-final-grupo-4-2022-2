@@ -25,7 +25,7 @@ import pygame
 # Estará presente apenas para teste
 class Debug:
 
-    def __init__(self) -> None:
+    def __init__(self, player) -> None:
 
         self.__num_entities = 0
         self.__fps = 0
@@ -34,46 +34,47 @@ class Debug:
         self.__score = 0
         self.__bullet_factory = ""
         self.__weapon = ""
+        self.__player = player
 
         self.__font = pygame.font.SysFont(None, 20)
 
     def get_font(self):
         return self.__font
 
-    def update(self, clock: pygame.time.Clock, player: Player) -> None:
+    def update(self, clock: pygame.time.Clock) -> None:
 
         self.__num_entities = len(EntitiesController.instance().get_entities())
         self.__fps = int(clock.get_fps())
-        self.__lives = player.get_lives()
-        self.__ammo = player.get_weapon().get_ammunition()
+        self.__lives = self.__player.get_lives()
+        self.__ammo = self.__player.get_weapon().get_ammunition()
         self.__score = ScoreManager.instance().get_score()
-        self.__bullet_factory = player.get_weapon().get_bullet_factory()
-        self.__weapon = player.get_weapon()
+        self.__bullet_factory = self.__player.get_weapon().get_bullet_factory()
+        self.__weapon = self.__player.get_weapon()
 
 
         if pygame.key.get_pressed()[pygame.K_1]:
-            player.get_weapon().set_bullet_factory(DefaultBulletFactory())
+            self.__player.get_weapon().set_bullet_factory(DefaultBulletFactory())
         
         if pygame.key.get_pressed()[pygame.K_2]:
-            player.get_weapon().set_bullet_factory(PersistentBulletFactory())
+            self.__player.get_weapon().set_bullet_factory(PersistentBulletFactory())
 
         if pygame.key.get_pressed()[pygame.K_3]:
-            player.get_weapon().set_bullet_factory(PiercingBulletFactory())
+            self.__player.get_weapon().set_bullet_factory(PiercingBulletFactory())
         
         if pygame.key.get_pressed()[pygame.K_4]:
-            player.get_weapon().set_bullet_factory(RubberBulletFactory())
+            self.__player.get_weapon().set_bullet_factory(RubberBulletFactory())
 
         if pygame.key.get_pressed()[pygame.K_q]:
-            player.set_weapon(BulletlessWeapon(player, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, player.get_weapon().get_bullet_factory()))
+            self.__player.set_weapon(BulletlessWeapon(self.__player, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.__player.get_weapon().get_bullet_factory()))
             
         if pygame.key.get_pressed()[pygame.K_w]:
-            player.set_weapon(DefaultWeapon(player, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, player.get_weapon().get_bullet_factory()))
+            self.__player.set_weapon(DefaultWeapon(self.__player, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.__player.get_weapon().get_bullet_factory()))
 
         if pygame.key.get_pressed()[pygame.K_e]:
-            player.set_weapon(InfinityWeapon(player, CONSTANT.WEAPON_COOLDOWN, player.get_weapon().get_bullet_factory()))
+            self.__player.set_weapon(InfinityWeapon(self.__player, CONSTANT.WEAPON_COOLDOWN, self.__player.get_weapon().get_bullet_factory()))
 
         if pygame.key.get_pressed()[pygame.K_r]:
-            player.set_weapon(Shotgun(player, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, player.get_weapon().get_bullet_factory()))
+            self.__player.set_weapon(Shotgun(self.__player, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.__player.get_weapon().get_bullet_factory()))
 
     def render(self, screen: pygame.Surface) -> None:
 
@@ -102,9 +103,3 @@ class Debug:
         screen.blit(score_img, (20, 140))
         screen.blit(weapon_img, (20, 170))
         screen.blit(bullet_img, (20, 200))
-
-    def gambiarra_lives() -> int:
-
-        for e in EntitiesController.instance().get_entities():
-            if e.get_tag() == CONSTANT.PLAYER_TAG:
-                return e.get_lives()

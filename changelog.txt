@@ -1,6 +1,10 @@
 #NUM = MES DIA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#26 = NOV 06/11/2022 Augusto
+    - Modificações nas classes que tratam as colisões
+    - Pequenas alterações no ScoreManager e no Debug
+
 #25 = OUT 31(22:52) Micael:
     - Aumentando velocidade dos asteroides conforme o tempo
 

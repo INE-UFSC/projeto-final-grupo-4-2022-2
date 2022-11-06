@@ -1,38 +1,15 @@
 
-from model.collision import Collision
 
 # Singleton que tratará as colisões
 class CollisionManager:
 
-    _instance = None
-
-    @classmethod
-    def instance(cls):
-        if cls._instance is None:
-            cls._instance = cls()
-        return cls._instance
-
-    def __init__(self):
-        self.__collisions = list()
-
-    def get_collisions(self) -> list():
-        return self.__collisions
-
-    def register_collision(self, collision: Collision):
-        # Não registra a colisão caso ela já exista
-        for c in self.__collisions:
-            if c == collision:
-                return
-        self.__collisions.append(collision)
-
-    def handle_collisions(self):
+    def handle_collisions(self, collisions: list):
         # Tratando as colisões
         # Cada entidade irá reagir de uma forma à colisão
-        for collision in self.__collisions:
+        for collision in collisions:
             entity_1 = collision.get_first()
             entity_2 = collision.get_second()
 
             entity_1.on_collision(entity_2)
             entity_2.on_collision(entity_1)
 
-        self.__collisions.clear()

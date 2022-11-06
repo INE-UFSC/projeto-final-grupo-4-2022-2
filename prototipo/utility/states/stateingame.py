@@ -34,7 +34,7 @@ class StateInGame(State):
         self.__asteroid_spawner = AsteroidSpawner()
         self.__level_controller = LevelController()
 
-        self.__debug = Debug()
+        self.__debug = None
 
     def entry(self) -> None:
         # Criando player
@@ -46,6 +46,7 @@ class StateInGame(State):
         player.set_direction(
             Vector2(0, -CONSTANT.SCREEN_SIZE.y/2).normalize())
 
+        self.__debug = Debug(player)
         self.__level_controller.set_player(player)
         EntitiesController.instance().add_entity(player)
 
@@ -71,19 +72,19 @@ class StateInGame(State):
         self.__asteroid_spawner.generate()
 
         # Detecta as colisões a cada frame e as registram
-        CollisionDetector.instance().detect_collisions(entities)
+        collisions = CollisionDetector().detect_collisions(entities)
 
         # Trata as colisões
-        CollisionManager.instance().handle_collisions()
+        CollisionManager().handle_collisions(collisions)
 
         # Atualiza o score do jogador baseado nas destruições e no tempo
-        ScoreManager.instance().update_score(dt)
+        deletion_buffer = EntitiesController.instance().get_deletion_buffer()
+        ScoreManager.instance().update_score(dt, deletion_buffer)
 
         # Gerencia as destruições de cada entidade
         EntitiesController.instance().handle_deletion()
 
-        self.__debug.update(self.get_owner().get_clock(),
-                            EntitiesController.instance().get_entities()[0])
+        self.__debug.update(self.get_owner().get_clock())
 
     def handle_rendering(self) -> None:
         screen = self.get_owner().get_screen()

@@ -1,5 +1,5 @@
+
 from model.entities.abstractentity import Entity
-from utility.constants import VELOCITY_MULTIPLIER, TIME_TO_SCORE
 
 
 # Singleton que controla a criação e a destruição das entidades 
