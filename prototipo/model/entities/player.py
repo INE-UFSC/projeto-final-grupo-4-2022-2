@@ -24,9 +24,11 @@ class Player(Entity, Shooter):
         Entity.__init__(self, body, CONSTANT.PLAYER_TAG)
         Shooter.__init__(self, DefaultWeapon(self, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, DefaultBulletFactory()),
                            Vector2(1, 0).normalize(), Vector2(0, 0))
-        self.image = Player.__original_image
-        self.rect = self.image.get_rect()
+        
         self.angle = 0
+
+        self.set_image(Player.__original_image)
+        self.set_rect(self.get_image().get_rect())
 
         self.__lives = lives
         self.__direction = Vector2(1, 0).normalize()
@@ -45,12 +47,12 @@ class Player(Entity, Shooter):
 
     def rotate_clockwise(self, angle: float) -> None:
         self.angle += -angle % 360
-        self.image = pygame.transform.rotate(Player.__original_image, self.angle)
+        self.set_image(pygame.transform.rotate(Player.__original_image, self.angle))
         self.get_direction().rotate_ip(angle)
 
     def rotate_anticlockwise(self, angle: float) -> None:
         self.angle += angle % 360
-        self.image = pygame.transform.rotate(Player.__original_image, self.angle)
+        self.set_image(pygame.transform.rotate(Player.__original_image, self.angle))
         self.get_direction().rotate_ip(-angle)
 
     def on_collision(self, entity: Entity) -> None:

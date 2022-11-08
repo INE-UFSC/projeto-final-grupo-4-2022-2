@@ -13,8 +13,9 @@ class Bullet(Entity):
     def __init__(self, body: Body, lifetime: int) -> None:
         super().__init__(body, CONSTANT.BULLET_TAG)
         self.__lifetime = lifetime
-        self.image = self.__original_bullet
-        self.rect = self.image.get_rect()
+
+        self.set_image(self.__original_bullet)
+        self.set_rect(self.get_image().get_rect())
 
     def get_lifetime(self) -> int:
         return self.__lifetime

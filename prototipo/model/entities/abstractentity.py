@@ -34,15 +34,15 @@ class Entity(ABC, pygame.sprite.Sprite):
     def get_tag(self) -> str:
         return self.__tag
 
-    def get_image(self) -> pygame.sprite.Sprite:
+    def get_image(self) -> pygame.surface.Surface:
         return self.__image
 
     def set_image(self, image):
         self.__image = image
-    
+
     def get_rect(self) -> pygame.rect.Rect:
         return self.__rect
-
+    
     def set_rect(self, rect):
         self.__rect = rect
 
@@ -50,10 +50,12 @@ class Entity(ABC, pygame.sprite.Sprite):
     def on_collision(self, entity: Entity) -> None: ...
 
     def update(self, dt: float) -> None:
-        if self.image is None:
+        image = self.get_image()
+
+        if image is None:
             return
-        self.rect = self.get_image().get_rect()
-        self.rect.center = self.get_body().get_position()
+        self.set_rect(image.get_rect())
+        self.get_rect().center = self.get_body().get_position()
 
     @abstractmethod
     def destroy(self) -> None: ...

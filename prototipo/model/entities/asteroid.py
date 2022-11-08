@@ -20,13 +20,13 @@ class Asteroid(Entity):
         super().__init__(body, CONSTANT.ASTEROID_TAG)
         
         if body.get_radius() == CONSTANT.BIG_ASTEROID_SIZE:
-            self.image = Asteroid.__original_big_asteroid
+            self.set_image(Asteroid.__original_big_asteroid)
         elif body.get_radius() == CONSTANT.MEDIUM_ASTEROID_SIZE:
-            self.image = Asteroid.__original_medium_asteroid
+            self.set_image(Asteroid.__original_medium_asteroid)
         else:
-            self.image = Asteroid.__original_small_asteroid
+            self.set_image(Asteroid.__original_small_asteroid)
             
-        self.rect = self.image.get_rect()
+        self.set_rect(self.get_image().get_rect())
 
     def on_collision(self, entity: Entity) -> None:
         if entity.get_tag() == CONSTANT.ASTEROID_TAG:

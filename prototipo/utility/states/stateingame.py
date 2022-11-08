@@ -89,12 +89,14 @@ class StateInGame(State):
         screen = self.get_owner().get_screen()
 
         for entity in EntitiesController.instance().get_entities()[::-1]:
+            '''
             if isinstance(entity, Player):
                 pygame.draw.line(screen, (255, 0, 0), entity.get_body().get_position(),
                                  entity.get_body().get_position() + entity.get_direction()*100, 1)
                 pygame.draw.line(screen, (255, 255, 255), entity.get_body().get_position(),
                                  entity.get_body().get_position() + entity.get_body().get_velocity(), 1)
-            if entity.image is None:
+            '''
+            if entity.get_image() is None:
                 continue
             screen.blit(entity.get_image(), entity.get_rect())
             

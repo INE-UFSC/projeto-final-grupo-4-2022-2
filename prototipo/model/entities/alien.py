@@ -25,8 +25,8 @@ class Alien(Entity, Shooter):
         self.__move_cooldown = 0
         self.__direction = direction
 
-        self.image = self.__original_alien
-        self.rect = self.image.get_rect()
+        self.set_image(self.__original_alien)
+        self.set_rect(self.get_image().get_rect())
 
     def get_move_cooldown(self) -> float:
         return self.__move_cooldown
