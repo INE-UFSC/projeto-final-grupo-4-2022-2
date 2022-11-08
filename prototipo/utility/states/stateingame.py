@@ -96,7 +96,7 @@ class StateInGame(State):
                                  entity.get_body().get_position() + entity.get_body().get_velocity(), 1)
             if entity.image is None:
                 continue
-            screen.blit(entity.image, entity.rect)
+            screen.blit(entity.get_image(), entity.get_rect())
             
         self.__debug.render(screen)
 

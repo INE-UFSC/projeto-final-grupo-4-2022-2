@@ -9,14 +9,17 @@
 
 ## Outros
 
-#### [ ] - Filtrar caracteres no text input
-#### [ ] - Fazer sprites, deixar o jogo bonitão
-#### [ ] - Implementar LevelManager e ModeManager
+#### [ ] - Telas de Interface Estáticas (Menu, Scoreboard, Game Over/Save Score)
+#### [ ] - Pickups (armas e bullet) (melhor fazer antes do ModeManager)
+#### [ ] - Filtrar caracteres no text input (nem toda key é unicode)
+#### [ ] - Melhorar sprites (carregamento e alguns detalhes)
+#### [ ] - Implementar ModeManager
 #### [ ] - Otimizar imports (principalmente imports das constantes)
 
 
 ## Histórico
 
+#### [x] - Fazer sprites, deixar o jogo bonitão
 #### [x] - Scores salvos em disco (estilo arcade? nome AAA score 999 nome BBB score 998)
 #### [x] - Fazer estados (menu, fim de jogo, pause), deixar o jogo com cara de jogo
 #### [x] - Adicionar constantes no arquivo const. Por exemplo, constantes de correção, munição máxima, velocidade máxima e etc
