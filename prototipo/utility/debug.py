@@ -47,7 +47,7 @@ class Debug:
         self.__fps = int(clock.get_fps())
         self.__lives = self.__player.get_lives()
         self.__ammo = self.__player.get_weapon().get_ammunition()
-        self.__score = ScoreManager.instance().get_score()
+        self.__score = self.__player.get_score().get_points()
         self.__bullet_factory = self.__player.get_weapon().get_bullet_factory()
         self.__weapon = self.__player.get_weapon()
 

@@ -9,6 +9,7 @@ from model.factory.defaultbulletfactory import DefaultBulletFactory
 from model.weapon.default import DefaultWeapon
 
 import utility.constants as CONSTANT
+from utility.data.score import Score
 
 import pygame
 from pygame.math import Vector2
@@ -33,6 +34,8 @@ class Player(Entity, Shooter):
         self.__lives = lives
         self.__direction = Vector2(1, 0).normalize()
 
+        self.__score = Score(0,"None")
+
     def get_lives(self) -> int:
         return self.__lives
 
@@ -44,6 +47,12 @@ class Player(Entity, Shooter):
 
     def set_direction(self, new_direction: Vector2):
         self.__direction = new_direction.normalize()
+
+    def get_score(self):
+        return self.__score
+
+    def set_score(self, new_score):
+        self.__score = new_score
 
     def rotate_clockwise(self, angle: float) -> None:
         self.angle += -angle % 360

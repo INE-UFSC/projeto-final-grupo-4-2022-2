@@ -34,6 +34,7 @@ class StateInGame(State):
         self.__alien_spawner = AlienSpawner()
         self.__asteroid_spawner = AsteroidSpawner()
         self.__level_controller = LevelController()
+        self.__score_manager = None
 
         self.__debug = None
 
@@ -47,9 +48,11 @@ class StateInGame(State):
 
         self.__debug = Debug(player)
         self.__level_controller.set_player(player)
+        self.__score_manager = ScoreManager(player)
         EntitiesController.instance().add_entity(player)
 
     def exit(self) -> None:
+        self.__score_manager.write_to_disk("Micael")
         EntitiesController.instance().clear_entities()  # limpar tudo
 
     def handle_event(self) -> None:
@@ -78,7 +81,7 @@ class StateInGame(State):
 
         # Atualiza o score do jogador baseado nas destruições e no tempo
         deletion_buffer = EntitiesController.instance().get_deletion_buffer()
-        ScoreManager.instance().update_score(dt, deletion_buffer)
+        self.__score_manager.update_score(dt, deletion_buffer)
 
         # Gerencia as destruições de cada entidade
         EntitiesController.instance().handle_deletion()
@@ -89,13 +92,6 @@ class StateInGame(State):
         screen = self.get_owner().get_screen()
 
         for entity in EntitiesController.instance().get_entities()[::-1]:
-            '''
-            if isinstance(entity, Player):
-                pygame.draw.line(screen, (255, 0, 0), entity.get_body().get_position(),
-                                 entity.get_body().get_position() + entity.get_direction()*100, 1)
-                pygame.draw.line(screen, (255, 255, 255), entity.get_body().get_position(),
-                                 entity.get_body().get_position() + entity.get_body().get_velocity(), 1)
-            '''
             if entity.get_image() is None:
                 continue
             screen.blit(entity.get_image(), entity.get_rect())

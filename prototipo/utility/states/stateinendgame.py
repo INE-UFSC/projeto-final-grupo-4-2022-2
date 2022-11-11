@@ -1,6 +1,5 @@
 from cgitb import text
 from controller.gamecontroller import GameController
-from controller.scoremanager import ScoreManager
 from utility.textinput import TextInput
 from utility.states.state import State
 
@@ -22,11 +21,7 @@ class StateInEndGame(State):
         self.__text_input = TextInput(" ")
 
     def exit(self) -> None:
-        score_log = ScoreManager.instance().generate_score_log(self.__text_input.text)
-        ScoreManager.instance().write_to_disk(score_log)
-        ScoreManager.instance().reset_score()
-        for s in ScoreManager.instance().get_score_dao().get_all():
-            print(f"{s.get_name()}, {s.get_score()}")
+        pass # Arrumar
 
     def handle_event(self) -> None:
         for event in pygame.event.get():
