@@ -21,7 +21,7 @@ class Game:
         self.__current_state = StateInGame(self)
         self.__screen = pygame.display.set_mode(tuple(CONSTANT.SCREEN_SIZE))
         self.__clock = pygame.time.Clock()
-        
+
         self.__states_dictionary = {
             CONSTANT.STATE_MENU: StateInMenu(self),
             CONSTANT.STATE_IN_GAME: StateInGame(self), 

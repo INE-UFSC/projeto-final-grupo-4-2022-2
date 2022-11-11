@@ -52,8 +52,7 @@ class StateInGame(State):
         EntitiesController.instance().add_entity(player)
 
     def exit(self) -> None:
-        self.__score_manager.write_to_disk("Micael")
-        EntitiesController.instance().clear_entities()  # limpar tudo
+        pass
 
     def handle_event(self) -> None:
         for event in pygame.event.get():

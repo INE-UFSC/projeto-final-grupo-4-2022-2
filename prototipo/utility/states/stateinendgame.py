@@ -1,9 +1,13 @@
-from cgitb import text
+
 from controller.gamecontroller import GameController
+from controller.entitiescontroller import EntitiesController
+from controller.scoremanager import ScoreManager
+
 from utility.textinput import TextInput
 from utility.states.state import State
-
+from utility.data.scoreDAO import ScoreDAO
 import utility.constants as CONSTANT
+
 import pygame
 
 
@@ -21,7 +25,10 @@ class StateInEndGame(State):
         self.__text_input = TextInput(" ")
 
     def exit(self) -> None:
-        pass # Arrumar
+        player = EntitiesController.instance().get_entities()[0]
+        ScoreManager(player).write_to_disk(self.__text_input.get_text())
+        EntitiesController.instance().clear_entities()
+        [print(scorelog) for scorelog in ScoreDAO().get_all()]
 
     def handle_event(self) -> None:
         for event in pygame.event.get():
