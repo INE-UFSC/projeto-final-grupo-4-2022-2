@@ -4,7 +4,7 @@ from model.factory.alienfactory import AlienFactory
 
 from controller.entitiescontroller import EntitiesController
 
-import utility.constants as CONSTANTS
+from utility.constants.alien_spawn_constants import AlienSpawnConstants
 
 # Um spawn de Alien. Muito parecido com os spawns
 # do Minecraft. A cada tantos segundos nasce um
@@ -32,6 +32,6 @@ class AlienSpawner:
         # então cria-se um novo Alien randomicamente
         self.decrease(dt)
         if self.get_cooldown() < 0:
-            self.set_cooldown(CONSTANTS.ALIEN_SPAWN_COOLDOWN)
+            self.set_cooldown(AlienSpawnConstants().cooldown)
             alien = self.get_factory().create()
             EntitiesController.instance().add_entity(alien)

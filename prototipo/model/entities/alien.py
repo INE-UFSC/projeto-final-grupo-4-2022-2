@@ -9,18 +9,20 @@ from model.body import Body
 from model.weapon.infinity import InfinityWeapon
 from model.factory.defaultbulletfactory import DefaultBulletFactory
 
-import utility.constants as CONSTANT
+from utility.constants.alien_constants import AlienConstants
+from utility.constants.game_constants import GameConstants
+from utility.constants.shooter_constants import ShooterConstants
 
 from pygame import Vector2
 import pygame
 
 class Alien(Entity, Shooter):
 
-    __original_alien = pygame.transform.scale(pygame.image.load('./images/alien/alien.png'), (4*CONSTANT.ALIEN_SIZE, 3*CONSTANT.ALIEN_SIZE))
+    __original_alien = pygame.transform.scale(pygame.image.load('./images/alien/alien.png'), (4*AlienConstants().size, 3*AlienConstants().size))
 
     def __init__(self, body: Body, direction: int):
-        Entity.__init__(self, body, CONSTANT.ALIEN_TAG)
-        Shooter.__init__(self, InfinityWeapon(self, CONSTANT.ALIEN_SHOT_COOLDOWN, DefaultBulletFactory()),
+        Entity.__init__(self, body, AlienConstants().tag)
+        Shooter.__init__(self, InfinityWeapon(self, AlienConstants().shoot_cooldown, DefaultBulletFactory()),
                            Vector2(1, 1).normalize(), Vector2(0, 0))
         self.__move_cooldown = 0
         self.__direction = direction
@@ -53,20 +55,20 @@ class Alien(Entity, Shooter):
         # podendo assim permanecer na mesma direção
         self.set_move_cooldown(self.get_move_cooldown() - dt)
         if self.get_move_cooldown() < 0:
-            self.set_move_cooldown(CONSTANT.MOVE_COOLDOWN)
-            body.set_velocity(CONSTANT.DIRECTIONS[random.randint(0, len(CONSTANT.DIRECTIONS) - 1)] * CONSTANT.ALIEN_VELOCITY)
+            self.set_move_cooldown(AlienConstants().move_cooldown)
+            body.set_velocity(AlienConstants().directions[random.randint(0, len(AlienConstants().directions) - 1)] * AlienConstants().velocity_mag)
             body.set_velocity(Vector2(body.get_velocity().x*self.get_direction(), body.get_velocity().y))
 
         # Verifica se o Alien chegou ao fim da tela
         #  e, se chegou, morre
         if position.x < 0:
             EntitiesController.instance().register_deletion(self)
-        elif CONSTANT.SCREEN_SIZE.x < position.x:
+        elif GameConstants().screen_size.x < position.x:
             EntitiesController.instance().register_deletion(self)
 
         if position.y < 0:
-            position.y = CONSTANT.SCREEN_SIZE.y
-        elif CONSTANT.SCREEN_SIZE.y < position.y:
+            position.y = GameConstants().screen_size.y
+        elif GameConstants().screen_size.y < position.y:
             position.y = 0
         
         # Movimenta
@@ -78,7 +80,7 @@ class Alien(Entity, Shooter):
         # Determina a direção da mira randomicamente
         aiming_direction = Vector2(self.get_direction(), 0).rotate(random.uniform(0,360))
         # Evita que a bala nasça dentro do Alien
-        barrel_position = Vector2(aiming_direction*self.get_body().get_radius() * CONSTANT.RADIUS_MULTIPLIER + self.get_body().get_position())
+        barrel_position = Vector2(aiming_direction*self.get_body().get_radius() * ShooterConstants().radius_multiplier + self.get_body().get_position())
 
         self.set_barrel_position(barrel_position)
         self.set_aiming_direction(aiming_direction)

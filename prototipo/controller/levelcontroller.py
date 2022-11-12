@@ -1,8 +1,7 @@
-from utility.constants import STATE_END_GAME, ASTEROID_TAG, VELOCITY_MULTIPLIER, TIME_TO_SCORE
 
 from controller.gamecontroller import GameController
 from model.entities.player import Player
-
+from utility.constants.game_constants import GameConstants
 
 # O gerenciador de level determinará quando o jogo acaba.
 class LevelController:
@@ -19,7 +18,7 @@ class LevelController:
     def update(self) -> None:
         # Se o player morreu, então o jogo acaba
         if not self.get_player().alive():
-            next_state = STATE_END_GAME
+            next_state = GameConstants().state_end_game
             GameController.instance().change_state(next_state)
 
 

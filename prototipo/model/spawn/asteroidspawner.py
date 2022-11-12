@@ -3,7 +3,7 @@ from model.factory.asteroidfactory import AsteroidFactory
 
 from controller.entitiescontroller import EntitiesController
 
-import utility.constants as CONSTANT
+from utility.constants.asteroid_constants import AsteroidConstants
 
 
 # Mesma lógica que o Spawn do Alien, porém
@@ -19,7 +19,7 @@ class AsteroidSpawner:
 
     def _has_asteroids(self) -> bool:
         for entity in EntitiesController.instance().get_entities():
-            if entity.get_tag() == CONSTANT.ASTEROID_TAG:
+            if entity.get_tag() == AsteroidConstants().tag:
                 return True
         return False
 

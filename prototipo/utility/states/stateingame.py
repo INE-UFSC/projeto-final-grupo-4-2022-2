@@ -5,8 +5,6 @@ from model.body import Body
 from model.factory.playerfactory import PlayerFactory
 from model.spawn.alienspawn import AlienSpawner
 from model.spawn.asteroidspawner import AsteroidSpawner
-from model.entities.player import Player
-from model.entities.asteroid import Asteroid
 
 # Controller imports
 from controller.entitiescontroller import EntitiesController
@@ -16,7 +14,8 @@ from controller.scoremanager import ScoreManager
 from controller.levelcontroller import LevelController
 
 # Utility imports
-import utility.constants as CONSTANT
+from utility.constants.game_constants import GameConstants
+from utility.constants.player_constants import PlayerConstants
 from utility.states.state import State
 from utility.debug import Debug
 
@@ -40,10 +39,10 @@ class StateInGame(State):
 
     def entry(self) -> None:
         # Criando player
-        player_body = Body(Vector2(ceil(CONSTANT.SCREEN_SIZE.x/2),
-                           ceil(CONSTANT.SCREEN_SIZE.y/2)),
-                           Vector2(0, 0), CONSTANT.PLAYER_SIZE)
-        player_lives = CONSTANT.MAX_LIVES
+        player_body = Body(Vector2(ceil(GameConstants().screen_size.x/2),
+                           ceil(GameConstants().screen_size.y/2)),
+                           Vector2(0, 0), PlayerConstants().size)
+        player_lives = PlayerConstants().max_lives
         player = PlayerFactory().create(player_body, player_lives)
 
         self.__debug = Debug(player)

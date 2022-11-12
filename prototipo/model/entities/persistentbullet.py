@@ -1,10 +1,11 @@
 
+from controller.entitiescontroller import EntitiesController
+
 from model.entities.abstractentity import Entity
 from model.entities.bullet import Bullet
 from model.body import Body
-from controller.entitiescontroller import EntitiesController
-import utility.constants as CONSTANT
 
+from utility.constants.game_constants import GameConstants
 
 # Bala com o comportamento de persistencia
 # Apena desaparece depois que atinge um objeto,
@@ -23,13 +24,13 @@ class PersistentBullet(Bullet):
 
         # Condições para manter a bala sempre dentro da janela
         if position.x < 0:
-            position.x = CONSTANT.SCREEN_SIZE.x
-        elif CONSTANT.SCREEN_SIZE.x < position.x:
+            position.x = GameConstants().screen_size.x
+        elif GameConstants().screen_size.x < position.x:
             position.x = 0
 
         if position.y < 0:
-            position.y = CONSTANT.SCREEN_SIZE.y
-        elif CONSTANT.SCREEN_SIZE.y < position.y:
+            position.y = GameConstants().screen_size.y
+        elif GameConstants().screen_size.y < position.y:
             position.y = 0
 
         # Atualiza a posição

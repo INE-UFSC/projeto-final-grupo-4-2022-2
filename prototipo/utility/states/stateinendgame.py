@@ -6,10 +6,9 @@ from controller.scoremanager import ScoreManager
 from utility.textinput import TextInput
 from utility.states.state import State
 from utility.data.scoreDAO import ScoreDAO
-import utility.constants as CONSTANT
+from utility.constants.game_constants import GameConstants
 
 import pygame
-
 
 # Implementação do estado no fim do jogo
 # Nele estará a lógica persistência do score
@@ -57,16 +56,16 @@ class StateInEndGame(State):
 
         digite_aqui_img = pygame.font.SysFont(
             font, 32).render("Nome: ", True, white)
-        screen.blit(message_img, (CONSTANT.SCREEN_SIZE.x /
-                    2 - 200, CONSTANT.SCREEN_SIZE.y/2 - 40))
-        screen.blit(message2_img, (CONSTANT.SCREEN_SIZE.x /
-                    2 - 200, CONSTANT.SCREEN_SIZE.y/2 + 60))
-        screen.blit(digite_aqui_img, (CONSTANT.SCREEN_SIZE.x /
-                    2 - 96, CONSTANT.SCREEN_SIZE.y/2))
-        screen.blit(nome_img, (CONSTANT.SCREEN_SIZE.x /
-                    2, CONSTANT.SCREEN_SIZE.y/2))
+        screen.blit(message_img, (GameConstants().screen_size.x /
+                    2 - 200, GameConstants().screen_size.y/2 - 40))
+        screen.blit(message2_img, (GameConstants().screen_size.x /
+                    2 - 200, GameConstants().screen_size.y/2 + 60))
+        screen.blit(digite_aqui_img, (GameConstants().screen_size.x /
+                    2 - 96, GameConstants().screen_size.y/2))
+        screen.blit(nome_img, (GameConstants().screen_size.x /
+                    2, GameConstants().screen_size.y/2))
 
     def handle_transition(self) -> None:
         if pygame.key.get_pressed()[pygame.K_RETURN]:
-            next_state = CONSTANT.STATE_MENU
+            next_state =GameConstants().state_menu
             GameController.instance().change_state(next_state)

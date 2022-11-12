@@ -2,7 +2,8 @@
 from model.entities.asteroid import Asteroid
 from model.body import Body
 
-import utility.constants as CONSTANT
+from utility.constants.asteroid_constants import AsteroidConstants
+from utility.constants.game_constants import GameConstants
 
 from pygame.math import Vector2
 
@@ -18,16 +19,16 @@ class AsteroidFactory:
             velocity.x = -velocity.x
         if random.randint(0, 1):
             velocity.y = -velocity.y
-        velocity.scale_to_length(CONSTANT.BIG_ASTEROID_VELOCITY)
+        velocity.scale_to_length(AsteroidConstants().big_velocity_mag)
         return velocity
 
     def make_position(self) -> Vector2:
-        return Vector2(random.randint(0, CONSTANT.SCREEN_SIZE.x), random.randint(0, CONSTANT.SCREEN_SIZE.y))
+        return Vector2(random.randint(0, GameConstants().screen_size.x), random.randint(0, GameConstants().screen_size.y))
 
     def create(self, number_of_asteroids: int) -> list():
         asteroids = list()
         for i in range(number_of_asteroids):
             asteroid = Asteroid(
-                Body(self.make_position(), self.make_velocity(), CONSTANT.BIG_ASTEROID_SIZE))
+                Body(self.make_position(), self.make_velocity(), AsteroidConstants().big_size))
             asteroids.append(asteroid)
         return asteroids[:]

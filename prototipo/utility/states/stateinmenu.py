@@ -1,7 +1,8 @@
 
 from controller.gamecontroller import GameController
+
 from utility.states.state import State
-import utility.constants as CONSTANTE
+from utility.constants.game_constants import GameConstants
 
 import pygame
 
@@ -35,10 +36,10 @@ class StateInMenu(State):
         font = pygame.font.get_default_font() 
         message_img = pygame.font.SysFont(font, 50).render(message, True, (255,255,255))
         message2_img = pygame.font.SysFont(font, 20).render(message2, True, (255, 255, 255))
-        self.get_owner().get_screen().blit(message_img, (CONSTANTE.SCREEN_SIZE.x/2 - 100, CONSTANTE.SCREEN_SIZE.y/2 - 20))
-        self.get_owner().get_screen().blit(message2_img, (CONSTANTE.SCREEN_SIZE.x/2 - 100, CONSTANTE.SCREEN_SIZE.y/2 + 30))
+        self.get_owner().get_screen().blit(message_img, (GameConstants().screen_size.x/2 - 100, GameConstants().screen_size.y/2 - 20))
+        self.get_owner().get_screen().blit(message2_img, (GameConstants().screen_size.x/2 - 100, GameConstants().screen_size.y/2 + 30))
 
     def handle_transition(self) -> None:
         if pygame.key.get_pressed()[pygame.K_g]:
-            next_state = CONSTANTE.STATE_IN_GAME
+            next_state = GameConstants().state_in_game
             GameController.instance().change_state(next_state)

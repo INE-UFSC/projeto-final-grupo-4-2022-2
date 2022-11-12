@@ -4,7 +4,7 @@ from model.entities.rubberbullet import RubberBullet
 from model.factory.bulletfactory import BulletFactory
 from model.body import Body
 
-import utility.constants as CONSTANTE
+from utility.constants.bullet_constants import BulletConstants
 
 from pygame.math import Vector2
 
@@ -12,8 +12,8 @@ from pygame.math import Vector2
 class RubberBulletFactory(BulletFactory):
 
     def create(self, position: Vector2, velocity: Vector2) -> Entity:
-        body = Body(position, velocity, CONSTANTE.BULLET_SIZE)
-        bullet = RubberBullet(body, CONSTANTE.BULLET_LIFE_TIME)
+        body = Body(position, velocity, BulletConstants().size)
+        bullet = RubberBullet(body, BulletConstants().life_time)
         return bullet
 
     def __str__(self) -> str:

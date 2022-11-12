@@ -3,7 +3,8 @@ from utility.states.stateingame import StateInGame
 from utility.states.stateinendgame import StateInEndGame
 from utility.states.stateinmenu import StateInMenu
 from utility.states.state import State
-import utility.constants as CONSTANT
+
+from utility.constants.game_constants import GameConstants
 
 
 import pygame
@@ -19,13 +20,13 @@ class Game:
 
         self.__running = True
         self.__current_state = StateInGame(self)
-        self.__screen = pygame.display.set_mode(tuple(CONSTANT.SCREEN_SIZE))
+        self.__screen = pygame.display.set_mode(tuple(GameConstants().screen_size))
         self.__clock = pygame.time.Clock()
 
         self.__states_dictionary = {
-            CONSTANT.STATE_MENU: StateInMenu(self),
-            CONSTANT.STATE_IN_GAME: StateInGame(self), 
-            CONSTANT.STATE_END_GAME: StateInEndGame(self)
+            GameConstants().state_menu: StateInMenu(self),
+            GameConstants().state_in_game: StateInGame(self), 
+            GameConstants().state_end_game: StateInEndGame(self)
         }
 
     def is_running(self) -> bool:
@@ -91,7 +92,7 @@ class Game:
     def run(self) -> None:
         self.get_current_state().entry()
         while self.is_running():
-            dt = 1.0/self.get_clock().tick(CONSTANT.FPS)
+            dt = 1.0/self.get_clock().tick(GameConstants().fps)
             self.handle_event()
             self.handle_update(dt)
             self.handle_rendering()

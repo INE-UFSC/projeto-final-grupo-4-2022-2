@@ -1,11 +1,6 @@
 
-from model.entities.player import Player
-
-# Controllers
 from controller.entitiescontroller import EntitiesController
-from controller.scoremanager import ScoreManager
 
-# Modelos
 from model.factory.defaultbulletfactory import DefaultBulletFactory
 from model.factory.persistentbulletfactory import PersistentBulletFactory
 from model.factory.piercingbulletfactory import PiercingBulletFactory
@@ -15,8 +10,7 @@ from model.weapon.default import DefaultWeapon
 from model.weapon.infinity import InfinityWeapon
 from model.weapon.shotgun import Shotgun
 
-
-import utility.constants as CONSTANT
+from utility.constants.weapon_constants import WeaponConstants
 
 import pygame
 
@@ -65,16 +59,16 @@ class Debug:
             self.__player.get_weapon().set_bullet_factory(RubberBulletFactory())
 
         if pygame.key.get_pressed()[pygame.K_q]:
-            self.__player.set_weapon(BulletlessWeapon(self.__player, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.__player.get_weapon().get_bullet_factory()))
+            self.__player.set_weapon(BulletlessWeapon(self.__player, WeaponConstants().cooldown, WeaponConstants().max_ammunition, self.__player.get_weapon().get_bullet_factory()))
             
         if pygame.key.get_pressed()[pygame.K_w]:
-            self.__player.set_weapon(DefaultWeapon(self.__player, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.__player.get_weapon().get_bullet_factory()))
+            self.__player.set_weapon(DefaultWeapon(self.__player, WeaponConstants().cooldown, WeaponConstants().max_ammunition, self.__player.get_weapon().get_bullet_factory()))
 
         if pygame.key.get_pressed()[pygame.K_e]:
-            self.__player.set_weapon(InfinityWeapon(self.__player, CONSTANT.WEAPON_COOLDOWN, self.__player.get_weapon().get_bullet_factory()))
+            self.__player.set_weapon(InfinityWeapon(self.__player, WeaponConstants().cooldown, self.__player.get_weapon().get_bullet_factory()))
 
         if pygame.key.get_pressed()[pygame.K_r]:
-            self.__player.set_weapon(Shotgun(self.__player, CONSTANT.WEAPON_COOLDOWN, CONSTANT.MAX_AMMUNITION, self.__player.get_weapon().get_bullet_factory()))
+            self.__player.set_weapon(Shotgun(self.__player, WeaponConstants().cooldown, WeaponConstants().max_ammunition, self.__player.get_weapon().get_bullet_factory()))
 
     def render(self, screen: pygame.Surface) -> None:
 

@@ -1,6 +1,9 @@
 #NUM = DATA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#29 = 12/11/2022 (20:20) Augusto
+    - Arrumando constantes
+
 #28 = 11/11/2022 (10:55) Micael
     - Arrumando ScoreManager definitivamente
     - Mudança nos métodos exit e entry do ingame e inendgame

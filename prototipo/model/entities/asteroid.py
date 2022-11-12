@@ -1,27 +1,29 @@
-import math
+
 from model.entities.abstractentity import Entity
 from model.body import Body
 from controller.entitiescontroller import EntitiesController
 
-import utility.constants as CONSTANT
+from utility.constants.asteroid_constants import AsteroidConstants
+from utility.constants.game_constants import GameConstants
 
 from pygame.math import Vector2
 import pygame
+import math
 
 
 class Asteroid(Entity):
 
-    __original_big_asteroid = pygame.transform.scale(pygame.image.load('./images/asteroid/asteroid_1.png'), (3*CONSTANT.BIG_ASTEROID_SIZE, 3*CONSTANT.BIG_ASTEROID_SIZE))
-    __original_medium_asteroid = pygame.transform.scale(pygame.image.load('./images/asteroid/asteroid_1.png'), (3*CONSTANT.MEDIUM_ASTEROID_SIZE, 3*CONSTANT.MEDIUM_ASTEROID_SIZE))
-    __original_small_asteroid = pygame.transform.scale(pygame.image.load('./images/asteroid/asteroid_1.png'), (3*CONSTANT.SMALL_ASTEROID_SIZE, 3*CONSTANT.SMALL_ASTEROID_SIZE))
+    __original_big_asteroid = pygame.transform.scale(pygame.image.load('./images/asteroid/asteroid_1.png'), (3*AsteroidConstants().big_size, 3*AsteroidConstants().big_size))
+    __original_medium_asteroid = pygame.transform.scale(pygame.image.load('./images/asteroid/asteroid_1.png'), (3*AsteroidConstants().medium_size, 3*AsteroidConstants().medium_size))
+    __original_small_asteroid = pygame.transform.scale(pygame.image.load('./images/asteroid/asteroid_1.png'), (3*AsteroidConstants().small_size, 3*AsteroidConstants().small_size))
     
 
     def __init__(self, body: Body) -> None:
-        super().__init__(body, CONSTANT.ASTEROID_TAG)
+        super().__init__(body, AsteroidConstants().tag)
         
-        if body.get_radius() == CONSTANT.BIG_ASTEROID_SIZE:
+        if body.get_radius() == AsteroidConstants().big_size:
             self.set_image(Asteroid.__original_big_asteroid)
-        elif body.get_radius() == CONSTANT.MEDIUM_ASTEROID_SIZE:
+        elif body.get_radius() == AsteroidConstants().medium_size:
             self.set_image(Asteroid.__original_medium_asteroid)
         else:
             self.set_image(Asteroid.__original_small_asteroid)
@@ -29,7 +31,7 @@ class Asteroid(Entity):
         self.set_rect(self.get_image().get_rect())
 
     def on_collision(self, entity: Entity) -> None:
-        if entity.get_tag() == CONSTANT.ASTEROID_TAG:
+        if entity.get_tag() == AsteroidConstants().tag:
             return
         EntitiesController.instance().register_deletion(self)
 
@@ -40,13 +42,13 @@ class Asteroid(Entity):
         # Verificações para fazer com que o
         # Asteroid sempre fique "dentro" da janela
         if position.x < 0:
-            position.x = CONSTANT.SCREEN_SIZE.x
-        elif CONSTANT.SCREEN_SIZE.x < position.x:
+            position.x = GameConstants().screen_size.x
+        elif GameConstants().screen_size.x < position.x:
             position.x = 0
 
         if position.y < 0:
-            position.y = CONSTANT.SCREEN_SIZE.y
-        elif CONSTANT.SCREEN_SIZE.y < position.y:
+            position.y = GameConstants().screen_size.y
+        elif GameConstants().screen_size.y < position.y:
             position.y = 0
 
         # Atuliza a posição
@@ -64,15 +66,13 @@ class Asteroid(Entity):
 
         # Cria os Asteroid pequenos quando um maior é destruido
         # Caso seja pequeno, não é criado novos
-        if body.get_radius() == CONSTANT.BIG_ASTEROID_SIZE:
-            velocity.scale_to_length(CONSTANT.MEDIUM_ASTEROID_VELOCITY)
-            radius = CONSTANT.MEDIUM_ASTEROID_SIZE
-
-        elif body.get_radius() == CONSTANT.MEDIUM_ASTEROID_SIZE:
-            velocity.scale_to_length(CONSTANT.MEDIUM_ASTEROID_VELOCITY)
-            radius = CONSTANT.SMALL_ASTEROID_SIZE
-
-        elif body.get_radius() == CONSTANT.SMALL_ASTEROID_SIZE:
+        if body.get_radius() == AsteroidConstants().big_size:
+            velocity.scale_to_length(AsteroidConstants().medium_velocity_mag)
+            radius = AsteroidConstants().medium_size
+        elif body.get_radius() == AsteroidConstants().medium_size:
+            velocity.scale_to_length(AsteroidConstants().small_velocity_mag)
+            radius = AsteroidConstants().small_size
+        elif body.get_radius() == AsteroidConstants().small_size:
             EntitiesController.instance().register_deletion(self)
             return
 

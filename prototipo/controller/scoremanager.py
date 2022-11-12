@@ -1,6 +1,8 @@
 
 from utility.data.scoreDAO import ScoreDAO
-import utility.constants as CONSTANT
+from utility.constants.score_constants import ScoreConstants
+from utility.constants.asteroid_constants import AsteroidConstants
+from utility.constants.alien_constants import AlienConstants
 
 
 # Singleton para gerenciar o score do player
@@ -17,14 +19,14 @@ class ScoreManager:
         if self.__player is None:
             return
 
-        if self.last_update > CONSTANT.TIME_TO_SCORE:
+        if self.last_update > ScoreConstants().time_to_score:
             self.last_update = 0
-            self.__player.get_score().increase(CONSTANT.TIME_SCORE)
+            self.__player.get_score().increase(ScoreConstants().time)
         for entity in deletion_buffer:
-            if entity.get_tag() == CONSTANT.ASTEROID_TAG:
-                self.__player.get_score().increase(CONSTANT.DESTROY_SCORE)
-            elif entity.get_tag() == CONSTANT.ALIEN_TAG:
-                self.__player.get_score().increase(CONSTANT.DESTROY_SCORE)
+            if entity.get_tag() == AsteroidConstants().tag:
+                self.__player.get_score().increase(ScoreConstants().destroy)
+            elif entity.get_tag() == AlienConstants().tag:
+                self.__player.get_score().increase(ScoreConstants().destroy)
 
     def write_to_disk(self, new_name) -> bool:
         if self.__player is None:

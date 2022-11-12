@@ -12,6 +12,5 @@ class BulletFactory(ABC):
     @abstractmethod
     def create(self, position: Vector2, velocity: Vector2) -> Entity: ...
 
-
     def __str__(self) -> str:
         return f"Bullet Factory ABC (!)"

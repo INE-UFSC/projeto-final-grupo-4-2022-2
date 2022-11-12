@@ -6,6 +6,7 @@ from model.weapon.weapon import Weapon
 from model.factory.bulletfactory import BulletFactory
 
 import utility.constants as CONSTANTE
+from utility.constants.bullet_constants import BulletConstants
 
 
 # Arma padrão, atira quando aperta espaço,
@@ -24,7 +25,7 @@ class DefaultWeapon(Weapon):
 
         owner_position = self.get_owner().get_barrel_position()
         owner_aiming_direction = self.get_owner().get_aiming_direction()
-        velocity = owner_aiming_direction * CONSTANTE.BULLET_VELOCITY
+        velocity = owner_aiming_direction * BulletConstants().velocity_mag
 
         bullet_factory = self.get_bullet_factory()
         bullet = bullet_factory.create(owner_position, velocity)
