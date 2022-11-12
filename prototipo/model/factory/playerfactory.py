@@ -8,7 +8,7 @@ from utility.constants.player_constants import PlayerConstants
 from math import ceil
 from pygame.math import Vector2
 
-# Constroi um player?
+
 class PlayerFactory:
 
     def create(self) -> Player:
