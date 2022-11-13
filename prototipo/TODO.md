@@ -2,23 +2,22 @@
 
 ## Observações importantes
 
-#### Refatorar a logica de colisão (controlador de entidades remover a cada frame as entidades que estão destruidas?)
 #### Atualizar sempre que for modificado o UML
+#### Os pickups vão ser uma entidade que quando colide com o player, o player ganha munição, muda de arma ou outro powerup. Vale observar que é fácil identificar a colisão do player com um powerup, já que se tem um método nas entidades chamado on_collision
 
 ## Checklist
 
 ## Outros
 
 #### [ ] - Telas de Interface Estáticas (Menu, Scoreboard, Game Over/Save Score)
-#### [ ] - Pickups (armas e bullet) (melhor fazer antes do ModeManager)
-#### [ ] - Filtrar caracteres no text input (nem toda key é unicode)
+#### [ ] - Pickups (armas e bullet)
 #### [ ] - Melhorar sprites (carregamento e alguns detalhes)
-#### [ ] - Implementar ModeManager
 #### [ ] - Otimizar imports (principalmente imports das constantes)
 
 
 ## Histórico
 
+#### [x] - Filtrar caracteres no text input (nem toda key é unicode)
 #### [x] - Fazer sprites, deixar o jogo bonitão
 #### [x] - Scores salvos em disco (estilo arcade? nome AAA score 999 nome BBB score 998)
 #### [x] - Fazer estados (menu, fim de jogo, pause), deixar o jogo com cara de jogo
