@@ -1,6 +1,9 @@
 #NUM = DATA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#32 = 12/11/2022 (9:20) Augusto
+    - Criando fábricas de player para facilitar a configuração de cada modo
+
 #31 = 12/11/2022 (22:05) Augusto
     - Início de como será feito os outros modos
         - Adição de novas classes states

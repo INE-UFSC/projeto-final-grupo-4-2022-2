@@ -27,7 +27,7 @@ class Player(Entity, Shooter):
         Shooter.__init__(self, DefaultWeapon(self, WeaponConstants().cooldown, WeaponConstants().max_ammunition, DefaultBulletFactory()),
                            Vector2(1, 0).normalize(), Vector2(0, 0))
         
-        self.angle = 0
+        self.__angle = 0
 
         self.set_image(Player.__original_image)
         self.set_rect(self.get_image().get_rect())
@@ -36,6 +36,12 @@ class Player(Entity, Shooter):
         self.__direction = Vector2(1, 0).normalize()
 
         self.__score = Score(0, "None")
+
+    def get_angle(self):
+        return self.__angle
+    
+    def set_angle(self, new_angle):
+        self.__angle = new_angle
 
     def get_lives(self) -> int:
         return self.__lives
@@ -56,21 +62,29 @@ class Player(Entity, Shooter):
         self.__score = new_score
 
     def rotate_clockwise(self, angle: float) -> None:
-        self.angle += -angle % 360
-        self.set_image(pygame.transform.rotate(Player.__original_image, self.angle))
+        self.set_angle(self.get_angle() - angle % 360)
+        self.set_image(pygame.transform.rotate(Player.__original_image, self.get_angle()))
         self.get_direction().rotate_ip(angle)
 
     def rotate_anticlockwise(self, angle: float) -> None:
-        self.angle += angle % 360
-        self.set_image(pygame.transform.rotate(Player.__original_image, self.angle))
+        self.set_angle(self.get_angle() + angle % 360)
+        self.set_image(pygame.transform.rotate(Player.__original_image, self.get_angle()))
         self.get_direction().rotate_ip(-angle)
 
     def on_collision(self, entity: Entity) -> None:
         if (self.get_lives() >= 0):
             self.set_lives(self.get_lives() - 1)
+            self.reset()
 
     def alive(self) -> bool:
         return self.__lives > -1
+
+    def reset(self):
+        self.get_body().set_position(GameConstants().screen_size/2)
+        self.get_body().set_velocity(Vector2(0,0))
+        self.set_direction(Vector2(1, 0).normalize())
+        self.set_angle(0)
+
 
     def handle_input(self, dt: float) -> None:
         body = self.get_body()

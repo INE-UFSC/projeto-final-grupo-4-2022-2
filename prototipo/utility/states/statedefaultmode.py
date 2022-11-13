@@ -4,7 +4,7 @@ from controller.scoremanager import ScoreManager
 
 from model.spawn.alienspawn import AlienSpawner
 from model.spawn.asteroidspawner import AsteroidSpawner
-from model.factory.playerfactory import PlayerFactory
+from model.factory.limitedbulletplayerfactory import LimitedBulletPlayerFactory
 
 from utility.states.stateingame import StateInGame
 from utility.debug import Debug
@@ -20,7 +20,7 @@ class StateDefaultMode(StateInGame):
         self.__alien_spawner = AlienSpawner()
         self.__asteroid_spawner = AsteroidSpawner()
 
-        player = PlayerFactory().create()
+        player = LimitedBulletPlayerFactory().create()
         self._debug = Debug(player)
         self._level_controller.set_player(player)
         self._score_manager = ScoreManager(player)
