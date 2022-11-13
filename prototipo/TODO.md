@@ -4,13 +4,15 @@
 
 #### Atualizar sempre que for modificado o UML
 #### Os pickups vão ser uma entidade que quando colide com o player, o player ganha munição, muda de arma ou outro powerup. Vale observar que é fácil identificar a colisão do player com um powerup, já que se tem um método nas entidades chamado on_collision
+#### Como fazer os estados de cada modo: criar classes concretas que herdaram de stateingame e implementar ou sobreescreve os métodos de acordo com a lógica do modo
 
 ## Checklist
 
 ## Outros
 
-#### [ ] - Telas de Interface Estáticas (Menu, Scoreboard, Game Over/Save Score)
 #### [ ] - Pickups (armas e bullet)
+#### [ ] - Fazer os estados para cada modo (Um estado em que o player não tem arma e só desvia dos inimigos; um outro em que o player tem por padrão uma arma com balas limitadas e ao longo do jogo spawna pickups para alterar arma e ganhar munição; um outro ainda que só spawna alien; por fim, um último que spwana sem parar apenas asteroids)
+#### [ ] - Telas de Interface Estáticas (Menu, Scoreboard, Game Over/Save Score)
 #### [ ] - Melhorar sprites (carregamento e alguns detalhes)
 #### [ ] - Otimizar imports (principalmente imports das constantes)
 
