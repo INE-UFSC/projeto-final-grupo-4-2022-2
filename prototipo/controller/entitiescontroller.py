@@ -40,6 +40,11 @@ class EntitiesController:
             self.del_entity(entity)
         self.flush_deletion_buffer()
 
+    def update_entities(self, dt):
+        entities = self.get_entities()
+        for entity in entities:
+            entity.update(dt)
+
     def del_entity(self, entity: Entity) -> None:
         try:
             self.__entities.remove(entity)

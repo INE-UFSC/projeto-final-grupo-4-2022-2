@@ -1,5 +1,5 @@
 
-from utility.states.stateingame import StateInGame
+from utility.states.statedefaultmode import StateDefaultMode
 from utility.states.stateinendgame import StateInEndGame
 from utility.states.stateinmenu import StateInMenu
 from utility.states.state import State
@@ -19,7 +19,7 @@ class Game:
         pygame.display.set_caption(name)
 
         self.__running = True
-        self.__current_state = StateInGame(self)
+        self.__current_state = StateDefaultMode(self)
         self.__screen = pygame.display.set_mode(tuple(GameConstants().screen_size))
         self.__clock = pygame.time.Clock()
 
@@ -27,7 +27,7 @@ class Game:
 
         self.__states_dictionary = {
             GameConstants().state_menu: StateInMenu(self),
-            GameConstants().state_in_game: StateInGame(self), 
+            GameConstants().state_default_mode: StateDefaultMode(self), 
             GameConstants().state_end_game: StateInEndGame(self)
         }
 

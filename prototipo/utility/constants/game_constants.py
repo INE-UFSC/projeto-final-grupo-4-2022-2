@@ -11,4 +11,4 @@ class GameConstants(Singleton):
         
         self.state_menu = "inmenu"
         self.state_end_game = "endgame"
-        self.state_in_game = "ingame"
+        self.state_default_mode = "statedefaultmode"

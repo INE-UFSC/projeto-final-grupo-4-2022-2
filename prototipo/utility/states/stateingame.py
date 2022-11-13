@@ -1,19 +1,14 @@
 
-# Model imports
-from model.factory.playerfactory import PlayerFactory
-from model.spawn.alienspawn import AlienSpawner
-from model.spawn.asteroidspawner import AsteroidSpawner
+from abc import abstractmethod
 
 # Controller imports
 from controller.entitiescontroller import EntitiesController
 from controller.collisiondetector import CollisionDetector
 from controller.collisionmanager import CollisionManager
-from controller.scoremanager import ScoreManager
 from controller.levelcontroller import LevelController
 
 # Utility imports
 from utility.states.state import State
-from utility.debug import Debug
 
 # Pygame
 import pygame
@@ -25,21 +20,12 @@ class StateInGame(State):
 
     def __init__(self, owner):
         super().__init__(owner)
-        self.__alien_spawner = AlienSpawner()
-        self.__asteroid_spawner = AsteroidSpawner()
-        self.__level_controller = LevelController()
-        self.__score_manager = None
+        self._level_controller = LevelController()
+        self._score_manager = None
+        self._debug = None
 
-        self.__debug = None
-
-    def entry(self) -> None:
-        # Criando player
-        player = PlayerFactory().create()
-
-        self.__debug = Debug(player)
-        self.__level_controller.set_player(player)
-        self.__score_manager = ScoreManager(player)
-        EntitiesController.instance().add_entity(player)
+    @abstractmethod
+    def entry(self) -> None: pass
 
     def exit(self) -> None:
         pass
@@ -52,17 +38,10 @@ class StateInGame(State):
     def handle_update(self, dt: float) -> None:
 
         # Atualiza cada entidade do jogo
-        entities = EntitiesController.instance().get_entities()
-        for entity in entities:
-            entity.update(dt)
-
-        # Gerando alien
-        self.__alien_spawner.generate(dt)
-
-        # Gerando asteroids
-        self.__asteroid_spawner.generate()
+        EntitiesController.instance().update_entities(dt)
 
         # Detecta as colisões a cada frame
+        entities = EntitiesController.instance().get_entities()
         collisions = CollisionDetector().detect_collisions(entities)
 
         # Trata as colisões
@@ -70,12 +49,12 @@ class StateInGame(State):
 
         # Atualiza o score do jogador baseado nas destruições e no tempo
         deletion_buffer = EntitiesController.instance().get_deletion_buffer()
-        self.__score_manager.update_score(dt, deletion_buffer)
+        self._score_manager.update_score(dt, deletion_buffer)
 
         # Gerencia as destruições de cada entidade
         EntitiesController.instance().handle_deletion()
 
-        self.__debug.update(self.get_owner().get_clock())
+        self._debug.update(self.get_owner().get_clock())
 
     def handle_rendering(self) -> None:
         screen = self.get_owner().get_screen()
@@ -85,7 +64,7 @@ class StateInGame(State):
                 continue
             screen.blit(entity.get_image(), entity.get_rect())
             
-        self.__debug.render(screen)
+        self._debug.render(screen)
 
     def handle_transition(self) -> None:
-        self.__level_controller.update()
+        self._level_controller.update()
