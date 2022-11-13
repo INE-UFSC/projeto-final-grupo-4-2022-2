@@ -16,4 +16,4 @@ class AlienConstants(Singleton):
         self.directions = (pygame.math.Vector2(math.sqrt(2)/2, math.sqrt(2)/2),
                            pygame.math.Vector2(1, 0),
                            pygame.math.Vector2(math.sqrt(2)/2, -math.sqrt(2)/2))
-        
+        self.image_path = './images/alien/alien.png'

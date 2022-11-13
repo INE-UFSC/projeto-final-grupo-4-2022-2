@@ -9,7 +9,7 @@ from utility.constants.player_constants import PlayerConstants
 from utility.constants.weapon_constants import WeaponConstants
 from utility.constants.shooter_constants import ShooterConstants
 from utility.constants.game_constants import GameConstants
-
+from utility.data.image_loader import ImageLoader
 from utility.data.score import Score
 
 import pygame
@@ -20,7 +20,7 @@ class Weapon: ...
 
 class Player(Entity, Shooter):
 
-    __original_image = pygame.transform.scale(pygame.image.load('./images/player/player_inertial.png'), (40, 20))
+    __original_image = ImageLoader().load(PlayerConstants().image_path, (40,30))
 
     def __init__(self, body: Body, lives: int):
         Entity.__init__(self, body, PlayerConstants().tag)

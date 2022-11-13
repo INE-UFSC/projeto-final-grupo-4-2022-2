@@ -3,13 +3,13 @@ from model.entities.abstractentity import Entity
 from model.body import Body
 
 from utility.constants.bullet_constants import BulletConstants
+from utility.data.image_loader import ImageLoader
 
-import pygame
 
 # Bala abstrata
 class Bullet(Entity):
 
-    __original_bullet = pygame.transform.scale(pygame.image.load('./images/bullet/bullet.png'), (6*BulletConstants().size, 6*BulletConstants().size))
+    __original_bullet = ImageLoader().load(BulletConstants().image_path, (6*BulletConstants().size, 6*BulletConstants().size))
 
     def __init__(self, body: Body, lifetime: int) -> None:
         super().__init__(body, BulletConstants().tag)

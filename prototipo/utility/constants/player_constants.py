@@ -12,3 +12,4 @@ class PlayerConstants(Singleton):
         self.acceleration_mag = 90
         self.slowdown_coefficient = -10
         self.angular_velocity = 80
+        self.image_path = './images/player/player_inertial.png'

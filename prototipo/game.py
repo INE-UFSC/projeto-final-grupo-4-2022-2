@@ -23,6 +23,8 @@ class Game:
         self.__screen = pygame.display.set_mode(tuple(GameConstants().screen_size))
         self.__clock = pygame.time.Clock()
 
+        pygame.draw.rect
+
         self.__states_dictionary = {
             GameConstants().state_menu: StateInMenu(self),
             GameConstants().state_in_game: StateInGame(self), 

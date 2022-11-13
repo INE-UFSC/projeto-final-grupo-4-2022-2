@@ -14,4 +14,4 @@ class AsteroidConstants(Singleton):
         self.medium_velocity_mag = self.correction_constant / self.medium_size
         self.big_velocity_mag = self.correction_constant / self.big_size
         
-
+        self.image_path = './images/asteroid/asteroid_1.png'

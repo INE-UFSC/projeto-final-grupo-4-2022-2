@@ -12,13 +12,14 @@ from model.factory.defaultbulletfactory import DefaultBulletFactory
 from utility.constants.alien_constants import AlienConstants
 from utility.constants.game_constants import GameConstants
 from utility.constants.shooter_constants import ShooterConstants
+from utility.data.image_loader import ImageLoader
 
 from pygame import Vector2
-import pygame
+
 
 class Alien(Entity, Shooter):
 
-    __original_alien = pygame.transform.scale(pygame.image.load('./images/alien/alien.png'), (4*AlienConstants().size, 3*AlienConstants().size))
+    __original_alien = ImageLoader().load(AlienConstants().image_path, (4*AlienConstants().size, 3*AlienConstants().size))
 
     def __init__(self, body: Body, direction: int):
         Entity.__init__(self, body, AlienConstants().tag)
