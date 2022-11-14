@@ -12,3 +12,6 @@ class GameConstants(Singleton):
         self.state_menu = "inmenu"
         self.state_end_game = "endgame"
         self.state_default_mode = "statedefaultmode"
+        self.state_dodge_mode = "statedodgemode"
+        self.state_alien_mode = "statealienmode"
+        self.state_asteroid_mode = "stateasteroidmode"
