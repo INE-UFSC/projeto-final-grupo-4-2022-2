@@ -6,6 +6,7 @@ from model.factory.defaultbulletfactory import DefaultBulletFactory
 from model.weapon.default import DefaultWeapon
 
 from utility.constants.player_constants import PlayerConstants
+from utility.constants.pickup_constants import PickUpConstants
 from utility.constants.weapon_constants import WeaponConstants
 from utility.constants.shooter_constants import ShooterConstants
 from utility.constants.game_constants import GameConstants
@@ -72,6 +73,8 @@ class Player(Entity, Shooter):
         self.get_direction().rotate_ip(-angle)
 
     def on_collision(self, entity: Entity) -> None:
+        if entity.get_tag() == PickUpConstants().tag:
+            return
         if (self.get_lives() >= 0):
             self.set_lives(self.get_lives() - 1)
             self.reset()
@@ -84,6 +87,7 @@ class Player(Entity, Shooter):
         self.get_body().set_velocity(Vector2(0,0))
         self.set_direction(Vector2(1, 0).normalize())
         self.set_angle(0)
+        self.set_image(pygame.transform.rotate(Player.__original_image, self.get_angle()))
 
 
     def handle_input(self, dt: float) -> None:

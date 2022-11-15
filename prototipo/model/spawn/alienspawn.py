@@ -12,7 +12,7 @@ from utility.constants.alien_spawn_constants import AlienSpawnConstants
 class AlienSpawner:
 
     def __init__(self) -> None:
-        self.__cooldown = 20
+        self.__cooldown = AlienSpawnConstants().cooldown
         self.__factory = AlienFactory()
 
     def set_cooldown(self, cooldown: float):

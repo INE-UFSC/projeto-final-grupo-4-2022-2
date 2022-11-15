@@ -23,11 +23,9 @@ class Game:
         pygame.display.set_caption(name)
 
         self.__running = True
-        self.__current_state = StateDodgeMode(self)
+        self.__current_state = StateDefaultMode(self)
         self.__screen = pygame.display.set_mode(tuple(GameConstants().screen_size))
         self.__clock = pygame.time.Clock()
-
-        pygame.draw.rect
 
         self.__states_dictionary = {
             GameConstants().state_menu: StateInMenu(self),

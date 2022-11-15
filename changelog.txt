@@ -1,6 +1,11 @@
 #NUM = DATA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#35 = 15/11/2022 (12:35) Augusto
+    - Começando a implementar os pickups
+        - Por enquanto está na fase teste, futuramente seria interessante não precisar verificar a tipagem do player
+        no método on_collision do pickups
+    
 #34 = 15/11/2022 (9:17) Augusto
     - Excluindo o GameController
         - Era um singleton e não ajudava em nada

@@ -8,12 +8,11 @@ class Entity:
 
 # Classe abstrata para aplicar polimorfismo
 # Ela será a base de todas as entidades do jogo
-class Entity(ABC, pygame.sprite.Sprite):
+class Entity(ABC):
 
     next_id = 0
 
     def __init__(self, body: Body, tag: str):
-        pygame.sprite.Sprite.__init__(self)
         self.__id = Entity.next_id
         self.__body = body
         self.__tag = tag

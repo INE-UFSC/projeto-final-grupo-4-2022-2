@@ -10,6 +10,7 @@
 
 ## Outros
 
+#### [ ] - Tipar tudo
 #### [ ] - Pickups (armas e bullet)
 #### [ ] - Fazer os estados para cada modo (Um estado em que o player não tem arma e só desvia dos inimigos; um outro em que o player tem por padrão uma arma com balas limitadas e ao longo do jogo spawna pickups para alterar arma e ganhar munição; um outro ainda que só spawna alien; por fim, um último que spwana sem parar apenas asteroids)
 #### [ ] - Telas de Interface Estáticas (Menu, Scoreboard, Game Over/Save Score)
