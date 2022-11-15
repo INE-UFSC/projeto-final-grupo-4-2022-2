@@ -5,10 +5,12 @@ from abc import abstractmethod
 from controller.entitiescontroller import EntitiesController
 from controller.collisiondetector import CollisionDetector
 from controller.collisionmanager import CollisionManager
-from controller.levelcontroller import LevelController
+from controller.gameoverchecker import GameOverChecker
 
 # Utility imports
 from utility.states.state import State
+from utility.constants.game_constants import GameConstants
+
 
 # Pygame
 import pygame
@@ -20,9 +22,9 @@ class StateInGame(State):
 
     def __init__(self, owner):
         super().__init__(owner)
-        self._level_controller = LevelController()
         self._score_manager = None
         self._debug = None
+        self._player = None
 
     @abstractmethod
     def entry(self) -> None: pass
@@ -67,4 +69,6 @@ class StateInGame(State):
         self._debug.render(screen)
 
     def handle_transition(self) -> None:
-        self._level_controller.update()
+        if GameOverChecker().check(self._player):
+            next_state = GameConstants().state_end_game
+            self.get_owner().change_state(next_state)

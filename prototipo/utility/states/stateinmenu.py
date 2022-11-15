@@ -1,6 +1,4 @@
 
-from controller.gamecontroller import GameController
-
 from utility.states.state import State
 from utility.constants.game_constants import GameConstants
 
@@ -42,4 +40,4 @@ class StateInMenu(State):
     def handle_transition(self) -> None:
         if pygame.key.get_pressed()[pygame.K_g]:
             next_state = GameConstants().state_default_mode
-            GameController.instance().change_state(next_state)
+            self.get_owner().change_state(next_state)

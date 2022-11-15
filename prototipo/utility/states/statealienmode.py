@@ -3,7 +3,6 @@ from controller.entitiescontroller import EntitiesController
 from controller.scoremanager import ScoreManager
 
 from model.spawn.alienspawn import AlienSpawner
-from model.spawn.asteroidspawner import AsteroidSpawner
 from model.factory.defaultplayerfactory import DefaultPlayerFactory
 
 from utility.states.stateingame import StateInGame
@@ -19,8 +18,8 @@ class StateAlienMode(StateInGame):
         self.__alien_spawner = AlienSpawner()
 
         player = DefaultPlayerFactory().create()
+        self._player = player
         self._debug = Debug(player)
-        self._level_controller.set_player(player)
         self._score_manager = ScoreManager(player)
         EntitiesController.instance().add_entity(player)
 

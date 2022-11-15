@@ -21,8 +21,8 @@ class StateDefaultMode(StateInGame):
         self.__asteroid_spawner = AsteroidSpawner()
 
         player = LimitedBulletPlayerFactory().create()
+        self._player = player
         self._debug = Debug(player)
-        self._level_controller.set_player(player)
         self._score_manager = ScoreManager(player)
         EntitiesController.instance().add_entity(player)
 

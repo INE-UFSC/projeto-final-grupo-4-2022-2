@@ -1,6 +1,13 @@
 #NUM = DATA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#34 = 15/11/2022 (9:17) Augusto
+    - Excluindo o GameController
+        - Era um singleton e não ajudava em nada
+    - Refatoração do LevelController
+        - Agora ele só checa se o player está morto
+    - A mudança de estado estará implementada toda no handle_transition de cada estado
+
 #33 = 13/11/2022 (21:14) Micael
     - Criando modo alien, modo asteroid e modo dodge
     - Arrumando bug debug

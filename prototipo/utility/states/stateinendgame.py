@@ -1,5 +1,4 @@
 
-from controller.gamecontroller import GameController
 from controller.entitiescontroller import EntitiesController
 from controller.scoremanager import ScoreManager
 
@@ -67,5 +66,5 @@ class StateInEndGame(State):
 
     def handle_transition(self) -> None:
         if pygame.key.get_pressed()[pygame.K_RETURN]:
-            next_state =GameConstants().state_menu
-            GameController.instance().change_state(next_state)
+            next_state = GameConstants().state_menu
+            self.get_owner().change_state(next_state)
