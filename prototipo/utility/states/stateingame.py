@@ -20,7 +20,7 @@ import pygame
 # Nele estará a lógica de cada frame para o jogo
 class StateInGame(State):
 
-    def __init__(self, owner):
+    def __init__(self, owner) -> None:
         super().__init__(owner)
         self._score_manager = None
         self._debug = None

@@ -21,7 +21,7 @@ class StateDefaultMode(StateInGame):
         self.__alien_spawner = None
         self.__asteroid_spawner = None
 
-    def entry(self):
+    def entry(self) -> None:
         self.__alien_spawner = AlienSpawner()
         self.__asteroid_spawner = AsteroidSpawner()
 

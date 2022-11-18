@@ -14,7 +14,7 @@ import pygame
 # do player
 class StateInEndGame(State):
 
-    def __init__(self, owner):
+    def __init__(self, owner) -> None:
         super().__init__(owner)
 
         self.__text_input = TextInput(" ")

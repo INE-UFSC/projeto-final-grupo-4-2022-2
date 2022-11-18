@@ -9,6 +9,7 @@ from model.weapon.bulletless import BulletlessWeapon
 from model.weapon.default import DefaultWeapon
 from model.weapon.infinity import InfinityWeapon
 from model.weapon.shotgun import Shotgun
+from model.entities.player import Player
 
 from utility.constants.weapon_constants import WeaponConstants
 
@@ -19,7 +20,7 @@ import pygame
 # Estará presente apenas para teste
 class Debug:
 
-    def __init__(self, player) -> None:
+    def __init__(self, player: Player) -> None:
 
         self.__num_entities = 0
         self.__fps = 0
@@ -32,7 +33,7 @@ class Debug:
 
         self.__font = pygame.font.SysFont(None, 20)
 
-    def get_font(self):
+    def get_font(self) -> pygame.font.Font:
         return self.__font
 
     def update(self, clock: pygame.time.Clock) -> None:

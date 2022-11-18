@@ -6,10 +6,10 @@ class Game: ...
 # Classe asbtrata do State
 class State(ABC):
 
-    def __init__(self, owner):
+    def __init__(self, owner: Game):
         self.__owner = owner
 
-    def get_owner(self):
+    def get_owner(self) -> Game:
         return self.__owner
 
     def set_owner(self, new_owner: Game) -> None:

@@ -10,7 +10,7 @@ import pygame
 # scoreboard, sair do jogo ou jogar
 class StateInMenu(State):
 
-    def __init__(self, owner):
+    def __init__(self, owner) -> None:
         super().__init__(owner)
 
     def entry(self) -> None:

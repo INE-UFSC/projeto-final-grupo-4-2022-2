@@ -42,7 +42,7 @@ class Game:
     def close(self) -> None:
         self.__running = False
 
-    def get_current_state(self):
+    def get_current_state(self) -> State:
         return self.__current_state
 
     def set_current_state(self, new_state: State) -> None:

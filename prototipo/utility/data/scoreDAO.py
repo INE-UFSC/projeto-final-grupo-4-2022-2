@@ -8,7 +8,7 @@ class ScoreDAO(DAO):
     def __init__(self) -> None:
         super().__init__('scores.pkl')
 
-    def add(self, score: Score):
+    def add(self, score: Score) -> None:
         # Adiciona um novo score caso não exista um ou
         # caso seja maior que o antigo
         old_score = self.get(score.get_name())

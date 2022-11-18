@@ -1,6 +1,9 @@
 #NUM = DATA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#38 = 18/11/2022 (19:16) Gian
+    - Continuando tipagem (99% pronto)
+
 #37 = 18/11/2022 (11:24) Micael
     - Início da tipagem
         - Parei no utility.data.score

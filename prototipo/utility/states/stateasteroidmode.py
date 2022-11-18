@@ -14,7 +14,7 @@ class StateAsteroidMode(StateInGame):
         super().__init__(owner)
         self.__asteroid_spawner = None
 
-    def entry(self):
+    def entry(self) -> None:
         self.__asteroid_spawner = AsteroidSpawner()
 
         player = DefaultPlayerFactory().create()

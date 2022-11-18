@@ -14,7 +14,7 @@ class StateAlienMode(StateInGame):
         super().__init__(owner)
         self.__alien_spawner = None
 
-    def entry(self):
+    def entry(self) -> None:
         self.__alien_spawner = AlienSpawner()
 
         player = DefaultPlayerFactory().create()
