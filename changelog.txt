@@ -1,6 +1,9 @@
 #NUM = DATA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#36 = 18/11/2022 (9:34) Augusto
+    - Atualizando requirements
+
 #35 = 15/11/2022 (12:35) Augusto
     - Começando a implementar os pickups
         - Por enquanto está na fase teste, futuramente seria interessante não precisar verificar a tipagem do player
