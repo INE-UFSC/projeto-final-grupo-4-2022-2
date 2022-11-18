@@ -15,7 +15,7 @@ class AlienSpawner:
         self.__cooldown = AlienSpawnConstants().cooldown
         self.__factory = AlienFactory()
 
-    def set_cooldown(self, cooldown: float):
+    def set_cooldown(self, cooldown: float) -> None:
         self.__cooldown = cooldown
 
     def get_cooldown(self) -> float:
@@ -24,7 +24,7 @@ class AlienSpawner:
     def get_factory(self) -> AlienFactory:
         return self.__factory
 
-    def decrease(self, dt: float):
+    def decrease(self, dt: float) -> None:
         self.set_cooldown(self.get_cooldown() - dt)
 
     def generate(self, dt: float) -> Entity:

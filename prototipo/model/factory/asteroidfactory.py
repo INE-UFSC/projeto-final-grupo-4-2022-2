@@ -13,7 +13,7 @@ import random
 # com velocidade constante
 class AsteroidFactory:
 
-    def make_velocity(self):
+    def make_velocity(self) -> Vector2:
         velocity = Vector2(random.randint(1, 1000), random.randint(1, 1000))
         if random.randint(0, 1):
             velocity.x = -velocity.x
@@ -25,7 +25,7 @@ class AsteroidFactory:
     def make_position(self) -> Vector2:
         return Vector2(random.randint(0, GameConstants().screen_size.x), random.randint(0, GameConstants().screen_size.y))
 
-    def create(self, number_of_asteroids: int) -> list():
+    def create(self, number_of_asteroids: int) -> list:
         asteroids = list()
         for i in range(number_of_asteroids):
             asteroid = Asteroid(

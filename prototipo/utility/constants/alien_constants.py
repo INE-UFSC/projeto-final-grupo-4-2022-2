@@ -7,7 +7,7 @@ import pygame
 
 class AlienConstants(Singleton):
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.tag = "alien"
         self.size = 10
         self.velocity_mag = 40

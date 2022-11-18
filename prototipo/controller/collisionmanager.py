@@ -3,7 +3,7 @@
 # Singleton que tratará as colisões
 class CollisionManager:
 
-    def handle_collisions(self, collisions: list):
+    def handle_collisions(self, collisions: list) -> None:
         # Tratando as colisões
         # Cada entidade irá reagir de uma forma à colisão
         for collision in collisions:

@@ -12,7 +12,7 @@ class Entity(ABC):
 
     next_id = 0
 
-    def __init__(self, body: Body, tag: str):
+    def __init__(self, body: Body, tag: str) -> None:
         self.__id = Entity.next_id
         self.__body = body
         self.__tag = tag
@@ -36,13 +36,13 @@ class Entity(ABC):
     def get_image(self) -> pygame.surface.Surface:
         return self.__image
 
-    def set_image(self, image):
+    def set_image(self, image: pygame.surface.Surface) -> None:
         self.__image = image
 
     def get_rect(self) -> pygame.rect.Rect:
         return self.__rect
     
-    def set_rect(self, rect):
+    def set_rect(self, rect: pygame.rect.Rect) -> None:
         self.__rect = rect
 
     @abstractmethod

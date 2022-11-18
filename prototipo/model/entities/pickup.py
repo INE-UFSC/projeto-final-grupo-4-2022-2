@@ -9,7 +9,7 @@ class PickUp(Entity):
 
     __original_image = ImageLoader().load(PickUpConstants().image_path, (PickUpConstants().size, PickUpConstants().size))
 
-    def __init__(self, body: Body):
+    def __init__(self, body: Body) -> None:
         super().__init__(body, PickUpConstants().tag)
 
         self.set_image(PickUp.__original_image)

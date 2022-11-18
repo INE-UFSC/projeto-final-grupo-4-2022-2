@@ -8,7 +8,7 @@ class Collision: ...
 # quando elas são iguais e quem colidiu com quem
 class Collision:
 
-    def __init__(self, first: Entity, second: Entity):
+    def __init__(self, first: Entity, second: Entity) -> None:
         self.__first = first
         self.__second = second
 

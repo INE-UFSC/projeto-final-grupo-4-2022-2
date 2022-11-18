@@ -4,7 +4,7 @@ from utility.singleton.singleton import Singleton
 
 class PlayerConstants(Singleton):
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.tag = "player"
         self.size = 10
         self.max_velocity_mag = 90

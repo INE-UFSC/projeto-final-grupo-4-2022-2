@@ -1,25 +1,25 @@
 from model.entities.abstractentity import Entity
 
-
+class EntitiesController: ...
 # Singleton que controla a criação e a destruição das entidades 
 class EntitiesController:
 
     _instance = None
 
     @classmethod
-    def instance(cls):
+    def instance(cls) -> EntitiesController:
         if cls._instance is None:
             cls._instance = cls()
         return cls._instance
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.__entities = []
         self.__deletion_buffer = set()
 
     def get_entities(self) -> list:
         return self.__entities
 
-    def get_deletion_buffer(self):
+    def get_deletion_buffer(self) -> list:
         return list(self.__deletion_buffer)
 
     def add_entity(self, new_entity: Entity) -> None:
@@ -40,7 +40,7 @@ class EntitiesController:
             self.del_entity(entity)
         self.flush_deletion_buffer()
 
-    def update_entities(self, dt):
+    def update_entities(self, dt: float) -> None:
         entities = self.get_entities()
         for entity in entities:
             entity.update(dt)
@@ -51,5 +51,5 @@ class EntitiesController:
         except ValueError as ve:
             print(ve)
 
-    def clear_entities(self):
+    def clear_entities(self) -> None:
         self.__entities.clear()

@@ -3,7 +3,7 @@ from utility.singleton.singleton import Singleton
 
 class AsteroidConstants(Singleton):
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.tag = "asteroid"
         self.small_size = 8
         self.medium_size = 16

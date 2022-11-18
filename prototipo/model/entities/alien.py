@@ -21,7 +21,7 @@ class Alien(Entity, Shooter):
 
     __original_alien = ImageLoader().load(AlienConstants().image_path, (4*AlienConstants().size, 3*AlienConstants().size))
 
-    def __init__(self, body: Body, direction: int):
+    def __init__(self, body: Body, direction: int) -> None:
         Entity.__init__(self, body, AlienConstants().tag)
         Shooter.__init__(self, InfinityWeapon(self, AlienConstants().shoot_cooldown, DefaultBulletFactory()),
                            Vector2(1, 1).normalize(), Vector2(0, 0))
@@ -34,13 +34,13 @@ class Alien(Entity, Shooter):
     def get_move_cooldown(self) -> float:
         return self.__move_cooldown
 
-    def set_move_cooldown(self, new_value):
+    def set_move_cooldown(self, new_value: float) -> None:
         self.__move_cooldown = new_value
 
     def get_direction(self) -> int:
         return self.__direction
 
-    def set_direction(self, direction: int):
+    def set_direction(self, direction: int) -> None:
         self.__direction = direction
 
     def on_collision(self, entity: Entity) -> None:

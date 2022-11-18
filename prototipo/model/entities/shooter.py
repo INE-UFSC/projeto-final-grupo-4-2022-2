@@ -15,20 +15,20 @@ class Shooter(object):
     def get_weapon(self) -> Weapon:
         return self.__weapon
 
-    def set_weapon(self, new_weapon: Weapon):
+    def set_weapon(self, new_weapon: Weapon) -> None:
         self.__weapon = new_weapon
 
     def get_aiming_direction(self) -> Vector2:
         return self.__aiming_direction
 
-    def set_aiming_direction(self, new_direction):
+    def set_aiming_direction(self, new_direction) -> None:
         self.__aiming_direction = new_direction
 
     def get_barrel_position(self) -> Vector2:
         return self.__barrel_position
 
-    def set_barrel_position(self, new_position):
+    def set_barrel_position(self, new_position: Vector2) -> None:
         self.__barrel_position = new_position
 
-    def shoot(self, dt: float):
+    def shoot(self, dt: float) -> None:
         self.get_weapon().shoot(dt)

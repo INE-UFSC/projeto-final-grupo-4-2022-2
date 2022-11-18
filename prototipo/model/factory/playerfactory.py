@@ -2,7 +2,6 @@
 from abc import ABC
 
 from model.entities.player import Player
-from model.entities.player import Player
 from model.body import Body
 
 from utility.constants.player_constants import PlayerConstants

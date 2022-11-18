@@ -3,7 +3,7 @@ import pygame
 
 class ImageLoader:
 
-    def load(self, path, scale):
+    def load(self, path: str, scale: float) -> pygame.surface.Surface:
         try:
             return pygame.transform.scale(pygame.image.load(path), scale)
         except FileNotFoundError as e:

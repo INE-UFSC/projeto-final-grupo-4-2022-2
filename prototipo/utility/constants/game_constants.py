@@ -5,7 +5,7 @@ import pygame
 
 class GameConstants(Singleton):
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.screen_size = pygame.math.Vector2(960, 500)
         self.fps = 60
         

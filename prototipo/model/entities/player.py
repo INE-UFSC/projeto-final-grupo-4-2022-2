@@ -23,7 +23,7 @@ class Player(Entity, Shooter):
 
     __original_image = ImageLoader().load(PlayerConstants().image_path, (40,30))
 
-    def __init__(self, body: Body, lives: int):
+    def __init__(self, body: Body, lives: int) -> None:
         Entity.__init__(self, body, PlayerConstants().tag)
         Shooter.__init__(self, DefaultWeapon(self, WeaponConstants().cooldown, WeaponConstants().max_ammunition, DefaultBulletFactory()),
                            Vector2(1, 0).normalize(), Vector2(0, 0))
@@ -38,28 +38,28 @@ class Player(Entity, Shooter):
 
         self.__score = Score(0, "None")
 
-    def get_angle(self):
+    def get_angle(self) -> float:
         return self.__angle
     
-    def set_angle(self, new_angle):
+    def set_angle(self, new_angle: float) -> None:
         self.__angle = new_angle
 
     def get_lives(self) -> int:
         return self.__lives
 
-    def set_lives(self, lives: int):
+    def set_lives(self, lives: int) -> None:
         self.__lives = lives
 
     def get_direction(self) -> Vector2:
         return self.__direction
 
-    def set_direction(self, new_direction: Vector2):
+    def set_direction(self, new_direction: Vector2) -> None:
         self.__direction = new_direction.normalize()
 
-    def get_score(self):
+    def get_score(self) -> int:
         return self.__score
 
-    def set_score(self, new_score):
+    def set_score(self, new_score: int) -> None:
         self.__score = new_score
 
     def rotate_clockwise(self, angle: float) -> None:
@@ -82,7 +82,7 @@ class Player(Entity, Shooter):
     def alive(self) -> bool:
         return self.__lives > -1
 
-    def reset(self):
+    def reset(self) -> None:
         self.get_body().set_position(GameConstants().screen_size/2)
         self.get_body().set_velocity(Vector2(0,0))
         self.set_direction(Vector2(1, 0).normalize())

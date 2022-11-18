@@ -19,31 +19,31 @@ class Weapon(ABC):
     def get_owner(self) -> Shooter:
         return self.__owner
 
-    def set_owner(self, new_owner: Shooter):
+    def set_owner(self, new_owner: Shooter) -> None:
         self.__owner = new_owner
 
     def get_cooldown(self) -> float:
         return self.__cooldown
 
-    def set_cooldown(self, new_cooldown: float):
+    def set_cooldown(self, new_cooldown: float) -> None:
         self.__cooldown = new_cooldown
 
     def get_ammunition(self) -> int:
         return self.__ammunition
 
-    def set_ammunition(self, new_ammunition: int):
+    def set_ammunition(self, new_ammunition: int) -> None:
         self.__ammunition = new_ammunition
 
     def get_bullet_factory(self) -> BulletFactory:
         return self.__bullet_factory
 
-    def set_bullet_factory(self, new_bullet_factory: BulletFactory):
+    def set_bullet_factory(self, new_bullet_factory: BulletFactory) -> None:
         self.__bullet_factory = new_bullet_factory
 
     def get_time_since_last_shot(self) -> float:
         return self.__time_since_last_shot
 
-    def set_time_since_last_shot(self, new_value: float):
+    def set_time_since_last_shot(self, new_value: float) -> None:
         self.__time_since_last_shot = new_value
 
     @abstractmethod

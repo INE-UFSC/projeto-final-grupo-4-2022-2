@@ -10,7 +10,7 @@ from utility.constants.weapon_constants import WeaponConstants
 
 class AmmoPickUp(PickUp):
 
-    def __init__(self, body: Body):
+    def __init__(self, body: Body) -> None:
         super().__init__(body)
 
     def on_collision(self, entity: Entity):
