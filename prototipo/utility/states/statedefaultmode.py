@@ -14,9 +14,11 @@ from utility.constants.pickup_constants import PickUpConstants
 
 from pygame.math import Vector2
 
+class Game: ...
+
 class StateDefaultMode(StateInGame):
 
-    def __init__(self, owner) -> None:
+    def __init__(self, owner: Game) -> None:
         super().__init__(owner)
         self.__alien_spawner = None
         self.__asteroid_spawner = None

@@ -9,14 +9,16 @@ from model.factory.bulletlessplayerfactory import BulletLessPlayerFactory
 from utility.states.stateingame import StateInGame
 from utility.debug import Debug
 
+class Game: ...
+
 class StateDodgeMode(StateInGame):
 
-    def __init__(self, owner) -> None:
+    def __init__(self, owner: Game) -> None:
         super().__init__(owner)
         self.__alien_spawner = None
         self.__asteroid_spawner = None
 
-    def entry(self):
+    def entry(self) -> None:
         self.__alien_spawner = AlienSpawner()
         self.__asteroid_spawner = AsteroidSpawner()
 

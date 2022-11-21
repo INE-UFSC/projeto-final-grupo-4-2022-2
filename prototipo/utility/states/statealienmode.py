@@ -8,9 +8,11 @@ from model.factory.defaultplayerfactory import DefaultPlayerFactory
 from utility.states.stateingame import StateInGame
 from utility.debug import Debug
 
+class Game: ...
+
 class StateAlienMode(StateInGame):
 
-    def __init__(self, owner) -> None:
+    def __init__(self, owner: Game) -> None:
         super().__init__(owner)
         self.__alien_spawner = None
 

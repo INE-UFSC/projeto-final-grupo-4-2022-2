@@ -9,12 +9,17 @@ from utility.constants.game_constants import GameConstants
 
 import pygame
 
+class Game: ...
+
 # Implementação do estado no fim do jogo
 # Nele estará a lógica persistência do score
 # do player
+
+
+
 class StateInEndGame(State):
 
-    def __init__(self, owner) -> None:
+    def __init__(self, owner: Game) -> None:
         super().__init__(owner)
 
         self.__text_input = TextInput(" ")

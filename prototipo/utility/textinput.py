@@ -15,13 +15,13 @@ class TextInput:
         return self.__text
 
     @text.setter
-    def text(self, new_text: str):
+    def text(self, new_text: str) -> None:
         self.__text = new_text
 
     def get_text(self) -> str:
         return self.__text
 
-    def set_text(self, text: str):
+    def set_text(self, text: str) -> None:
         self.__text = text
 
     def handle_event(self, event: pg.event.Event) -> None:

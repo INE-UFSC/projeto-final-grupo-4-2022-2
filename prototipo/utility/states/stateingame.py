@@ -15,12 +15,13 @@ from utility.constants.game_constants import GameConstants
 # Pygame
 import pygame
 
+class Game: ...
 
 # Implementação do no jogo
 # Nele estará a lógica de cada frame para o jogo
 class StateInGame(State):
 
-    def __init__(self, owner) -> None:
+    def __init__(self, owner: Game) -> None:
         super().__init__(owner)
         self._score_manager = None
         self._debug = None

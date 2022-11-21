@@ -18,7 +18,7 @@ from pygame.time import Clock
 # O Game determinará o fluxo do jogo
 class Game:
 
-    def __init__(self, name="Game"):
+    def __init__(self, name="Game") -> None:
         pygame.init()
         pygame.display.set_caption(name)
 
@@ -93,7 +93,7 @@ class Game:
         self.__current_state.handle_rendering()
         self.update_screen()
 
-    def handle_transition(self):
+    def handle_transition(self) -> None:
         self.__current_state.handle_transition()
 
     def run(self) -> None:

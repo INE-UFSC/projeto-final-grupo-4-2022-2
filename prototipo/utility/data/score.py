@@ -7,19 +7,19 @@ class Score:
         self.__points = points
         self.__name = name
 
-    def get_points(self):
+    def get_points(self) -> int:
         return self.__points
 
-    def set_points(self, new_points):
+    def set_points(self, new_points: int) -> None:
         self.__points = new_points
 
-    def get_name(self):
+    def get_name(self) -> str:
         return self.__name
 
-    def set_name(self, new_name):
+    def set_name(self, new_name: str) -> None:
         self.__name = new_name
 
-    def increase(self, value):
+    def increase(self, value: int) -> None:
         self.__points += value
 
     def __str__(self):

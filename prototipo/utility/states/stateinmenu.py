@@ -4,13 +4,15 @@ from utility.constants.game_constants import GameConstants
 
 import pygame
 
+class Game: ...
+
 # Implementação do Menu
 # Mostrará as opções de ações que
 # o usuário pode fazer, como acessar
 # scoreboard, sair do jogo ou jogar
 class StateInMenu(State):
 
-    def __init__(self, owner) -> None:
+    def __init__(self, owner: Game) -> None:
         super().__init__(owner)
 
     def entry(self) -> None:
