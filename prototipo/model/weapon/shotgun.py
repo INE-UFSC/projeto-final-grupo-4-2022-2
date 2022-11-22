@@ -26,6 +26,8 @@ class Shotgun(Weapon):
         owner_aiming_direction = self.get_owner().get_aiming_direction()
         velocity = owner_aiming_direction * BulletConstants().velocity_mag
 
+
+        # Criando os tiros variando a angulação
         bullet_factory = self.get_bullet_factory()
         bullets = [bullet_factory.create(owner_position, velocity)]
         for i in range(2,6):

@@ -96,6 +96,7 @@ class Game:
     def handle_transition(self) -> None:
         self.__current_state.handle_transition()
 
+    # Método que vai definir o fluxo do jogo
     def run(self) -> None:
         self.get_current_state().entry()
         while self.is_running():

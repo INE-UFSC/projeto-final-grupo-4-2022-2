@@ -9,7 +9,7 @@ from pygame.math import Vector2
 
 import random
 
-# Fábrica de asteoird. Gera Asteroid em posição randômica e
+# Fábrica de asteroid. Gera Asteroid em posição randômica e
 # com velocidade constante
 class AsteroidFactory:
 

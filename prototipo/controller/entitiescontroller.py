@@ -4,6 +4,7 @@ class EntitiesController: ...
 # Singleton que controla a criação e a destruição das entidades 
 class EntitiesController:
 
+    #método e atributo instance de classe para simular um Singleton
     _instance = None
 
     @classmethod

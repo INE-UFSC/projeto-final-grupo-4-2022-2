@@ -45,9 +45,13 @@ class Entity(ABC):
     def set_rect(self, rect: pygame.rect.Rect) -> None:
         self.__rect = rect
 
+    # Método abstrato para lidar com colisão entre entidades
+    # Cada entidade implementa sua lógica de colisão
     @abstractmethod
     def on_collision(self, entity: Entity) -> None: ...
 
+    # Método que vai ser reutilizado e sobrescrito por cada entidade
+    # Atualiza a posição, a velocidade, e tudo que deve ser atualizado para cada entidade
     def update(self, dt: float) -> None:
         image = self.get_image()
 
@@ -56,8 +60,10 @@ class Entity(ABC):
         self.set_rect(image.get_rect())
         self.get_rect().center = self.get_body().get_position()
 
+    # Método chamado sempre que uma entidade é destruida
     @abstractmethod
     def destroy(self) -> None: ...
 
+    # Método chamado para atualizar a posição da entidade
     @abstractmethod
     def move(self, dt: float) -> None: ...

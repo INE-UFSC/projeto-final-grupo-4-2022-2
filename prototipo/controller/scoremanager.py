@@ -19,6 +19,7 @@ class ScoreManager:
         if self.__player is None:
             return
 
+        #Incrementa o score ao longo do tempo e com a destruição de entidades
         if self.last_update > ScoreConstants().time_to_score:
             self.last_update = 0
             self.__player.get_score().increase(ScoreConstants().time)
@@ -31,5 +32,7 @@ class ScoreManager:
     def write_to_disk(self, new_name: str) -> None:
         if self.__player is None:
             return
+
+        #Atualiza o nome do jogador e escreve em disco    
         self.__player.get_score().set_name(new_name)
         self.__score_dao.add(self.__player.get_score())

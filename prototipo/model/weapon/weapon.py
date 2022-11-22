@@ -46,6 +46,8 @@ class Weapon(ABC):
     def set_time_since_last_shot(self, new_value: float) -> None:
         self.__time_since_last_shot = new_value
 
+    # Método que vai ser implementado de acordo com a classe de arma
+    # Por exemplo, a arma shotgun ao invés de atirar um único tiro atira vários
     @abstractmethod
     def shoot(self, dt: float) -> None:
         pass

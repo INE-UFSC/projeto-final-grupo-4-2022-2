@@ -8,7 +8,7 @@ from utility.constants.bullet_constants import BulletConstants
 
 from pygame.math import Vector2
 
-# Controi uma bala padrão
+# Constroi uma bala padrão
 class DefaultBulletFactory(BulletFactory):
 
     def create(self, position: Vector2, velocity: Vector2) -> Entity:
