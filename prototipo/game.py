@@ -23,7 +23,7 @@ class Game:
         pygame.display.set_caption(name)
 
         self.__running = True
-        self.__current_state = StateAlienMode(self)
+        self.__current_state = StateDefaultMode(self)
         self.__screen = pygame.display.set_mode(tuple(GameConstants().screen_size))
         self.__clock = pygame.time.Clock()
 
