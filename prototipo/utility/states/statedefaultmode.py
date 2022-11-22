@@ -4,6 +4,8 @@ from controller.scoremanager import ScoreManager
 
 from model.body import Body
 from model.entities.ammopickup import AmmoPickUp
+from model.entities.lifepickup import LifePickUp
+from model.entities.shotgunpickup import ShotGunPickUp
 from model.spawn.alienspawn import AlienSpawner
 from model.spawn.asteroidspawner import AsteroidSpawner
 from model.factory.limitedbulletplayerfactory import LimitedBulletPlayerFactory
@@ -32,8 +34,12 @@ class StateDefaultMode(StateInGame):
         self._debug = Debug(player)
         self._score_manager = ScoreManager(player)
 
-        pickup = AmmoPickUp(Body(Vector2(100,100),Vector2(0,0), PickUpConstants().size))
-        EntitiesController.instance().add_entity(pickup)
+        pickup1 = AmmoPickUp(Body(Vector2(150,100),Vector2(0,0), PickUpConstants().size))
+        pickup2 = LifePickUp(Body(Vector2(100,100),Vector2(0,0), PickUpConstants().size))
+        pickup3 = ShotGunPickUp(Body(Vector2(200,100),Vector2(0,0), PickUpConstants().size))
+        EntitiesController.instance().add_entity(pickup1)
+        EntitiesController.instance().add_entity(pickup2)
+        EntitiesController.instance().add_entity(pickup3)
         EntitiesController.instance().add_entity(player)
 
     def handle_update(self, dt: float) -> None:

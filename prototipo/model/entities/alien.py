@@ -12,6 +12,7 @@ from model.factory.defaultbulletfactory import DefaultBulletFactory
 from utility.constants.alien_constants import AlienConstants
 from utility.constants.game_constants import GameConstants
 from utility.constants.shooter_constants import ShooterConstants
+from utility.constants.pickup_constants import PickUpConstants
 from utility.data.image_loader import ImageLoader
 
 from pygame import Vector2
@@ -44,6 +45,8 @@ class Alien(Entity, Shooter):
         self.__direction = direction
 
     def on_collision(self, entity: Entity) -> None:
+        if entity.get_tag() == PickUpConstants().tag:
+            return
         EntitiesController.instance().register_deletion(self)
 
     def move(self, dt: float) -> None:
