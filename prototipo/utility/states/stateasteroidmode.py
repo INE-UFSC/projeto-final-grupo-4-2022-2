@@ -2,7 +2,7 @@
 from controller.entitiescontroller import EntitiesController
 from controller.scoremanager import ScoreManager
 
-from model.spawn.asteroidspawner import AsteroidSpawner
+from model.spawn.asteroidspawntertime import AsteroidSpawnerTime
 from model.factory.defaultplayerfactory import DefaultPlayerFactory
 
 from utility.states.stateingame import StateInGame
@@ -17,7 +17,7 @@ class StateAsteroidMode(StateInGame):
         self.__asteroid_spawner = None
 
     def entry(self) -> None:
-        self.__asteroid_spawner = AsteroidSpawner()
+        self.__asteroid_spawner = AsteroidSpawnerTime()
 
         player = DefaultPlayerFactory().create()
         self._player = player
@@ -26,5 +26,5 @@ class StateAsteroidMode(StateInGame):
         EntitiesController.instance().add_entity(player)
 
     def handle_update(self, dt: float) -> None:
-        self.__asteroid_spawner.generate()
+        self.__asteroid_spawner.generate(dt)
         super().handle_update(dt)

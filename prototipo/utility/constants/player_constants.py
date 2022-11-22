@@ -8,7 +8,7 @@ class PlayerConstants(Singleton):
         self.tag = "player"
         self.size = 10
         self.max_velocity_mag = 90
-        self.max_lives = 5
+        self.max_lives = 20000
         self.acceleration_mag = 90
         self.slowdown_coefficient = -10
         self.angular_velocity = 80
