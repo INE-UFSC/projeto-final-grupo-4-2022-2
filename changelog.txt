@@ -1,6 +1,9 @@
 #NUM = DATA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#44 = 25/11/2022 (14:10) Gian
+    - Modo Pickup 
+
 #43 = 22/11/2022 (11:29) Micael
     - Criando os ultimos pickups
         - Falta colocar tempo de vida para os pickups
