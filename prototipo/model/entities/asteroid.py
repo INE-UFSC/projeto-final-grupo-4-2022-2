@@ -4,6 +4,7 @@ from model.body import Body
 from controller.entitiescontroller import EntitiesController
 
 from utility.constants.asteroid_constants import AsteroidConstants
+from utility.constants.pickup_constants import PickUpConstants
 from utility.constants.game_constants import GameConstants
 from utility.data.image_loader import ImageLoader
 
@@ -32,6 +33,8 @@ class Asteroid(Entity):
 
     def on_collision(self, entity: Entity) -> None:
         if entity.get_tag() == AsteroidConstants().tag:
+            return
+        if entity.get_tag() == PickUpConstants().tag:
             return
         EntitiesController.instance().register_deletion(self)
 
