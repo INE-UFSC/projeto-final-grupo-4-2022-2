@@ -6,6 +6,7 @@ from utility.states.state import State
 from utility.states.statedodgemode import StateDodgeMode
 from utility.states.statealienmode import StateAlienMode
 from utility.states.stateasteroidmode import StateAsteroidMode
+from utility.states.statepickupmode import StatePickUpMode
 
 
 from utility.constants.game_constants import GameConstants
@@ -23,7 +24,7 @@ class Game:
         pygame.display.set_caption(name)
 
         self.__running = True
-        self.__current_state = StateDefaultMode(self)
+        self.__current_state = StatePickUpMode(self)
         self.__screen = pygame.display.set_mode(tuple(GameConstants().screen_size))
         self.__clock = pygame.time.Clock()
 
@@ -33,6 +34,7 @@ class Game:
             GameConstants().state_end_game: StateInEndGame(self),
             GameConstants().state_dodge_mode: StateDodgeMode(self),
             GameConstants().state_alien_mode: StateAlienMode(self),
+            GameConstants().state_pickup_mode: StatePickUpMode(self),
             GameConstants().state_asteroid_mode: StateAsteroidMode(self)
          }
 

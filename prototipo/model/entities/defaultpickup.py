@@ -11,7 +11,7 @@ from model.weapon.default import DefaultWeapon
 from utility.constants.weapon_constants import WeaponConstants
 
 
-class DefaultPickUp(PickUp):
+class DefaultWeaponPickUp(PickUp):
 
     def __init__(self, body: Body) -> None:
         super().__init__(body)

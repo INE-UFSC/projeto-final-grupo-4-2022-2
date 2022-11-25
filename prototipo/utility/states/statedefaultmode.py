@@ -8,7 +8,7 @@ from model.entities.lifepickup import LifePickUp
 from model.entities.shotgunpickup import ShotGunPickUp
 from model.entities.bulletlesspickup import BulletlessPickUp
 from model.entities.infinitypickup import InfinityPickUp
-from model.entities.defaultpickup import DefaultPickUp
+from model.entities.defaultpickup import DefaultWeaponPickUp
 from model.entities.piercingbulletpickup import PiercingBulletPickUp
 from model.entities.rubberbulletpickup import RubberBulletPickUp
 from model.entities.persistentbulletpickup import PersistentBulletPickUp
@@ -45,7 +45,7 @@ class StateDefaultMode(StateInGame):
         pickup2 = LifePickUp(Body(Vector2(100,100),Vector2(0,0), PickUpConstants().size))
         pickup3 = ShotGunPickUp(Body(Vector2(200,100),Vector2(0,0), PickUpConstants().size))
         pickup4 = InfinityPickUp(Body(Vector2(150,150),Vector2(0,0), PickUpConstants().size))
-        pickup5 = DefaultPickUp(Body(Vector2(200,150),Vector2(0,0), PickUpConstants().size))
+        pickup5 = DefaultWeaponPickUp(Body(Vector2(200,150),Vector2(0,0), PickUpConstants().size))
         pickup6 = BulletlessPickUp(Body(Vector2(100,150),Vector2(0,0), PickUpConstants().size))
         pickup7 = PiercingBulletPickUp(Body(Vector2(200,200),Vector2(0,0), PickUpConstants().size))
         pickup8 = RubberBulletPickUp(Body(Vector2(150,200),Vector2(0,0), PickUpConstants().size))
