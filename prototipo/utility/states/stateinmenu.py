@@ -33,8 +33,6 @@ class StateInMenu(State):
                                 b_asteroid_mode, b_alien_mode,
                                 b_pickup_mode, b_back]
         self.__action_buttons = [b_play, b_score_board, b_exit]
-        self.__current_buttons = self.__action_buttons
-        self.__update_buttons_position()
 
         self.__keys_current_state = {pygame.K_UP: False,
                                      pygame.K_DOWN: False,
@@ -44,14 +42,21 @@ class StateInMenu(State):
                                       pygame.K_SPACE: False}
         self.__selected_button = 0
 
-    def __update_buttons_position(self):
+    def __update_buttons_position(self) -> None:
         for i, w in enumerate(self.__current_buttons):
             pos = pygame.math.Vector2(GameConstants().screen_size.x/2, GameConstants().screen_size.y/2 + w.get_font_size() * 1.1 * (i - 1))
             w.set_position(pos)
 
-    def entry(self) -> None:
-        pass
+    def __reset_keys(self) -> None:
+        for k in self.__keys_current_state.keys():
+            self.__keys_current_state[k] = False
+            self.__keys_previous_state[k] = False
 
+    def entry(self) -> None:
+        self.__reset_keys()
+        self.__current_buttons = self.__action_buttons
+        self.__update_buttons_position()
+    
     def exit(self) -> None:
         pass
 

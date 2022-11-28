@@ -33,6 +33,9 @@ class StatePickUpMode(StateInGame):
 
         EntitiesController.instance().add_entity(player)
 
+    def exit(self) -> None:
+        pass
+
     def handle_update(self, dt: float) -> None:
         self.__alien_spawner.generate(dt)
         self.__pickup_spawner.generate(dt)

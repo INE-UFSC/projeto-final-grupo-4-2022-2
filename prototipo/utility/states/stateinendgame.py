@@ -22,14 +22,16 @@ class StateInEndGame(State):
     def __init__(self, owner: Game) -> None:
         super().__init__(owner)
 
-        self.__text_input = TextInput(" ")
+        self.__text_input = None
+        self.__player = None
 
     def entry(self) -> None:
-        self.__text_input = TextInput(" ")
+        self.__text_input = TextInput("")
+        self.__player = EntitiesController.instance().get_entities()[0]
+        print(type(self.__player))
 
     def exit(self) -> None:
-        player = EntitiesController.instance().get_entities()[0]
-        ScoreManager(player).write_to_disk(self.__text_input.get_text())
+        ScoreManager(self.__player).write_to_disk(self.__text_input.get_text())
         EntitiesController.instance().clear_entities()
         [print(scorelog) for scorelog in ScoreDAO().get_all()]
 
@@ -49,25 +51,20 @@ class StateInEndGame(State):
         screen = self.get_owner().get_screen()
         white = (255, 255, 255)
 
-        message = f"STATE IN END GAME"
-        message2 = f"Aperte ENTER para transitar para STATE IN MENU (ENTER também salva o score)"
-        message_img = pygame.font.SysFont(
-            font, 50).render(message, True, white)
-        message2_img = pygame.font.SysFont(
-            font, 20).render(message2, True, white)
+        msg_score = f"Score: {self.__player.get_score().get_points()}"
+        score_img = pygame.font.SysFont(
+            font, 50).render(msg_score, True, white)
+        r_score = score_img.get_rect()
+        r_score.center = (GameConstants().screen_size.x/2, GameConstants().screen_size.y/2 - 100)
 
-        nome_img = self.__text_input.get_text_as_image(32, white)
+        msg_type_here = f"Nome: {self.__text_input.get_text()}"
+        type_here_img = pygame.font.SysFont(
+            font, 32).render(msg_type_here, True, white)
+        r_type_here = type_here_img.get_rect()
+        r_type_here.center = (GameConstants().screen_size.x/2, GameConstants().screen_size.y/2 - 40)
 
-        digite_aqui_img = pygame.font.SysFont(
-            font, 32).render("Nome: ", True, white)
-        screen.blit(message_img, (GameConstants().screen_size.x /
-                    2 - 200, GameConstants().screen_size.y/2 - 40))
-        screen.blit(message2_img, (GameConstants().screen_size.x /
-                    2 - 200, GameConstants().screen_size.y/2 + 60))
-        screen.blit(digite_aqui_img, (GameConstants().screen_size.x /
-                    2 - 96, GameConstants().screen_size.y/2))
-        screen.blit(nome_img, (GameConstants().screen_size.x /
-                    2, GameConstants().screen_size.y/2))
+        screen.blit(score_img, (r_score.x, r_score.y))
+        screen.blit(type_here_img, (r_type_here.x, r_type_here.y))
 
     def handle_transition(self) -> None:
         if pygame.key.get_pressed()[pygame.K_RETURN]:

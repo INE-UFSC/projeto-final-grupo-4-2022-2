@@ -25,6 +25,9 @@ class StateAlienMode(StateInGame):
         self._score_manager = ScoreManager(player)
         EntitiesController.instance().add_entity(player)
 
+    def exit(self) -> None:
+        pass
+
     def handle_update(self, dt: float) -> None:
         self.__alien_spawner.generate(dt)
         super().handle_update(dt)

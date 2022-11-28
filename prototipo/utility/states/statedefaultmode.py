@@ -41,28 +41,10 @@ class StateDefaultMode(StateInGame):
         self._debug = Debug(player)
         self._score_manager = ScoreManager(player)
 
-        pickup1 = AmmoPickUp(Body(Vector2(150,100),Vector2(0,0), PickUpConstants().size))
-        pickup2 = LifePickUp(Body(Vector2(100,100),Vector2(0,0), PickUpConstants().size))
-        pickup3 = ShotGunPickUp(Body(Vector2(200,100),Vector2(0,0), PickUpConstants().size))
-        pickup4 = InfinityPickUp(Body(Vector2(150,150),Vector2(0,0), PickUpConstants().size))
-        pickup5 = DefaultWeaponPickUp(Body(Vector2(200,150),Vector2(0,0), PickUpConstants().size))
-        pickup6 = BulletlessPickUp(Body(Vector2(100,150),Vector2(0,0), PickUpConstants().size))
-        pickup7 = PiercingBulletPickUp(Body(Vector2(200,200),Vector2(0,0), PickUpConstants().size))
-        pickup8 = RubberBulletPickUp(Body(Vector2(150,200),Vector2(0,0), PickUpConstants().size))
-        pickup9 = DefaultBulletPickUp(Body(Vector2(100,200),Vector2(0,0), PickUpConstants().size))
-        pickup10 = PersistentBulletPickUp(Body(Vector2(100,250),Vector2(0,0), PickUpConstants().size))
-
-        EntitiesController.instance().add_entity(pickup1)
-        EntitiesController.instance().add_entity(pickup2)
-        EntitiesController.instance().add_entity(pickup3)
-        EntitiesController.instance().add_entity(pickup4)
-        EntitiesController.instance().add_entity(pickup5)
-        EntitiesController.instance().add_entity(pickup6)
-        EntitiesController.instance().add_entity(pickup7)
-        EntitiesController.instance().add_entity(pickup8)
-        EntitiesController.instance().add_entity(pickup9)
-        EntitiesController.instance().add_entity(pickup10)
         EntitiesController.instance().add_entity(player)
+
+    def exit(self) -> None:
+        pass
 
     def handle_update(self, dt: float) -> None:
         self.__alien_spawner.generate(dt)

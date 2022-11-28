@@ -30,6 +30,7 @@ class StateInGame(State):
     @abstractmethod
     def entry(self) -> None: pass
 
+    @abstractmethod
     def exit(self) -> None:
         pass
 
