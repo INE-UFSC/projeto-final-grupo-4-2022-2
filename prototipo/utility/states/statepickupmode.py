@@ -9,6 +9,7 @@ from model.factory.limitedbulletplayerfactory import LimitedBulletPlayerFactory
 
 from utility.states.stateingame import StateInGame
 from utility.debug import Debug
+from utility.statusreporter import StatusReporter
 
 
 class Game: ...
@@ -30,6 +31,7 @@ class StatePickUpMode(StateInGame):
         self._player = player
         self._debug = Debug(player)
         self._score_manager = ScoreManager(player)
+        self._status_reporter = StatusReporter(player)
 
         EntitiesController.instance().add_entity(player)
 

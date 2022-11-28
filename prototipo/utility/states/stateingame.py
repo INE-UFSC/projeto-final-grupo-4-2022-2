@@ -26,6 +26,7 @@ class StateInGame(State):
         self._score_manager = None
         self._debug = None
         self._player = None
+        self._status_reporter = None
 
     @abstractmethod
     def entry(self) -> None: pass
@@ -68,7 +69,8 @@ class StateInGame(State):
                 continue
             screen.blit(entity.get_image(), entity.get_rect())
             
-        self._debug.render(screen)
+        #self._debug.render(screen)
+        self._status_reporter.render(screen)
 
     def handle_transition(self) -> None:
         if GameOverChecker().check(self._player):

@@ -4,8 +4,9 @@ from controller.scoremanager import ScoreManager
 
 from model.spawn.alienspawn import AlienSpawner
 from model.spawn.asteroidspawner import AsteroidSpawner
-from model.factory.bulletlessplayerfactory import BulletLessPlayerFactory 
+from model.factory.bulletlessplayerfactory import BulletLessPlayerFactory
 
+from utility.statusreporter import StatusReporter
 from utility.states.stateingame import StateInGame
 from utility.debug import Debug
 
@@ -26,6 +27,7 @@ class StateDodgeMode(StateInGame):
         self._player = player
         self._debug = Debug(player)
         self._score_manager = ScoreManager(player)
+        self._status_reporter = StatusReporter(player)
         EntitiesController.instance().add_entity(player)
 
     def exit(self) -> None:
