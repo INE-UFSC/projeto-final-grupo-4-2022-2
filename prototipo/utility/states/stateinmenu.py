@@ -19,13 +19,20 @@ class StateInMenu(State):
 
     def __init__(self, owner: Game) -> None:
         super().__init__(owner)
-        b_play = Button("play_button",
-                   pygame.math.Vector2(GameConstants().screen_size.x/2, GameConstants().screen_size.y/2),
-                   "Play", font_size=40)
-        b_exit = Button("exit_button",
-                   pygame.math.Vector2(GameConstants().screen_size.x/2, GameConstants().screen_size.y/2 + 50),
-                   "Exit", font_size=40)
-        self.__widgets = [b_play, b_exit]
+        b_default_mode = Button("default_mode", text="Default", font_size=30)
+        b_dodge_mode = Button("dodge_mode", text="Dodge", font_size=30)
+        b_asteroid_mode = Button("asteroid_mode", text="Asteroid", font_size=30)
+        b_alien_mode = Button("alien_mode", text="Alien", font_size=30)
+        b_pickup_mode = Button("pickup_mode", text="PickUp", font_size=30)
+        b_exit = Button("exit_button", text="Exit", font_size=30)
+        self.__widgets = [b_default_mode, b_dodge_mode,
+                          b_asteroid_mode, b_alien_mode,
+                          b_pickup_mode, b_exit]
+
+        for i, w in enumerate(self.__widgets):
+            pos = pygame.math.Vector2(GameConstants().screen_size.x/2, GameConstants().screen_size.y/2 + w.get_font_size() * 1.1 * (i - 1))
+            w.set_position(pos)
+
         self.__keys_current_state = {pygame.K_UP: False,
                                      pygame.K_DOWN: False,
                                      pygame.K_SPACE: False}
@@ -82,9 +89,21 @@ class StateInMenu(State):
     def handle_transition(self) -> None:
         if self.__keys_current_state[pygame.K_SPACE] == True and self.__keys_previous_state[pygame.K_SPACE] == False:
             widget = self.__widgets[self.__selected_button]
-            if widget.get_key() == "play_button":
+            if widget.get_key() == "default_mode":
                 next_state = GameConstants().state_default_mode
                 self.get_owner().change_state(next_state)
-            elif widget.get_key() == "exit_button":
+            elif widget.get_key() == "dodge_mode":
+                next_state = GameConstants().state_dodge_mode
+                self.get_owner().change_state(next_state)
+            elif widget.get_key() == "asteroid_mode":
+                next_state = GameConstants().state_asteroid_mode
+                self.get_owner().change_state(next_state)
+            elif widget.get_key() == "alien_mode":
+                next_state = GameConstants().state_alien_mode
+                self.get_owner().change_state(next_state)
+            elif widget.get_key() == "pickup_mode":
+                next_state = GameConstants().state_pickup_mode
+                self.get_owner().change_state(next_state)
+            else:
                 self.get_owner().close()
 

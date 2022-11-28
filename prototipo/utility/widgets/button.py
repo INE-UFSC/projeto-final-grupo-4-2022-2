@@ -81,5 +81,4 @@ class Button:
                                                    True, self.get_font_color() if not self.get_marked() else self.__color_when_marked)
         r = img.get_rect()
         r.center = (self.get_position().x, self.get_position().y)
-
         screen.blit(img, (r.x, r.y))
