@@ -1,4 +1,7 @@
 from model.entities.player import Player
+
+from utility.constants.game_constants import GameConstants
+
 import pygame
 
 class StatusReporter:
@@ -7,7 +10,9 @@ class StatusReporter:
     def __init__(self, player: Player) -> None:
         self.__player = player
 
-        self.__font = pygame.font.SysFont(None, 20)
+        self.__small_font = pygame.font.SysFont(None, 20)
+        self.__medium_font = pygame.font.SysFont(None, 30)
+        self.__big_font = pygame.font.SysFont(None, 40)
 
     def get_player(self) -> Player:
         return self.__player
@@ -15,8 +20,14 @@ class StatusReporter:
     def set_player(self, new_player: Player) -> Player:
         self.__player = new_player
 
-    def get_font(self) -> pygame.font.Font:
-        return self.__font
+    def get_small_font(self) -> pygame.font.Font:
+        return self.__small_font
+
+    def get_medium_font(self) -> pygame.font.Font:
+        return self.__medium_font
+
+    def get_big_font(self) -> pygame.font.Font:
+        return self.__big_font
 
     def render(self, screen: pygame.Surface) -> None:
 
@@ -33,14 +44,30 @@ class StatusReporter:
         weapon_str = f"Arma: {weapon}"
         bullet_str = f"Bullet: {bullet_factory}"
 
-        lives_img = self.get_font().render(lives_str, True, gray)
-        ammo_img = self.get_font().render(ammo_str, True, gray)
-        score_img = self.get_font().render(score_str, True, gray)
-        weapon_img = self.get_font().render(weapon_str, True, gray)
-        bullet_img = self.get_font().render(bullet_str, True, gray)
+        small_font = self.get_small_font()
+        medium_font = self.get_medium_font()
+        big_font = self.get_big_font()
 
-        screen.blit(lives_img, (20, 80))
-        screen.blit(ammo_img, (20, 110))
-        screen.blit(score_img, (20, 140))
-        screen.blit(weapon_img, (20, 170))
-        screen.blit(bullet_img, (20, 200))
+        lives_img = big_font.render(lives_str, True, gray)
+        score_img = big_font.render(score_str, True, gray)
+        ammo_img = medium_font.render(ammo_str, True, gray)
+        weapon_img = small_font.render(weapon_str, True, gray)
+        bullet_img = small_font.render(bullet_str, True, gray)
+
+        r_l = lives_img.get_rect()
+        r_s = score_img.get_rect()
+        r_a = ammo_img.get_rect()
+        r_w = weapon_img.get_rect()
+        r_b = bullet_img.get_rect()
+
+        r_l.center = (GameConstants().screen_size.x/2, 50)
+        r_s.center = (GameConstants().screen_size.x/2, 100)
+        r_a.bottomleft = (10, GameConstants().screen_size.y - 60)
+        r_w.bottomleft = (10, GameConstants().screen_size.y - 40)
+        r_b.bottomleft = (10, GameConstants().screen_size.y - 10)
+
+        screen.blit(lives_img, (r_l.x, r_l.y))
+        screen.blit(ammo_img, (r_a.x, r_a.y))
+        screen.blit(score_img, (r_s.x, r_s.y))
+        screen.blit(weapon_img, (r_w.x, r_w.y))
+        screen.blit(bullet_img, (r_b.x, r_b.y))
