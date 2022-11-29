@@ -29,20 +29,22 @@ class StatusReporter:
     def get_big_font(self) -> pygame.font.Font:
         return self.__big_font
 
+    def update(self) -> None:
+        self.__lives = self.get_player().get_lives()
+        self.__ammo = self.get_player().get_weapon().get_ammunition()
+        self.__score = self.get_player().get_score().get_points()
+        self.__bullet_factory = self.get_player().get_weapon().get_bullet_factory()
+        self.__weapon = self.get_player().get_weapon()
+
     def render(self, screen: pygame.Surface) -> None:
 
         gray = pygame.Color(180, 180, 180)
-        lives = self.get_player().get_lives()
-        ammo = self.get_player().get_weapon().get_ammunition()
-        score = self.get_player().get_score().get_points()
-        bullet_factory = self.get_player().get_weapon().get_bullet_factory()
-        weapon = self.get_player().get_weapon()
 
-        lives_str = f"Vidas: {lives}"
-        ammo_str = f"Ammo: {ammo}"
-        score_str = f"Score: {score}"
-        weapon_str = f"Arma: {weapon}"
-        bullet_str = f"Bullet: {bullet_factory}"
+        lives_str = f"Vidas: {self.__lives}"
+        ammo_str = f"Ammo: {self.__ammo}"
+        score_str = f"Score: {self.__score}"
+        weapon_str = f"Arma: {self.__weapon}"
+        bullet_str = f"Bullet: {self.__bullet_factory}"
 
         small_font = self.get_small_font()
         medium_font = self.get_medium_font()

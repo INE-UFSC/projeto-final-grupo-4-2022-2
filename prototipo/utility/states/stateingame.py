@@ -7,10 +7,10 @@ from controller.collisiondetector import CollisionDetector
 from controller.collisionmanager import CollisionManager
 from controller.gameoverchecker import GameOverChecker
 
+
 # Utility imports
 from utility.states.state import State
 from utility.constants.game_constants import GameConstants
-
 
 # Pygame
 import pygame
@@ -58,7 +58,7 @@ class StateInGame(State):
 
         # Gerencia as destruições de cada entidade
         EntitiesController.instance().handle_deletion()
-
+        self._status_reporter.update()
         self._debug.update(self.get_owner().get_clock())
 
     def handle_rendering(self) -> None:
