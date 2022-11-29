@@ -16,4 +16,5 @@ class SoundsConstants(Singleton):
         self.channel_7 = 7
         self.channel_8 = 8
         self.shot_sound = pygame.mixer.Sound('./sounds/weapon/shot.mp3')
-        self.explosion_sound = pygame.mixer.Sound('./sounds/asteroid/explosionv2.mp3')
+#        self.explosion_sound = pygame.mixer.Sound('./sounds/asteroid/explosionv2.mp3')
+#        self.shotgun_sound = pygame.mixer.Sound('./sounds/weapon/shotgun.mp3')

@@ -104,6 +104,6 @@ class Asteroid(Entity):
         EntitiesController.instance().add_entity(asteroid_b)
 
         
-        canal = SoundsConstants().explosion_channel
-        som = SoundsConstants().explosion_sound
-        pygame.mixer.Channel(canal).play(som)
+        #canal = SoundsConstants().explosion_channel
+        #som = SoundsConstants().explosion_sound
+        #pygame.mixer.Channel(canal).play(som)
