@@ -11,7 +11,10 @@ from utility.constants.bullet_constants import BulletConstants
 
 # Arma padrão, atira quando aperta espaço,
 # tem cooldown e munição
+from utility.data.music_loader import MusicLoader
+
 class DefaultWeapon(Weapon):
+
 
     def __init__(self, owner: Shooter, cooldown: float, ammunition: int, bullet_factory: BulletFactory) -> None:
         super().__init__(owner, cooldown, ammunition, bullet_factory)
@@ -33,6 +36,7 @@ class DefaultWeapon(Weapon):
 
         self.set_time_since_last_shot(0)
         self.set_ammunition(self.get_ammunition() - 1)
+        MusicLoader().load('./sounds/weapon/shot.mp3', 1)
 
     def __str__(self) -> str:
         return f"Default Weapon"    
