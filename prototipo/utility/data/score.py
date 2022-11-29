@@ -23,4 +23,4 @@ class Score:
         self.__points += value
 
     def __str__(self):
-        return f"Name: {self.__name}, Score: {self.__points}"
+        return f"{self.__name} = {self.__points}"

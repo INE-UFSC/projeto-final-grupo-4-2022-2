@@ -25,7 +25,7 @@ class StateInMenu(State):
         b_asteroid_mode = Button(GameConstants().state_asteroid_mode, text="Asteroid", font_size=30)
         b_alien_mode = Button(GameConstants().state_alien_mode, text="Alien", font_size=30)
         b_pickup_mode = Button(GameConstants().state_pickup_mode, text="PickUp", font_size=30)
-        b_score_board = Button("score_board", text="ScoreBoard", font_size=30)
+        b_score_board = Button(GameConstants().state_score_board, text="ScoreBoard", font_size=30)
         b_back = Button("back_button", text="Back", font_size=30)
         b_exit = Button("exit_button", text="Exit", font_size=30)
 
@@ -107,7 +107,7 @@ class StateInMenu(State):
             elif widget.get_key() == "back_button":
                 self.__current_buttons = self.__action_buttons
                 self.__update_buttons_position()
-            elif widget.get_key() == "exit_button" or widget.get_key == "score_board":
+            elif widget.get_key() == "exit_button":
                 self.get_owner().close()
             else:
                 self.get_owner().change_state(widget.get_key())

@@ -1,6 +1,9 @@
 #NUM = DATA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#50 = 29/11/2022 (10:10) Gian
+    - Protótipo Score Board
+
 #49 = 28/11/2022 (15:05) Augusto
     - Começando a implementar o StatusReporter do player
         - Próximas atualizações já é possível tirar a renderização do debug

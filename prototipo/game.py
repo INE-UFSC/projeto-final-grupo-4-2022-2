@@ -7,6 +7,7 @@ from utility.states.statedodgemode import StateDodgeMode
 from utility.states.statealienmode import StateAlienMode
 from utility.states.stateasteroidmode import StateAsteroidMode
 from utility.states.statepickupmode import StatePickUpMode
+from utility.states.statescoreboard import StateScoreBoard
 
 
 from utility.constants.game_constants import GameConstants
@@ -35,7 +36,8 @@ class Game:
             GameConstants().state_dodge_mode: StateDodgeMode(self),
             GameConstants().state_alien_mode: StateAlienMode(self),
             GameConstants().state_pickup_mode: StatePickUpMode(self),
-            GameConstants().state_asteroid_mode: StateAsteroidMode(self)
+            GameConstants().state_asteroid_mode: StateAsteroidMode(self),
+            GameConstants().state_score_board: StateScoreBoard(self)
          }
 
     def is_running(self) -> bool:

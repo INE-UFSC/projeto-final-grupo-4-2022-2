@@ -16,3 +16,4 @@ class GameConstants(Singleton):
         self.state_alien_mode = "statealienmode"
         self.state_asteroid_mode = "stateasteroidmode"
         self.state_pickup_mode = "statepickupmode"
+        self.state_score_board = "statescoreboard"
