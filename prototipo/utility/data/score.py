@@ -1,5 +1,5 @@
 
-
+class Score: ...
 # Classe para armazenar as informações do score
 class Score:
 
@@ -24,3 +24,11 @@ class Score:
 
     def __str__(self):
         return f"{self.__name} = {self.__points}"
+
+    def __lt__(self, other: Score) -> bool:
+        if self.get_points() < other.get_points():
+            return True
+
+        return False
+
+

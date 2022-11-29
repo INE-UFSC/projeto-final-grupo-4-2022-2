@@ -46,8 +46,11 @@ class StateScoreBoard(State):
 
     def entry(self) -> None:
         self.__reset_keys()
-        self.__scores = self.__scoreDAO.get_all()
+        self.__scores = list(self.__scoreDAO.get_all())
 
+        self.__scores.sort()
+        self.__scores.reverse()
+        
         score_matrix = list()
         list_to_append = list()
         for j, score in enumerate(self.__scores):
