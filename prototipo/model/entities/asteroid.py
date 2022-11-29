@@ -7,9 +7,12 @@ from utility.constants.asteroid_constants import AsteroidConstants
 from utility.constants.pickup_constants import PickUpConstants
 from utility.constants.game_constants import GameConstants
 from utility.data.image_loader import ImageLoader
+from utility.data.music_loader import MusicLoader
 
 from pygame.math import Vector2
 import math
+import pygame
+from utility.constants.sounds_constants import SoundsConstants
 
 
 class Asteroid(Entity):
@@ -99,3 +102,8 @@ class Asteroid(Entity):
         # Adicionando a lista de entidades
         EntitiesController.instance().add_entity(asteroid_a)
         EntitiesController.instance().add_entity(asteroid_b)
+
+        
+        canal = SoundsConstants().explosion_channel
+        som = SoundsConstants().explosion_sound
+        pygame.mixer.Channel(canal).play(som)

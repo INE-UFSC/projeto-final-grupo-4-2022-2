@@ -7,11 +7,13 @@ from model.factory.bulletfactory import BulletFactory
 
 import utility.constants as CONSTANTE
 from utility.constants.bullet_constants import BulletConstants
+from utility.constants.sounds_constants import SoundsConstants
+
+import pygame
 
 
 # Arma padrão, atira quando aperta espaço,
 # tem cooldown e munição
-from utility.data.music_loader import MusicLoader
 
 class DefaultWeapon(Weapon):
 
@@ -36,7 +38,10 @@ class DefaultWeapon(Weapon):
 
         self.set_time_since_last_shot(0)
         self.set_ammunition(self.get_ammunition() - 1)
-        MusicLoader().load('./sounds/weapon/shot.mp3', 1)
+        
+        canal = SoundsConstants().shot_channel
+        som = SoundsConstants().shot_sound
+        pygame.mixer.Channel(canal).play(som)
 
     def __str__(self) -> str:
         return f"Default Weapon"    
