@@ -28,8 +28,8 @@ class StateAlienMode(StateInGame):
         self._score_manager = ScoreManager(player)
         self._status_reporter = StatusReporter(player)
         EntitiesController.instance().add_entity(player)
-        
-        game_music.play()
+
+        game_music.play(-1)
 
     def exit(self) -> None:
         game_music.stop()

@@ -31,7 +31,7 @@ class StateInEndGame(State):
         self.__player = EntitiesController.instance().get_entities()[0]
         print(type(self.__player))
 
-        endgame_music.play()
+        endgame_music.play(-1)
 
     def exit(self) -> None:
         ScoreManager(self.__player).write_to_disk(self.__text_input.get_text())

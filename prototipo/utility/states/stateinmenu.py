@@ -58,7 +58,7 @@ class StateInMenu(State):
         self.__current_buttons = self.__action_buttons
         self.__update_buttons_position()
         
-        menu_music.play()
+        menu_music.play(-1)
 
     def exit(self) -> None:
         menu_music.stop()
