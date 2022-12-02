@@ -5,7 +5,6 @@ from model.entities.shooter import Shooter
 from model.weapon.weapon import Weapon
 from model.factory.bulletfactory import BulletFactory
 
-import utility.constants as CONSTANTE
 from utility.constants.bullet_constants import BulletConstants
 from utility.constants.sounds_constants import SoundsConstants
 
@@ -40,8 +39,8 @@ class DefaultWeapon(Weapon):
         self.set_ammunition(self.get_ammunition() - 1)
         
         canal = SoundsConstants().shot_channel
-        som = SoundsConstants().shot_sound
+        som = SoundsConstants().default_shot_sound
         pygame.mixer.Channel(canal).play(som)
 
     def __str__(self) -> str:
-        return f"Default Weapon"    
+        return f"Default Weapon"

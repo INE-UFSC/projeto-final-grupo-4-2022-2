@@ -8,6 +8,7 @@ from utility.states.statealienmode import StateAlienMode
 from utility.states.stateasteroidmode import StateAsteroidMode
 from utility.states.statepickupmode import StatePickUpMode
 from utility.states.statescoreboard import StateScoreBoard
+from utility.constants.sounds_constants import SoundsConstants
 
 
 from utility.constants.game_constants import GameConstants
@@ -39,6 +40,7 @@ class Game:
             GameConstants().state_asteroid_mode: StateAsteroidMode(self),
             GameConstants().state_score_board: StateScoreBoard(self)
          }
+
 
     def is_running(self) -> bool:
         return self.__running
@@ -103,6 +105,9 @@ class Game:
     # Método que vai definir o fluxo do jogo
     def run(self) -> None:
         self.get_current_state().entry()
+        canal = SoundsConstants().music_channel
+        som = SoundsConstants().menu_music
+        pygame.mixer.Channel(canal).play(som)
         while self.is_running():
             dt = 1.0/self.get_clock().tick(GameConstants().fps)
             self.handle_event()

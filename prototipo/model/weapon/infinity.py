@@ -6,6 +6,9 @@ from model.weapon.weapon import Weapon
 from model.factory.bulletfactory import BulletFactory
 
 from utility.constants.bullet_constants import BulletConstants
+from utility.constants.sounds_constants import SoundsConstants
+
+import pygame
 
 
 # Arma com balas infinitas e com cooldown
@@ -28,6 +31,10 @@ class InfinityWeapon(Weapon):
         EntitiesController.instance().add_entity(bullet)
 
         self.set_time_since_last_shot(0)
+
+        canal = SoundsConstants().infinity_channel
+        som = SoundsConstants().default_shot_sound
+        pygame.mixer.Channel(canal).play(som)
 
     def __str__(self) -> str:
         return f"Infinity Weapon"

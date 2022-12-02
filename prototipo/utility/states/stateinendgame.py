@@ -6,6 +6,7 @@ from utility.textinput import TextInput
 from utility.states.state import State
 from utility.data.scoreDAO import ScoreDAO
 from utility.constants.game_constants import GameConstants
+from utility.constants.sounds_constants import SoundsConstants
 
 import pygame
 
@@ -29,11 +30,16 @@ class StateInEndGame(State):
         self.__text_input = TextInput("")
         self.__player = EntitiesController.instance().get_entities()[0]
         print(type(self.__player))
+        canal = SoundsConstants().music_channel
+        som = SoundsConstants().endgame_music
+        pygame.mixer.Channel(canal).play(som)
 
     def exit(self) -> None:
         ScoreManager(self.__player).write_to_disk(self.__text_input.get_text())
         EntitiesController.instance().clear_entities()
         [print(scorelog) for scorelog in ScoreDAO().get_all()]
+        canal = SoundsConstants().music_channel
+        pygame.mixer.Channel(canal).stop()
 
     def handle_event(self) -> None:
         for event in pygame.event.get():

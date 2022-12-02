@@ -32,3 +32,4 @@ class Shooter(object):
 
     def shoot(self, dt: float) -> None:
         self.get_weapon().shoot(dt)
+        

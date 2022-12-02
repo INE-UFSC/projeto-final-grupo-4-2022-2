@@ -41,9 +41,10 @@ class Shotgun(Weapon):
         self.set_time_since_last_shot(0)
         self.set_ammunition(self.get_ammunition() - 9)
 
-        #canal = SoundsConstants().shot_channel
-        #som = SoundsConstants().shotgun_sound
-        #pygame.mixer.Channel(canal).play(som)
+        canal = SoundsConstants().shotgun_channel
+        som = SoundsConstants().shotgun_sound
+        pygame.mixer.Channel(canal).set_volume(0.3)
+        pygame.mixer.Channel(canal).play(som)
 
     def __str__(self) -> str:
         return f"Shotgun"

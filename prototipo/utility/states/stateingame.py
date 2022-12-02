@@ -27,6 +27,7 @@ class StateInGame(State):
         self._debug = None
         self._player = None
         self._status_reporter = None
+        
 
     @abstractmethod
     def entry(self) -> None: pass
