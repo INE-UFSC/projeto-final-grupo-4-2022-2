@@ -6,9 +6,7 @@ from model.weapon.weapon import Weapon
 from model.factory.bulletfactory import BulletFactory
 
 from utility.constants.bullet_constants import BulletConstants
-from utility.constants.sounds_constants import SoundsConstants
-
-import pygame
+from utility.constants.sounds_constants import default_shot_sound
 
 
 # Arma padrão, atira quando aperta espaço,
@@ -38,9 +36,7 @@ class DefaultWeapon(Weapon):
         self.set_time_since_last_shot(0)
         self.set_ammunition(self.get_ammunition() - 1)
         
-        canal = SoundsConstants().shot_channel
-        som = SoundsConstants().default_shot_sound
-        pygame.mixer.Channel(canal).play(som)
+        default_shot_sound.play()
 
     def __str__(self) -> str:
         return f"Default Weapon"

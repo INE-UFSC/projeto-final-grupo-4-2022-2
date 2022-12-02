@@ -8,7 +8,7 @@ from model.weapon.weapon import Weapon
 from model.factory.bulletfactory import BulletFactory
 
 from utility.constants.bullet_constants import BulletConstants
-from utility.constants.sounds_constants import SoundsConstants
+from utility.constants.sounds_constants import shotgun_sound
 
 import pygame
 
@@ -41,10 +41,7 @@ class Shotgun(Weapon):
         self.set_time_since_last_shot(0)
         self.set_ammunition(self.get_ammunition() - 9)
 
-        canal = SoundsConstants().shotgun_channel
-        som = SoundsConstants().shotgun_sound
-        pygame.mixer.Channel(canal).set_volume(0.3)
-        pygame.mixer.Channel(canal).play(som)
+        shotgun_sound.play()
 
     def __str__(self) -> str:
         return f"Shotgun"

@@ -2,7 +2,6 @@
 from utility.states.state import State
 from utility.constants.game_constants import GameConstants
 from utility.widgets.button import Button
-from utility.constants.sounds_constants import SoundsConstants
 
 import pygame
 
@@ -58,8 +57,6 @@ class StateInMenu(State):
         self.__current_buttons = self.__action_buttons
         self.__update_buttons_position()
 
-
-    
     def exit(self) -> None:
         pass
 
