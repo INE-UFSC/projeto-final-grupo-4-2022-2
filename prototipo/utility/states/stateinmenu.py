@@ -2,6 +2,7 @@
 from utility.states.state import State
 from utility.constants.game_constants import GameConstants
 from utility.widgets.button import Button
+from utility.constants.sounds_constants import menu_music
 
 import pygame
 
@@ -56,9 +57,11 @@ class StateInMenu(State):
         self.__reset_keys()
         self.__current_buttons = self.__action_buttons
         self.__update_buttons_position()
+        
+        menu_music.play()
 
     def exit(self) -> None:
-        pass
+        menu_music.stop()
 
     def handle_event(self) -> None:
         for event in pygame.event.get():

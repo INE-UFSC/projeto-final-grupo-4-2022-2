@@ -9,8 +9,8 @@ from model.factory.bulletlessplayerfactory import BulletLessPlayerFactory
 from utility.statusreporter import StatusReporter
 from utility.states.stateingame import StateInGame
 from utility.debug import Debug
+from utility.constants.sounds_constants import game_music
 
-import pygame
 
 class Game: ...
 
@@ -32,8 +32,10 @@ class StateDodgeMode(StateInGame):
         self._status_reporter = StatusReporter(player)
         EntitiesController.instance().add_entity(player)
 
+        game_music.play()
+
     def exit(self) -> None:
-        pass
+        game_music.stop()
 
     def handle_update(self, dt: float) -> None:
         self.__alien_spawner.generate(dt)

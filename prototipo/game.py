@@ -105,7 +105,6 @@ class Game:
     # Método que vai definir o fluxo do jogo
     def run(self) -> None:
         self.get_current_state().entry()
-        game_music.play()
         while self.is_running():
             dt = 1.0/self.get_clock().tick(GameConstants().fps)
             self.handle_event()
