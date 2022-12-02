@@ -16,12 +16,12 @@ class SoundsConstants(Singleton):
         self.channel_7 = 7
         self.channel_8 = 8
 
-        self.explosion_sound = pygame.mixer.Sound('./sounds/asteroid/explosion.ogg')
-        self.shotgun_sound = pygame.mixer.Sound('./sounds/weapon/shotgun.ogg')
-        self.default_shot_sound = pygame.mixer.Sound('./sounds/weapon/infinityshot.ogg')
-        self.game_music = pygame.mixer.Sound('./sounds/music/gamemusic.ogg')
-        self.endgame_music = pygame.mixer.Sound('./sounds/music/endgamemusic.ogg')
-        self.menu_music = pygame.mixer.Sound('./sounds/music/menumusic.ogg')
-        self.noammo_sound = pygame.mixer.Sound('./sounds/weapon/noammo.ogg')
+        self.explosion_sound = pygame.mixer.Sound('./sounds/asteroid/explosion.wav')
+        self.shotgun_sound = pygame.mixer.Sound('./sounds/weapon/shotgun.wav')
+        self.default_shot_sound = pygame.mixer.Sound('./sounds/weapon/infinityshot.wav')
+        self.game_music = pygame.mixer.Sound('./sounds/music/gamemusic.wav')
+        self.endgame_music = pygame.mixer.Sound('./sounds/music/endgamemusic.wav')
+        self.menu_music = pygame.mixer.Sound('./sounds/music/menumusic.wav')
+        self.noammo_sound = pygame.mixer.Sound('./sounds/weapon/noammo.wav')
 
         pygame.mixer.Channel(self.music_channel).set_volume(0.3)

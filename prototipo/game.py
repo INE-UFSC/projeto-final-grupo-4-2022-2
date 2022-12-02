@@ -22,6 +22,8 @@ from pygame.time import Clock
 class Game:
 
     def __init__(self, name="Game") -> None:
+        pygame.mixer.pre_init(44100, -16, 8, 2048)
+        pygame.mixer.init()
         pygame.init()
         pygame.display.set_caption(name)
 
