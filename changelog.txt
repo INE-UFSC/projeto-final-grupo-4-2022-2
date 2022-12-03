@@ -1,6 +1,9 @@
 #NUM = DATA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#57 = 03/12/2022 (18:58) Augusto
+    - Pequena refatoração de como é desenhada as entidades
+
 #56 = 03/12/2022 (16:54) Micael
     - Colocando sprites nos pickups e arrumando bug de colisão deles
 

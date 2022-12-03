@@ -64,9 +64,7 @@ class StateInGame(State):
         screen = self.get_owner().get_screen()
 
         for entity in EntitiesController.instance().get_entities()[::-1]:
-            if entity.get_image() is None:
-                continue
-            screen.blit(entity.get_image(), entity.get_rect())
+            entity.draw(screen)
             
         #self._debug.render(screen)
         self._status_reporter.render(screen)
