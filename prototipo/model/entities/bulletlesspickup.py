@@ -8,7 +8,6 @@ from model.entities.pickup import PickUp
 from model.entities.player import Player
 from model.weapon.bulletless import BulletlessWeapon
 
-from utility.constants.weapon_constants import WeaponConstants
 from utility.data.image_loader import ImageLoader
 from utility.constants.pickup_constants import PickUpConstants
 

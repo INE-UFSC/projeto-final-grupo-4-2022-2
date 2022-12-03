@@ -69,6 +69,8 @@ class Entity(ABC):
     def move(self, dt: float) -> None: ...
 
     def draw(self, screen: pygame.Surface) -> None:
+        pygame.draw.circle(screen, (255, 0, 0), self.get_body().get_position(), self.get_body().get_radius())
         if self.get_image() is None:
             return
         screen.blit(self.get_image(), self.get_rect())
+        

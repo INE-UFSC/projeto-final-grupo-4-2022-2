@@ -2,7 +2,6 @@
 from model.body import Body
 from model.entities.pickup import PickUp
 
-from utility.constants.alien_constants import AlienConstants
 from utility.constants.game_constants import GameConstants
 from utility.constants.pickup_constants import PickUpConstants
 
@@ -14,7 +13,7 @@ class PickUpFactory:
 
     def create(self, type: PickUp) -> PickUp:
         position = self.make_position()
-        body = Body(position, Vector2(0, 0), PickUpConstants().size)
+        body = Body(position, Vector2(0, 0), PickUpConstants().size/3)
 
         return type(body)
 

@@ -9,7 +9,6 @@ from model.factory.bulletfactory import BulletFactory
 
 from utility.constants.bullet_constants import BulletConstants
 
-import pygame
 
 # Shotgun, atira múltiplas balas
 class Shotgun(Weapon):

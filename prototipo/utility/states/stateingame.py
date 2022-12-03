@@ -1,6 +1,4 @@
 
-from abc import abstractmethod
-
 # Controller imports
 from controller.entitiescontroller import EntitiesController
 from controller.collisiondetector import CollisionDetector

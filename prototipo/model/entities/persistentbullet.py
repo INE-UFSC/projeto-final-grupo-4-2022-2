@@ -11,8 +11,6 @@ from utility.constants.pickup_constants import PickUpConstants
 # Bala com o comportamento de persistencia
 # Apena desaparece depois que atinge um objeto,
 # exclusos outras balas
-
-
 class PersistentBullet(Bullet):
 
     def __init__(self, body: Body, lifetime: int) -> None:
