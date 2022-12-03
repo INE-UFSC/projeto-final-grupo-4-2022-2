@@ -8,18 +8,19 @@
 
 ## Outros
 
-#### [ ] - Tipar tudo
-#### [ ] - Comentar tudo
-#### [ ] - Criar os outros pickups
-#### [ ] - Melhorar modos (Alien, Asteroid). Fazer modo pickup (alterar weapon do alien)
-#### [ ] - Fazer as outras telas e gui ingame (Botões, tabela de score e etc)
 #### [ ] - Sprites (tela de fundo principalmente)
 #### [ ] - Sounds
 #### [ ] - Efeitos visuais (explosões, foguinho na nave e etc)
+#### [ ] - Atualizar UML
 
 
 ## Histórico
 
+#### [x] - Tipar tudo
+#### [x] - Comentar tudo
+#### [x] - Criar os outros pickups
+#### [x] - Melhorar modos (Alien, Asteroid). Fazer modo pickup (alterar weapon do alien)
+#### [x] - Fazer as outras telas e gui ingame (Botões, tabela de score e etc)
 #### [x] - Filtrar caracteres no text input (nem toda key é unicode)
 #### [x] - Fazer sprites, deixar o jogo bonitão
 #### [x] - Scores salvos em disco (estilo arcade? nome AAA score 999 nome BBB score 998)

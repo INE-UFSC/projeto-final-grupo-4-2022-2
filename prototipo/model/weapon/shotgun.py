@@ -41,7 +41,8 @@ class Shotgun(Weapon):
         self.set_time_since_last_shot(0)
         self.set_ammunition(self.get_ammunition() - 9)
 
-        Weapon._shotgun_sound.play()
+        for _ in range(9):
+            Weapon._default_weapon_sound.play()
 
     def __str__(self) -> str:
         return f"Shotgun"

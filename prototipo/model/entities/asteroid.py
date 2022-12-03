@@ -19,7 +19,7 @@ class Asteroid(Entity):
     __original_medium_asteroid = ImageLoader().load(AsteroidConstants().image_path, (3*AsteroidConstants().medium_size, 3*AsteroidConstants().medium_size))
     __original_small_asteroid = ImageLoader().load(AsteroidConstants().image_path, (3*AsteroidConstants().small_size, 3*AsteroidConstants().small_size))
     
-    __explosion_sound = SoundLoader().load(AsteroidConstants().explosion_sound_path, 0.2)
+    __explosion_sound = SoundLoader().load(AsteroidConstants().explosion_sound_path, 0.1)
 
     def __init__(self, body: Body) -> None:
         super().__init__(body, AsteroidConstants().tag)

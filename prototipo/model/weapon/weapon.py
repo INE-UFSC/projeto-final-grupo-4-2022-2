@@ -14,7 +14,7 @@ class Weapon(ABC):
 
     _noammo_sound = SoundLoader().load(WeaponConstants().noammo_sound_path, 0.3)
     _default_weapon_sound = SoundLoader().load(WeaponConstants().default_weapon_sound_path, 0.3)
-    _shotgun_sound = SoundLoader().load(WeaponConstants().shotgun_sound_path, 0.3)
+    _shotgun_sound = SoundLoader().load(WeaponConstants().shotgun_sound_path, 0.1)
 
     def __init__(self, owner: Shooter, cooldown: float, ammunition: int, bullet_factory: BulletFactory) -> None:
         self.__owner = owner
