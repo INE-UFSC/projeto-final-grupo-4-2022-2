@@ -14,6 +14,7 @@ from utility.constants.game_constants import GameConstants
 from utility.constants.shooter_constants import ShooterConstants
 from utility.constants.pickup_constants import PickUpConstants
 from utility.data.image_loader import ImageLoader
+from utility.data.soundloader import SoundLoader
 
 from pygame import Vector2
 
@@ -21,6 +22,7 @@ from pygame import Vector2
 class Alien(Entity, Shooter):
 
     __original_alien = ImageLoader().load(AlienConstants().image_path, (4*AlienConstants().size, 3*AlienConstants().size))
+    __explosion_sound = SoundLoader().load(AlienConstants().explosion_sound_path, 0.3)
 
     def __init__(self, body: Body, direction: int) -> None:
         Entity.__init__(self, body, AlienConstants().tag)
@@ -94,4 +96,4 @@ class Alien(Entity, Shooter):
         self.move(dt)
 
     def destroy(self) -> None:
-        pass
+        Alien.__explosion_sound.play()

@@ -17,3 +17,5 @@ class AlienConstants(Singleton):
                            pygame.math.Vector2(1, 0),
                            pygame.math.Vector2(math.sqrt(2)/2, -math.sqrt(2)/2))
         self.image_path = './images/alien/alien.png'
+
+        self.explosion_sound_path = './sounds/alien/explosion.wav'

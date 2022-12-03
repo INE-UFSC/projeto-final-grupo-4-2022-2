@@ -1,6 +1,9 @@
 #NUM = DATA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#55 = 03/12/2022 (15:33) Augusto
+    - Trocando alguns efeitos sonoros
+
 #54 = 03/12/2022 (12:41) Augusto
     - Arrumando os sons
 
