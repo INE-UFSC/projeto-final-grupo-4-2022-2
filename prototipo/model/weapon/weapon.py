@@ -4,10 +4,17 @@ from abc import ABC, abstractmethod
 # from model.entities.shooter import Shooter
 from model.factory.bulletfactory import BulletFactory
 
+from utility.constants.weapon_constants import WeaponConstants
+from utility.data.soundloader import SoundLoader
+
 class Shooter: ...
 
 # Classe abstrata para as armas
 class Weapon(ABC):
+
+    _noammo_sound = SoundLoader().load(WeaponConstants().noammo_sound_path, 0.3)
+    _default_weapon_sound = SoundLoader().load(WeaponConstants().default_weapon_sound_path, 0.3)
+    _shotgun_weapon_sound = SoundLoader().load(WeaponConstants().shotgun_sound_path, 0.3)
 
     def __init__(self, owner: Shooter, cooldown: float, ammunition: int, bullet_factory: BulletFactory) -> None:
         self.__owner = owner

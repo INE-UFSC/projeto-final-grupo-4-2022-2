@@ -6,7 +6,6 @@ from model.weapon.weapon import Weapon
 from model.factory.bulletfactory import BulletFactory
 
 from utility.constants.bullet_constants import BulletConstants
-from utility.constants.sounds_constants import default_shot_sound
 
 
 # Arma com balas infinitas e com cooldown
@@ -30,7 +29,7 @@ class InfinityWeapon(Weapon):
 
         self.set_time_since_last_shot(0)
 
-        default_shot_sound.play()
+        Weapon._default_weapon_sound.play()
 
     def __str__(self) -> str:
         return f"Infinity Weapon"

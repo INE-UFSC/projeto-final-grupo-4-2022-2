@@ -17,3 +17,7 @@ class GameConstants(Singleton):
         self.state_asteroid_mode = "stateasteroidmode"
         self.state_pickup_mode = "statepickupmode"
         self.state_score_board = "statescoreboard"
+
+        self.game_music_path = './sounds/music/gamemusic.wav'
+        self.endgame_music_path = './sounds/music/endgamemusic.wav'
+        self.menu_music_path = './sounds/music/menumusic.wav'

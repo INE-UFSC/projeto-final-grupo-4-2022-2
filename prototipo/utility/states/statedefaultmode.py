@@ -9,7 +9,6 @@ from model.factory.limitedbulletplayerfactory import LimitedBulletPlayerFactory
 from utility.states.stateingame import StateInGame
 from utility.debug import Debug
 from utility.statusreporter import StatusReporter
-from utility.constants.sounds_constants import game_music
 
 
 class Game: ...
@@ -22,6 +21,7 @@ class StateDefaultMode(StateInGame):
         self.__asteroid_spawner = None
 
     def entry(self) -> None:
+        super().entry()
         self.__alien_spawner = AlienSpawner()
         self.__asteroid_spawner = AsteroidSpawner()
 
@@ -33,11 +33,8 @@ class StateDefaultMode(StateInGame):
 
         EntitiesController.instance().add_entity(player)
 
-        game_music.play(-1)
-
     def exit(self) -> None:
-        game_music.stop()
-
+        super().exit()
 
     def handle_update(self, dt: float) -> None:
         self.__alien_spawner.generate(dt)

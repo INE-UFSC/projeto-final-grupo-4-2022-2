@@ -8,7 +8,6 @@ from model.factory.defaultplayerfactory import DefaultPlayerFactory
 from utility.states.stateingame import StateInGame
 from utility.debug import Debug
 from utility.statusreporter import StatusReporter
-from utility.constants.sounds_constants import game_music
 
 
 class Game: ...
@@ -20,6 +19,7 @@ class StateAlienMode(StateInGame):
         self.__alien_spawner = None
 
     def entry(self) -> None:
+        super().entry()
         self.__alien_spawner = AlienSpawner()
 
         player = DefaultPlayerFactory().create()
@@ -29,10 +29,8 @@ class StateAlienMode(StateInGame):
         self._status_reporter = StatusReporter(player)
         EntitiesController.instance().add_entity(player)
 
-        game_music.play(-1)
-
     def exit(self) -> None:
-        game_music.stop()
+        super().exit()
 
     def handle_update(self, dt: float) -> None:
         self.__alien_spawner.generate(dt)

@@ -7,7 +7,7 @@ from utility.constants.asteroid_constants import AsteroidConstants
 from utility.constants.pickup_constants import PickUpConstants
 from utility.constants.game_constants import GameConstants
 from utility.data.image_loader import ImageLoader
-from utility.constants.sounds_constants import explosion_sound
+from utility.data.soundloader import SoundLoader
 
 from pygame.math import Vector2
 import math
@@ -19,6 +19,7 @@ class Asteroid(Entity):
     __original_medium_asteroid = ImageLoader().load(AsteroidConstants().image_path, (3*AsteroidConstants().medium_size, 3*AsteroidConstants().medium_size))
     __original_small_asteroid = ImageLoader().load(AsteroidConstants().image_path, (3*AsteroidConstants().small_size, 3*AsteroidConstants().small_size))
     
+    __explosion_sound = SoundLoader().load(AsteroidConstants().explosion_sound_path, 0.2)
 
     def __init__(self, body: Body) -> None:
         super().__init__(body, AsteroidConstants().tag)
@@ -101,4 +102,4 @@ class Asteroid(Entity):
         EntitiesController.instance().add_entity(asteroid_a)
         EntitiesController.instance().add_entity(asteroid_b)
 
-        explosion_sound.play()
+        Asteroid.__explosion_sound.play()

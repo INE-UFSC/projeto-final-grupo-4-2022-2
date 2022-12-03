@@ -28,13 +28,11 @@ class StateInGame(State):
         self._player = None
         self._status_reporter = None
         
+    def entry(self) -> None:
+        self.get_owner().get_game_music_sound().play(-1)
 
-    @abstractmethod
-    def entry(self) -> None: pass
-
-    @abstractmethod
     def exit(self) -> None:
-        pass
+        self.get_owner().get_game_music_sound().stop()
 
     def handle_event(self) -> None:
         for event in pygame.event.get():

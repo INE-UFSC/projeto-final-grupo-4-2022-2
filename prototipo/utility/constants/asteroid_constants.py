@@ -15,3 +15,4 @@ class AsteroidConstants(Singleton):
         self.big_velocity_mag = self.correction_constant / self.big_size
         
         self.image_path = './images/asteroid/asteroid_1.png'
+        self.explosion_sound_path = './sounds/asteroid/explosion.wav'

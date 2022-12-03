@@ -9,8 +9,7 @@ from utility.states.stateasteroidmode import StateAsteroidMode
 from utility.states.statepickupmode import StatePickUpMode
 from utility.states.statescoreboard import StateScoreBoard
 from utility.constants.game_constants import GameConstants
-from utility.constants.sounds_constants import game_music
-
+from utility.data.soundloader import SoundLoader
 
 import pygame
 from pygame import Surface
@@ -41,6 +40,9 @@ class Game:
             GameConstants().state_score_board: StateScoreBoard(self)
          }
 
+        self.__game_music_sound = SoundLoader().load(GameConstants().game_music_path, 0.1)
+        self.__menu_music_sound = SoundLoader().load(GameConstants().menu_music_path, 0.1)
+        self.__endgame_music_sound = SoundLoader().load(GameConstants().endgame_music_path, 0.1)
 
     def is_running(self) -> bool:
         return self.__running
@@ -81,6 +83,15 @@ class Game:
 
     def set_states_dictionary(self, states_dic: dict) -> None:
         self.__states_dictionary = states_dic
+
+    def get_game_music_sound(self) -> pygame.mixer.Sound:
+        return self.__game_music_sound
+
+    def get_menu_music_sound(self) -> pygame.mixer.Sound:
+        return self.__menu_music_sound
+
+    def get_endgame_music_sound(self) -> pygame.mixer.Sound:
+        return self.__endgame_music_sound
 
     def handle_event(self) -> None:
         self.__current_state.handle_event()

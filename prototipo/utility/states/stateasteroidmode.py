@@ -8,9 +8,7 @@ from model.factory.defaultplayerfactory import DefaultPlayerFactory
 from utility.states.stateingame import StateInGame
 from utility.debug import Debug
 from utility.statusreporter import StatusReporter
-from utility.constants.sounds_constants import game_music
 
-import pygame
 
 class Game: ...
 
@@ -21,6 +19,7 @@ class StateAsteroidMode(StateInGame):
         self.__asteroid_spawner = None
 
     def entry(self) -> None:
+        super().entry()
         self.__asteroid_spawner = AsteroidSpawnerTime()
 
         player = DefaultPlayerFactory().create()
@@ -31,10 +30,8 @@ class StateAsteroidMode(StateInGame):
 
         EntitiesController.instance().add_entity(player)
 
-        game_music.play(-1)
-
     def exit(self) -> None:
-        game_music.stop()
+        super().exit()
 
     def handle_update(self, dt: float) -> None:
         self.__asteroid_spawner.generate(dt)

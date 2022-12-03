@@ -10,7 +10,6 @@ from model.factory.limitedbulletplayerfactory import LimitedBulletPlayerFactory
 from utility.states.stateingame import StateInGame
 from utility.debug import Debug
 from utility.statusreporter import StatusReporter
-from utility.constants.sounds_constants import game_music
 
 
 
@@ -25,6 +24,7 @@ class StatePickUpMode(StateInGame):
         self.__pickup_spawner = None
 
     def entry(self) -> None:
+        super().entry()
         self.__alien_spawner = AlienSpawner()
         self.__asteroid_spawner = AsteroidSpawner()
         self.__pickup_spawner = PikcUpSpawner()
@@ -37,10 +37,8 @@ class StatePickUpMode(StateInGame):
 
         EntitiesController.instance().add_entity(player)
 
-        game_music.play(-1)
-
     def exit(self) -> None:
-        game_music.stop()
+        super().exit()
 
     def handle_update(self, dt: float) -> None:
         self.__alien_spawner.generate(dt)
