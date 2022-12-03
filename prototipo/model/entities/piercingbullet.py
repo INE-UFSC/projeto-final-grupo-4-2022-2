@@ -6,10 +6,13 @@ from controller.entitiescontroller import EntitiesController
 
 from utility.constants.game_constants import GameConstants
 
+
 # Bala que apenas é destruida após
 # não ter mais tempo de vida
+
+
 class PiercingBullet(Bullet):
-    
+
     def __init__(self, body: Body, lifetime: int) -> None:
         super().__init__(body, lifetime)
 
@@ -40,4 +43,3 @@ class PiercingBullet(Bullet):
         if self.get_lifetime() < 0:
             EntitiesController.instance().register_deletion(self)
         self.move(dt)
-    

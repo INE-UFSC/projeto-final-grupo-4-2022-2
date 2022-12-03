@@ -8,8 +8,14 @@ from model.entities.pickup import PickUp
 from model.entities.player import Player
 from model.factory.piercingbulletfactory import PiercingBulletFactory
 
+from utility.data.image_loader import ImageLoader
+from utility.constants.pickup_constants import PickUpConstants
+
 
 class PiercingBulletPickUp(PickUp):
+
+    __original_image = ImageLoader().load(PickUpConstants().path_piercingbullet,
+                                          (0.75*PickUpConstants().size, 0.75*PickUpConstants().size))
 
     def __init__(self, body: Body) -> None:
         super().__init__(body)

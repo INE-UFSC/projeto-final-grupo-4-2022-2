@@ -7,16 +7,21 @@ from model.body import Body
 
 from utility.constants.game_constants import GameConstants
 
+from utility.constants.pickup_constants import PickUpConstants
 
 # Bala com comportamento normal:
 # vai sempre para a frente e
 # desaparece depois de um certo tempo
+
+
 class DefaultBullet(Bullet):
 
     def __init__(self, body: Body, lifetime: int) -> None:
         super().__init__(body, lifetime)
 
     def on_collision(self, entity: Entity) -> None:
+        if entity.get_tag() == PickUpConstants().tag:
+            return
         EntitiesController.instance().register_deletion(self)
 
     def move(self, dt: float) -> None:

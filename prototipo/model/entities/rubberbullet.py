@@ -6,6 +6,7 @@ from model.entities.bullet import Bullet
 from model.body import Body
 
 from utility.constants.game_constants import GameConstants
+from utility.constants.pickup_constants import PickUpConstants
 
 import pygame
 
@@ -17,6 +18,8 @@ class RubberBullet(Bullet):
         super().__init__(body, lifetime)
 
     def on_collision(self, entity: Entity) -> None:
+        if entity.get_tag() == PickUpConstants().tag:
+            return
         EntitiesController.instance().register_deletion(self)
 
     def move(self, dt: float) -> None:
