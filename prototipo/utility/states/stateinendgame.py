@@ -26,17 +26,17 @@ class StateInEndGame(State):
         self.__player = None
 
     def entry(self) -> None:
-        self.get_owner().endgame_music_sound.play(-1)
+        self.get_owner().get_endgame_music_sound().play(-1)
         self.__text_input = TextInput("")
         self.__player = EntitiesController.instance().get_entities()[0]
         print(type(self.__player))
 
     def exit(self) -> None:
+        self.get_owner().get_endgame_music_sound().stop()
+
         ScoreManager(self.__player).write_to_disk(self.__text_input.get_text())
         EntitiesController.instance().clear_entities()
         [print(scorelog) for scorelog in ScoreDAO().get_all()]
-
-        self.get_owner().endgame_music_sound.stop()
 
     def handle_event(self) -> None:
         for event in pygame.event.get():
