@@ -2,6 +2,7 @@
 from utility.states.state import State
 from utility.constants.game_constants import GameConstants
 from utility.widgets.button import Button
+from utility.data.soundplayer import SoundPlayer
 
 import pygame
 
@@ -53,13 +54,13 @@ class StateInMenu(State):
             self.__keys_previous_state[k] = False
 
     def entry(self) -> None:
-        self.get_owner().get_menu_music_sound().play(-1)
+        SoundPlayer().play(self.get_owner().get_menu_music_sound(), -1)
         self.__reset_keys()
         self.__current_buttons = self.__action_buttons
         self.__update_buttons_position()
 
     def exit(self) -> None:
-        self.get_owner().get_menu_music_sound().stop()
+         SoundPlayer().stop(self.get_owner().get_menu_music_sound())
 
     def handle_event(self) -> None:
         for event in pygame.event.get():
@@ -67,6 +68,8 @@ class StateInMenu(State):
                 self.get_owner().close()
 
     def handle_update(self, dt: float) -> None:
+        super().handle_update(dt)
+
         for k in self.__keys_current_state.keys():
             self.__keys_previous_state[k] = self.__keys_current_state[k]
         for k in self.__keys_current_state.keys():
@@ -88,6 +91,8 @@ class StateInMenu(State):
         
 
     def handle_rendering(self) -> None:
+        super().handle_rendering()
+
         # Temporário
         title = f"Asteroid"
         font = pygame.font.get_default_font()

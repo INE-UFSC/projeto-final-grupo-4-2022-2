@@ -8,6 +8,7 @@ from model.weapon.weapon import Weapon
 from model.factory.bulletfactory import BulletFactory
 
 from utility.constants.bullet_constants import BulletConstants
+from utility.data.soundplayer import SoundPlayer
 
 
 # Shotgun, atira múltiplas balas
@@ -40,7 +41,7 @@ class Shotgun(Weapon):
         self.set_time_since_last_shot(0)
         self.set_ammunition(self.get_ammunition() - 9)
 
-        Weapon._shotgun_sound.play()
+        SoundPlayer().play(Weapon._shotgun_sound)
 
     def __str__(self) -> str:
         return f"Shotgun"

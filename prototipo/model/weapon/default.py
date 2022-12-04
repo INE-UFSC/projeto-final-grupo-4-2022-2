@@ -6,6 +6,7 @@ from model.weapon.weapon import Weapon
 from model.factory.bulletfactory import BulletFactory
 
 from utility.constants.bullet_constants import BulletConstants
+from utility.data.soundplayer import SoundPlayer
 
 # Arma padrão, atira quando aperta espaço,
 # tem cooldown e munição
@@ -33,7 +34,7 @@ class DefaultWeapon(Weapon):
         self.set_time_since_last_shot(0)
         self.set_ammunition(self.get_ammunition() - 1)
         
-        Weapon._default_weapon_sound.play()
+        SoundPlayer().play(Weapon._default_weapon_sound)
 
     def __str__(self) -> str:
         return f"Default Weapon"

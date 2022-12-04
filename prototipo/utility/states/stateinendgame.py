@@ -44,9 +44,10 @@ class StateInEndGame(State):
             self.__text_input.handle_event(event)
 
     def handle_update(self, dt: float) -> None:
-        ...
+        super().handle_update(dt)
 
     def handle_rendering(self) -> None:
+        super().handle_rendering()
 
         # Temporário
         font = pygame.font.get_default_font()

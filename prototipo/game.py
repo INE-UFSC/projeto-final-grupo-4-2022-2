@@ -117,7 +117,12 @@ class Game:
     def run(self) -> None:
         self.get_current_state().entry()
         while self.is_running():
-            dt = 1.0/self.get_clock().tick(GameConstants().fps)
+            self.get_clock().tick(GameConstants().fps)
+            try:
+                dt = 1.0/self.get_clock().get_fps()
+            except ZeroDivisionError as e:
+                print(e)
+                dt = 1
             self.handle_event()
             self.handle_update(dt)
             self.handle_rendering()

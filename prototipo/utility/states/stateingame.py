@@ -9,6 +9,7 @@ from controller.gameoverchecker import GameOverChecker
 # Utility imports
 from utility.states.state import State
 from utility.constants.game_constants import GameConstants
+from utility.data.soundplayer import SoundPlayer
 
 # Pygame
 import pygame
@@ -27,10 +28,10 @@ class StateInGame(State):
         self._status_reporter = None
         
     def entry(self) -> None:
-        self.get_owner().get_game_music_sound().play(-1)
+        SoundPlayer().play(self.get_owner().get_game_music_sound(), -1)
 
     def exit(self) -> None:
-        self.get_owner().get_game_music_sound().stop()
+         SoundPlayer().stop(self.get_owner().get_game_music_sound())
 
     def handle_event(self) -> None:
         for event in pygame.event.get():
@@ -38,6 +39,7 @@ class StateInGame(State):
                 self.get_owner().close()
 
     def handle_update(self, dt: float) -> None:
+        super().handle_update(dt)
 
         # Atualiza cada entidade do jogo
         EntitiesController.instance().update_entities(dt)
@@ -59,12 +61,13 @@ class StateInGame(State):
         self._debug.update(self.get_owner().get_clock())
 
     def handle_rendering(self) -> None:
+        super().handle_rendering()
         screen = self.get_owner().get_screen()
 
         for entity in EntitiesController.instance().get_entities()[::-1]:
             entity.draw(screen)
             
-        #self._debug.render(screen)
+        self._debug.render(screen)
         self._status_reporter.render(screen)
 
     def handle_transition(self) -> None:

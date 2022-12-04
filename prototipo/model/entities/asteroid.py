@@ -8,6 +8,7 @@ from utility.constants.pickup_constants import PickUpConstants
 from utility.constants.game_constants import GameConstants
 from utility.data.image_loader import ImageLoader
 from utility.data.soundloader import SoundLoader
+from utility.data.soundplayer import SoundPlayer
 
 from pygame.math import Vector2
 import math
@@ -102,4 +103,4 @@ class Asteroid(Entity):
         EntitiesController.instance().add_entity(asteroid_a)
         EntitiesController.instance().add_entity(asteroid_b)
 
-        Asteroid.__explosion_sound.play()
+        SoundPlayer().play(Asteroid.__explosion_sound)

@@ -1,6 +1,11 @@
 #NUM = DATA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#58 = 03/12/2022 (23:50) Augusto
+    - Colocando fundo nas telas
+        - Criação de particulas e criação de geradores e destruidores delas
+        - Alguns bugs de natureza indeterminada (mas já foram aparentemente consertados)
+
 #57 = 03/12/2022 (18:58) Augusto
     - Pequena refatoração de como é desenhada as entidades
 

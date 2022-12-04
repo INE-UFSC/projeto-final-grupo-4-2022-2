@@ -1,6 +1,8 @@
 
 import pygame
 
+pygame.mixer.init()
+
 
 class SoundLoader:
 
@@ -10,4 +12,6 @@ class SoundLoader:
             sound.set_volume(volume)
             return sound
         except FileNotFoundError as e:
+            print(e)
+        except pygame.error as e:
             print(e)

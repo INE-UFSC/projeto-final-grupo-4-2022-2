@@ -73,6 +73,7 @@ class StateScoreBoard(State):
                 self.get_owner().close()
 
     def handle_update(self, dt: float) -> None:
+        super().handle_update(dt)
 
         for k in self.__keys_current_state.keys():
             self.__keys_previous_state[k] = self.__keys_current_state[k]
@@ -90,6 +91,7 @@ class StateScoreBoard(State):
             self.__page = len(self.__scores) - 1
 
     def handle_rendering(self) -> None:
+        super().handle_rendering()
 
         COLOR_WHITE = (255, 255, 255)
         # Temporário

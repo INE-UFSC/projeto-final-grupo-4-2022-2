@@ -3,6 +3,8 @@ from model.entities.shooter import Shooter
 from model.weapon.weapon import Weapon
 from model.factory.defaultbulletfactory import DefaultBulletFactory
 
+from utility.data.soundplayer import SoundPlayer
+
 
 # Arma que não dispara bala
 class BulletlessWeapon(Weapon):
@@ -16,7 +18,7 @@ class BulletlessWeapon(Weapon):
             self.set_time_since_last_shot(self.get_time_since_last_shot() + dt)
             return
         self.set_time_since_last_shot(0)
-        Weapon._noammo_sound.play()
+        SoundPlayer().play(Weapon._noammo_sound)
 
     def __str__(self) -> str:
         return f"Buletless Weapon (No Weapon)"
