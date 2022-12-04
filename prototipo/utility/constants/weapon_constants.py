@@ -4,7 +4,7 @@ class WeaponConstants(Singleton):
 
     def __init__(self) -> None:
         self.cooldown = 0.5
-        self.max_ammunition = 10
+        self.max_ammunition = 10000
         
         self.default_weapon_sound_path = './sounds/weapon/infinityshot.wav'
         self.shotgun_sound_path = './sounds/weapon/shotgun.wav'

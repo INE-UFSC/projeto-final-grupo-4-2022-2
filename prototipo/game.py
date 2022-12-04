@@ -121,8 +121,7 @@ class Game:
             try:
                 dt = 1.0/self.get_clock().get_fps()
             except ZeroDivisionError as e:
-                print(e)
-                dt = 1
+                dt = 1.0/60.0
             self.handle_event()
             self.handle_update(dt)
             self.handle_rendering()

@@ -59,7 +59,7 @@ class StateScoreBoard(State):
                 score_matrix.append(list_to_append[:])
                 list_to_append = list()
 
-        if 0 < len(list_to_append) <= 10:
+        if 0 < len(list_to_append) < 10:
             score_matrix.append(list_to_append)
 
         self.__scores = score_matrix[:]
