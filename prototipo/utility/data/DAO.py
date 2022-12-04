@@ -40,4 +40,5 @@ class DAO(ABC):
 
     # Resgata todos os dados do cache
     def get_all(self) -> list:
+        self.__load()
         return self.__cache.values()

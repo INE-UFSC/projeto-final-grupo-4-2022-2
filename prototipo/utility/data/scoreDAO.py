@@ -16,3 +16,4 @@ class ScoreDAO(DAO):
             super().add(score.get_name(), score)
         elif old_score.get_points() < score.get_points():
             super().add(score.get_name(), score)
+        

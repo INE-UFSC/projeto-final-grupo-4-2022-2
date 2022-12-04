@@ -23,6 +23,10 @@ class Player(Entity, Shooter):
 
     __original_image = ImageLoader().load(PlayerConstants().image_path, (40,30))
 
+    @staticmethod
+    def get_original_image() -> pygame.surface.Surface:
+        return Player.__original_image.copy()
+
     def __init__(self, body: Body, lives: int) -> None:
         Entity.__init__(self, body, PlayerConstants().tag)
         Shooter.__init__(self, DefaultWeapon(self, WeaponConstants().cooldown, WeaponConstants().max_ammunition, DefaultBulletFactory()),

@@ -67,7 +67,7 @@ class StateInGame(State):
         for entity in EntitiesController.instance().get_entities()[::-1]:
             entity.draw(screen)
             
-        self._debug.render(screen)
+        #self._debug.render(screen)
         self._status_reporter.render(screen)
 
     def handle_transition(self) -> None:

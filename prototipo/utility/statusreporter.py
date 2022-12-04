@@ -38,11 +38,10 @@ class StatusReporter:
 
     def render(self, screen: pygame.Surface) -> None:
 
-        gray = pygame.Color(180, 180, 180)
+        color = pygame.Color(255, 255, 255)
 
-        lives_str = f"Vidas: {self.__lives}"
         ammo_str = f"Ammo: {self.__ammo}"
-        score_str = f"Score: {self.__score}"
+        score_str = f"{self.__score}"
         weapon_str = f"Arma: {self.__weapon}"
         bullet_str = f"Bullet: {self.__bullet_factory}"
 
@@ -50,26 +49,31 @@ class StatusReporter:
         medium_font = self.get_medium_font()
         big_font = self.get_big_font()
 
-        lives_img = big_font.render(lives_str, True, gray)
-        score_img = big_font.render(score_str, True, gray)
-        ammo_img = medium_font.render(ammo_str, True, gray)
-        weapon_img = small_font.render(weapon_str, True, gray)
-        bullet_img = small_font.render(bullet_str, True, gray)
+        score_img = big_font.render(score_str, True, color)
+        ammo_img = small_font.render(ammo_str, True, color)
+        weapon_img = small_font.render(weapon_str, True, color)
+        bullet_img = small_font.render(bullet_str, True, color)
 
-        r_l = lives_img.get_rect()
         r_s = score_img.get_rect()
         r_a = ammo_img.get_rect()
         r_w = weapon_img.get_rect()
         r_b = bullet_img.get_rect()
 
-        r_l.center = (GameConstants().screen_size.x/2, 50)
         r_s.center = (GameConstants().screen_size.x/2, 100)
         r_a.bottomleft = (10, GameConstants().screen_size.y - 60)
-        r_w.bottomleft = (10, GameConstants().screen_size.y - 40)
+        r_w.bottomleft = (10, GameConstants().screen_size.y - 35)
         r_b.bottomleft = (10, GameConstants().screen_size.y - 10)
 
-        screen.blit(lives_img, (r_l.x, r_l.y))
         screen.blit(ammo_img, (r_a.x, r_a.y))
         screen.blit(score_img, (r_s.x, r_s.y))
         screen.blit(weapon_img, (r_w.x, r_w.y))
         screen.blit(bullet_img, (r_b.x, r_b.y))
+
+        player_images = [pygame.transform.rotate(Player.get_original_image(), 90) for _ in range(self.__lives)]
+        player_images_rect = [player_image.get_rect() for player_image in player_images]
+        player_image_width = Player.get_original_image().get_rect().width
+
+        for i, player_image_rect in enumerate(player_images_rect):
+            player_image_rect.bottomleft = (GameConstants().screen_size.x/2.0 - player_image_width * self.__lives / 2.0 + player_image_width * i + 5, 70)
+        for i, player_image in enumerate(player_images):
+            screen.blit(player_image, player_images_rect[i])

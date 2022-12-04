@@ -23,8 +23,6 @@ class StateScoreBoard(State):
         button_right = Button("button_right", text=">>", font_size=15)
         button_left = Button("button_left", text="<<", font_size=15)
 
-        self.__scoreDAO = ScoreDAO()
-
         self.__scores = None
 
         self.__nav_buttons = [button_left, button_right]
@@ -46,7 +44,7 @@ class StateScoreBoard(State):
 
     def entry(self) -> None:
         self.__reset_keys()
-        self.__scores = list(self.__scoreDAO.get_all())
+        self.__scores = list(ScoreDAO().get_all())
 
         self.__scores.sort()
         self.__scores.reverse()

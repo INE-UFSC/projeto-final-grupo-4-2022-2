@@ -35,7 +35,6 @@ class StateInEndGame(State):
 
         ScoreManager(self.__player).write_to_disk(self.__text_input.get_text())
         EntitiesController.instance().clear_entities()
-        [print(scorelog) for scorelog in ScoreDAO().get_all()]
 
     def handle_event(self) -> None:
         for event in pygame.event.get():
