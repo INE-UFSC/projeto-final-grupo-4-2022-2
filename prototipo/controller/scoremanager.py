@@ -6,9 +6,11 @@ from utility.constants.alien_constants import AlienConstants
 from model.entities.player import Player
 
 # Singleton para gerenciar o score do player
+
+
 class ScoreManager:
 
-    def __init__(self, player: Player=None) -> None:
+    def __init__(self, player: Player = None) -> None:
         self.__player = player
         self.__score_dao = ScoreDAO()
         self.last_update = 0
@@ -19,7 +21,10 @@ class ScoreManager:
         if self.__player is None:
             return
 
-        #Incrementa o score ao longo do tempo e com a destruição de entidades
+        if not isinstance(self.__player, Player):
+            return
+
+        # Incrementa o score ao longo do tempo e com a destruição de entidades
         if self.last_update > ScoreConstants().time_to_score:
             self.last_update = 0
             self.__player.get_score().increase(ScoreConstants().time)
@@ -33,6 +38,6 @@ class ScoreManager:
         if self.__player is None:
             return
 
-        #Atualiza o nome do jogador e escreve em disco    
+        # Atualiza o nome do jogador e escreve em disco
         self.__player.get_score().set_name(new_name)
         self.__score_dao.add(self.__player.get_score())

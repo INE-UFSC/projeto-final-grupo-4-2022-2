@@ -25,5 +25,5 @@ class LifePickUp(PickUp):
 
     def on_collision(self, entity: Entity):
         if isinstance(entity, Player):
-            entity.set_lives(PlayerConstants().max_lives)
+            entity.set_lives(entity.get_lives() + 1)
             EntitiesController.instance().register_deletion(self)
