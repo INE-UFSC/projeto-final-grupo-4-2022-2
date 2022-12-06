@@ -98,7 +98,7 @@ class StateScoreBoard(State):
         font = pygame.font.get_default_font()
         message_img = pygame.font.SysFont(font, 50).render(title, True, COLOR_WHITE)
         r = message_img.get_rect()
-        r.center = (GameConstants().screen_size.x/2, 100)
+        r.center = (GameConstants().screen_size.x/2, 80)
         self.get_owner().get_screen().blit(message_img, (r.x, r.y))
 
         score_font = pygame.font.SysFont(font, 20)

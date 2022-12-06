@@ -1,9 +1,6 @@
 
 import pygame
-
 pygame.mixer.init()
-
-
 class SoundLoader:
 
     def load(self, path: str, volume: float) -> pygame.mixer.Sound:

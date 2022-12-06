@@ -8,14 +8,13 @@
 
 ## Outros
 
-#### [ ] - Sprites (tela de fundo principalmente)
-#### [ ] - Sounds
 #### [ ] - Efeitos visuais (explosões, foguinho na nave e etc)
 #### [ ] - Atualizar UML
 
-
 ## Histórico
 
+#### [x] - Sprites (tela de fundo principalmente)
+#### [x] - Sounds
 #### [x] - Tipar tudo
 #### [x] - Comentar tudo
 #### [x] - Criar os outros pickups

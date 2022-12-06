@@ -1,4 +1,4 @@
-
+# UTILITY
 from utility.states.statedefaultmode import StateDefaultMode
 from utility.states.stateinendgame import StateInEndGame
 from utility.states.stateinmenu import StateInMenu
@@ -8,9 +8,14 @@ from utility.states.statealienmode import StateAlienMode
 from utility.states.stateasteroidmode import StateAsteroidMode
 from utility.states.statepickupmode import StatePickUpMode
 from utility.states.statescoreboard import StateScoreBoard
-from utility.constants.game_constants import GameConstants
 from utility.data.soundloader import SoundLoader
+from utility.data.soundplayer import SoundPlayer
 
+# CONSTANTS
+from utility.constants.game_constants import GameConstants
+
+# MISC
+import random
 import pygame
 from pygame import Surface
 from pygame.time import Clock
@@ -38,33 +43,26 @@ class Game:
             GameConstants().state_pickup_mode: StatePickUpMode(self),
             GameConstants().state_asteroid_mode: StateAsteroidMode(self),
             GameConstants().state_score_board: StateScoreBoard(self)
-         }
+        }
 
-        self.__game_music_sound = SoundLoader().load(GameConstants().game_music_path, 0.1)
-        self.__menu_music_sound = SoundLoader().load(GameConstants().menu_music_path, 0.1)
-        self.__endgame_music_sound = SoundLoader().load(GameConstants().endgame_music_path, 0.1)
+        # Música
+        self.__sound_loader = SoundLoader()
+        self.__sound_player = SoundPlayer()
+        music_1 = self.__sound_loader.load(GameConstants().music_1_path, 0.2)
+        music_2 = self.__sound_loader.load(GameConstants().music_2_path, 0.2)
+        music_3 = self.__sound_loader.load(GameConstants().music_3_path, 0.2)
+        music_4 = self.__sound_loader.load(GameConstants().music_4_path, 0.2)
+        self.__music_library = [music_1, music_2, music_3, music_4]
+        self.__game_over_music = self.__sound_loader.load(GameConstants().game_over_music_path, 0.5)
 
-    def is_running(self) -> bool:
-        return self.__running
+        self.__current_music = None
 
-    def close(self) -> None:
-        self.__running = False
-
+    # ATRIBUTOS
     def get_current_state(self) -> State:
         return self.__current_state
 
     def set_current_state(self, new_state: State) -> None:
         self.__current_state = new_state
-
-    def change_state(self, new_state_str: str) -> None:
-
-        # Game fazendo o papel do contexto
-        next_state = self.get_states_dictionary()[new_state_str]        
-
-        # Troca de estado
-        self.get_current_state().exit()
-        self.set_current_state(next_state)
-        self.get_current_state().entry()
 
     def get_screen(self) -> Surface:
         return self.__screen
@@ -83,15 +81,43 @@ class Game:
 
     def set_states_dictionary(self, states_dic: dict) -> None:
         self.__states_dictionary = states_dic
+    
+    def get_sound_loader(self) -> SoundLoader:
+        return self.__sound_loader
+    
+    def get_sound_player(self) -> SoundPlayer:
+        return self.__sound_player
 
-    def get_game_music_sound(self) -> pygame.mixer.Sound:
-        return self.__game_music_sound
+    def get_music_library(self) -> list:
+        return self.__music_library
 
-    def get_menu_music_sound(self) -> pygame.mixer.Sound:
-        return self.__menu_music_sound
+    def get_game_over_music(self) -> pygame.mixer.Sound:
+        return self.__game_over_music
 
-    def get_endgame_music_sound(self) -> pygame.mixer.Sound:
-        return self.__endgame_music_sound
+    def get_current_music(self) -> pygame.mixer.Sound:
+        return self.__current_music
+
+    def set_current_music(self, current_music: pygame.mixer.Sound):
+        self.__current_music = current_music
+
+    # LÓGICA
+    def is_running(self) -> bool:
+        return self.__running
+
+    def close(self) -> None:
+        self.__running = False
+        
+    def change_state(self, new_state_str: str) -> None:
+
+        # Game fazendo o papel do contexto
+        next_state = self.get_states_dictionary()[new_state_str]        
+
+        # Troca de estado
+        self.get_current_state().exit()
+        particle_set = self.get_current_state().snapshot_particles()
+        self.set_current_state(next_state)
+        self.get_current_state().load_particle_snapshot(particle_set)
+        self.get_current_state().entry()
 
     def handle_event(self) -> None:
         self.__current_state.handle_event()
@@ -112,6 +138,10 @@ class Game:
 
     def handle_transition(self) -> None:
         self.__current_state.handle_transition()
+
+    def pick_random_music(self) -> pygame.mixer.Sound:
+        index = random.randint(0, 3)
+        return self.get_music_library()[index]
 
     # Método que vai definir o fluxo do jogo
     def run(self) -> None:

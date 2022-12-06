@@ -26,12 +26,15 @@ class StateInEndGame(State):
         self.__player = None
 
     def entry(self) -> None:
-        self.get_owner().get_endgame_music_sound().play()
+        current_music = self.get_owner().get_current_music()
+        self.get_owner().get_sound_player().stop(current_music)
+        
+        self.get_owner().get_game_over_music().play()
         self.__text_input = TextInput("")
         self.__player = EntitiesController.instance().get_entities()[0]
 
     def exit(self) -> None:
-        self.get_owner().get_endgame_music_sound().stop()
+        self.get_owner().get_game_over_music().stop()
 
         ScoreManager(self.__player).write_to_disk(self.__text_input.get_text())
         EntitiesController.instance().clear_entities()
@@ -52,23 +55,31 @@ class StateInEndGame(State):
         font = pygame.font.get_default_font()
         screen = self.get_owner().get_screen()
         white = (255, 255, 255)
+        screen_size_x = GameConstants().screen_size.x
+        screen_size_y = GameConstants().screen_size.y
+
+        msg_actions = f"""Enter: Salvar, Esc: Voltar ao menu"""
+        actions_img = pygame.font.SysFont(font, 20).render(msg_actions, True, white)
+        rect_actions = actions_img.get_rect()
+        rect_actions.center = (screen_size_x/2, screen_size_y/2 - 160)
 
         msg_score = f"Score: {self.__player.get_score().get_points()}"
         score_img = pygame.font.SysFont(
             font, 50).render(msg_score, True, white)
         r_score = score_img.get_rect()
-        r_score.center = (GameConstants().screen_size.x/2, GameConstants().screen_size.y/2 - 100)
+        r_score.center = (screen_size_x/2, screen_size_y/2 - 100)
 
         msg_type_here = f"Nome: {self.__text_input.get_text()}"
         type_here_img = pygame.font.SysFont(
             font, 32).render(msg_type_here, True, white)
         r_type_here = type_here_img.get_rect()
-        r_type_here.center = (GameConstants().screen_size.x/2, GameConstants().screen_size.y/2 - 40)
+        r_type_here.center = (screen_size_x/2, screen_size_y/2 - 40)
 
+        screen.blit(actions_img, (rect_actions.x, rect_actions.y))
         screen.blit(score_img, (r_score.x, r_score.y))
         screen.blit(type_here_img, (r_type_here.x, r_type_here.y))
 
     def handle_transition(self) -> None:
-        if pygame.key.get_pressed()[pygame.K_RETURN]:
+        if pygame.key.get_pressed()[pygame.K_RETURN] or pygame.key.get_pressed()[pygame.K_ESCAPE]:
             next_state = GameConstants().state_menu
             self.get_owner().change_state(next_state)

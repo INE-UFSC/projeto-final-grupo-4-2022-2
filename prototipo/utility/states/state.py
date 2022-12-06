@@ -4,6 +4,8 @@ from abc import ABC, abstractmethod
 from utility.effects.particlegenerator import ParticleGenerator
 from utility.effects.particledestroyer import ParticleDestroyer
 
+import random
+
 import pygame
 
 class Game: ...
@@ -37,7 +39,6 @@ class State(ABC):
 
     # Método onde é atualizado os componentes do estado
     def handle_update(self, dt: float) -> None:
-        pass
         p = self.__particle_generator.generate(dt)
         if p is not None:
             self.__particles.append(p)
@@ -49,10 +50,21 @@ class State(ABC):
 
     # Método que renderiza os componentes
     def handle_rendering(self) -> None:
-        pass
         for p in self.__particles:
-            pygame.draw.circle(self.get_owner().get_screen(), (255,255,255), p.get_position(), p.get_radius())
+            r = random.randint(0, 255)
+            g = random.randint(0, 255)
+            b = random.randint(0, 255)
+            pygame.draw.circle(self.get_owner().get_screen(), (r,g,b), p.get_position(), p.get_radius())
 
     # Método que lidará com a transição de estados
     @abstractmethod
     def handle_transition(self) -> None: ...
+
+    # TODO: Achar um jeito melhor de implementar a continuidade do background
+    def snapshot_particles(self) -> tuple:
+        return (self.__particles, self.__particle_generator, self.__particle_destroyer)
+
+    def load_particle_snapshot(self, set: tuple) -> tuple:
+        self.__particles = set[0]
+        self.__particle_generator = set[1]
+        self.__particle_destroyer = set[2]

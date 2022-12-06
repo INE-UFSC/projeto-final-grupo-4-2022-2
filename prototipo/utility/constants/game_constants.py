@@ -6,7 +6,7 @@ import pygame
 class GameConstants(Singleton):
 
     def __init__(self) -> None:
-        self.screen_size = pygame.math.Vector2(960, 500)
+        self.screen_size = pygame.math.Vector2(1024, 768)
         self.fps = 55
         
         self.state_menu = "inmenu"
@@ -18,6 +18,8 @@ class GameConstants(Singleton):
         self.state_pickup_mode = "statepickupmode"
         self.state_score_board = "statescoreboard"
 
-        self.game_music_path = './sounds/music/gamemusic.wav'
-        self.endgame_music_path = './sounds/music/endgamemusic.wav'
-        self.menu_music_path = './sounds/music/menumusic.wav'
+        self.music_1_path = './sounds/music/music_1.wav'
+        self.music_2_path = './sounds/music/music_2.wav'
+        self.music_3_path = './sounds/music/music_3.wav'
+        self.music_4_path = './sounds/music/music_4.wav'
+        self.game_over_music_path = './sounds/music/game_over.wav'

@@ -1,6 +1,19 @@
 #NUM = DATA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#60 = 06/12/2022 (05:35) Gian
+    - Mudanças nas músicas (melhor ver in-game)*
+    - Collision detector agora tem n² - 2n passos, ao invés de n² (se minhas contas estiverem certas)
+    - Tracer do player implementado (necessita de ajustes)
+    - Levemente acelerado o player, asteroids e aliens (eu fielmente acredito que está melhor agora)
+    - Leve mudança nas partículas (agoras elas piscam colorido e não resetam na troca de estado, melhor ver in-game)
+    - Screen size aumentada para 1024x768
+    - Pequenos ajustes espalhados pelo código (pensando em legibilidade)
+
+    * Pode-se trocar a música indo para o scoreboard e voltando ao menu, porém isto não deveria ser o caso. 
+    Note que a escolha é aleatória e pode acabar repetindo a música. Também é preciso fazer uma lógica para 
+    escolher uma nova música quando a atual termina.
+
 #59 = 04/12/2022 (15:40) Augusto
     - Arrumando o StateScoreBoard, pois não estava atualizando a cada jogo o quadro de pontuações
 

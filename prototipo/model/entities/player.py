@@ -1,10 +1,11 @@
-
+# MODEL
 from model.entities.abstractentity import Entity
 from model.entities.shooter import Shooter
 from model.body import Body
 from model.factory.defaultbulletfactory import DefaultBulletFactory
 from model.weapon.default import DefaultWeapon
 
+# UTILITY
 from utility.constants.player_constants import PlayerConstants
 from utility.constants.pickup_constants import PickUpConstants
 from utility.constants.weapon_constants import WeaponConstants
@@ -12,7 +13,9 @@ from utility.constants.shooter_constants import ShooterConstants
 from utility.constants.game_constants import GameConstants
 from utility.data.image_loader import ImageLoader
 from utility.data.score import Score
+from utility.effects.tracer import Tracer
 
+# PYGAME
 import pygame
 from pygame.math import Vector2
 
@@ -41,6 +44,8 @@ class Player(Entity, Shooter):
         self.__direction = Vector2(1, 0).normalize()
 
         self.__score = Score(0, "None")
+
+        self.__tracers = list()
 
     def get_angle(self) -> float:
         return self.__angle
@@ -100,6 +105,10 @@ class Player(Entity, Shooter):
         # Acelerando
         if pygame.key.get_pressed()[pygame.K_UP]:
             body.accelerate(self.get_direction() * PlayerConstants().acceleration_mag * dt)
+            player_position = self.get_body().get_position()
+            tracer_position = player_position - self.get_body().get_velocity()/self.get_body().get_radius()
+            new_tracer = Tracer(tracer_position, 7.5)
+            self.__tracers.append(new_tracer)
 
         # Desacelerando
         elif (body.get_velocity().magnitude() > 1):
@@ -153,6 +162,13 @@ class Player(Entity, Shooter):
 
         self.handle_input(dt)
         self.move(dt)
+        for tracer in self.__tracers:
+            tracer.update(dt)
+
+    def draw(self, screen: pygame.Surface) -> None:
+        for tracer in self.__tracers:
+            tracer.render(screen)
+        return super().draw(screen)
 
     def destroy(self) -> None:
         pass

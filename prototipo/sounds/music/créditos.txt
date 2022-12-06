@@ -1,0 +1,7 @@
+Créditos!
+
+music_1.wav = https://www.youtube.com/watch?v=mP2Pmc0pSuE
+music_2.wav = https://www.youtube.com/watch?v=SNE2oCZH_4k
+music_3.wav = https://www.youtube.com/watch?v=63hoSNvS6Z4
+music_4.wav = https://www.youtube.com/watch?v=r8x7HCGaTIg
+game_over.wav = https://www.youtube.com/watch?v=CD9S_cY_a1I

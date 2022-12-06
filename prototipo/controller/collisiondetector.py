@@ -1,11 +1,57 @@
 
 from model.collision import Collision
 
-# Singleton, identifica as colisões e registra no
-# gerenciador de colisões onde serão tratadas
 class CollisionDetector:
 
-    def detect_collisions(self, entities: list) -> None:
+    # NOTE: Deve haver algum jeito mais otimizado
+    def detect_collisions(self, entities: list) -> list:
+        collisions = list()
+        entities_len = len(entities)
+
+        for index, target in enumerate(entities):
+            target_id = target.get_id()
+            target_body = target.get_body()
+            target_tag = target.get_tag()
+            target_position = target_body.get_position()
+            target_radius = target_body.get_radius()
+
+            for entity_index in range(index + 1, entities_len):
+                entity = entities[entity_index]
+
+                entity_id = entity.get_id()
+                entity_body = entity.get_body()
+                entity_tag = entity.get_tag()
+                entity_position = entity_body.get_position()
+                entity_radius = entity_body.get_radius()
+
+
+                # If´s para diminur processamento
+                if target_id == entity_id:
+                    continue
+                if target_tag == entity_tag:
+                    continue
+
+                # If para identificar a colisão
+                if target_radius + entity_radius < target_position.distance_to(entity_position):
+                    continue
+
+                # Verificnado se a colisão já não existe
+                collision = Collision(target, entity)
+                eq = False
+                for c in collisions:
+                    if c == collision:
+                        eq = True
+                        break
+                if eq:
+                    continue
+
+                # Registrando a colisão
+                collisions.append(collision)
+
+        return collisions
+
+    # NOTE: Deixei este código aqui para caso algum bug louco de colisão apareça, daí não precisa re-escrever
+    def detect_collisions_old(self, entities: list) -> list:
         collisions = list()
         for target in entities:
             t_id = target.get_id()

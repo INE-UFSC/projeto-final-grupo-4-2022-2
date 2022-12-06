@@ -10,6 +10,7 @@ from controller.gameoverchecker import GameOverChecker
 from utility.states.state import State
 from utility.constants.game_constants import GameConstants
 from utility.data.soundplayer import SoundPlayer
+from utility.effects.tracer import Tracer
 
 # Pygame
 import pygame
@@ -28,10 +29,10 @@ class StateInGame(State):
         self._status_reporter = None
         
     def entry(self) -> None:
-        SoundPlayer().play(self.get_owner().get_game_music_sound(), -1)
+        pass
 
     def exit(self) -> None:
-         SoundPlayer().stop(self.get_owner().get_game_music_sound())
+        pass
 
     def handle_event(self) -> None:
         for event in pygame.event.get():
@@ -66,7 +67,6 @@ class StateInGame(State):
 
         for entity in EntitiesController.instance().get_entities()[::-1]:
             entity.draw(screen)
-            
         #self._debug.render(screen)
         self._status_reporter.render(screen)
 
