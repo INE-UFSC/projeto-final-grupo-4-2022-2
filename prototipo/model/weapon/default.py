@@ -10,6 +10,8 @@ from utility.data.soundplayer import SoundPlayer
 
 # Arma padrão, atira quando aperta espaço,
 # tem cooldown e munição
+
+
 class DefaultWeapon(Weapon):
 
     def __init__(self, owner: Shooter, cooldown: float, ammunition: int, bullet_factory: BulletFactory) -> None:
@@ -33,7 +35,7 @@ class DefaultWeapon(Weapon):
 
         self.set_time_since_last_shot(0)
         self.set_ammunition(self.get_ammunition() - 1)
-        
+
         SoundPlayer().play(Weapon._default_weapon_sound)
 
     def __str__(self) -> str:

@@ -12,4 +12,3 @@ class CollisionManager:
 
             entity_1.on_collision(entity_2)
             entity_2.on_collision(entity_1)
-

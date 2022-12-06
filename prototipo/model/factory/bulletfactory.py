@@ -7,6 +7,8 @@ from pygame.math import Vector2
 
 # Fábrica abstrata para as bullets
 # Será utilizada na classe weapon
+
+
 class BulletFactory(ABC):
 
     @abstractmethod

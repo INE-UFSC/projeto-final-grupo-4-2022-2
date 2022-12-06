@@ -19,12 +19,14 @@ from utility.effects.tracer import Tracer
 import pygame
 from pygame.math import Vector2
 
-class Weapon: ...
+
+class Weapon:
+    ...
 
 
 class Player(Entity, Shooter):
 
-    __original_image = ImageLoader().load(PlayerConstants().image_path, (40,30))
+    __original_image = ImageLoader().load(PlayerConstants().image_path, (40, 30))
 
     @staticmethod
     def get_original_image() -> pygame.surface.Surface:
@@ -33,8 +35,8 @@ class Player(Entity, Shooter):
     def __init__(self, body: Body, lives: int) -> None:
         Entity.__init__(self, body, PlayerConstants().tag)
         Shooter.__init__(self, DefaultWeapon(self, WeaponConstants().cooldown, WeaponConstants().max_ammunition, DefaultBulletFactory()),
-                           Vector2(1, 0).normalize(), Vector2(0, 0))
-        
+                         Vector2(1, 0).normalize(), Vector2(0, 0))
+
         self.__angle = 0
 
         self.set_image(Player.__original_image)
@@ -49,7 +51,7 @@ class Player(Entity, Shooter):
 
     def get_angle(self) -> float:
         return self.__angle
-    
+
     def set_angle(self, new_angle: float) -> None:
         self.__angle = new_angle
 
@@ -73,12 +75,14 @@ class Player(Entity, Shooter):
 
     def rotate_clockwise(self, angle: float) -> None:
         self.set_angle(self.get_angle() - angle % 360)
-        self.set_image(pygame.transform.rotate(Player.__original_image, self.get_angle()))
+        self.set_image(pygame.transform.rotate(
+            Player.__original_image, self.get_angle()))
         self.get_direction().rotate_ip(angle)
 
     def rotate_anticlockwise(self, angle: float) -> None:
         self.set_angle(self.get_angle() + angle % 360)
-        self.set_image(pygame.transform.rotate(Player.__original_image, self.get_angle()))
+        self.set_image(pygame.transform.rotate(
+            Player.__original_image, self.get_angle()))
         self.get_direction().rotate_ip(-angle)
 
     def on_collision(self, entity: Entity) -> None:
@@ -93,28 +97,31 @@ class Player(Entity, Shooter):
 
     def reset(self) -> None:
         self.get_body().set_position(GameConstants().screen_size/2)
-        self.get_body().set_velocity(Vector2(0,0))
+        self.get_body().set_velocity(Vector2(0, 0))
         self.set_direction(Vector2(1, 0).normalize())
         self.set_angle(0)
-        self.set_image(pygame.transform.rotate(Player.__original_image, self.get_angle()))
-
+        self.set_image(pygame.transform.rotate(
+            Player.__original_image, self.get_angle()))
 
     def handle_input(self, dt: float) -> None:
         body = self.get_body()
-        
+
         # Acelerando
         if pygame.key.get_pressed()[pygame.K_UP]:
-            body.accelerate(self.get_direction() * PlayerConstants().acceleration_mag * dt)
+            body.accelerate(self.get_direction() *
+                            PlayerConstants().acceleration_mag * dt)
             player_position = self.get_body().get_position()
-            tracer_position = player_position - self.get_body().get_velocity()/self.get_body().get_radius()
+            tracer_position = player_position - self.get_body().get_velocity() / \
+                self.get_body().get_radius()
             new_tracer = Tracer(tracer_position, 7.5)
             self.__tracers.append(new_tracer)
 
         # Desacelerando
         elif (body.get_velocity().magnitude() > 1):
-            body.accelerate(body.get_velocity().normalize() * PlayerConstants().slowdown_coefficient * dt)
+            body.accelerate(body.get_velocity().normalize() *
+                            PlayerConstants().slowdown_coefficient * dt)
         else:
-            body.set_velocity(Vector2(0,0))
+            body.set_velocity(Vector2(0, 0))
 
         # Lidando com o comportamento de mudança de direção
         if pygame.key.get_pressed()[pygame.K_RIGHT]:
@@ -155,8 +162,9 @@ class Player(Entity, Shooter):
         # Definindo a direção da mira do player
         aiming_direction = self.get_direction()
         # Evitando que a bala seja criada dentro do player
-        barrel_position = self.get_direction()*self.get_body().get_radius() * ShooterConstants().radius_multiplier + self.get_body().get_position()
-        
+        barrel_position = self.get_direction()*self.get_body().get_radius() * \
+            ShooterConstants().radius_multiplier + self.get_body().get_position()
+
         self.set_barrel_position(barrel_position)
         self.set_aiming_direction(aiming_direction)
 

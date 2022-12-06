@@ -14,4 +14,3 @@ class LimitedBulletPlayerFactory(PlayerFactory):
         player.set_weapon(DefaultWeapon(player, WeaponConstants().cooldown,
                                         WeaponConstants().max_ammunition, DefaultBulletFactory()))
         return player
-

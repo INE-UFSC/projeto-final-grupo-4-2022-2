@@ -11,7 +11,9 @@ from utility.states.stateingame import StateInGame
 from utility.debug import Debug
 
 
-class Game: ...
+class Game:
+    ...
+
 
 class StateDodgeMode(StateInGame):
 

@@ -9,6 +9,8 @@ from utility.constants.alien_spawn_constants import AlienSpawnConstants
 # Um spawn de Alien. Muito parecido com os spawns
 # do Minecraft. A cada tantos segundos nasce um
 # novo Alien randômicamente
+
+
 class AlienSpawner:
 
     def __init__(self) -> None:
@@ -34,7 +36,7 @@ class AlienSpawner:
 
     def set_created_aliens(self, created_aliens: int) -> None:
         self.__created_aliens = created_aliens
-    
+
     def get_created_aliens(self) -> int:
         return self.__created_aliens
 

@@ -1,4 +1,6 @@
-class Singleton: ...
+class Singleton:
+    ...
+
 
 class Singleton(object):
     __instance = None

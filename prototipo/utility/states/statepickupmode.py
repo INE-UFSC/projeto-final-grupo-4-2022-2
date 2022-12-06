@@ -12,8 +12,9 @@ from utility.debug import Debug
 from utility.statusreporter import StatusReporter
 
 
+class Game:
+    ...
 
-class Game: ...
 
 class StatePickUpMode(StateInGame):
 

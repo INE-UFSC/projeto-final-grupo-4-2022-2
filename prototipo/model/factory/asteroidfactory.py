@@ -11,6 +11,8 @@ import random
 
 # Fábrica de asteroid. Gera Asteroid em posição randômica e
 # com velocidade constante
+
+
 class AsteroidFactory:
 
     def make_velocity(self) -> Vector2:

@@ -8,9 +8,13 @@ import random
 
 import pygame
 
-class Game: ...
+
+class Game:
+    ...
 
 # Classe asbtrata do State
+
+
 class State(ABC):
 
     def __init__(self, owner: Game):
@@ -42,7 +46,7 @@ class State(ABC):
         p = self.__particle_generator.generate(dt)
         if p is not None:
             self.__particles.append(p)
-        
+
         for p in self.__particles:
             p.update(dt)
 
@@ -54,7 +58,8 @@ class State(ABC):
             r = random.randint(0, 255)
             g = random.randint(0, 255)
             b = random.randint(0, 255)
-            pygame.draw.circle(self.get_owner().get_screen(), (r,g,b), p.get_position(), p.get_radius())
+            pygame.draw.circle(self.get_owner().get_screen(),
+                               (r, g, b), p.get_position(), p.get_radius())
 
     # Método que lidará com a transição de estados
     @abstractmethod

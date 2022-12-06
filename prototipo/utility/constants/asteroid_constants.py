@@ -1,6 +1,7 @@
 
 from utility.singleton.singleton import Singleton
 
+
 class AsteroidConstants(Singleton):
 
     def __init__(self) -> None:
@@ -13,6 +14,6 @@ class AsteroidConstants(Singleton):
         self.small_velocity_mag = self.correction_constant / self.small_size
         self.medium_velocity_mag = self.correction_constant / self.medium_size
         self.big_velocity_mag = self.correction_constant / self.big_size
-        
+
         self.image_path = './images/asteroid/asteroid_1.png'
         self.explosion_sound_path = './sounds/asteroid/explosion.wav'

@@ -9,7 +9,6 @@ from utility.data.soundplayer import SoundPlayer
 # Arma que não dispara bala
 class BulletlessWeapon(Weapon):
 
-
     def __init__(self, owner: Shooter) -> None:
         super().__init__(owner, 1, None, DefaultBulletFactory())
 

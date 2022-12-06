@@ -32,8 +32,8 @@ class StateScoreBoard(State):
                                      pygame.K_ESCAPE: False}
 
         self.__keys_previous_state = {pygame.K_LEFT: False,
-                                     pygame.K_RIGHT: False,
-                                     pygame.K_ESCAPE: False}
+                                      pygame.K_RIGHT: False,
+                                      pygame.K_ESCAPE: False}
 
         self.__page = 0
 
@@ -48,7 +48,7 @@ class StateScoreBoard(State):
 
         self.__scores.sort()
         self.__scores.reverse()
-        
+
         score_matrix = list()
         list_to_append = list()
         for j, score in enumerate(self.__scores):
@@ -96,7 +96,8 @@ class StateScoreBoard(State):
         # vai ser temporário sim, confia
         title = f"Scoreboard"
         font = pygame.font.get_default_font()
-        message_img = pygame.font.SysFont(font, 50).render(title, True, COLOR_WHITE)
+        message_img = pygame.font.SysFont(
+            font, 50).render(title, True, COLOR_WHITE)
         r = message_img.get_rect()
         r.center = (GameConstants().screen_size.x/2, 80)
         self.get_owner().get_screen().blit(message_img, (r.x, r.y))
@@ -107,8 +108,10 @@ class StateScoreBoard(State):
 
             for i, score in enumerate(self.__scores[self.__page]):
                 # gerando texto
-                score_string = str(self.__page * 10 + i + 1) + ": " + str(score)
-                score_image = score_font.render(score_string, True, COLOR_WHITE)
+                score_string = str(self.__page * 10 + i +
+                                   1) + ": " + str(score)
+                score_image = score_font.render(
+                    score_string, True, COLOR_WHITE)
 
                 # centralizando texto
                 score_rectangle = score_image.get_rect()
@@ -116,7 +119,8 @@ class StateScoreBoard(State):
                 score_rectangle.center = score_pos
 
                 # printando
-                self.get_owner().get_screen().blit(score_image, (score_rectangle.x, score_rectangle.y))
+                self.get_owner().get_screen().blit(
+                    score_image, (score_rectangle.x, score_rectangle.y))
 
         for widget in self.__nav_buttons:
             widget.draw(self.get_owner().get_screen())

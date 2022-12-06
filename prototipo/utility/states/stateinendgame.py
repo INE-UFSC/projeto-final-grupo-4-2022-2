@@ -9,12 +9,13 @@ from utility.constants.game_constants import GameConstants
 
 import pygame
 
-class Game: ...
+
+class Game:
+    ...
 
 # Implementação do estado no fim do jogo
 # Nele estará a lógica persistência do score
 # do player
-
 
 
 class StateInEndGame(State):
@@ -28,7 +29,7 @@ class StateInEndGame(State):
     def entry(self) -> None:
         current_music = self.get_owner().get_current_music()
         self.get_owner().get_sound_player().stop(current_music)
-        
+
         self.get_owner().get_game_over_music().play()
         self.__text_input = TextInput("")
         self.__player = EntitiesController.instance().get_entities()[0]
@@ -59,7 +60,8 @@ class StateInEndGame(State):
         screen_size_y = GameConstants().screen_size.y
 
         msg_actions = f"""Enter: Salvar, Esc: Voltar ao menu"""
-        actions_img = pygame.font.SysFont(font, 20).render(msg_actions, True, white)
+        actions_img = pygame.font.SysFont(
+            font, 20).render(msg_actions, True, white)
         rect_actions = actions_img.get_rect()
         rect_actions.center = (screen_size_x/2, screen_size_y/2 - 160)
 

@@ -21,6 +21,8 @@ from pygame import Surface
 from pygame.time import Clock
 
 # O Game determinará o fluxo do jogo
+
+
 class Game:
 
     def __init__(self, name="Game") -> None:
@@ -31,12 +33,13 @@ class Game:
 
         self.__running = True
         self.__current_state = StateInMenu(self)
-        self.__screen = pygame.display.set_mode(tuple(GameConstants().screen_size))
+        self.__screen = pygame.display.set_mode(
+            tuple(GameConstants().screen_size))
         self.__clock = pygame.time.Clock()
 
         self.__states_dictionary = {
             GameConstants().state_menu: StateInMenu(self),
-            GameConstants().state_default_mode: StateDefaultMode(self), 
+            GameConstants().state_default_mode: StateDefaultMode(self),
             GameConstants().state_end_game: StateInEndGame(self),
             GameConstants().state_dodge_mode: StateDodgeMode(self),
             GameConstants().state_alien_mode: StateAlienMode(self),
@@ -53,7 +56,8 @@ class Game:
         music_3 = self.__sound_loader.load(GameConstants().music_3_path, 0.2)
         music_4 = self.__sound_loader.load(GameConstants().music_4_path, 0.2)
         self.__music_library = [music_1, music_2, music_3, music_4]
-        self.__game_over_music = self.__sound_loader.load(GameConstants().game_over_music_path, 0.5)
+        self.__game_over_music = self.__sound_loader.load(
+            GameConstants().game_over_music_path, 0.5)
 
         self.__current_music = None
 
@@ -81,10 +85,10 @@ class Game:
 
     def set_states_dictionary(self, states_dic: dict) -> None:
         self.__states_dictionary = states_dic
-    
+
     def get_sound_loader(self) -> SoundLoader:
         return self.__sound_loader
-    
+
     def get_sound_player(self) -> SoundPlayer:
         return self.__sound_player
 
@@ -106,11 +110,11 @@ class Game:
 
     def close(self) -> None:
         self.__running = False
-        
+
     def change_state(self, new_state_str: str) -> None:
 
         # Game fazendo o papel do contexto
-        next_state = self.get_states_dictionary()[new_state_str]        
+        next_state = self.get_states_dictionary()[new_state_str]
 
         # Troca de estado
         self.get_current_state().exit()

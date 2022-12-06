@@ -20,6 +20,9 @@ class PiercingBulletPickUp(PickUp):
     def __init__(self, body: Body) -> None:
         super().__init__(body)
 
+        self.set_image(PiercingBulletPickUp.__original_image)
+        self.set_rect(self.get_image().get_rect())
+
     def on_collision(self, entity: Entity):
         if isinstance(entity, Player):
             entity.get_weapon().set_bullet_factory(PiercingBulletFactory())

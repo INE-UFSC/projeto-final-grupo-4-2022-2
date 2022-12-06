@@ -1,6 +1,9 @@
 
-class Score: ...
+class Score:
+    ...
 # Classe para armazenar as informações do score
+
+
 class Score:
 
     def __init__(self, points: int, name: str):
@@ -30,5 +33,3 @@ class Score:
             return True
 
         return False
-
-

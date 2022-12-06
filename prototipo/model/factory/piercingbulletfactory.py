@@ -9,6 +9,8 @@ from utility.constants.bullet_constants import BulletConstants
 from pygame.math import Vector2
 
 # Constroi uma bala penetrante
+
+
 class PiercingBulletFactory(BulletFactory):
 
     def create(self, position: Vector2, velocity: Vector2) -> Entity:

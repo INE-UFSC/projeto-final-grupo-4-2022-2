@@ -29,13 +29,14 @@ class Shotgun(Weapon):
         owner_aiming_direction = self.get_owner().get_aiming_direction()
         velocity = owner_aiming_direction * BulletConstants().velocity_mag
 
-
         # Criando os tiros variando a angulação
         bullet_factory = self.get_bullet_factory()
         bullets = [bullet_factory.create(owner_position, velocity)]
-        for i in range(2,6):
-            bullets.append(bullet_factory.create(owner_position, (velocity).rotate(-i*math.pi)))
-            bullets.append(bullet_factory.create(owner_position, (velocity).rotate(i*math.pi)))
+        for i in range(2, 6):
+            bullets.append(bullet_factory.create(
+                owner_position, (velocity).rotate(-i*math.pi)))
+            bullets.append(bullet_factory.create(
+                owner_position, (velocity).rotate(i*math.pi)))
         EntitiesController.instance().add_entities(bullets[:])
 
         self.set_time_since_last_shot(0)

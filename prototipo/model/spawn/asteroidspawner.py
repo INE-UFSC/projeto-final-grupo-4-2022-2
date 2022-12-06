@@ -9,6 +9,8 @@ from utility.constants.asteroid_spawn_constants import AsteroidSpawnConstants
 # Mesma lógica que o Spawn do Alien, porém
 # ele só cria novos Asteroid (10 Asteroids) depois que não há
 # mais Asteroids em campo
+
+
 class AsteroidSpawner:
 
     def __init__(self) -> None:

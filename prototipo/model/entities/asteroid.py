@@ -16,22 +16,26 @@ import math
 
 class Asteroid(Entity):
 
-    __original_big_asteroid = ImageLoader().load(AsteroidConstants().image_path, (3*AsteroidConstants().big_size, 3*AsteroidConstants().big_size))
-    __original_medium_asteroid = ImageLoader().load(AsteroidConstants().image_path, (3*AsteroidConstants().medium_size, 3*AsteroidConstants().medium_size))
-    __original_small_asteroid = ImageLoader().load(AsteroidConstants().image_path, (3*AsteroidConstants().small_size, 3*AsteroidConstants().small_size))
-    
-    __explosion_sound = SoundLoader().load(AsteroidConstants().explosion_sound_path, 0.1)
+    __original_big_asteroid = ImageLoader().load(AsteroidConstants().image_path,
+                                                 (3*AsteroidConstants().big_size, 3*AsteroidConstants().big_size))
+    __original_medium_asteroid = ImageLoader().load(AsteroidConstants().image_path,
+                                                    (3*AsteroidConstants().medium_size, 3*AsteroidConstants().medium_size))
+    __original_small_asteroid = ImageLoader().load(AsteroidConstants().image_path,
+                                                   (3*AsteroidConstants().small_size, 3*AsteroidConstants().small_size))
+
+    __explosion_sound = SoundLoader().load(
+        AsteroidConstants().explosion_sound_path, 0.1)
 
     def __init__(self, body: Body) -> None:
         super().__init__(body, AsteroidConstants().tag)
-        
+
         if body.get_radius() == AsteroidConstants().big_size:
             self.set_image(Asteroid.__original_big_asteroid)
         elif body.get_radius() == AsteroidConstants().medium_size:
             self.set_image(Asteroid.__original_medium_asteroid)
         else:
             self.set_image(Asteroid.__original_small_asteroid)
-            
+
         self.set_rect(self.get_image().get_rect())
 
     def on_collision(self, entity: Entity) -> None:

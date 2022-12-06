@@ -4,8 +4,8 @@ from utility.constants.game_constants import GameConstants
 
 import pygame
 
-class StatusReporter:
 
+class StatusReporter:
 
     def __init__(self, player: Player) -> None:
         self.__player = player
@@ -69,11 +69,14 @@ class StatusReporter:
         screen.blit(weapon_img, (r_w.x, r_w.y))
         screen.blit(bullet_img, (r_b.x, r_b.y))
 
-        player_images = [pygame.transform.rotate(Player.get_original_image(), 90) for _ in range(self.__lives)]
-        player_images_rect = [player_image.get_rect() for player_image in player_images]
+        player_images = [pygame.transform.rotate(
+            Player.get_original_image(), 90) for _ in range(self.__lives)]
+        player_images_rect = [player_image.get_rect()
+                              for player_image in player_images]
         player_image_width = Player.get_original_image().get_rect().width
 
         for i, player_image_rect in enumerate(player_images_rect):
-            player_image_rect.bottomleft = (GameConstants().screen_size.x/2.0 - player_image_width * self.__lives / 2.0 + player_image_width * i + 5, 70)
+            player_image_rect.bottomleft = (GameConstants(
+            ).screen_size.x/2.0 - player_image_width * self.__lives / 2.0 + player_image_width * i + 5, 70)
         for i, player_image in enumerate(player_images):
             screen.blit(player_image, player_images_rect[i])

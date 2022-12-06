@@ -10,7 +10,9 @@ from utility.debug import Debug
 from utility.statusreporter import StatusReporter
 
 
-class Game: ...
+class Game:
+    ...
+
 
 class StateAsteroidMode(StateInGame):
 

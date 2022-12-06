@@ -1,11 +1,12 @@
 
 from pygame.math import Vector2
 
+
 class Particle:
 
-    def __init__(self, position: Vector2=Vector2(0,0),
-                 velocity: Vector2=Vector2(0,0),
-                 radius: float=5.0) -> None:
+    def __init__(self, position: Vector2 = Vector2(0, 0),
+                 velocity: Vector2 = Vector2(0, 0),
+                 radius: float = 5.0) -> None:
         self.__position = position
         self.__velocity = velocity
         self.__radius = radius

@@ -1,12 +1,15 @@
 
 import pygame
 
-class Tracer: ...
+
+class Tracer:
+    ...
+
 
 class Tracer:
 
     def __init__(self, position: pygame.Vector2, radius: float) -> None:
-        
+
         self.__lifetime = 3.5
         self.__duration = 0
         self.__position = position
@@ -37,13 +40,13 @@ class Tracer:
             new_radius = old_radius * radius_factor
             self.set_radius(new_radius)
 
-    def render(self, screen: pygame.surface.Surface ) -> None:
+    def render(self, screen: pygame.surface.Surface) -> None:
         COLOR = (180, 180, 180)
-        pygame.draw.circle(screen, COLOR, self.get_position(), self.get_radius())
-    
+        pygame.draw.circle(
+            screen, COLOR, self.get_position(), self.get_radius())
+
     def delete(self) -> None:
         del self
 
     def update_duration(self, dt: float) -> None:
         self.__duration += dt
-

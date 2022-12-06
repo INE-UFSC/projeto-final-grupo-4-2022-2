@@ -21,6 +21,7 @@ class ParticleGenerator:
         k = 30
         self.__current_cooldown = 0.0
         size = random.choice(self.__sizes)
-        position = Vector2(0.0, random.randint(0, GameConstants().screen_size.y))
+        position = Vector2(0.0, random.randint(
+            0, GameConstants().screen_size.y))
         velocity = k * size * self.__direction
         return Particle(position, velocity, size)

@@ -9,6 +9,8 @@ import random
 from pygame import Vector2
 
 # Fábrica de alien, cuida de contruir as propriedades de cada alien
+
+
 class PickUpFactory:
 
     def create(self, type: PickUp) -> PickUp:
@@ -19,6 +21,7 @@ class PickUpFactory:
 
     def make_position(self) -> Vector2:
 
-        position = Vector2(random.randint(0, GameConstants().screen_size.x), random.randint(0, GameConstants().screen_size.y))
+        position = Vector2(random.randint(0, GameConstants(
+        ).screen_size.x), random.randint(0, GameConstants().screen_size.y))
 
         return position

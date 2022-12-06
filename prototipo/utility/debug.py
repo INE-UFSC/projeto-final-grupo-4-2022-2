@@ -46,30 +46,32 @@ class Debug:
         self.__bullet_factory = self.__player.get_weapon().get_bullet_factory()
         self.__weapon = self.__player.get_weapon()
 
-
         if pygame.key.get_pressed()[pygame.K_1]:
             self.__player.get_weapon().set_bullet_factory(DefaultBulletFactory())
-        
+
         if pygame.key.get_pressed()[pygame.K_2]:
             self.__player.get_weapon().set_bullet_factory(PersistentBulletFactory())
 
         if pygame.key.get_pressed()[pygame.K_3]:
             self.__player.get_weapon().set_bullet_factory(PiercingBulletFactory())
-        
+
         if pygame.key.get_pressed()[pygame.K_4]:
             self.__player.get_weapon().set_bullet_factory(RubberBulletFactory())
 
         if pygame.key.get_pressed()[pygame.K_q]:
             self.__player.set_weapon(BulletlessWeapon(self.__player))
-            
+
         if pygame.key.get_pressed()[pygame.K_w]:
-            self.__player.set_weapon(DefaultWeapon(self.__player, WeaponConstants().cooldown, WeaponConstants().max_ammunition, self.__player.get_weapon().get_bullet_factory()))
+            self.__player.set_weapon(DefaultWeapon(self.__player, WeaponConstants(
+            ).cooldown, WeaponConstants().max_ammunition, self.__player.get_weapon().get_bullet_factory()))
 
         if pygame.key.get_pressed()[pygame.K_e]:
-            self.__player.set_weapon(InfinityWeapon(self.__player, WeaponConstants().cooldown, self.__player.get_weapon().get_bullet_factory()))
+            self.__player.set_weapon(InfinityWeapon(self.__player, WeaponConstants(
+            ).cooldown, self.__player.get_weapon().get_bullet_factory()))
 
         if pygame.key.get_pressed()[pygame.K_r]:
-            self.__player.set_weapon(Shotgun(self.__player, WeaponConstants().cooldown, WeaponConstants().max_ammunition, self.__player.get_weapon().get_bullet_factory()))
+            self.__player.set_weapon(Shotgun(self.__player, WeaponConstants().cooldown, WeaponConstants(
+            ).max_ammunition, self.__player.get_weapon().get_bullet_factory()))
 
     def render(self, screen: pygame.Surface) -> None:
 

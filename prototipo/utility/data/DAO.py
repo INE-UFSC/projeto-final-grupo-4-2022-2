@@ -5,7 +5,7 @@ import pickle
 # Classe para persistência
 class DAO(ABC):
 
-    def __init__(self, datasource: str='') -> None:
+    def __init__(self, datasource: str = '') -> None:
         self.__datasource = datasource
         self.__cache = {}
         try:

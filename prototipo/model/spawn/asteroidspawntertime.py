@@ -9,6 +9,8 @@ from utility.constants.asteroid_spawn_constants import AsteroidSpawnConstants
 
 # Classe que spawna asteroids aleatoriamente
 # Utilizado para a implementação do AsteroidMode
+
+
 class AsteroidSpawnerTime:
 
     def __init__(self) -> None:

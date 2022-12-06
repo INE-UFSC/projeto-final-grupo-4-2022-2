@@ -21,13 +21,15 @@ from pygame import Vector2
 
 class Alien(Entity, Shooter):
 
-    __original_alien = ImageLoader().load(AlienConstants().image_path, (4*AlienConstants().size, 3*AlienConstants().size))
-    __explosion_sound = SoundLoader().load(AlienConstants().explosion_sound_path, 0.3)
+    __original_alien = ImageLoader().load(AlienConstants().image_path,
+                                          (4*AlienConstants().size, 3*AlienConstants().size))
+    __explosion_sound = SoundLoader().load(
+        AlienConstants().explosion_sound_path, 0.3)
 
     def __init__(self, body: Body, direction: int) -> None:
         Entity.__init__(self, body, AlienConstants().tag)
         Shooter.__init__(self, InfinityWeapon(self, AlienConstants().shoot_cooldown, DefaultBulletFactory()),
-                           Vector2(1, 1).normalize(), Vector2(0, 0))
+                         Vector2(1, 1).normalize(), Vector2(0, 0))
         self.__move_cooldown = 0
         self.__direction = direction
 
@@ -62,8 +64,10 @@ class Alien(Entity, Shooter):
         self.set_move_cooldown(self.get_move_cooldown() - dt)
         if self.get_move_cooldown() < 0:
             self.set_move_cooldown(AlienConstants().move_cooldown)
-            body.set_velocity(AlienConstants().directions[random.randint(0, len(AlienConstants().directions) - 1)] * AlienConstants().velocity_mag)
-            body.set_velocity(Vector2(body.get_velocity().x*self.get_direction(), body.get_velocity().y))
+            body.set_velocity(AlienConstants().directions[random.randint(
+                0, len(AlienConstants().directions) - 1)] * AlienConstants().velocity_mag)
+            body.set_velocity(Vector2(body.get_velocity().x *
+                              self.get_direction(), body.get_velocity().y))
 
         # Verifica se o Alien chegou ao fim da tela
         #  e, se chegou, morre
@@ -76,17 +80,18 @@ class Alien(Entity, Shooter):
             position.y = GameConstants().screen_size.y
         elif GameConstants().screen_size.y < position.y:
             position.y = 0
-        
+
         # Movimenta
         body.move(velocity*dt)
 
-            
     def update(self, dt: float) -> None:
         Entity.update(self, dt)
         # Determina a direção da mira randomicamente
-        aiming_direction = Vector2(self.get_direction(), 0).rotate(random.uniform(0,360))
+        aiming_direction = Vector2(
+            self.get_direction(), 0).rotate(random.uniform(0, 360))
         # Evita que a bala nasça dentro do Alien
-        barrel_position = Vector2(aiming_direction*self.get_body().get_radius() * ShooterConstants().radius_multiplier + self.get_body().get_position())
+        barrel_position = Vector2(aiming_direction*self.get_body().get_radius(
+        ) * ShooterConstants().radius_multiplier + self.get_body().get_position())
 
         self.set_barrel_position(barrel_position)
         self.set_aiming_direction(aiming_direction)

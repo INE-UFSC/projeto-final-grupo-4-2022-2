@@ -23,6 +23,8 @@ from controller.entitiescontroller import EntitiesController
 # Mesma lógica que o Spawn do Alien, porém
 # ele só cria novos pickups (10 Asteroids) depois que não há
 # mais Asteroids em campo
+
+
 class PikcUpSpawner:
 
     def __init__(self) -> None:
@@ -58,7 +60,7 @@ class PikcUpSpawner:
 
             self.set_cooldown(PickUpConstants().cooldown)
 
-            max = len(self.get_pickups()) -1
+            max = len(self.get_pickups()) - 1
             index = random.randint(0, max)
             type = self.get_pickups()[index]
 

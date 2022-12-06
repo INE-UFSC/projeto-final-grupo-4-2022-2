@@ -1,6 +1,7 @@
 
 from model.collision import Collision
 
+
 class CollisionDetector:
 
     # NOTE: Deve haver algum jeito mais otimizado
@@ -23,7 +24,6 @@ class CollisionDetector:
                 entity_tag = entity.get_tag()
                 entity_position = entity_body.get_position()
                 entity_radius = entity_body.get_radius()
-
 
                 # If´s para diminur processamento
                 if target_id == entity_id:
@@ -89,5 +89,5 @@ class CollisionDetector:
 
                 # Registrando a colisão
                 collisions.append(collision)
-            
+
         return collisions[:]

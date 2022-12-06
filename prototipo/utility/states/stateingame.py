@@ -15,10 +15,14 @@ from utility.effects.tracer import Tracer
 # Pygame
 import pygame
 
-class Game: ...
+
+class Game:
+    ...
 
 # Implementação do no jogo
 # Nele estará a lógica de cada frame para o jogo
+
+
 class StateInGame(State):
 
     def __init__(self, owner: Game) -> None:
@@ -27,7 +31,7 @@ class StateInGame(State):
         self._debug = None
         self._player = None
         self._status_reporter = None
-        
+
     def entry(self) -> None:
         pass
 
@@ -67,7 +71,7 @@ class StateInGame(State):
 
         for entity in EntitiesController.instance().get_entities()[::-1]:
             entity.draw(screen)
-        #self._debug.render(screen)
+        # self._debug.render(screen)
         self._status_reporter.render(screen)
 
     def handle_transition(self) -> None:

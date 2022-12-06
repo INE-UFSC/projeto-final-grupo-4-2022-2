@@ -1,6 +1,9 @@
 #NUM = DATA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#61 = 06/12/2022 (10:42) Micael
+    - Adicionando pickup da PiercingBullet
+
 #60 = 06/12/2022 (05:35) Gian
     - Mudanças nas músicas (melhor ver in-game)*
     - Collision detector agora tem n² - 2n passos, ao invés de n² (se minhas contas estiverem certas)

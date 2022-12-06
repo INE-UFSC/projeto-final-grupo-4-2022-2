@@ -9,6 +9,8 @@ import random
 from pygame import Vector2
 
 # Fábrica de alien, cuida de contruir as propriedades de cada alien
+
+
 class AlienFactory:
 
     def create(self) -> Alien:
@@ -24,7 +26,6 @@ class AlienFactory:
     def make_velocity(self, direction: int) -> Vector2:
         # Define a velocidade com base na direção de movimentação
         return direction * Vector2(1, 0) * AlienConstants().velocity_mag
-
 
     def make_position(self, direction: int) -> Vector2:
 

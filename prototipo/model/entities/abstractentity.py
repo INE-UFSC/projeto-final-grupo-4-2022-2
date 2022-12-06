@@ -3,11 +3,14 @@ from model.body import Body
 
 import pygame
 
+
 class Entity:
     ...
 
 # Classe abstrata para aplicar polimorfismo
 # Ela será a base de todas as entidades do jogo
+
+
 class Entity(ABC):
 
     next_id = 0
@@ -41,7 +44,7 @@ class Entity(ABC):
 
     def get_rect(self) -> pygame.rect.Rect:
         return self.__rect
-    
+
     def set_rect(self, rect: pygame.rect.Rect) -> None:
         self.__rect = rect
 
@@ -73,4 +76,3 @@ class Entity(ABC):
         if self.get_image() is None:
             return
         screen.blit(self.get_image(), self.get_rect())
-        

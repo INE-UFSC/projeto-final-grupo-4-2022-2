@@ -9,7 +9,8 @@ from utility.data.image_loader import ImageLoader
 # Bala abstrata
 class Bullet(Entity):
 
-    __original_bullet = ImageLoader().load(BulletConstants().image_path, (6*BulletConstants().size, 6*BulletConstants().size))
+    __original_bullet = ImageLoader().load(BulletConstants().image_path,
+                                           (6*BulletConstants().size, 6*BulletConstants().size))
 
     def __init__(self, body: Body, lifetime: int) -> None:
         super().__init__(body, BulletConstants().tag)
@@ -26,4 +27,3 @@ class Bullet(Entity):
 
     def destroy(self) -> None:
         pass
-    

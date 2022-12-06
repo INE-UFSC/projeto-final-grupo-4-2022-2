@@ -1,6 +1,7 @@
 
 from utility.singleton.singleton import Singleton
 
+
 class BulletConstants(Singleton):
 
     def __init__(self) -> None:

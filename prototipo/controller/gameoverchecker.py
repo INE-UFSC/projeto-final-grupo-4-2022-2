@@ -1,6 +1,8 @@
 from model.entities.player import Player
 
 # O gerenciador de level determinará quando o jogo acaba.
+
+
 class GameOverChecker:
 
     def check(self, player: Player) -> bool:
@@ -8,5 +10,3 @@ class GameOverChecker:
         if player is not None and not player.alive():
             return True
         return False
-
-
