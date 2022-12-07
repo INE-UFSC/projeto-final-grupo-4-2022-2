@@ -1,7 +1,7 @@
 
 from model.factory.asteroidfactory import AsteroidFactory
 
-from controller.entitiescontroller import EntitiesController
+from managers.entitiesmanager import EntitiesManager
 
 from utility.constants.asteroid_constants import AsteroidConstants
 from utility.constants.asteroid_spawn_constants import AsteroidSpawnConstants
@@ -20,7 +20,7 @@ class AsteroidSpawner:
         return self.__factory
 
     def _has_asteroids(self) -> bool:
-        for entity in EntitiesController.instance().get_entities():
+        for entity in EntitiesManager.instance().get_entities():
             if entity.get_tag() == AsteroidConstants().tag:
                 return True
         return False
@@ -28,4 +28,4 @@ class AsteroidSpawner:
     def generate(self) -> None:
         if not(self._has_asteroids()):
             asteroids = AsteroidFactory().create(AsteroidSpawnConstants().number_of_asteroids)
-            EntitiesController.instance().add_entities(asteroids)
+            EntitiesManager.instance().add_entities(asteroids)

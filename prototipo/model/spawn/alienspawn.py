@@ -2,7 +2,7 @@
 from model.entities.abstractentity import Entity
 from model.factory.alienfactory import AlienFactory
 
-from controller.entitiescontroller import EntitiesController
+from managers.entitiesmanager import EntitiesManager
 
 from utility.constants.alien_spawn_constants import AlienSpawnConstants
 
@@ -52,7 +52,7 @@ class AlienSpawner:
 
         self.set_cooldown(AlienSpawnConstants().cooldown)
         alien = self.get_factory().create()
-        EntitiesController.instance().add_entity(alien)
+        EntitiesManager.instance().add_entity(alien)
         self.set_created_aliens(self.get_created_aliens() + 1)
 
         if self.get_created_aliens() % 10 == 0 and self.get_cooldown_decrement() < 4:

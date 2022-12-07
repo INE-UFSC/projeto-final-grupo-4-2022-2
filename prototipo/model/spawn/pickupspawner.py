@@ -6,19 +6,19 @@ from utility.constants.pickup_constants import PickUpConstants
 
 # MODEL
 from model.factory.pickupfactory import PickUpFactory
-from model.entities.bulletlesspickup import BulletlessPickUp
-from model.entities.defaultpickup import DefaultWeaponPickUp
-from model.entities.defaultbulletpickup import DefaultBulletPickUp
-from model.entities.infinitypickup import InfinityPickUp
-from model.entities.lifepickup import LifePickUp
-from model.entities.persistentbulletpickup import PersistentBulletPickUp
-from model.entities.rubberbulletpickup import RubberBulletPickUp
-from model.entities.ammopickup import AmmoPickUp
-from model.entities.shotgunpickup import ShotGunPickUp
-from model.entities.bulletlesspickup import BulletlessPickUp
+from model.entities.pickups.bulletlesspickup import BulletlessPickUp
+from model.entities.pickups.defaultpickup import DefaultWeaponPickUp
+from model.entities.pickups.defaultbulletpickup import DefaultBulletPickUp
+from model.entities.pickups.infinitypickup import InfinityPickUp
+from model.entities.pickups.lifepickup import LifePickUp
+from model.entities.pickups.persistentbulletpickup import PersistentBulletPickUp
+from model.entities.pickups.rubberbulletpickup import RubberBulletPickUp
+from model.entities.pickups.ammopickup import AmmoPickUp
+from model.entities.pickups.shotgunpickup import ShotGunPickUp
+from model.entities.pickups.bulletlesspickup import BulletlessPickUp
 
-# CONTROL
-from controller.entitiescontroller import EntitiesController
+# MANAGER
+from managers.entitiesmanager import EntitiesManager
 
 # Mesma lógica que o Spawn do Alien, porém
 # ele só cria novos pickups (10 Asteroids) depois que não há
@@ -66,4 +66,4 @@ class PikcUpSpawner:
 
             pickup = PickUpFactory().create(type)
 
-            EntitiesController.instance().add_entity(pickup)
+            EntitiesManager.instance().add_entity(pickup)

@@ -3,7 +3,7 @@ from model.entities.abstractentity import Entity
 from model.factory.asteroidfactory import AsteroidFactory
 
 
-from controller.entitiescontroller import EntitiesController
+from managers.entitiesmanager import EntitiesManager
 
 from utility.constants.asteroid_spawn_constants import AsteroidSpawnConstants
 
@@ -36,4 +36,4 @@ class AsteroidSpawnerTime:
         if self.get_cooldown() < 0:
             self.set_cooldown(AsteroidSpawnConstants().cooldown)
             asteroid = self.get_factory().create(1)
-            EntitiesController.instance().add_entities(asteroid)
+            EntitiesManager.instance().add_entities(asteroid)

@@ -1,10 +1,10 @@
 
 
-from controller.entitiescontroller import EntitiesController
+from managers.entitiesmanager import EntitiesManager
 
 from model.body import Body
 from model.entities.abstractentity import Entity
-from model.entities.pickup import PickUp
+from model.entities.pickups.pickup import PickUp
 from model.entities.player import Player
 from model.weapon.bulletless import BulletlessWeapon
 
@@ -26,4 +26,4 @@ class BulletlessPickUp(PickUp):
     def on_collision(self, entity: Entity):
         if isinstance(entity, Player):
             entity.set_weapon(BulletlessWeapon(entity))
-            EntitiesController.instance().register_deletion(self)
+            EntitiesManager.instance().register_deletion(self)

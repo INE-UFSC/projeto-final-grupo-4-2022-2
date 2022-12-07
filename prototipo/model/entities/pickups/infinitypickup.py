@@ -1,10 +1,10 @@
 
 
-from controller.entitiescontroller import EntitiesController
+from managers.entitiesmanager import EntitiesManager
 
 from model.body import Body
 from model.entities.abstractentity import Entity
-from model.entities.pickup import PickUp
+from model.entities.pickups.pickup import PickUp
 from model.entities.player import Player
 from model.weapon.infinity import InfinityWeapon
 
@@ -28,4 +28,4 @@ class InfinityPickUp(PickUp):
         if isinstance(entity, Player):
             entity.set_weapon(InfinityWeapon(entity, WeaponConstants(
             ).cooldown, entity.get_weapon().get_bullet_factory()))
-            EntitiesController.instance().register_deletion(self)
+            EntitiesManager.instance().register_deletion(self)

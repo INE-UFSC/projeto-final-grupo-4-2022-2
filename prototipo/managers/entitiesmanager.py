@@ -1,18 +1,18 @@
 from model.entities.abstractentity import Entity
 
 
-class EntitiesController:
+class EntitiesManager:
     ...
 # Singleton que controla a criação e a destruição das entidades
 
 
-class EntitiesController:
+class EntitiesManager:
 
     # método e atributo instance de classe para simular um Singleton
     _instance = None
 
     @classmethod
-    def instance(cls) -> EntitiesController:
+    def instance(cls) -> EntitiesManager:
         if cls._instance is None:
             cls._instance = cls()
         return cls._instance

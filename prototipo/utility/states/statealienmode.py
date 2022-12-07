@@ -1,6 +1,6 @@
 
-from controller.entitiescontroller import EntitiesController
-from controller.scoremanager import ScoreManager
+from managers.entitiesmanager import EntitiesManager
+from managers.scoremanager import ScoreManager
 
 from model.spawn.alienspawn import AlienSpawner
 from model.factory.defaultplayerfactory import DefaultPlayerFactory
@@ -29,7 +29,7 @@ class StateAlienMode(StateInGame):
         self._debug = Debug(player)
         self._score_manager = ScoreManager(player)
         self._status_reporter = StatusReporter(player)
-        EntitiesController.instance().add_entity(player)
+        EntitiesManager.instance().add_entity(player)
 
     def exit(self) -> None:
         super().exit()

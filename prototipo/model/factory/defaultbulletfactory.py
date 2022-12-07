@@ -1,6 +1,6 @@
 
 from model.entities.abstractentity import Entity
-from model.entities.defaultbullet import DefaultBullet
+from model.entities.bullets.defaultbullet import DefaultBullet
 from model.factory.bulletfactory import BulletFactory
 from model.body import Body
 

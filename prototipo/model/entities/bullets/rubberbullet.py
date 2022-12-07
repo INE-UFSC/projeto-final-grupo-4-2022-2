@@ -1,8 +1,7 @@
-
-from controller.entitiescontroller import EntitiesController
+from managers.entitiesmanager import EntitiesManager
 
 from model.entities.abstractentity import Entity
-from model.entities.bullet import Bullet
+from model.entities.bullets.bullet import Bullet
 from model.body import Body
 
 from utility.constants.game_constants import GameConstants
@@ -20,7 +19,7 @@ class RubberBullet(Bullet):
     def on_collision(self, entity: Entity) -> None:
         if entity.get_tag() == PickUpConstants().tag:
             return
-        EntitiesController.instance().register_deletion(self)
+        EntitiesManager.instance().register_deletion(self)
 
     def move(self, dt: float) -> None:
         body = self.get_body()
@@ -51,5 +50,5 @@ class RubberBullet(Bullet):
         # Morre quando não tiver mais tempo de vida
         self.set_lifetime(self.get_lifetime() - dt)
         if self.get_lifetime() < 0:
-            EntitiesController.instance().register_deletion(self)
+            EntitiesManager.instance().register_deletion(self)
         self.move(dt)

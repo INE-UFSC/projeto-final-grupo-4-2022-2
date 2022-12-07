@@ -1,6 +1,6 @@
 
 from model.entities.abstractentity import Entity
-from model.entities.rubberbullet import RubberBullet
+from model.entities.bullets.rubberbullet import RubberBullet
 from model.factory.bulletfactory import BulletFactory
 from model.body import Body
 

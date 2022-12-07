@@ -1,6 +1,5 @@
 
 from utility.singleton.singleton import Singleton
-import pygame
 
 
 class PickUpConstants(Singleton):

@@ -1,6 +1,6 @@
 
-from controller.entitiescontroller import EntitiesController
-from controller.scoremanager import ScoreManager
+from managers.entitiesmanager import EntitiesManager
+from managers.scoremanager import ScoreManager
 
 from utility.textinput import TextInput
 from utility.states.state import State
@@ -29,13 +29,13 @@ class StateInEndGame(State):
     def entry(self) -> None:
         self.get_owner().get_game_over_music().play()
         self.__text_input = TextInput("")
-        self.__player = EntitiesController.instance().get_entities()[0]
+        self.__player = EntitiesManager.instance().get_entities()[0]
 
     def exit(self) -> None:
         self.get_owner().get_game_over_music().stop()
 
         ScoreManager(self.__player).write_to_disk(self.__text_input.get_text())
-        EntitiesController.instance().clear_entities()
+        EntitiesManager.instance().clear_entities()
 
     def handle_event(self) -> None:
         for event in pygame.event.get():

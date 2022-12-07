@@ -1,7 +1,7 @@
 
 import random
 
-from controller.entitiescontroller import EntitiesController
+from managers.entitiesmanager import EntitiesManager
 
 from model.entities.abstractentity import Entity
 from model.entities.shooter import Shooter
@@ -51,7 +51,7 @@ class Alien(Entity, Shooter):
     def on_collision(self, entity: Entity) -> None:
         if entity.get_tag() == PickUpConstants().tag:
             return
-        EntitiesController.instance().register_deletion(self)
+        EntitiesManager.instance().register_deletion(self)
 
     def move(self, dt: float) -> None:
         body = self.get_body()
@@ -72,9 +72,9 @@ class Alien(Entity, Shooter):
         # Verifica se o Alien chegou ao fim da tela
         #  e, se chegou, morre
         if position.x < 0:
-            EntitiesController.instance().register_deletion(self)
+            EntitiesManager.instance().register_deletion(self)
         elif GameConstants().screen_size.x < position.x:
-            EntitiesController.instance().register_deletion(self)
+            EntitiesManager.instance().register_deletion(self)
 
         if position.y < 0:
             position.y = GameConstants().screen_size.y

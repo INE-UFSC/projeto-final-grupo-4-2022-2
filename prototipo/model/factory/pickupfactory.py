@@ -1,6 +1,6 @@
 
 from model.body import Body
-from model.entities.pickup import PickUp
+from model.entities.pickups.pickup import PickUp
 
 from utility.constants.game_constants import GameConstants
 from utility.constants.pickup_constants import PickUpConstants

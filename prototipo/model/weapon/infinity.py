@@ -1,5 +1,5 @@
 
-from controller.entitiescontroller import EntitiesController
+from managers.entitiesmanager import EntitiesManager
 
 from model.entities.shooter import Shooter
 from model.weapon.weapon import Weapon
@@ -26,7 +26,7 @@ class InfinityWeapon(Weapon):
 
         bullet_factory = self.get_bullet_factory()
         bullet = bullet_factory.create(owner_position, velocity)
-        EntitiesController.instance().add_entity(bullet)
+        EntitiesManager.instance().add_entity(bullet)
 
         self.set_time_since_last_shot(0)
 

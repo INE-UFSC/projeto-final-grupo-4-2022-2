@@ -1,7 +1,7 @@
 
 import math
 
-from controller.entitiescontroller import EntitiesController
+from managers.entitiesmanager import EntitiesManager
 
 from model.entities.shooter import Shooter
 from model.weapon.weapon import Weapon
@@ -37,7 +37,7 @@ class Shotgun(Weapon):
                 owner_position, (velocity).rotate(-i*math.pi)))
             bullets.append(bullet_factory.create(
                 owner_position, (velocity).rotate(i*math.pi)))
-        EntitiesController.instance().add_entities(bullets[:])
+        EntitiesManager.instance().add_entities(bullets[:])
 
         self.set_time_since_last_shot(0)
         self.set_ammunition(self.get_ammunition() - 9)

@@ -1,27 +1,23 @@
 
-from controller.entitiescontroller import EntitiesController
-
 from model.entities.abstractentity import Entity
-from model.entities.bullet import Bullet
+from model.entities.bullets.bullet import Bullet
 from model.body import Body
+from managers.entitiesmanager import EntitiesManager
 
 from utility.constants.game_constants import GameConstants
-from utility.constants.pickup_constants import PickUpConstants
-
-# Bala com o comportamento de persistencia
-# Apena desaparece depois que atinge um objeto,
-# exclusos outras balas
 
 
-class PersistentBullet(Bullet):
+# Bala que apenas é destruida após
+# não ter mais tempo de vida
+
+
+class PiercingBullet(Bullet):
 
     def __init__(self, body: Body, lifetime: int) -> None:
         super().__init__(body, lifetime)
 
     def on_collision(self, entity: Entity) -> None:
-        if entity.get_tag() == PickUpConstants().tag:
-            return
-        EntitiesController.instance().register_deletion(self)
+        pass
 
     def move(self, dt: float) -> None:
         body = self.get_body()
@@ -43,4 +39,7 @@ class PersistentBullet(Bullet):
 
     def update(self, dt: float) -> None:
         Entity.update(self, dt)
+        self.set_lifetime(self.get_lifetime() - dt)
+        if self.get_lifetime() < 0:
+            EntitiesManager.instance().register_deletion(self)
         self.move(dt)

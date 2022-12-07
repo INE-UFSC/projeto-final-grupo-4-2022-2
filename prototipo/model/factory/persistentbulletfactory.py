@@ -1,6 +1,6 @@
 
 from model.entities.abstractentity import Entity
-from model.entities.persistentbullet import PersistentBullet
+from model.entities.bullets.persistentbullet import PersistentBullet
 from model.factory.bulletfactory import BulletFactory
 from model.body import Body
 

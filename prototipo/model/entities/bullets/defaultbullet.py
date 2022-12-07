@@ -1,23 +1,28 @@
 
+from managers.entitiesmanager import EntitiesManager
+
 from model.entities.abstractentity import Entity
-from model.entities.bullet import Bullet
+from model.entities.bullets.bullet import Bullet
 from model.body import Body
-from controller.entitiescontroller import EntitiesController
 
 from utility.constants.game_constants import GameConstants
 
+from utility.constants.pickup_constants import PickUpConstants
 
-# Bala que apenas é destruida após
-# não ter mais tempo de vida
+# Bala com comportamento normal:
+# vai sempre para a frente e
+# desaparece depois de um certo tempo
 
 
-class PiercingBullet(Bullet):
+class DefaultBullet(Bullet):
 
     def __init__(self, body: Body, lifetime: int) -> None:
         super().__init__(body, lifetime)
 
     def on_collision(self, entity: Entity) -> None:
-        pass
+        if entity.get_tag() == PickUpConstants().tag:
+            return
+        EntitiesManager.instance().register_deletion(self)
 
     def move(self, dt: float) -> None:
         body = self.get_body()
@@ -39,7 +44,10 @@ class PiercingBullet(Bullet):
 
     def update(self, dt: float) -> None:
         Entity.update(self, dt)
+        # Decrementa o tempo de vida da bala.
+        # Caso não tenha mais, a bala desaparece
         self.set_lifetime(self.get_lifetime() - dt)
         if self.get_lifetime() < 0:
-            EntitiesController.instance().register_deletion(self)
+            EntitiesManager.instance().register_deletion(self)
+
         self.move(dt)

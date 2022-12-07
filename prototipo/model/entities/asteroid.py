@@ -1,7 +1,7 @@
 
 from model.entities.abstractentity import Entity
 from model.body import Body
-from controller.entitiescontroller import EntitiesController
+from managers.entitiesmanager import EntitiesManager
 
 from utility.constants.asteroid_constants import AsteroidConstants
 from utility.constants.pickup_constants import PickUpConstants
@@ -43,7 +43,7 @@ class Asteroid(Entity):
             return
         if entity.get_tag() == PickUpConstants().tag:
             return
-        EntitiesController.instance().register_deletion(self)
+        EntitiesManager.instance().register_deletion(self)
 
     def move(self, dt: float) -> None:
         body = self.get_body()
@@ -83,7 +83,7 @@ class Asteroid(Entity):
             velocity.scale_to_length(AsteroidConstants().small_velocity_mag)
             radius = AsteroidConstants().small_size
         elif body.get_radius() == AsteroidConstants().small_size:
-            EntitiesController.instance().register_deletion(self)
+            EntitiesManager.instance().register_deletion(self)
             return
 
         position_a = Vector2(position + body.get_radius()
@@ -104,7 +104,7 @@ class Asteroid(Entity):
         asteroid_b = Asteroid(body_b)
 
         # Adicionando a lista de entidades
-        EntitiesController.instance().add_entity(asteroid_a)
-        EntitiesController.instance().add_entity(asteroid_b)
+        EntitiesManager.instance().add_entity(asteroid_a)
+        EntitiesManager.instance().add_entity(asteroid_b)
 
         SoundPlayer().play(Asteroid.__explosion_sound)

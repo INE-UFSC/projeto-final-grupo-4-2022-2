@@ -2,7 +2,7 @@
 from model.collision import Collision
 
 
-class CollisionDetector:
+class CollisionDetectorManager:
 
     # NOTE: Deve haver algum jeito mais otimizado
     def detect_collisions(self, entities: list) -> list:

@@ -1,6 +1,6 @@
 
 from model.entities.abstractentity import Entity
-from model.entities.piercingbullet import PiercingBullet
+from model.entities.bullets.piercingbullet import PiercingBullet
 from model.factory.bulletfactory import BulletFactory
 from model.body import Body
 

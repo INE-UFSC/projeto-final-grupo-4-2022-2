@@ -1,5 +1,5 @@
 
-from controller.entitiescontroller import EntitiesController
+from managers.entitiesmanager import EntitiesManager
 
 from model.factory.defaultbulletfactory import DefaultBulletFactory
 from model.factory.persistentbulletfactory import PersistentBulletFactory
@@ -38,7 +38,7 @@ class Debug:
 
     def update(self, clock: pygame.time.Clock) -> None:
 
-        self.__num_entities = len(EntitiesController.instance().get_entities())
+        self.__num_entities = len(EntitiesManager.instance().get_entities())
         self.__fps = int(clock.get_fps())
         self.__lives = self.__player.get_lives()
         self.__ammo = self.__player.get_weapon().get_ammunition()
