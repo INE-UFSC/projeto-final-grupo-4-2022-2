@@ -47,6 +47,8 @@ class State(ABC):
 
         owner.set_background_particles(owner.get_particle_destroyer().destroy(owner.get_background_particles()))
 
+        owner.get_juke_box().update(dt)
+
     # Método que renderiza os componentes
     def handle_rendering(self) -> None:
         for p in self.get_owner().get_background_particles():

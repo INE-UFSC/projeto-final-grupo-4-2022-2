@@ -27,9 +27,6 @@ class StateInEndGame(State):
         self.__player = None
 
     def entry(self) -> None:
-        current_music = self.get_owner().get_current_music()
-        self.get_owner().get_sound_player().stop(current_music)
-
         self.get_owner().get_game_over_music().play()
         self.__text_input = TextInput("")
         self.__player = EntitiesController.instance().get_entities()[0]

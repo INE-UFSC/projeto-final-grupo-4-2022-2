@@ -1,6 +1,9 @@
 #NUM = DATA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#64 = 07/12/2022 (0:36) Augusto
+    - Criação da classe JukeBox para tocar músicas sem parar
+
 #63 = 07/12/2022 (00:07) Augusto
     - Melhorando a lógica das particulas
 

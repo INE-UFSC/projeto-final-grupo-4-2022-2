@@ -10,6 +10,7 @@ from utility.states.statepickupmode import StatePickUpMode
 from utility.states.statescoreboard import StateScoreBoard
 from utility.data.soundloader import SoundLoader
 from utility.data.soundplayer import SoundPlayer
+from utility.data.jukebox import JukeBox
 from utility.effects.particlegenerator import ParticleGenerator
 from utility.effects.particledestroyer import ParticleDestroyer
 
@@ -23,7 +24,6 @@ from pygame import Surface
 from pygame.time import Clock
 
 # O Game determinará o fluxo do jogo
-
 
 class Game:
 
@@ -61,7 +61,7 @@ class Game:
         self.__game_over_music = self.__sound_loader.load(
             GameConstants().game_over_music_path, 0.5)
 
-        self.__current_music = None
+        self.__juke_box = JukeBox(self.__music_library)
 
         self.__background_particles = []
         self.__particle_generator = ParticleGenerator()
@@ -122,6 +122,12 @@ class Game:
 
     def get_particle_destroyer(self) -> ParticleDestroyer:
         return self.__particle_destroyer
+
+    def get_juke_box(self) -> JukeBox:
+        return self.__juke_box
+
+    def set_juke_box(self, new_juke_box: JukeBox) -> None:
+        self.__juke_box = new_juke_box
 
     # LÓGICA
     def is_running(self) -> bool:

@@ -61,13 +61,6 @@ class StateInMenu(State):
             self.__keys_previous_state[k] = False
 
     def entry(self) -> None:
-        current_music = self.get_owner().get_current_music()
-        self.get_owner().get_sound_player().stop(current_music)
-
-        new_music = self.get_owner().pick_random_music()
-        self.get_owner().get_sound_player().play(new_music, 0)
-        self.get_owner().set_current_music(new_music)
-
         self.__reset_keys()
         self.__current_buttons = self.__action_buttons
         self.__update_buttons_position()
