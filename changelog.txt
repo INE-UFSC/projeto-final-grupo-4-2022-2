@@ -1,6 +1,10 @@
 #NUM = DATA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#62 = 06/12/2022 (06/12/2022) Augusto
+    - Melhorando ainda mais a detecção de colisão (comentado o for que detecta colisões já contabilizadas)
+        - É bom ainda verificar se está certo
+
 #61 = 06/12/2022 (10:42) Micael
     - Adicionando pickup da PiercingBullet
 

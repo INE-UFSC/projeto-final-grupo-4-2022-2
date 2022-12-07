@@ -37,13 +37,13 @@ class CollisionDetector:
 
                 # Verificnado se a colisão já não existe
                 collision = Collision(target, entity)
-                eq = False
-                for c in collisions:
-                    if c == collision:
-                        eq = True
-                        break
-                if eq:
-                    continue
+                #eq = False
+                #for c in collisions:
+                #    if c == collision:
+                #        eq = True
+                #        break
+                #if eq:
+                #    continue
 
                 # Registrando a colisão
                 collisions.append(collision)
