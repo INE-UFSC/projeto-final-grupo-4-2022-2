@@ -1,9 +1,6 @@
 
 from abc import ABC, abstractmethod
 
-from utility.effects.particlegenerator import ParticleGenerator
-from utility.effects.particledestroyer import ParticleDestroyer
-
 import random
 
 import pygame
@@ -19,9 +16,6 @@ class State(ABC):
 
     def __init__(self, owner: Game):
         self.__owner = owner
-        self.__particles = []
-        self.__particle_generator = ParticleGenerator()
-        self.__particle_destroyer = ParticleDestroyer()
 
     def get_owner(self) -> Game:
         return self.__owner
@@ -43,18 +37,19 @@ class State(ABC):
 
     # Método onde é atualizado os componentes do estado
     def handle_update(self, dt: float) -> None:
-        p = self.__particle_generator.generate(dt)
+        owner = self.get_owner()
+        p = owner.get_particle_generator().generate(dt)
         if p is not None:
-            self.__particles.append(p)
+            owner.get_background_particles().append(p)
 
-        for p in self.__particles:
+        for p in owner.get_background_particles():
             p.update(dt)
 
-        self.__particles = self.__particle_destroyer.destroy(self.__particles)
+        owner.set_background_particles(owner.get_particle_destroyer().destroy(owner.get_background_particles()))
 
     # Método que renderiza os componentes
     def handle_rendering(self) -> None:
-        for p in self.__particles:
+        for p in self.get_owner().get_background_particles():
             r = random.randint(0, 255)
             g = random.randint(0, 255)
             b = random.randint(0, 255)
@@ -64,12 +59,3 @@ class State(ABC):
     # Método que lidará com a transição de estados
     @abstractmethod
     def handle_transition(self) -> None: ...
-
-    # TODO: Achar um jeito melhor de implementar a continuidade do background
-    def snapshot_particles(self) -> tuple:
-        return (self.__particles, self.__particle_generator, self.__particle_destroyer)
-
-    def load_particle_snapshot(self, set: tuple) -> tuple:
-        self.__particles = set[0]
-        self.__particle_generator = set[1]
-        self.__particle_destroyer = set[2]

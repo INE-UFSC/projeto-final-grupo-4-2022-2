@@ -1,7 +1,10 @@
 #NUM = DATA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
-#62 = 06/12/2022 (06/12/2022) Augusto
+#63 = 07/12/2022 (00:07) Augusto
+    - Melhorando a lógica das particulas
+
+#62 = 06/12/2022 (22:30) Augusto
     - Melhorando ainda mais a detecção de colisão (comentado o for que detecta colisões já contabilizadas)
         - É bom ainda verificar se está certo
 

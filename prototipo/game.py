@@ -10,6 +10,8 @@ from utility.states.statepickupmode import StatePickUpMode
 from utility.states.statescoreboard import StateScoreBoard
 from utility.data.soundloader import SoundLoader
 from utility.data.soundplayer import SoundPlayer
+from utility.effects.particlegenerator import ParticleGenerator
+from utility.effects.particledestroyer import ParticleDestroyer
 
 # CONSTANTS
 from utility.constants.game_constants import GameConstants
@@ -61,6 +63,11 @@ class Game:
 
         self.__current_music = None
 
+        self.__background_particles = []
+        self.__particle_generator = ParticleGenerator()
+        self.__particle_destroyer = ParticleDestroyer()
+
+
     # ATRIBUTOS
     def get_current_state(self) -> State:
         return self.__current_state
@@ -104,6 +111,18 @@ class Game:
     def set_current_music(self, current_music: pygame.mixer.Sound):
         self.__current_music = current_music
 
+    def get_background_particles(self) -> list:
+        return self.__background_particles
+
+    def set_background_particles(self, new_particles: list):
+        self.__background_particles = new_particles[:]
+
+    def get_particle_generator(self) -> ParticleGenerator:
+        return self.__particle_generator
+
+    def get_particle_destroyer(self) -> ParticleDestroyer:
+        return self.__particle_destroyer
+
     # LÓGICA
     def is_running(self) -> bool:
         return self.__running
@@ -118,9 +137,7 @@ class Game:
 
         # Troca de estado
         self.get_current_state().exit()
-        particle_set = self.get_current_state().snapshot_particles()
         self.set_current_state(next_state)
-        self.get_current_state().load_particle_snapshot(particle_set)
         self.get_current_state().entry()
 
     def handle_event(self) -> None:
