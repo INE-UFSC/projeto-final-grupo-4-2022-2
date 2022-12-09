@@ -2,31 +2,29 @@
 **Feito por Augusto, Gian e Micael**
 ###
 
-## 📁 Acesso ao projeto
-
+## 🛠️ Abrir e rodar o projeto
 **O jogo está na pasta protótipo. Para rodá-lo siga os passos abaixo.**
 
-### Primeiro passo
-#### Entrando na pasta
-**No console, digite os seguinte comando:**
+### Primeiro passo - Clonando projeto
+**No console dentro da pasta que você deseja, digite o seguinte comando para clonar o pojeto:**
 ```
-cd path_do_projeto/prototipo
+git clone https://github.com/INE-UFSC/projeto-final-grupo-4-2022-2
 ```
 
-### Segundo passo
-#### Requirements
-**Já dentro da pasta do projeto, digite os seguinte comando:**
+### Segundo passo - Entrando na pasta do jogo
+**No console, digite os seguinte comando:**
+```
+cd projeto-final-grupo-4-2022-2/prototipo
+```
+
+### Terceiro passo - Requirements
+**Já dentro da pasta do projeto, digite os seguinte comando para baixar as dependências:**
 ```
 pip install -r requirements.txt
 ```
 
-### Terceiro passo
-#### Rodando
-**Apóps finalizar a instalação das dependências, escreva o seguinte comando:**
+### Quarto passo - Rodando
+**Após finalizar a instalação, escreva o seguinte comando para rodar o jogo:**
 ```
 python main.py
 ```
-
-## 🛠️ Abrir e rodar o projeto
-
-**Apresente as instruções necessárias para abrir e executar o projeto**
