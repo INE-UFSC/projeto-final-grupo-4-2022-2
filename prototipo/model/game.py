@@ -32,6 +32,7 @@ class Game:
         pygame.mixer.init()
         pygame.init()
         pygame.display.set_caption(name)
+        pygame.mouse.set_visible(False)
 
         self.__running = True
         self.__current_state = StateInMenu(self)
