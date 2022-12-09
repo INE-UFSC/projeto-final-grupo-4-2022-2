@@ -2,6 +2,7 @@
 import random
 
 from managers.entitiesmanager import EntitiesManager
+from managers.gfxmanager import GFXManager
 
 from model.entities.abstractentity import Entity
 from model.entities.shooter import Shooter
@@ -9,6 +10,7 @@ from model.body import Body
 from model.weapon.infinity import InfinityWeapon
 from model.factory.defaultbulletfactory import DefaultBulletFactory
 
+from utility.effects.explosion import Explosion
 from utility.constants.alien_constants import AlienConstants
 from utility.constants.game_constants import GameConstants
 from utility.constants.shooter_constants import ShooterConstants
@@ -16,7 +18,7 @@ from utility.constants.pickup_constants import PickUpConstants
 from utility.data.image_loader import ImageLoader
 from utility.data.soundloader import SoundLoader
 
-from pygame import Vector2
+from pygame import Vector2, surface
 
 
 class Alien(Entity, Shooter):
@@ -51,6 +53,9 @@ class Alien(Entity, Shooter):
     def on_collision(self, entity: Entity) -> None:
         if entity.get_tag() == PickUpConstants().tag:
             return
+        
+        explosion = Explosion(self.get_body().get_position(), 25)
+        GFXManager.instance().add(explosion)
         EntitiesManager.instance().register_deletion(self)
 
     def move(self, dt: float) -> None:
@@ -102,3 +107,4 @@ class Alien(Entity, Shooter):
 
     def destroy(self) -> None:
         Alien.__explosion_sound.play()
+        

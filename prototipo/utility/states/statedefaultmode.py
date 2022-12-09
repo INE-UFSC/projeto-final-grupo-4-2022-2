@@ -1,10 +1,10 @@
 
 from managers.entitiesmanager import EntitiesManager
 from managers.scoremanager import ScoreManager
+from model.factory.defaultplayerfactory import DefaultPlayerFactory
 
 from model.spawn.alienspawn import AlienSpawner
 from model.spawn.asteroidspawner import AsteroidSpawner
-from model.factory.limitedbulletplayerfactory import LimitedBulletPlayerFactory
 
 from utility.states.stateingame import StateInGame
 from utility.debug import Debug
@@ -27,9 +27,9 @@ class StateDefaultMode(StateInGame):
         self.__alien_spawner = AlienSpawner()
         self.__asteroid_spawner = AsteroidSpawner()
 
-        player = LimitedBulletPlayerFactory().create()
+        player = DefaultPlayerFactory().create()
         self._player = player
-        self._debug = Debug(player)
+        #self._debug = Debug(player)
         self._score_manager = ScoreManager(player)
         self._status_reporter = StatusReporter(player)
 

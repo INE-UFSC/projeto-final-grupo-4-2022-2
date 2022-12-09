@@ -1,8 +1,15 @@
-
+# Models
 from model.entities.abstractentity import Entity
 from model.body import Body
-from managers.entitiesmanager import EntitiesManager
 
+# Managers
+from managers.entitiesmanager import EntitiesManager
+from managers.gfxmanager import GFXManager
+
+# GFX
+from utility.effects.debris import Debris
+
+# Utility
 from utility.constants.asteroid_constants import AsteroidConstants
 from utility.constants.pickup_constants import PickUpConstants
 from utility.constants.game_constants import GameConstants
@@ -12,7 +19,6 @@ from utility.data.soundplayer import SoundPlayer
 
 from pygame.math import Vector2
 import math
-
 
 class Asteroid(Entity):
 
@@ -43,6 +49,9 @@ class Asteroid(Entity):
             return
         if entity.get_tag() == PickUpConstants().tag:
             return
+
+        for debris in self.generate_debris(15):       
+            GFXManager.instance().add(debris)
         EntitiesManager.instance().register_deletion(self)
 
     def move(self, dt: float) -> None:
@@ -108,3 +117,11 @@ class Asteroid(Entity):
         EntitiesManager.instance().add_entity(asteroid_b)
 
         SoundPlayer().play(Asteroid.__explosion_sound)
+
+    def generate_debris(self, amount: int) -> list:
+        debris = list()
+        position = self.get_body().get_position()
+        for _ in range(0, amount):
+            debris.append(Debris(position))
+
+        return debris

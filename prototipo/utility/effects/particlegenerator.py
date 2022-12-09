@@ -4,11 +4,10 @@ from utility.effects.particle import Particle
 from pygame.math import Vector2
 import random
 
-
 class ParticleGenerator:
 
     def __init__(self) -> None:
-        self.__sizes = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4.0, 4.5, 5.0]
+        self.__sizes = [0.5, 1, 1.5, 2, 2.5, 3, 3.5]
         self.__cooldown = 0.05
         self.__current_cooldown = 0.0
         self.__direction = Vector2(1, 0)
@@ -18,7 +17,7 @@ class ParticleGenerator:
         if self.__current_cooldown < self.__cooldown:
             return
 
-        k = 30
+        k = 50
         self.__current_cooldown = 0.0
         size = random.choice(self.__sizes)
         position = Vector2(0.0, random.randint(

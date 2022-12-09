@@ -1,6 +1,12 @@
 #NUM = DATA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#67 = 09/12/2022 (08:12) Gian
+    - Hierarquização dos efeitos visuais (nova classe abstrata)
+    - Novo singleton (não consegui pensar em um jeito melhor) GFXManager no gfxmanager.py
+    - Mudança de algumas constante de gameplay
+    - Comentadas as linhas que atualizam o debug (i.e. debug desativado)
+
 #66 = 08/12/2022 (22:46) Augusto
     - Arrumando a atualização dupla de alguns estados
     - Ajustando as velocidades das entidades

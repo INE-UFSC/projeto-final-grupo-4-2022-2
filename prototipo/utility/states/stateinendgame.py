@@ -4,7 +4,6 @@ from managers.scoremanager import ScoreManager
 
 from utility.textinput import TextInput
 from utility.states.state import State
-from utility.data.scoreDAO import ScoreDAO
 from utility.constants.game_constants import GameConstants
 
 import pygame
@@ -17,7 +16,6 @@ class Game:
 # Nele estará a lógica persistência do score
 # do player
 
-
 class StateInEndGame(State):
 
     def __init__(self, owner: Game) -> None:
@@ -27,12 +25,14 @@ class StateInEndGame(State):
         self.__player = None
 
     def entry(self) -> None:
+        self.get_owner().get_juke_box().stop()
         self.get_owner().get_game_over_music().play()
         self.__text_input = TextInput("")
         self.__player = EntitiesManager.instance().get_entities()[0]
 
     def exit(self) -> None:
         self.get_owner().get_game_over_music().stop()
+        self.get_owner().get_juke_box().new_music()
 
         ScoreManager(self.__player).write_to_disk(self.__text_input.get_text())
         EntitiesManager.instance().clear_entities()

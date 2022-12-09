@@ -26,7 +26,7 @@ class StateAlienMode(StateInGame):
 
         player = DefaultPlayerFactory().create()
         self._player = player
-        self._debug = Debug(player)
+        #self._debug = Debug(player)
         self._score_manager = ScoreManager(player)
         self._status_reporter = StatusReporter(player)
         EntitiesManager.instance().add_entity(player)

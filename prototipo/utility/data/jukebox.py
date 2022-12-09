@@ -20,3 +20,9 @@ class JukeBox:
             self.__current_music = random.choice(musics_copy)
             SoundPlayer().play(self.__current_music)
             self.__time_elapsed = 0
+
+    def stop(self) -> None:
+        SoundPlayer().stop(self.__current_music)
+
+    def new_music(self) -> None:
+        SoundPlayer().play(random.choice(self.__musics))

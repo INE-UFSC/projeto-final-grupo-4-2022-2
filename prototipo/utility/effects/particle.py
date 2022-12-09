@@ -47,7 +47,7 @@ class Particle:
     def update(self, dt: float) -> None:
         self.set_position(dt*self.get_velocity() + self.get_position())
         self.set_cooldown(self.get_cooldown() + dt)
-        if self.get_cooldown() > 0.5:
+        if self.get_cooldown() > 0.25:
             r = random.randint(0, 255)
             g = random.randint(0, 255)
             b = random.randint(0, 255)

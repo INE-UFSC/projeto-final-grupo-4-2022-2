@@ -1,14 +1,8 @@
 
 import pygame
-
 from utility.effects.gfx import GFX
 
-
-class Tracer:
-    ...
-
-
-class Tracer(GFX):
+class Explosion(GFX):
 
     def __init__(self, position: pygame.Vector2, radius: float) -> None:
         super().__init__(1, position, radius)

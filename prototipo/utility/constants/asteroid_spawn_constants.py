@@ -5,4 +5,4 @@ class AsteroidSpawnConstants(Singleton):
 
     def __init__(self) -> None:
         self.cooldown = 2
-        self.number_of_asteroids = 5
+        self.number_of_asteroids = 10

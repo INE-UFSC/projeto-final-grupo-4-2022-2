@@ -35,18 +35,8 @@ class CollisionDetectorManager:
                 if target_radius + entity_radius < target_position.distance_to(entity_position):
                     continue
 
-                # Verificnado se a colisão já não existe
-                collision = Collision(target, entity)
-                #eq = False
-                #for c in collisions:
-                #    if c == collision:
-                #        eq = True
-                #        break
-                #if eq:
-                #    continue
-
                 # Registrando a colisão
-                collisions.append(collision)
+                collisions.append(Collision(target, entity))
 
         return collisions
 
@@ -77,7 +67,7 @@ class CollisionDetectorManager:
                 if t_radius + e_radius < t_position.distance_to(e_position):
                     continue
 
-                # Verificnado se a colisão já não existe
+                # Verificando se a colisão já não existe
                 collision = Collision(target, entity)
                 eq = False
                 for c in collisions:

@@ -15,6 +15,9 @@ from utility.data.image_loader import ImageLoader
 from utility.data.score import Score
 from utility.effects.tracer import Tracer
 
+# GFX
+from managers.gfxmanager import GFXManager
+
 # PYGAME
 import pygame
 from pygame.math import Vector2
@@ -46,8 +49,6 @@ class Player(Entity, Shooter):
         self.__direction = Vector2(1, 0).normalize()
 
         self.__score = Score(0, "None")
-
-        self.__tracers = list()
 
     def get_angle(self) -> float:
         return self.__angle
@@ -111,10 +112,11 @@ class Player(Entity, Shooter):
             body.accelerate(self.get_direction() *
                             PlayerConstants().acceleration_mag * dt)
             player_position = self.get_body().get_position()
-            tracer_position = player_position - self.get_body().get_velocity() / \
-                self.get_body().get_radius()
+
+            # GFX
+            tracer_position = player_position - (self.get_direction() * self.get_body().get_radius())
             new_tracer = Tracer(tracer_position, 7.5)
-            self.__tracers.append(new_tracer)
+            GFXManager.instance().add(new_tracer)
 
         # Desacelerando
         elif (body.get_velocity().magnitude() > 1):
@@ -157,22 +159,11 @@ class Player(Entity, Shooter):
         # Atualizando a posição
         body.move(velocity * dt)
 
-    def handle_animation(self, dt: float) -> None:
-        for tracer in self.__tracers:
-            tracer.update(dt)
-        
-        aux = list()
-        for tracer in self.__tracers:
-            if tracer.get_lifetime() < tracer.get_duration():
-                aux.append(tracer)
-
-        for tracer in aux:
-            self.__tracers.remove(tracer)
-
     def update(self, dt: float) -> None:
         Entity.update(self, dt)
         # Definindo a direção da mira do player
         aiming_direction = self.get_direction()
+        
         # Evitando que a bala seja criada dentro do player
         barrel_position = self.get_direction()*self.get_body().get_radius() * \
             ShooterConstants().radius_multiplier + self.get_body().get_position()
@@ -182,11 +173,8 @@ class Player(Entity, Shooter):
 
         self.handle_input(dt)
         self.move(dt)
-        self.handle_animation(dt)
 
     def draw(self, screen: pygame.Surface) -> None:
-        for tracer in self.__tracers:
-            tracer.draw(screen)
         super().draw(screen)
 
     def destroy(self) -> None:
