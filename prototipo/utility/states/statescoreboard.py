@@ -100,7 +100,7 @@ class StateScoreBoard(State):
         r.center = (GameConstants().screen_size.x/2, 80)
         self.get_owner().get_screen().blit(message_img, (r.x, r.y))
 
-        score_font = pygame.font.SysFont(font, 20)
+        score_font = pygame.font.SysFont(font, 30)
 
         if len(self.__scores) > 0:
 
@@ -113,7 +113,7 @@ class StateScoreBoard(State):
 
                 # centralizando texto
                 score_rectangle = score_image.get_rect()
-                score_pos = (GameConstants().screen_size.x/2, (120 + i * 20))
+                score_pos = (GameConstants().screen_size.x/2, (150 + i * 30))
                 score_rectangle.center = score_pos
 
                 # printando
@@ -122,6 +122,14 @@ class StateScoreBoard(State):
 
         for widget in self.__nav_buttons:
             widget.draw(self.get_owner().get_screen())
+
+        back = f"B to back"
+        font = pygame.font.get_default_font()
+        message_img = pygame.font.SysFont(
+            font, 25).render(back, True, COLOR_WHITE)
+        r = message_img.get_rect()
+        r.center = (GameConstants().screen_size.x/2, GameConstants().screen_size.y - 100)
+        self.get_owner().get_screen().blit(message_img, (r.x, r.y))
 
     def handle_transition(self) -> None:
         if self.__keys_current_state[pygame.K_b] == True and self.__keys_previous_state[pygame.K_b] == False:

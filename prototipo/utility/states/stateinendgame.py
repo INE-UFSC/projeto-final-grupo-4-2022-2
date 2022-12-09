@@ -60,7 +60,7 @@ class StateInEndGame(State):
         screen_size_x = GameConstants().screen_size.x
         screen_size_y = GameConstants().screen_size.y
 
-        msg_actions = f"""Enter: Salvar, Esc: Voltar ao menu"""
+        msg_actions = f"""Enter: Salvar"""
         actions_img = pygame.font.SysFont(
             font, 20).render(msg_actions, True, white)
         rect_actions = actions_img.get_rect()
@@ -83,6 +83,6 @@ class StateInEndGame(State):
         screen.blit(type_here_img, (r_type_here.x, r_type_here.y))
 
     def handle_transition(self) -> None:
-        if pygame.key.get_pressed()[pygame.K_RETURN] or pygame.key.get_pressed()[pygame.K_ESCAPE]:
+        if pygame.key.get_pressed()[pygame.K_RETURN]:
             next_state = GameConstants().state_menu
             self.get_owner().change_state(next_state)
