@@ -1,6 +1,9 @@
 #NUM = DATA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#68 = 09/12/2022 (17:15) Augusto
+    - Modificando o código para conseguir gerar o executável
+
 #67 = 09/12/2022 (08:12) Gian
     - Hierarquização dos efeitos visuais (nova classe abstrata)
     - Novo singleton (não consegui pensar em um jeito melhor) GFXManager no gfxmanager.py

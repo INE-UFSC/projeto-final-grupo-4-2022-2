@@ -12,6 +12,8 @@ class JukeBox:
         SoundPlayer().play(self.__current_music)
 
     def update(self, dt: float) -> None:
+        if self.__current_music is None:
+            return
         self.__time_elapsed += dt
         if self.__time_elapsed > self.__current_music.get_length():
             self.change_music()

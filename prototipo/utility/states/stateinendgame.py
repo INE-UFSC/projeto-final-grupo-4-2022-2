@@ -5,6 +5,7 @@ from managers.scoremanager import ScoreManager
 from utility.textinput import TextInput
 from utility.states.state import State
 from utility.constants.game_constants import GameConstants
+from utility.data.soundplayer import SoundPlayer
 
 import pygame
 
@@ -26,12 +27,12 @@ class StateInEndGame(State):
 
     def entry(self) -> None:
         self.get_owner().get_juke_box().stop()
-        self.get_owner().get_game_over_music().play()
+        SoundPlayer().play(self.get_owner().get_game_over_music())
         self.__text_input = TextInput("")
         self.__player = EntitiesManager.instance().get_entities()[0]
 
     def exit(self) -> None:
-        self.get_owner().get_game_over_music().stop()
+        SoundPlayer().stop(self.get_owner().get_game_over_music())
         self.get_owner().get_juke_box().new_music()
 
         ScoreManager(self.__player).write_to_disk(self.__text_input.get_text())

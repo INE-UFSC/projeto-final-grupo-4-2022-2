@@ -17,8 +17,9 @@ from utility.constants.shooter_constants import ShooterConstants
 from utility.constants.pickup_constants import PickUpConstants
 from utility.data.image_loader import ImageLoader
 from utility.data.soundloader import SoundLoader
+from utility.data.soundplayer import SoundPlayer
 
-from pygame import Vector2, surface
+from pygame import Vector2
 
 
 class Alien(Entity, Shooter):
@@ -106,5 +107,4 @@ class Alien(Entity, Shooter):
         self.move(dt)
 
     def destroy(self) -> None:
-        Alien.__explosion_sound.play()
-        
+        SoundPlayer().play(Alien.__explosion_sound)
