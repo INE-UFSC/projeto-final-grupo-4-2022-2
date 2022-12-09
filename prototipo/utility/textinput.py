@@ -25,7 +25,7 @@ class TextInput:
         self.__text = text
 
     def handle_event(self, event: pg.event.Event) -> None:
-        char_limit = 5
+        char_limit = 10
         if event.type == pg.KEYDOWN:
             if event.key == pg.K_RETURN or event.key == pg.K_SPACE:
                 return

@@ -12,8 +12,8 @@ class Debris(GFX):
         self._duration += dt
         if self._duration < self.get_lifetime():
             position = self.get_position()
-            new_x = position.x + random.uniform(-5, 5)
-            new_y = position.y + random.uniform(-5, 5)
+            new_x = position.x + random.uniform(-10, 10)
+            new_y = position.y + random.uniform(-10, 10)
             new_position = pygame.Vector2(new_x, new_y)
             self.set_position(new_position)
         else:

@@ -50,7 +50,7 @@ class Asteroid(Entity):
         if entity.get_tag() == PickUpConstants().tag:
             return
 
-        for debris in self.generate_debris(15):       
+        for debris in self.generate_debris(20):       
             GFXManager.instance().add(debris)
         EntitiesManager.instance().register_deletion(self)
 

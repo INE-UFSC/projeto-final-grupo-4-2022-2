@@ -51,17 +51,16 @@ class Game:
         }
 
         # Música
-        self.__sound_loader = SoundLoader()
-        self.__sound_player = SoundPlayer()
-        music_1 = self.__sound_loader.load(GameConstants().music_1_path, 0.2)
-        music_2 = self.__sound_loader.load(GameConstants().music_2_path, 0.2)
-        music_3 = self.__sound_loader.load(GameConstants().music_3_path, 0.2)
-        music_4 = self.__sound_loader.load(GameConstants().music_4_path, 0.2)
-        self.__music_library = [music_1, music_2, music_3, music_4]
-        self.__game_over_music = self.__sound_loader.load(
+        music_1 = SoundLoader().load(GameConstants().music_1_path, 0.2)
+        music_2 = SoundLoader().load(GameConstants().music_2_path, 0.2)
+        music_3 = SoundLoader().load(GameConstants().music_3_path, 0.2)
+        music_4 = SoundLoader().load(GameConstants().music_4_path, 0.2)
+        
+        musics = [music_1, music_2, music_3, music_4]
+        self.__game_over_music = SoundLoader().load(
             GameConstants().game_over_music_path, 0.5)
 
-        self.__juke_box = JukeBox(self.__music_library)
+        self.__juke_box = JukeBox(musics)
 
         self.__background_particles = []
         self.__particle_generator = ParticleGenerator()
@@ -92,15 +91,6 @@ class Game:
 
     def set_states_dictionary(self, states_dic: dict) -> None:
         self.__states_dictionary = states_dic
-
-    def get_sound_loader(self) -> SoundLoader:
-        return self.__sound_loader
-
-    def get_sound_player(self) -> SoundPlayer:
-        return self.__sound_player
-
-    def get_music_library(self) -> list:
-        return self.__music_library
 
     def get_game_over_music(self) -> pygame.mixer.Sound:
         return self.__game_over_music
@@ -166,14 +156,12 @@ class Game:
     def handle_transition(self) -> None:
         self.__current_state.handle_transition()
 
-    def pick_random_music(self) -> pygame.mixer.Sound:
-        index = random.randint(0, 3)
-        return self.get_music_library()[index]
-
     # Método que vai definir o fluxo do jogo
     def run(self) -> None:
         self.get_current_state().entry()
         while self.is_running():
+            # tick() retorna o tempo em ms desde a última chamada de tick()
+            # por isso dividimos por 1000 para dt ser em segundos
             dt = self.get_clock().tick(GameConstants().fps)/1000.0
             self.handle_event()
             self.handle_update(dt)

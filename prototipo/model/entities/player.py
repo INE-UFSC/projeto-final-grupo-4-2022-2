@@ -68,7 +68,7 @@ class Player(Entity, Shooter):
     def set_direction(self, new_direction: Vector2) -> None:
         self.__direction = new_direction.normalize()
 
-    def get_score(self) -> int:
+    def get_score(self) -> Score:
         return self.__score
 
     def set_score(self, new_score: int) -> None:
