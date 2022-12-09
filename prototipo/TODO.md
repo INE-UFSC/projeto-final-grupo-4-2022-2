@@ -8,11 +8,11 @@
 
 ## Outros
 
-#### [ ] - Efeitos visuais (explosões, foguinho na nave e etc)
 #### [ ] - Atualizar UML
 
 ## Histórico
 
+#### [x] - Efeitos visuais (explosões, foguinho na nave e etc)
 #### [x] - Sprites (tela de fundo principalmente)
 #### [x] - Sounds
 #### [x] - Tipar tudo

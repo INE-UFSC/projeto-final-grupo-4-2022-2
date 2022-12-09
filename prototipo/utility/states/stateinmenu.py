@@ -70,9 +70,7 @@ class StateInMenu(State):
         pass
 
     def handle_event(self) -> None:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                self.get_owner().close()
+        super().handle_event()
 
     def handle_update(self, dt: float) -> None:
         super().handle_update(dt)

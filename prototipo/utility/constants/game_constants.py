@@ -2,11 +2,16 @@ from utility.singleton.singleton import Singleton
 
 import pygame
 
+from tkinter import Tk
+root = Tk() 
+height = root.winfo_screenheight() 
+width = root.winfo_screenwidth()
+
 
 class GameConstants(Singleton):
 
     def __init__(self) -> None:
-        self.screen_size = pygame.math.Vector2(1024, 768)
+        self.screen_size = pygame.math.Vector2(width, height)
         self.fps = 55
 
         self.state_menu = "inmenu"

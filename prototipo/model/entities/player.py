@@ -157,6 +157,18 @@ class Player(Entity, Shooter):
         # Atualizando a posição
         body.move(velocity * dt)
 
+    def handle_animation(self, dt: float) -> None:
+        for tracer in self.__tracers:
+            tracer.update(dt)
+        
+        aux = list()
+        for tracer in self.__tracers:
+            if tracer.get_lifetime() < tracer.get_duration():
+                aux.append(tracer)
+
+        for tracer in aux:
+            self.__tracers.remove(tracer)
+
     def update(self, dt: float) -> None:
         Entity.update(self, dt)
         # Definindo a direção da mira do player
@@ -170,13 +182,12 @@ class Player(Entity, Shooter):
 
         self.handle_input(dt)
         self.move(dt)
-        for tracer in self.__tracers:
-            tracer.update(dt)
+        self.handle_animation(dt)
 
     def draw(self, screen: pygame.Surface) -> None:
         for tracer in self.__tracers:
-            tracer.render(screen)
-        return super().draw(screen)
+            tracer.draw(screen)
+        super().draw(screen)
 
     def destroy(self) -> None:
         pass

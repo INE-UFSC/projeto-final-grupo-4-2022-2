@@ -1,6 +1,8 @@
 
 from abc import ABC, abstractmethod
 
+from utility.constants.game_constants import GameConstants
+
 import random
 
 import pygame
@@ -32,8 +34,13 @@ class State(ABC):
     def exit(self) -> None: ...
 
     # Método que vai lidar com os métodos do pygame
-    @abstractmethod
-    def handle_event(self) -> None: ...
+    def handle_event(self) -> None:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.get_owner().close()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    self.get_owner().close()
 
     # Método onde é atualizado os componentes do estado
     def handle_update(self, dt: float) -> None:
@@ -51,12 +58,16 @@ class State(ABC):
 
     # Método que renderiza os componentes
     def handle_rendering(self) -> None:
+        title = f"ESC to exit"
+        font = pygame.font.get_default_font()
+        message_img = pygame.font.SysFont(
+            font, 25).render(title, True, (255, 255, 255))
+        r = message_img.get_rect()
+        r.bottomright = (GameConstants().screen_size.x - 10, GameConstants().screen_size.y - 10)
+        self.get_owner().get_screen().blit(message_img, (r.x, r.y))
+        screen = self.get_owner().get_screen()
         for p in self.get_owner().get_background_particles():
-            r = random.randint(0, 255)
-            g = random.randint(0, 255)
-            b = random.randint(0, 255)
-            pygame.draw.circle(self.get_owner().get_screen(),
-                               (r, g, b), p.get_position(), p.get_radius())
+           p.draw(screen)
 
     # Método que lidará com a transição de estados
     @abstractmethod

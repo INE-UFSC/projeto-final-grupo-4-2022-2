@@ -1,6 +1,14 @@
 #NUM = DATA (HORARIO DE PUSH) NOME: (NUM é o número da entrada do changelog)
     - mudanças
 
+#66 = 08/12/2022 (22:46) Augusto
+    - Arrumando a atualização dupla de alguns estados
+    - Ajustando as velocidades das entidades
+    - Refatorando a classe Particle para ela armazenar a sua cor
+    - Refatorando a classe Tracer para não se auto deletar
+    - Arrumando o método Destroy do Asteroid (ele estava criando novos
+      asteroids com a angulação errada)
+
 #65 = 07/12/2022 (19:42) Micael
     - Renomeando os controladores para gerenciadores (Managers)
     - Criando pastas para os pickups e as bullets

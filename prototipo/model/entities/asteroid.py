@@ -88,8 +88,8 @@ class Asteroid(Entity):
 
         position_a = Vector2(position + body.get_radius()
                              * velocity.normalize().rotate(math.pi/2))
-        position_b = Vector2(position - body.get_radius()
-                             * velocity.normalize().rotate(math.pi/2))
+        position_b = Vector2(position + body.get_radius()
+                             * velocity.normalize().rotate(-math.pi/2))
 
         # Rotação para simular a conservação de energia
         rotation = 30

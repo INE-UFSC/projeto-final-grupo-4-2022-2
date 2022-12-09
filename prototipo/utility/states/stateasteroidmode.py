@@ -38,4 +38,3 @@ class StateAsteroidMode(StateInGame):
     def handle_update(self, dt: float) -> None:
         super().handle_update(dt)
         self.__asteroid_spawner.generate(dt)
-        super().handle_update(dt)

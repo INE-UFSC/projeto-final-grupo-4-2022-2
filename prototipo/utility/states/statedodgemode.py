@@ -41,4 +41,3 @@ class StateDodgeMode(StateInGame):
         super().handle_update(dt)
         self.__alien_spawner.generate(dt)
         self.__asteroid_spawner.generate()
-        super().handle_update(dt)

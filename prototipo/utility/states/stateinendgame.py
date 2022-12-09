@@ -41,6 +41,9 @@ class StateInEndGame(State):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.get_owner().close()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    self.get_owner().close()
             self.__text_input.handle_event(event)
 
     def handle_update(self, dt: float) -> None:

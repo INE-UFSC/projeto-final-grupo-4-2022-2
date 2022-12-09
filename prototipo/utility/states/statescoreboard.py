@@ -29,11 +29,11 @@ class StateScoreBoard(State):
 
         self.__keys_current_state = {pygame.K_LEFT: False,
                                      pygame.K_RIGHT: False,
-                                     pygame.K_ESCAPE: False}
+                                     pygame.K_b: False}
 
         self.__keys_previous_state = {pygame.K_LEFT: False,
                                       pygame.K_RIGHT: False,
-                                      pygame.K_ESCAPE: False}
+                                      pygame.K_b: False}
 
         self.__page = 0
 
@@ -66,9 +66,7 @@ class StateScoreBoard(State):
         pass
 
     def handle_event(self) -> None:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                self.get_owner().close()
+        super().handle_event()
 
     def handle_update(self, dt: float) -> None:
         super().handle_update(dt)
@@ -126,5 +124,5 @@ class StateScoreBoard(State):
             widget.draw(self.get_owner().get_screen())
 
     def handle_transition(self) -> None:
-        if self.__keys_current_state[pygame.K_ESCAPE] == True and self.__keys_previous_state[pygame.K_ESCAPE] == False:
+        if self.__keys_current_state[pygame.K_b] == True and self.__keys_previous_state[pygame.K_b] == False:
             self.get_owner().change_state(GameConstants().state_menu)

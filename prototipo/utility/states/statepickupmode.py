@@ -47,4 +47,3 @@ class StatePickUpMode(StateInGame):
         self.__alien_spawner.generate(dt)
         self.__pickup_spawner.generate(dt)
         self.__asteroid_spawner.generate()
-        super().handle_update(dt)
