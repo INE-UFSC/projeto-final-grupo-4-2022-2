@@ -1,16 +1,15 @@
+# Projeto de POO II - Jogo Asteroid
+###
 
-# Como rodar
-#### Para executar basta rodar main.py
-# Como trocar de balas
-#### 1, 2, 3 e 4 trocam de balas (vale notar que a bala é propriedade da arma, então
-#### ao trocar de arma pela primeira vez a bala retorna para default)
-# Como trocar de arma
-#### Q, W, E R trocam de arma
+## 📁 Acesso ao projeto
 
-# Observações
-#### Número de asteroids é definido em stateingame.py, no update 
-#### (basta mudar o generate(10) para um generate(n) que você
-#### terá n asteroides) OBS: 150+ entidades começam a travar o jogo
-####
-#### Além disso, é possível alterar algumas constantes
-#### no arquivo constants.py na pasta utility para testes
+**Indique como é possível baixar ou acessar o código fonte do projeto, seja projeto inicial ou final**
+
+## 🛠️ Abrir e rodar o projeto
+
+**Apresente as instruções necessárias para abrir e executar o projeto**
+
+# Autores
+
+| [<img src="https://avatars.githubusercontent.com/u/37356058?v=4" width=115><br><sub>Augusto de Hollanda Vieira Guerner< sub>](https://github.com/AHVG) |  [<img src="https://avatars.githubusercontent.com/u/30351153?v=4" width=115><br><sub>Gian</sub>](https://github.com/Giancarloff) |  [<img src="https://avatars.githubusercontent.com/u/8989346?v=4" width=115><br><sub>Micael</sub>](https://github.com/MicaelPresotto) |
+| :---: | :---: | :---: |
