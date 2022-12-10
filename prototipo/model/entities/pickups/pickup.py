@@ -10,9 +10,6 @@ class PickUp(Entity):
     def __init__(self, body: Body) -> None:
         super().__init__(body, PickUpConstants().tag)
 
-        self.set_image(PickUp.__original_image)
-        self.set_rect(self.get_image().get_rect())
-
     def destroy(self) -> None:
         pass
 
