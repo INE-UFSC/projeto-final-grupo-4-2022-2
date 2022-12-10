@@ -11,6 +11,7 @@ from model.weapon.infinity import InfinityWeapon
 from model.factory.defaultbulletfactory import DefaultBulletFactory
 
 from utility.effects.explosion import Explosion
+from utility.effects.debris import Debris
 from utility.constants.alien_constants import AlienConstants
 from utility.constants.game_constants import GameConstants
 from utility.constants.shooter_constants import ShooterConstants
@@ -55,8 +56,14 @@ class Alien(Entity, Shooter):
         if entity.get_tag() == PickUpConstants().tag:
             return
         
+        # GFX
         explosion = Explosion(self.get_body().get_position(), 25)
         GFXManager.instance().add(explosion)
+        debris = self.gerenare_debris(5)
+        for d in debris:
+            GFXManager.instance().add(d)
+
+        # Manager
         EntitiesManager.instance().register_deletion(self)
 
     def move(self, dt: float) -> None:
@@ -108,3 +115,11 @@ class Alien(Entity, Shooter):
 
     def destroy(self) -> None:
         SoundPlayer().play(Alien.__explosion_sound)
+
+    def gerenare_debris(self, amount: int) -> list:
+        debris = list()
+        pos = self.get_body().get_position()
+        for _ in range(1, amount):
+            debris.append(Debris(pos))
+        
+        return debris

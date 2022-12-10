@@ -53,6 +53,7 @@ class EntitiesManager:
     def del_entity(self, entity: Entity) -> None:
         try:
             self.__entities.remove(entity)
+            del entity
         except ValueError as ve:
             print(ve)
 

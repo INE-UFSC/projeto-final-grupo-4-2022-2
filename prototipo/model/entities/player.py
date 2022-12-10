@@ -14,6 +14,7 @@ from utility.constants.game_constants import GameConstants
 from utility.data.image_loader import ImageLoader
 from utility.data.score import Score
 from utility.effects.tracer import Tracer
+from utility.effects.explosion import Explosion
 
 # GFX
 from managers.gfxmanager import GFXManager
@@ -87,11 +88,14 @@ class Player(Entity, Shooter):
         self.get_direction().rotate_ip(-angle)
 
     def on_collision(self, entity: Entity) -> None:
+        explosion = Explosion(self.get_body().get_position(), 25)
+        GFXManager.instance().add(explosion)
         if entity.get_tag() == PickUpConstants().tag:
             return
         if (self.get_lives() >= 0):
             self.set_lives(self.get_lives() - 1)
             self.reset()
+        
 
     def alive(self) -> bool:
         return self.__lives > -1

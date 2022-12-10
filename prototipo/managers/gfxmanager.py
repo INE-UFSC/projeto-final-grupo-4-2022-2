@@ -20,7 +20,7 @@ class GFXManager:
     def add(self, fx: GFX) -> None:
         self.__effects.append(fx)
 
-    def gfx_update(self, dt) -> None:
+    def gfx_update(self, dt: float) -> None:
         for fx in self.__effects:
             fx.update(dt)
 

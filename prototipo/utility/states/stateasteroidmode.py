@@ -2,7 +2,7 @@
 from managers.entitiesmanager import EntitiesManager
 from managers.scoremanager import ScoreManager
 
-from model.spawn.asteroidspawntertime import AsteroidSpawnerTime
+from model.spawn.asteroidspawnertime import AsteroidSpawnerTime
 from model.factory.defaultplayerfactory import DefaultPlayerFactory
 
 from utility.states.stateingame import StateInGame
@@ -37,4 +37,4 @@ class StateAsteroidMode(StateInGame):
 
     def handle_update(self, dt: float) -> None:
         super().handle_update(dt)
-        self.__asteroid_spawner.generate(dt)
+        self.__asteroid_spawner.update(dt)

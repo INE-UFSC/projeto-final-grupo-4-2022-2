@@ -1,7 +1,6 @@
 
 from abc import ABC, abstractmethod
 
-# from model.entities.shooter import Shooter
 from model.factory.bulletfactory import BulletFactory
 
 from utility.constants.weapon_constants import WeaponConstants

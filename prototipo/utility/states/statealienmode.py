@@ -36,4 +36,4 @@ class StateAlienMode(StateInGame):
 
     def handle_update(self, dt: float) -> None:
         super().handle_update(dt)
-        self.__alien_spawner.generate(dt)
+        self.__alien_spawner.update(dt)

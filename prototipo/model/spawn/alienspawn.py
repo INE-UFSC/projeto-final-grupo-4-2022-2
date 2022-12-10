@@ -43,7 +43,7 @@ class AlienSpawner:
     def decrease(self, dt: float) -> None:
         self.set_cooldown(self.get_cooldown() - dt)
 
-    def generate(self, dt: float) -> Entity:
+    def update(self, dt: float) -> Entity:
         # Caso já passo o tempo de cooldown,
         # então cria-se um novo Alien randomicamente
         self.decrease(dt)

@@ -8,10 +8,10 @@
 
 ## Outros
 
-#### [ ] - Atualizar UML
-
+ 
 ## Histórico
 
+#### [X] - Atualizar UML
 #### [x] - Efeitos visuais (explosões, foguinho na nave e etc)
 #### [x] - Sprites (tela de fundo principalmente)
 #### [x] - Sounds
