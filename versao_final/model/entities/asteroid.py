@@ -43,6 +43,7 @@ class Asteroid(Entity):
             self.set_image(Asteroid.__original_small_asteroid)
 
         self.set_rect(self.get_image().get_rect())
+        self.get_rect().center = self.get_body().get_position()
 
     def on_collision(self, entity: Entity) -> None:
         if entity.get_tag() == AsteroidConstants().tag:

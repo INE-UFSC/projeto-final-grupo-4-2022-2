@@ -19,6 +19,9 @@ class Bullet(Entity):
         self.set_image(self.__original_bullet)
         self.set_rect(self.get_image().get_rect())
 
+        self.set_rect(self.get_image().get_rect())
+        self.get_rect().center = self.get_body().get_position()
+
     def get_lifetime(self) -> int:
         return self.__lifetime
 

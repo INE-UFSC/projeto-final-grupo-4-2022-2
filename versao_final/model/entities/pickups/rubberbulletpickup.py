@@ -23,6 +23,9 @@ class RubberBulletPickUp(PickUp):
         self.set_image(RubberBulletPickUp.__original_image)
         self.set_rect(self.get_image().get_rect())
 
+        self.set_rect(self.get_image().get_rect())
+        self.get_rect().center = self.get_body().get_position()
+
     def on_collision(self, entity: Entity):
         if isinstance(entity, Player):
             entity.get_weapon().set_bullet_factory(RubberBulletFactory())

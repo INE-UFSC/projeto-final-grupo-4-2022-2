@@ -40,6 +40,9 @@ class Alien(Entity, Shooter):
         self.set_image(self.__original_alien)
         self.set_rect(self.get_image().get_rect())
 
+        self.set_rect(self.get_image().get_rect())
+        self.get_rect().center = self.get_body().get_position()
+
     def get_move_cooldown(self) -> float:
         return self.__move_cooldown
 

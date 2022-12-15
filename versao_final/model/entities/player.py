@@ -46,6 +46,9 @@ class Player(Entity, Shooter):
         self.set_image(Player.__original_image)
         self.set_rect(self.get_image().get_rect())
 
+        self.set_rect(self.get_image().get_rect())
+        self.get_rect().center = self.get_body().get_position()
+
         self.__lives = lives
         self.__direction = Vector2(1, 0).normalize()
 

@@ -24,6 +24,9 @@ class DefaultWeaponPickUp(PickUp):
         self.set_image(DefaultWeaponPickUp.__original_image)
         self.set_rect(self.get_image().get_rect())
 
+        self.set_rect(self.get_image().get_rect())
+        self.get_rect().center = self.get_body().get_position()
+
     def on_collision(self, entity: Entity):
         if entity.get_tag() == PickUpConstants():
             return
