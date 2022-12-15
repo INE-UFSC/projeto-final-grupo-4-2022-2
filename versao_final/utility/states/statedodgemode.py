@@ -1,5 +1,6 @@
 
 from managers.entitiesmanager import EntitiesManager
+from managers.gfxmanager import GFXManager
 from managers.scoremanager import ScoreManager
 
 from model.spawn.alienspawn import AlienSpawner
@@ -36,6 +37,7 @@ class StateDodgeMode(StateInGame):
 
     def exit(self) -> None:
         super().exit()
+        GFXManager().instance().clear()
 
     def handle_update(self, dt: float) -> None:
         super().handle_update(dt)

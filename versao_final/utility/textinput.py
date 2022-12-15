@@ -27,7 +27,7 @@ class TextInput:
     def handle_event(self, event: pg.event.Event) -> None:
         char_limit = 10
         if event.type == pg.KEYDOWN:
-            if event.key == pg.K_RETURN or event.key == pg.K_SPACE:
+            if event.key == pg.K_RETURN or event.key == pg.K_SPACE or event.key == pg.K_TAB:
                 return
             elif event.key == pg.K_BACKSPACE:
                 new_text = self.text[:-1]

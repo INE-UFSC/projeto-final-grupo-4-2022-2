@@ -52,10 +52,10 @@ class Game:
         }
 
         # Música
-        music_1 = SoundLoader().load(GameConstants().music_1_path, 0.2)
-        music_2 = SoundLoader().load(GameConstants().music_2_path, 0.2)
-        music_3 = SoundLoader().load(GameConstants().music_3_path, 0.2)
-        music_4 = SoundLoader().load(GameConstants().music_4_path, 0.2)
+        music_1 = SoundLoader().load(GameConstants().music_1_path, 0.1)
+        music_2 = SoundLoader().load(GameConstants().music_2_path, 0.1)
+        music_3 = SoundLoader().load(GameConstants().music_3_path, 0.1)
+        music_4 = SoundLoader().load(GameConstants().music_4_path, 0.1)
         
         musics = [music_1, music_2, music_3, music_4]
         self.__game_over_music = SoundLoader().load(

@@ -1,5 +1,6 @@
 
 from managers.entitiesmanager import EntitiesManager
+from managers.gfxmanager import GFXManager
 from managers.scoremanager import ScoreManager
 
 from utility.textinput import TextInput
@@ -37,6 +38,7 @@ class StateInEndGame(State):
 
         ScoreManager(self.__player).write_to_disk(self.__text_input.get_text())
         EntitiesManager.instance().clear_entities()
+        GFXManager().instance().clear()
 
     def handle_event(self) -> None:
         for event in pygame.event.get():
@@ -60,7 +62,7 @@ class StateInEndGame(State):
         screen_size_x = GameConstants().screen_size.x
         screen_size_y = GameConstants().screen_size.y
 
-        msg_actions = f"""Enter: Salvar"""
+        msg_actions = f"""Enter: Salvar; TAB: Menu"""
         actions_img = pygame.font.SysFont(
             font, 20).render(msg_actions, True, white)
         rect_actions = actions_img.get_rect()
@@ -83,6 +85,6 @@ class StateInEndGame(State):
         screen.blit(type_here_img, (r_type_here.x, r_type_here.y))
 
     def handle_transition(self) -> None:
-        if pygame.key.get_pressed()[pygame.K_RETURN]:
+        if pygame.key.get_pressed()[pygame.K_RETURN] or pygame.key.get_pressed()[pygame.K_TAB]:
             next_state = GameConstants().state_menu
             self.get_owner().change_state(next_state)
