@@ -4,7 +4,7 @@ from managers.scoremanager import ScoreManager
 
 from model.spawn.alienspawn import AlienSpawner
 from model.spawn.asteroidspawner import AsteroidSpawner
-from model.spawn.pickupspawner import PikcUpSpawner
+from model.spawn.pickupspawner import PickUpSpawner
 from model.factory.limitedbulletplayerfactory import LimitedBulletPlayerFactory
 
 from utility.states.stateingame import StateInGame
@@ -28,7 +28,7 @@ class StatePickUpMode(StateInGame):
         super().entry()
         self.__alien_spawner = AlienSpawner()
         self.__asteroid_spawner = AsteroidSpawner()
-        self.__pickup_spawner = PikcUpSpawner()
+        self.__pickup_spawner = PickUpSpawner()
 
         player = LimitedBulletPlayerFactory().create()
         self._player = player

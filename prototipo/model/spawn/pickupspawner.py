@@ -25,7 +25,7 @@ from managers.entitiesmanager import EntitiesManager
 # mais Asteroids em campo
 
 
-class PikcUpSpawner:
+class PickUpSpawner:
 
     def __init__(self) -> None:
         self.__cooldown = PickUpConstants().cooldown
